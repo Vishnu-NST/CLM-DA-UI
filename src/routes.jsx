@@ -39,11 +39,6 @@ export const routes = [
 		errorElement: <ErrorPage />,
 	},
 	{
-		path: '/dash',
-		element: <BaseLayout />,
-		errorElement: <ErrorPage />,
-	},
-	{
 		path: '/dashboard/*',
 		element: (
 			<Suspense>
