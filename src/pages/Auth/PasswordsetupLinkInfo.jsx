@@ -1,5 +1,5 @@
 import { Grid, Typography } from '@mui/material';
-import Mifix from '../../src/assets/svg/Mifix.svg';
+import Mifix from '@/assets/svg/Mifix.svg';
 import './styles/SignUpAndLoginForms.scss';
 
 const PasswordsetupLinkInfo = () => {
@@ -9,7 +9,7 @@ const PasswordsetupLinkInfo = () => {
 			direction="column"
 			justifyContent="center"
 			alignItems="center"
-			style={{ marginLeft: '22rem' }}
+			// style={{ marginLeft: '22rem' }}
 		>
 			<img src={Mifix} alt="Mifix" />
 			<Typography className="pwdLinkMsgCls">

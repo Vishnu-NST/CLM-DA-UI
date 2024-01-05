@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import InputComponent from './InputComponent';
 import { Grid, Typography } from '@mui/material';
-import Mifix from '../../src/assets/svg/Mifix.svg';
+import Mifix from '@/assets/svg/Mifix.svg';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import { theme } from '../../theme';
-import './styles/SignUpAndLoginPage.scss';
+import { theme } from '@/theme';
+import './styles/SignUpAndLoginForms.scss';
 
-const FortPasswordForm = () => {
+const FortgotPasswordForm = () => {
 	const [formData, setFormData] = useState({
 		email: '',
 	});
@@ -30,7 +30,7 @@ const FortPasswordForm = () => {
 			direction="column"
 			justifyContent="center"
 			alignItems="center"
-			style={{ marginLeft: '22rem' }}
+			// style={{ marginLeft: '22rem' }}
 		>
 			<img src={Mifix} style={{ marginRight: 'auto' }} alt="Mifix" />
 			<Typography
@@ -72,4 +72,4 @@ const FortPasswordForm = () => {
 	);
 };
 
-export default FortPasswordForm;
+export default FortgotPasswordForm;

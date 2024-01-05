@@ -1,14 +1,12 @@
 import React, { Suspense } from 'react';
 
 import ErrorPage from '@/components/Error/Error';
-// import Dhanam from '@/layout/Dhanam';
-// import DepositCollect from '@/pages/DepositCollect/DepositCollect';
-// import Login from '@/pages/Login/Login';
-// import SignUpForm from '@/pages/SignUp/';
 import AuthRequired from './components/AuthRequired';
 import SignUpForm from './pages/Auth/SignUpForm';
 import LoginPage from './pages/Auth/LoginForm';
 import CreatePasswordForm from './pages/Auth/CreatePasswordForm';
+import PasswordsetupLinkInfo from './pages/Auth/PasswordsetupLinkInfo';
+import FortgotPasswordForm from './pages/Auth/ForgotPasswordForm';
 
 export const routes = [
 	{
@@ -24,6 +22,16 @@ export const routes = [
 	{
 		path: '/create-password',
 		element: <CreatePasswordForm />,
+		errorElement: <ErrorPage />,
+	},
+	{
+		path: '/email-confirm',
+		element: <PasswordsetupLinkInfo />,
+		errorElement: <ErrorPage />,
+	},
+	{
+		path: '/forgot-password',
+		element: <FortgotPasswordForm />,
 		errorElement: <ErrorPage />,
 	},
 	{
