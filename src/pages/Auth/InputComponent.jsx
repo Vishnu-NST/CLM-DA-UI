@@ -15,24 +15,22 @@ const InputComponent = ({
 	isSubmitted,
 }) => {
 	const [showPassword, setShowPassword] = useState(false);
+	const dynamicPwdType = showPassword ? 'text' : 'password';
 	const handleClickShowPassword = () => setShowPassword((show) => !show);
 	const [inputValue, setInputValue] = useState('');
 	const [fieldTouched, setFieldTouched] = useState(false);
-
 	const onChange = (inputValue) => {
 		document.getElementById('submitBtn').style.backgroundColor = '#C4161C';
 		setInputValue(inputValue);
 		setFieldTouched(inputValue.trim().length > 0 ? true : false);
 	};
-
-	console.log({ showPassword });
-
 	return (
 		<Box>
 			<TextField
 				required
 				style={{
 					width: customWidth,
+					fontFamily: 'Poppins , sans-serif',
 					fontSize: 11,
 				}}
 				variant="outlined"
@@ -40,7 +38,7 @@ const InputComponent = ({
 				id={id}
 				name={name}
 				placeholder={placeholder}
-				type={showPassword ? 'text' : 'password'}
+				type={id === 'password' ? dynamicPwdType : type}
 				value={inputValue}
 				onChange={(e) => onChange(e.target.value)}
 				error={isSubmitted && !fieldTouched && !inputValue.trim()}
@@ -71,6 +69,7 @@ const InputComponent = ({
 						</InputAdornment>
 					),
 					sx: {
+						fontFamily: "'Poppins', sans-serif",
 						fontSize: '0.68rem !important',
 						borderRadius: '0.5rem',
 					},
