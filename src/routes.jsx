@@ -7,6 +7,10 @@ import LoginPage from './pages/Auth/LoginForm';
 import CreatePasswordForm from './pages/Auth/CreatePasswordForm';
 import PasswordsetupLinkInfo from './pages/Auth/PasswordsetupLinkInfo';
 import FortgotPasswordForm from './pages/Auth/ForgotPasswordForm';
+import BaseLayout from '@/components/BaseLayout';
+import Stats from '@/pages/Stats/Stats';
+import LoanPoolCreation from '@/pages/LoanPoolCreation/LoanPoolCreation';
+import LoanPoolTimeline from './pages/LoanPoolTimeline/LoanPoolTimeline';
 
 export const routes = [
 	{
@@ -35,25 +39,43 @@ export const routes = [
 		errorElement: <ErrorPage />,
 	},
 	{
-		path: '/',
-		element: <Suspense>{/* <Dhanam /> */}</Suspense>,
+		path: '/dash',
+		element: <BaseLayout />,
+		errorElement: <ErrorPage />,
+	},
+	{
+		path: '/dashboard/*',
+		element: (
+			<Suspense>
+				<BaseLayout />
+			</Suspense>
+		),
 		errorElement: <ErrorPage />,
 		children: [
 			{
-				path: '/deposit-collect',
+				path: 'stats',
 				element: (
 					<Suspense fallback={'Loading ...'}>
-						<>100</>
+						<Stats />
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
 			},
 			{
-				path: '/monitor',
+				path: 'lpc',
 				element: (
-					<AuthRequired>
-						<>100</>
-					</AuthRequired>
+					<Suspense fallback={'Loading ...'}>
+						<LoanPoolCreation />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'lpt',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<LoanPoolTimeline />
+					</Suspense>
 				),
 				errorElement: <ErrorPage />,
 			},
