@@ -1,8 +1,7 @@
-// import { BaseLogger } from '@/services/logger/BaseLogger';
 import { DevLogger } from '@/services/logger/DevLogger';
 import { ProdLogger } from '@/services/logger/ProdLogger';
 
-export function getLogger(){
+export function getLogger() {
 	let logger;
 	switch (import.meta.env.MODE) {
 		case 'development':
@@ -32,4 +31,37 @@ export function getStorage() {
 	}
 
 	return storage;
+}
+
+export function checkPasswordStrength(password) {
+	// must have min 8 chars
+	// must have smallcase and uppercase
+	// must have one or more special symbols
+	// must have one or more digits
+
+	// the following is the regex to match the password using the aforementioned criteria.
+	// "$aaA1aaaa".match(/(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])(?=.*\d).{8,}/)
+
+	let specialCharsRegex = /[!@#$%^&*()]/;
+	let bothCaseRegex = /(?=.*[a-z])(?=.*[A-Z])/;
+
+	let strength = 0;
+
+	if (password.length > 8) {
+		strength += 25;
+	}
+
+	if (password.match(specialCharsRegex)) {
+		strength += 25;
+	}
+
+	if (password.match(/\d+/)) {
+		strength += 25;
+	}
+
+	if (password.match(bothCaseRegex)) {
+		strength += 25;
+	}
+
+	return strength;
 }
