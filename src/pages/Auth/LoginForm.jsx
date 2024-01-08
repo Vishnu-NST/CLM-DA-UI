@@ -3,6 +3,7 @@ import Mifix from '@/assets/svg/Mifix.svg';
 import { theme } from '@/theme';
 import KeyIcon from '@mui/icons-material/Key';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import { Link } from 'react-router-dom';
 import {
 	Box,
 	Button,
@@ -16,7 +17,6 @@ import { useMemo, useState } from 'react';
 
 import InputComponent from './InputComponent';
 import './styles/SignUpAndLoginForms.scss';
-import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
 	const [isSubmitted, setIsSubmitted] = useState(false);
@@ -40,14 +40,14 @@ const LoginPage = () => {
 		textTransform: 'none',
 		borderRadius: '0.5rem',
 		width: '60%',
-		height: '2.5rem',
+		height: '2rem',
 		color: theme.palette.common.white,
 		backgroundColor: theme.palette.primary.main,
+		cursor: 'pointer',
 		border: 'none',
-		buttonWeight: '200',
+		fontSize: '0.65rem',
 	};
 	const memoizedLoginImage = useMemo(() => <LoginImage />, []);
-
 	return (
 		<>
 			<Grid container style={{ height: '100vh' }}>
@@ -76,18 +76,23 @@ const LoginPage = () => {
 									cursor: 'pointer',
 									fontSize: '0.875rem',
 								}}
-								// onClick={() => {
-								// 	setShowLogin(false);
-								// }}
 							>
-								<Link to="/">Sign Up</Link>
+								<Link
+									style={{
+										textDecoration: 'none',
+										color: 'inherit',
+									}}
+									to="/"
+								>
+									Sign Up
+								</Link>
 							</span>
 						</p>
 					</Grid>
 					<Grid
 						container
 						direction="column"
-						style={{ margin: '10% 10% 13% 10%' }}
+						style={{ margin: '0% 10% 13% 10%' }}
 					>
 						<Typography>
 							Welcome to{' '}
@@ -151,7 +156,15 @@ const LoginPage = () => {
 									}
 								/>
 								<Typography className="forgotPwdCls">
-									Forgot password?
+									<Link
+										style={{
+											textDecoration: 'none',
+											color: 'inherit',
+										}}
+										to="/forgot-password"
+									>
+										Forgot password?
+									</Link>
 								</Typography>
 							</Grid>
 
@@ -167,10 +180,11 @@ const LoginPage = () => {
 											.buttonDisableBackgroundColor
 									}
 									onClick={() => {
-										document.getElementById(
-											'submitBtn',
-										).style.backgroundColor =
+										const submitBtn =
+											document.getElementById('submitBtn');
+										submitBtn.style.backgroundColor =
 											theme.palette.primary.light;
+										submitBtn.style.cursor = 'not-allowed';
 										setIsSubmitted(true);
 									}}
 								>

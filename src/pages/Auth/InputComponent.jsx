@@ -8,7 +8,6 @@ const InputComponent = ({
 	name,
 	placeholder,
 	type,
-	// error,
 	helperText,
 	startIcon,
 	customWidth,
@@ -19,10 +18,14 @@ const InputComponent = ({
 	const handleClickShowPassword = () => setShowPassword((show) => !show);
 	const [inputValue, setInputValue] = useState('');
 	const [fieldTouched, setFieldTouched] = useState(false);
+	const submitButton = document.getElementById('submitBtn');
 	const onChange = (inputValue) => {
-		document.getElementById('submitBtn').style.backgroundColor = '#C4161C';
 		setInputValue(inputValue);
 		setFieldTouched(inputValue.trim().length > 0 ? true : false);
+		if (fieldTouched) {
+			submitButton.style.backgroundColor = '#C4161C';
+			submitButton.style.cursor = 'pointer';
+		}
 	};
 	return (
 		<Box>

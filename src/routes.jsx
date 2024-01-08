@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 
 import ErrorPage from '@/components/Error/Error';
-import AuthRequired from './components/AuthRequired';
+// import AuthRequired from './components/AuthRequired';
 import SignUpForm from './pages/Auth/SignUpForm';
 import LoginPage from './pages/Auth/LoginForm';
 import CreatePasswordForm from './pages/Auth/CreatePasswordForm';

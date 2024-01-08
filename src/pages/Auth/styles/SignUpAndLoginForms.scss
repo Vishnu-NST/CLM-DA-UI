@@ -2,6 +2,7 @@
 .MuiFormHelperText-sizeSmall{
     margin-left: 0 !important;
 }
+
 .imgContainer {
     height: 100%;
 }
@@ -13,21 +14,21 @@
 }
 
 .labelCls {
-    margin-bottom: 0.5rem !important;
+    margin-bottom: -0.5rem !important;
     margin-top: 1.5rem !important;
     font-size: 12px !important;
 }
 
 .accountCls{
     margin-top: -1.5rem;
-    margin-left: 17rem;
+    margin-left: 15rem;
     font-size: small;
     color: #8794C2;
 }
 
 .needAccountCls{
-    margin-top: -1.5rem;
-    margin-left: 13rem;
+    margin-top: -3.5rem;
+    margin-left: 8rem;
     font-size: small;
     color: #8794C2;
 }
@@ -44,7 +45,7 @@
     font-size: 12px !important;
     margin: auto !important;
     cursor: pointer !important;
-    margin-left: 6.5rem !important;
+    margin-left: 5.3rem !important;
 }
 .passwordLinkCls{
     align-items: center;
@@ -72,12 +73,12 @@
 
 .pwdLinkMsgCls{
     color: var(--Sub-text-2, #8794C2);
-    text-align: center;
-    font-family: Poppins;
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-right: auto !important;
+    margin-left: auto !important;
 }
 
 .pwdRulesCls{

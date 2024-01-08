@@ -1,10 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Button, Grid, Typography } from '@mui/material';
 import InputComponent from './InputComponent';
-
-// import LoginForm from './FullLoginForm';
-// import PasswordLinkInfo from './PasswordsetupLinkInfo';
-
 import LoginImage from '@/assets/svg/LoginImage';
 import Mifix from '@/assets/svg/Mifix.svg';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
@@ -25,7 +21,7 @@ const SignUpForm = (props) => {
 	});
 	const [isSubmitted, setIsSubmitted] = useState(false);
 
-	const fullNameProps = {
+	const firstNameProps = {
 		id: 'firstName',
 		label: (
 			<p>
@@ -35,7 +31,7 @@ const SignUpForm = (props) => {
 		placeholder: 'Enter your first name',
 		type: 'text',
 		startIcon: <PersonOutlineIcon style={{ fontSize: 'medium' }} />,
-		customWidth: '90%',
+		customWidth: '81%',
 		helperText: 'enter your first name',
 	};
 
@@ -43,7 +39,7 @@ const SignUpForm = (props) => {
 		id: 'lastName',
 		placeholder: 'Enter your last name',
 		type: 'text',
-		customWidth: '90%',
+		customWidth: '73%',
 		helperText: 'enter your last name',
 	};
 
@@ -58,28 +54,24 @@ const SignUpForm = (props) => {
 		placeholder: 'Enter your official email id',
 		type: 'email',
 		startIcon: <MailOutlineIcon style={{ fontSize: 13 }} />,
-		customWidth: '70%',
+		customWidth: '60%',
 		helperText: 'invalid email id',
 	};
 
 	const submitButtonStyle = {
 		textTransform: 'none',
 		borderRadius: '0.5rem',
-		width: '70%',
-		height: '2.5rem',
+		width: '60%',
+		height: '2rem',
 		color: theme.palette.common.white,
 		backgroundColor: isSubmitted
 			? theme.palette.primary.light
 			: theme.palette.primary.main,
 		border: 'none',
-		buttonWeight: '200',
+		fontSize: '0.65rem',
 	};
 
 	const memoizedLoginImage = useMemo(() => <LoginImage />, []);
-
-	// const [showSignUp, setShowSignUp] = useState(true);
-	// const [showLogin, setShowLogin] = useState(false);
-
 	return (
 		<>
 			<Grid container style={{ height: '100vh' }}>
@@ -93,7 +85,7 @@ const SignUpForm = (props) => {
 					alignItems="center"
 					justifyContent="center"
 				>
-					<Grid item style={{ marginBottom: '7.5rem' }}>
+					<Grid item style={{ marginBottom: '4.5rem' }}>
 						<img
 							src={Mifix}
 							alt="Mifix"
@@ -108,12 +100,16 @@ const SignUpForm = (props) => {
 									cursor: 'pointer',
 									fontSize: '0.875rem',
 								}}
-								// onClick={() => {
-								// 	setShowSignUp(false);
-								// 	setShowLogin(true);
-								// }}
 							>
-								<Link to="/sign-in">Sign In</Link>
+								<Link
+									style={{
+										textDecoration: 'none',
+										color: 'inherit',
+									}}
+									to="/sign-in"
+								>
+									Sign In
+								</Link>
 							</span>
 						</p>
 					</Grid>
@@ -133,9 +129,7 @@ const SignUpForm = (props) => {
 								Direct Assignment
 							</span>
 						</Typography>
-						<Typography
-							style={{ fontWeight: 'bold', fontSize: '1.35rem' }}
-						>
+						<Typography variant="h6" style={{ fontWeight: 'bold' }}>
 							Sign up your account{' '}
 						</Typography>{' '}
 						<Grid item>
@@ -153,9 +147,13 @@ const SignUpForm = (props) => {
 							</Typography>
 							<Grid item style={{ display: 'flex' }}>
 								<Grid container spacing={0}>
-									<Grid xs={4.4}>
+									<Grid
+										item
+										xs={4.4}
+										style={{ marginRight: '-1rem' }}
+									>
 										<InputComponent
-											{...fullNameProps}
+											{...firstNameProps}
 											value={formData.firstName}
 											onChange={(e) => {
 												const value = e.target.value;
@@ -172,7 +170,7 @@ const SignUpForm = (props) => {
 											isSubmitted={isSubmitted}
 										/>
 									</Grid>
-									<Grid xs={4.4}>
+									<Grid item xs={4.4}>
 										<InputComponent
 											style={{ marginTop: 'auto' }}
 											{...lastNameProps}
@@ -223,19 +221,18 @@ const SignUpForm = (props) => {
 									}
 								}}
 							/>
-							<Grid item xs={12} sx={{ pt: 3.5 }}>
+							<Grid item xs={12} sx={{ pt: 7 }}>
 								<Button
 									id="submitBtn"
 									variant="contained"
 									buttonType="submit"
 									style={submitButtonStyle}
 									onClick={() => {
-										document.getElementById(
-											'submitBtn',
-										).style.backgroundColor =
+										const submitBtn =
+											document.getElementById('submitBtn');
+										submitBtn.style.backgroundColor =
 											theme.palette.primary.light;
-										// setShowLogin(false);
-										// setShowSignUp(false);
+										submitBtn.style.cursor = 'not-allowed';
 										setIsSubmitted(true);
 									}}
 								>

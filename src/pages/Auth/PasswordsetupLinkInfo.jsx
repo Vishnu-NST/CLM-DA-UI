@@ -9,9 +9,9 @@ const PasswordsetupLinkInfo = () => {
 			direction="column"
 			justifyContent="center"
 			alignItems="center"
-			// style={{ marginLeft: '22rem' }}
+			style={{ marginTop: '15rem' }}
 		>
-			<img src={Mifix} alt="Mifix" />
+			<img src={Mifix} alt="Mifix" style={{ marginBottom: '2rem' }} />
 			<Typography className="pwdLinkMsgCls">
 				We&apos; sent the link to create your password to your email. Please
 				check your
