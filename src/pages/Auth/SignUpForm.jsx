@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Button, Grid, Typography } from '@mui/material';
 import InputComponent from './InputComponent';
 import LoginImage from '@/assets/svg/LoginImage';
@@ -9,17 +9,37 @@ import { theme } from '@/theme';
 import './styles/SignUpAndLoginForms.scss';
 import { Link } from 'react-router-dom';
 import DI from '@/hoc/DI';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { isAllFormFieldsTouched } from '@/utils/common';
 
-const SignUpForm = (props) => {
-	console.log(props);
-	props.logger.info({ message: 'some info' }, 'null', 'user1');
-
-	const [formData, setFormData] = useState({
-		firstName: '',
-		lastName: '',
-		email: '',
+const SignUpForm = () => {
+	const form = useFormik({
+		initialValues: {
+			firstName: '',
+			lastName: '',
+			email: '',
+		},
+		validationSchema: Yup.object({
+			firstName: Yup.string()
+				.max(15, 'Must be 15 characters or less')
+				.required('This field is required'),
+			lastName: Yup.string()
+				.max(15, 'Must be 15 characters or less')
+				.required('This field is required'),
+			email: Yup.string()
+				.email('Invalid email address')
+				.required('This field is required'),
+		}),
+		onSubmit: (values) => {
+			console.log('submit');
+			console.log(values);
+		},
 	});
-	const [isSubmitted, setIsSubmitted] = useState(false);
+
+	const isAllFieldsTouched = isAllFormFieldsTouched(form);
+
+	const isFormValid = isAllFieldsTouched && form.isValid;
 
 	const firstNameProps = {
 		id: 'firstName',
@@ -44,7 +64,7 @@ const SignUpForm = (props) => {
 	};
 
 	const emailProps = {
-		id: 'emailID',
+		id: 'email',
 		label: (
 			<p>
 				Official Email
@@ -63,15 +83,16 @@ const SignUpForm = (props) => {
 		borderRadius: '0.5rem',
 		width: '60%',
 		height: '2rem',
-		color: theme.palette.common.white,
-		backgroundColor: isSubmitted
-			? theme.palette.primary.light
-			: theme.palette.primary.main,
+		color: 'white',
+		backgroundColor: isFormValid
+			? theme.palette.primary.main
+			: theme.palette.primary.light,
 		border: 'none',
 		fontSize: '0.65rem',
 	};
 
 	const memoizedLoginImage = useMemo(() => <LoginImage />, []);
+
 	return (
 		<>
 			<Grid container style={{ height: '100vh' }}>
@@ -132,114 +153,81 @@ const SignUpForm = (props) => {
 						<Typography variant="h6" style={{ fontWeight: 'bold' }}>
 							Sign up your account{' '}
 						</Typography>{' '}
-						<Grid item>
-							<Typography className="labelCls">
-								<p>
-									Full Name
-									<span
-										style={{
-											color: theme.palette.primary.main,
-										}}
-									>
-										*
-									</span>
-								</p>
-							</Typography>
-							<Grid item style={{ display: 'flex' }}>
-								<Grid container spacing={0}>
-									<Grid
-										item
-										xs={4.4}
-										style={{ marginRight: '-1rem' }}
-									>
-										<InputComponent
-											{...firstNameProps}
-											value={formData.firstName}
-											onChange={(e) => {
-												const value = e.target.value;
-												const regMatch = /^[a-zA-Z]*$/.test(
-													value,
-												);
-												if (regMatch) {
-													setFormData({
-														...formData,
-														fullName: value,
-													});
-												}
+						<form action="" onSubmit={form.handleSubmit}>
+							<Grid item>
+								<Typography className="labelCls">
+									<p>
+										Full Name
+										<span
+											style={{
+												color: theme.palette.primary.main,
 											}}
-											isSubmitted={isSubmitted}
-										/>
-									</Grid>
-									<Grid item xs={4.4}>
-										<InputComponent
-											style={{ marginTop: 'auto' }}
-											{...lastNameProps}
-											value={formData.lastName}
-											onChange={(e) => {
-												const value = e.target.value;
-												const regMatch = '^[a-zA-Z]+$'.test(
-													value,
-												);
-												if (regMatch) {
-													setFormData({
-														...formData,
-														lastName: value,
-													});
-												}
-											}}
-											isSubmitted={isSubmitted}
-										/>
+										>
+											*
+										</span>
+									</p>
+								</Typography>
+								<Grid item style={{ display: 'flex' }}>
+									<Grid container spacing={0}>
+										<Grid
+											item
+											xs={4.4}
+											style={{ marginRight: '-1rem' }}
+										>
+											<InputComponent
+												{...firstNameProps}
+												form={form}
+												value={form.values.firstName}
+												error={form.errors.firstName}
+												touched={form.touched.firstName}
+											/>
+										</Grid>
+										<Grid item xs={4.4}>
+											<InputComponent
+												style={{ marginTop: 'auto' }}
+												{...lastNameProps}
+												form={form}
+												value={form.values.lastName}
+												error={form.errors.lastName}
+												touched={form.touched.lastName}
+											/>
+										</Grid>
 									</Grid>
 								</Grid>
-							</Grid>
-							<Typography className="labelCls">
-								<p>
-									Official Email
-									<span
-										style={{
-											color: theme.palette.primary.main,
-										}}
+								<Typography className="labelCls">
+									<p>
+										Official Email
+										<span
+											style={{
+												color: theme.palette.primary.main,
+											}}
+										>
+											*
+										</span>
+									</p>
+								</Typography>
+								<InputComponent
+									sx={{ width: '100%' }}
+									{...emailProps}
+									form={form}
+									value={form.values.email}
+									error={form.errors.email}
+									touched={form.touched.email}
+								/>
+								<Grid item xs={12} sx={{ pt: 7 }}>
+									<Button
+										id="submitBtn"
+										variant="contained"
+										buttonType="submit"
+										style={submitButtonStyle}
+										type="submit"
+										disabled={!isFormValid}
 									>
-										*
-									</span>
-								</p>
-							</Typography>
-							<InputComponent
-								sx={{ width: '100%' }}
-								{...emailProps}
-								value={formData.email}
-								isSubmitted={isSubmitted}
-								onChange={(e) => {
-									const emailInput = e.target.value;
-									const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-									const isValid = emailRegex.test(emailInput);
-									if (isValid) {
-										setFormData({
-											...formData,
-											email: emailInput,
-										});
-									}
-								}}
-							/>
-							<Grid item xs={12} sx={{ pt: 7 }}>
-								<Button
-									id="submitBtn"
-									variant="contained"
-									buttonType="submit"
-									style={submitButtonStyle}
-									onClick={() => {
-										const submitBtn =
-											document.getElementById('submitBtn');
-										submitBtn.style.backgroundColor =
-											theme.palette.primary.light;
-										submitBtn.style.cursor = 'not-allowed';
-										setIsSubmitted(true);
-									}}
-								>
-									Submit
-								</Button>
+										Submit
+									</Button>
+								</Grid>
 							</Grid>
-						</Grid>
+						</form>
 					</Grid>
 				</Grid>
 			</Grid>
