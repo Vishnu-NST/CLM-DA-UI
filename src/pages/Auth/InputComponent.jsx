@@ -8,10 +8,8 @@ const InputComponent = ({
 	name,
 	placeholder,
 	type,
-	helperText,
 	startIcon,
 	customWidth,
-	isSubmitted,
 	value,
 	form,
 	error,
@@ -20,18 +18,6 @@ const InputComponent = ({
 	const [showPassword, setShowPassword] = useState(false);
 	const dynamicPwdType = showPassword ? 'text' : 'password';
 	const handleClickShowPassword = () => setShowPassword((show) => !show);
-	const [inputValue, setInputValue] = useState('');
-	const [fieldTouched, setFieldTouched] = useState(false);
-	const submitButton = document.getElementById('submitBtn');
-	const onChange = (inputValue) => {
-		console.log(102);
-		setInputValue(inputValue);
-		setFieldTouched(inputValue.trim().length > 0 ? true : false);
-		if (fieldTouched) {
-			submitButton.style.backgroundColor = '#C4161C';
-			submitButton.style.cursor = 'pointer';
-		}
-	};
 	return (
 		<Box>
 			<TextField
@@ -48,7 +34,6 @@ const InputComponent = ({
 				placeholder={placeholder}
 				type={id === 'password' ? dynamicPwdType : type}
 				value={value}
-				// onChange={(e) => onChange(e.target.value)}
 				onChange={form.handleChange}
 				error={Object.keys(form.errors).length}
 				helperText={touched && error}

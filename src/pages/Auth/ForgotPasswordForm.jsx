@@ -1,18 +1,35 @@
-import { useState } from 'react';
-import InputComponent from './InputComponent';
-import { Button, Grid, Typography } from '@mui/material';
 import Mifix from '@/assets/svg/Mifix.svg';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { theme } from '@/theme';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import { Button, Grid, Typography } from '@mui/material';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import InputComponent from './InputComponent';
 import './styles/SignUpAndLoginForms.scss';
+import { isAllFormFieldsTouched } from '@/utils/common';
 
 const ForgotPasswordForm = () => {
-	const [isSubmitted, setIsSubmitted] = useState(false);
-	const [formData, setFormData] = useState({
-		email: '',
+	const form = useFormik({
+		initialValues: {
+			email: '',
+		},
+		validationSchema: Yup.object({
+			email: Yup.string()
+				.email('Invalid email address')
+				.required('This field is required'),
+		}),
+		onSubmit: (values) => {
+			console.log('submit');
+			console.log(values);
+		},
 	});
+
+	const isAllFieldsTouched = isAllFormFieldsTouched(form);
+
+	const isFormValid = isAllFieldsTouched && form.isValid;
+
 	const emailProps = {
-		id: 'emailID',
+		id: 'email',
 		name: 'email',
 		label: (
 			<p>
@@ -30,8 +47,10 @@ const ForgotPasswordForm = () => {
 		borderRadius: '0.5rem',
 		width: '80%',
 		height: '2rem',
-		color: theme.palette.common.white,
-		backgroundColor: theme.palette.primary.main,
+		backgroundColor: isFormValid
+			? theme.palette.primary.main
+			: theme.palette.primary.light,
+		color: 'white',
 		border: 'none',
 		fontSize: '0.65rem',
 		marginTop: '3rem',
@@ -69,41 +88,36 @@ const ForgotPasswordForm = () => {
 					Enter your email address below, and we&apos;ll send you a link to
 					reset your password.
 				</Typography>
-				<Grid style={{ width: '100%', marginBottom: '2rem' }}>
-					<Typography>
-						<p className="passwordResetEmail">
-							Email Address
-							<span style={{ color: theme.palette.primary.main }}>
-								*
-							</span>
-						</p>
-					</Typography>
-					<InputComponent
-						sx={{ width: '100%' }}
-						{...emailProps}
-						value={formData.email}
-						onChange={(e) => {
-							const value = e.target.value;
-							setFormData({ ...formData, email: value });
-						}}
-						isSubmitted={isSubmitted}
-					/>
-					<Button
-						id="submitBtn"
-						variant="contained"
-						buttonType="submit"
-						style={submitButtonStyle}
-						onClick={() => {
-							const submitBtn = document.getElementById('submitBtn');
-							submitBtn.style.backgroundColor =
-								theme.palette.primary.light;
-							submitBtn.style.cursor = 'not-allowed';
-							setIsSubmitted(true);
-						}}
-					>
-						Submit
-					</Button>
-				</Grid>
+				<form onSubmit={form.handleSubmit}>
+					<Grid style={{ width: '100%', marginBottom: '2rem' }}>
+						<Typography>
+							<p className="passwordResetEmail">
+								Email Address
+								<span style={{ color: theme.palette.primary.main }}>
+									*
+								</span>
+							</p>
+						</Typography>
+						<InputComponent
+							sx={{ width: '100%' }}
+							{...emailProps}
+							form={form}
+							value={form.values.email}
+							error={form.errors.email}
+							touched={form.touched.email}
+						/>
+						<Button
+							id="submitBtn"
+							variant="contained"
+							buttonType="submit"
+							style={submitButtonStyle}
+							disabled={!isFormValid}
+							type="submit"
+						>
+							Submit
+						</Button>
+					</Grid>
+				</form>
 			</Grid>
 		</Grid>
 	);
