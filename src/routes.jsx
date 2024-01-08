@@ -7,6 +7,7 @@ import LoginPage from './pages/Auth/LoginForm';
 import CreatePasswordForm from './pages/Auth/CreatePasswordForm';
 import PasswordsetupLinkInfo from './pages/Auth/PasswordsetupLinkInfo';
 import FortgotPasswordForm from './pages/Auth/ForgotPasswordForm';
+import LinkExpiredForm from './pages/Auth/LinkExpiredForm';
 import BaseLayout from '@/components/BaseLayout';
 import Stats from '@/pages/Stats/Stats';
 import LoanPoolCreation from '@/pages/LoanPoolCreation/LoanPoolCreation';
@@ -36,6 +37,11 @@ export const routes = [
 	{
 		path: '/forgot-password',
 		element: <FortgotPasswordForm />,
+		errorElement: <ErrorPage />,
+	},
+	{
+		path: '/link-expired',
+		element: <LinkExpiredForm />,
 		errorElement: <ErrorPage />,
 	},
 	{

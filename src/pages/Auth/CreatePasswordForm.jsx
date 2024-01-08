@@ -76,80 +76,6 @@ const CreatePasswordForm = () => {
 	// };
 
 	return (
-		// <Container component="main" maxWidth="xs">
-		// 	<Grid
-		// 		container
-		// 		direction="column"
-		// 		justifyContent="center"
-		// 		alignItems="flex-start"
-		// 	>
-		// 		<img src={Mifix} alt="Mifix" style={{ margin: '10% 0 10% 0' }} />
-		// 		<Typography style={{ fontWeight: '600', fontSize: '1.75rem' }}>
-		// 			Create Password
-		// 		</Typography>
-		// 		<Grid item>
-		// 			<Typography className="labelCls">Set Password</Typography>
-		// 			<InputComponent {...setPasswordProps} />
-		// 			<Typography className="pwdRulesCls">
-		// 				Create a password with the combination of Numeric,
-		// 			</Typography>
-		// 			<Typography className="pwdRulesCls">
-		// 				Letters and Special characters.
-		// 			</Typography>
-		// 			<Typography className="labelCls">Confirm Password</Typography>
-		// 			<InputComponent {...confirmPasswordProps} />
-		// 		</Grid>
-		// 		<Button
-		// 			id="submitBtn"
-		// 			variant="contained"
-		// 			buttonType="submit"
-		// 			style={signUpButtonStyle}
-		// 			// onClick={() => {}}
-		// 		>
-		// 			Sign Up
-		// 		</Button>
-		// 	</Grid>
-
-		// 	{/* <Paper>
-		// 		<Typography variant="h5">Login</Typography>
-		// 		<form noValidate>
-		// 			<InputComponent
-		// 				variant="outlined"
-		// 				margin="normal"
-		// 				required
-		// 				fullWidth
-		// 				id="email"
-		// 				label="Email Address"
-		// 				name="email"
-		// 				autoComplete="email"
-		// 				value={email}
-		// 				onChange={(e) => setEmail(e.target.value)}
-		// 			/>
-		// 			<InputComponent
-		// 				variant="outlined"
-		// 				margin="normal"
-		// 				required
-		// 				fullWidth
-		// 				name="password"
-		// 				label="Password"
-		// 				type="password"
-		// 				id="password"
-		// 				autoComplete="current-password"
-		// 				value={password}
-		// 				onChange={(e) => setPassword(e.target.value)}
-		// 			/>
-		// 			<Button
-		// 				type="button"
-		// 				fullWidth
-		// 				variant="contained"
-		// 				color="primary"
-		// 				onClick={handleLogin}
-		// 			>
-		// 				Sign In
-		// 			</Button>
-		// 		</form>
-		// 	</Paper> */}
-		// </Container>
 		<Grid
 			container
 			direction="column"
@@ -157,7 +83,7 @@ const CreatePasswordForm = () => {
 			alignItems="center"
 			style={{ minHeight: '100vh' }}
 		>
-			<Grid item>
+			<Grid item style={{ width: '25%' }}>
 				<img src={Mifix} style={{ marginBottom: '2rem' }} alt="Mifix" />
 				<Typography
 					style={{
@@ -170,12 +96,12 @@ const CreatePasswordForm = () => {
 				</Typography>
 				<Typography>
 					<p className="passwordResetEmail">
-						Set Password
+						Set password
 						<span style={{ color: theme.palette.primary.main }}>*</span>
 					</p>
 				</Typography>
 				<InputComponent
-					style={{ marginTop: '-0.8rem !important' }}
+					style={{ width: '100%', marginTop: '-0.8rem !important' }}
 					{...setPasswordProps}
 					// onChange={(e) => {
 					// 	const value = e.target.value;
@@ -183,9 +109,15 @@ const CreatePasswordForm = () => {
 					// }}
 					isSubmitted={isSubmitted}
 				/>
+				<Typography variant="subtitle2" className="pwdRulesCls">
+					Create a password with the combination of Numeric,
+				</Typography>
+				<Typography variant="subtitle2" className="pwdRulesCls">
+					Letters and Special characters.
+				</Typography>
 				<Typography>
 					<p className="passwordResetEmail">
-						Confirm Password
+						Confirm password
 						<span style={{ color: theme.palette.primary.main }}>*</span>
 					</p>
 				</Typography>
@@ -233,31 +165,6 @@ export default CreatePasswordForm;
 // 	const [formData, setFormData] = useState({
 // 		email: '',
 // 	});
-// 	const emailProps = {
-// 		id: 'emailID',
-// 		name: 'email',
-// 		label: (
-// 			<p>
-// 				Official Email
-// 				<span style={{ color: theme.palette.primary.main }}>*</span>
-// 			</p>
-// 		),
-// 		placeholder: 'Enter your registered email address',
-// 		type: 'email',
-// 		startIcon: <MailOutlineIcon style={{ fontSize: 13 }} />,
-// 		customWidth: '100%',
-// 	};
-// 	const submitButtonStyle = {
-// 		textTransform: 'none',
-// 		borderRadius: '0.5rem',
-// 		width: '100%',
-// 		height: '2rem',
-// 		color: theme.palette.common.white,
-// 		backgroundColor: theme.palette.primary.main,
-// 		border: 'none',
-// 		fontSize: '0.65rem',
-// 		marginTop: '3rem',
-// 	};
 
 // 	return (
 // 		<Grid
