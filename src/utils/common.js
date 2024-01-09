@@ -65,3 +65,19 @@ export function checkPasswordStrength(password) {
 
 	return strength;
 }
+
+/**
+ *
+ * A function to determine whether all
+ * fields are touched or not
+ *
+ * @param formik object
+ * @returns boolean
+ */
+
+export function isAllFormFieldsTouched(form) {
+	return (
+		Object.keys(form.touched).length > 0 &&
+		Object.keys(form.touched).every((field) => form.touched[field])
+	);
+}

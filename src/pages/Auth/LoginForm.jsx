@@ -4,6 +4,8 @@ import { theme } from '@/theme';
 import KeyIcon from '@mui/icons-material/Key';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { Link } from 'react-router-dom';
+import * as Yup from 'yup';
+
 import {
 	Box,
 	Button,
@@ -13,15 +15,39 @@ import {
 	Typography,
 } from '@mui/material';
 
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
+import { isAllFormFieldsTouched } from '@/utils/common';
+import { useFormik } from 'formik';
 import InputComponent from './InputComponent';
 import './styles/SignUpAndLoginForms.scss';
 
 const LoginPage = () => {
-	const [isSubmitted, setIsSubmitted] = useState(false);
+	const form = useFormik({
+		initialValues: {
+			email: '',
+			password: '',
+		},
+		validationSchema: Yup.object({
+			email: Yup.string()
+				.email('Invalid email address')
+				.required('This field is required'),
+			password: Yup.string()
+				.min(8, 'Must be 8 characters or more')
+				.required('This field is required'),
+		}),
+		onSubmit: (values) => {
+			console.log('submit');
+			console.log(values);
+		},
+	});
+
+	const isAllFieldsTouched = isAllFormFieldsTouched(form);
+
+	const isFormValid = isAllFieldsTouched && form.isValid;
+
 	const emailProps = {
-		id: 'emailID',
+		id: 'email',
 		placeholder: 'Enter your registered email address',
 		type: 'text',
 		startIcon: <MailOutlineIcon style={{ fontSize: 12 }} />,
@@ -41,13 +67,19 @@ const LoginPage = () => {
 		borderRadius: '0.5rem',
 		width: '60%',
 		height: '2rem',
-		color: theme.palette.common.white,
-		backgroundColor: theme.palette.primary.main,
+		backgroundColor: isFormValid
+			? theme.palette.primary.main
+			: theme.palette.primary.light,
+		color: 'white',
 		cursor: 'pointer',
 		border: 'none',
 		fontSize: '0.65rem',
 	};
+
+	// console.log({ isFormValid });
+
 	const memoizedLoginImage = useMemo(() => <LoginImage />, []);
+
 	return (
 		<>
 			<Grid container style={{ height: '100vh' }}>
@@ -110,88 +142,92 @@ const LoginPage = () => {
 						>
 							Sign up your account
 						</Typography>
-						<Grid item>
-							<Typography className="labelCls">
-								<p>
-									Email Address
-									<span
-										style={{
-											color: theme.palette.primary.main,
-										}}
-									>
-										*
-									</span>
-								</p>
-							</Typography>
-							<InputComponent
-								{...emailProps}
-								isSubmitted={isSubmitted}
-							/>
-							<Typography className="labelCls">
-								<p>
-									Password
-									<span
-										style={{
-											color: theme.palette.primary.main,
-										}}
-									>
-										*
-									</span>
-								</p>
-							</Typography>
-							<InputComponent
-								{...passwordProps}
-								isSubmitted={isSubmitted}
-							/>
-							<Grid style={{ display: 'flex', alignItems: 'center' }}>
-								<FormControlLabel
-									control={<Checkbox size="small" />}
-									label={
-										<Typography
-											variant="body2"
-											style={{ fontSize: 12 }}
+						<form action="" onSubmit={form.handleSubmit}>
+							<Grid item>
+								<Typography className="labelCls">
+									<p>
+										Email Address
+										<span
+											style={{
+												color: theme.palette.primary.main,
+											}}
 										>
-											Stay sign in
-										</Typography>
-									}
-								/>
-								<Typography className="forgotPwdCls">
-									<Link
-										style={{
-											textDecoration: 'none',
-											color: 'inherit',
-										}}
-										to="/forgot-password"
-									>
-										Forgot password?
-									</Link>
+											*
+										</span>
+									</p>
 								</Typography>
-							</Grid>
-
-							<Box sx={{ marginTop: '2rem' }}>
-								<Button
-									id="submitBtn"
-									variant="contained"
-									buttonType="submit"
-									style={signInButtonStyle}
-									disabledColor={theme.palette.common.white}
-									disabledBackground={
-										theme.palette.button
-											.buttonDisableBackgroundColor
-									}
-									onClick={() => {
-										const submitBtn =
-											document.getElementById('submitBtn');
-										submitBtn.style.backgroundColor =
-											theme.palette.primary.light;
-										submitBtn.style.cursor = 'not-allowed';
-										setIsSubmitted(true);
-									}}
+								<InputComponent
+									{...emailProps}
+									form={form}
+									value={form.values.email}
+									error={form.errors.email}
+									touched={form.touched.email}
+								/>
+								<Typography className="labelCls">
+									<p>
+										Password
+										<span
+											style={{
+												color: theme.palette.primary.main,
+											}}
+										>
+											*
+										</span>
+									</p>
+								</Typography>
+								<InputComponent
+									{...passwordProps}
+									form={form}
+									value={form.values.password}
+									error={form.errors.password}
+									touched={form.touched.password}
+								/>
+								<Grid
+									style={{ display: 'flex', alignItems: 'center' }}
 								>
-									Sign In
-								</Button>
-							</Box>
-						</Grid>
+									<FormControlLabel
+										control={<Checkbox size="small" />}
+										label={
+											<Typography
+												variant="body2"
+												style={{ fontSize: 12 }}
+											>
+												Stay sign in
+											</Typography>
+										}
+									/>
+									<Typography className="forgotPwdCls">
+										<Link
+											style={{
+												textDecoration: 'none',
+												color: 'inherit',
+											}}
+											to="/forgot-password"
+										>
+											Forgot password?
+										</Link>
+									</Typography>
+								</Grid>
+
+								<Box sx={{ marginTop: '2rem' }}>
+									<Button
+										id="submitBtn"
+										variant="contained"
+										buttonType="submit"
+										style={signInButtonStyle}
+										disabledColor={theme.palette.common.white}
+										disabledBackground={
+											theme.palette.button
+												.buttonDisableBackgroundColor
+										}
+										disabled={!isFormValid}
+										type="submit"
+									>
+										Sign In
+									</Button>
+								</Box>
+							</Grid>
+						</form>
 					</Grid>
 				</Grid>
 			</Grid>
