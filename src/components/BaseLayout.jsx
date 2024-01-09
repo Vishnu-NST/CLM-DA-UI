@@ -92,7 +92,7 @@ export default function BaseLayout() {
 		{ text: 'Queries', to: 'queries', icon: <CurrencyExchangeIcon /> },
 		{ text: 'Transaction', to: 'txn', icon: <PoolStatusIcon /> },
 		{ text: 'Sold Loan Pool', to: 'slp', icon: <PoolStatusIcon /> },
-		{ text: 'reports', to: 'reports', icon: <ReportIcon /> },
+		{ text: 'Reports', to: 'reports', icon: <ReportIcon /> },
 	];
 
 	return (
@@ -140,7 +140,12 @@ export default function BaseLayout() {
 									</ListItemIcon>
 									<ListItemText
 										primary={page.text}
-										sx={{ opacity: open ? 1 : 0 }}
+										sx={{
+											opacity: open ? 1 : 0,
+											'& .MuiTypography-root': {
+												fontSize: '12px',
+											},
+										}}
 									/>
 								</ListItemButton>
 							</Link>
