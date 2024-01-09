@@ -1,21 +1,16 @@
-import { getLogger, getStorage } from '@/utils/common';
+let initialAppState = {
+	loading: false,
+	user: null,
+};
 
-let initialAppState= {};
+const customAppState = {};
 
 switch (import.meta.env.MODE) {
 	case 'development':
-		initialAppState = {
-			logger: getLogger(),
-			loading: false,
-			storage: getStorage(),
-		};
+		initialAppState = Object.assign(initialAppState, customAppState);
 		break;
 	case 'production':
-		initialAppState = {
-			logger: getLogger(),
-			loading: false,
-			storage: getStorage(),
-		};
+		initialAppState = Object.assign(initialAppState, customAppState);
 		break;
 }
 
