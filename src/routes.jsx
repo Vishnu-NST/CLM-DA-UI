@@ -9,7 +9,7 @@ import PasswordsetupLinkInfo from './pages/Auth/PasswordsetupLinkInfo';
 import FortgotPasswordForm from './pages/Auth/ForgotPasswordForm';
 import LinkExpiredForm from './pages/Auth/LinkExpiredForm';
 import BaseLayout from '@/components/BaseLayout';
-import Stats from '@/pages/Stats/Stats';
+import Dashboard from '@/pages/Dashboard/Dashboard';
 import LoanPoolCreation from '@/pages/LoanPoolCreation/LoanPoolCreation';
 import LoanPoolTimeline from './pages/LoanPoolTimeline/LoanPoolTimeline';
 
@@ -45,7 +45,7 @@ export const routes = [
 		errorElement: <ErrorPage />,
 	},
 	{
-		path: '/dashboard/*',
+		path: '/panel/*',
 		element: (
 			<Suspense>
 				<BaseLayout />
@@ -54,10 +54,10 @@ export const routes = [
 		errorElement: <ErrorPage />,
 		children: [
 			{
-				path: 'stats',
+				path: 'dashboard',
 				element: (
 					<Suspense fallback={'Loading ...'}>
-						<Stats />
+						<Dashboard />
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,

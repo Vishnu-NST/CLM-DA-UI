@@ -1,13 +1,12 @@
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
 
-import { Box, Button, Card, CardContent } from '@mui/material';
+import { Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import MuiDrawer from '@mui/material/Drawer';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
 
 import LeftIcon from '@/assets/svg/LeftIcon.svg';
 import RightIcon from '@/assets/svg/RightIcon.svg';
@@ -22,6 +21,7 @@ import DueDeligenceIcon from '@/assets/svg/DueDeligenceIcon';
 import CurrencyExchangeIcon from '@/assets/svg/CurrencyExchangeIcon';
 import PoolStatusIcon from '@/assets/svg/PoolStatusIcon';
 import ReportIcon from '@/assets/svg/ReportIcon';
+import ProfileIcon from '@/assets/svg/ProfileIcon';
 
 const drawerWidth = 280;
 
@@ -77,22 +77,16 @@ export default function BaseLayout() {
 	const [open, setOpen] = React.useState(false);
 
 	const handleDrawerOpen = () => {
-		console.log('@@@');
 		setOpen(!open);
 	};
 
-	// const handleDrawerClose = () => {
-	// 	setOpen(false);
-	// };
-
 	const pages = [
-		{ text: 'Dashboard', to: 'stats', icon: <DashboardIcon /> },
-		{ text: 'Add Product Loan Pool', to: 'lpc', icon: <LoanPoolIcon /> },
-		{ text: 'Pool Timeline', to: 'lpt', icon: <DueDeligenceIcon /> },
-		{ text: 'Queries', to: 'queries', icon: <CurrencyExchangeIcon /> },
-		{ text: 'Transaction', to: 'txn', icon: <PoolStatusIcon /> },
-		{ text: 'Sold Loan Pool', to: 'slp', icon: <PoolStatusIcon /> },
-		{ text: 'reports', to: 'reports', icon: <ReportIcon /> },
+		{ text: 'Dashboard', to: 'dashboard', icon: <DashboardIcon /> },
+		{ text: 'Create Loan Pool', to: 'lpc', icon: <LoanPoolIcon /> },
+		{ text: 'Due Diligence', to: 'lpt', icon: <DueDeligenceIcon /> },
+		{ text: 'Transaction', to: 'queries', icon: <CurrencyExchangeIcon /> },
+		{ text: 'Pool Status', to: 'slp', icon: <PoolStatusIcon /> },
+		{ text: 'Reports', to: 'reports', icon: <ReportIcon /> },
 	];
 
 	return (
@@ -100,11 +94,53 @@ export default function BaseLayout() {
 			<CssBaseline />
 
 			<Drawer variant="permanent" open={open}>
-				<Card>
+				<Card
+					sx={{
+						height: '5.1rem',
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'center',
+						paddingTop: '1rem',
+					}}
+				>
 					<CardContent>
-						<Button variant="contained" color="primary">
-							Click me
-						</Button>
+						<Grid
+							container
+							sx={{ display: 'flex', alignItems: 'center' }}
+						>
+							<Grid item>
+								<ProfileIcon />
+							</Grid>
+							{
+								open ? (
+									<Grid
+										item
+										sx={{
+											display: 'flex',
+											flexDirection: 'column',
+											marginLeft: 1,
+										}}
+									>
+										<Typography
+											style={{
+												fontSize: '0.9rem',
+												fontWeight: 'bold',
+											}}
+										>
+											NBFC Company Name
+										</Typography>
+										<Typography
+											style={{
+												fontSize: '0.8rem',
+												color: 'var(--Sub-text-2, #8794C2)',
+											}}
+										>
+											NBFC@gmail.com
+										</Typography>
+									</Grid>
+								) : null /* Use null for the else condition */
+							}
+						</Grid>
 					</CardContent>
 				</Card>
 
@@ -127,6 +163,7 @@ export default function BaseLayout() {
 										minHeight: 48,
 										justifyContent: open ? 'initial' : 'center',
 										px: 2.5,
+										color: 'var(--Sub-text-2, #8794C2)',
 									}}
 								>
 									<ListItemIcon
@@ -150,10 +187,9 @@ export default function BaseLayout() {
 				<Divider />
 			</Drawer>
 			<div
-				style={{ marginTop: '4.2rem', marginLeft: '-12px', zIndex: '9999' }}
+				style={{ marginTop: '4.4rem', marginLeft: '-12px', zIndex: '9999' }}
 			>
 				<img
-					// src={theme.direction === 'rtl' ? { RightIcon } : { LeftIcon }}
 					src={open ? LeftIcon : RightIcon}
 					alt="Expand"
 					style={{
@@ -166,7 +202,6 @@ export default function BaseLayout() {
 			</div>
 			<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
 				<DrawerHeader />
-				<Typography>DYNAMIC COMPONENT HERE</Typography>
 				<Outlet />
 			</Box>
 		</Box>
