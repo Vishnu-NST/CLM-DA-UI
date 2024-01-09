@@ -1,5 +1,5 @@
 import * as React from 'react';
-const SVGComponent = () => (
+const CurrencyExchangeIcon = () => (
 	<svg
 		width={24}
 		height={25}
@@ -53,4 +53,4 @@ const SVGComponent = () => (
 		</g>
 	</svg>
 );
-export default SVGComponent;
+export default CurrencyExchangeIcon;
