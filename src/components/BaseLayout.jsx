@@ -1,27 +1,27 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
-// import { useTheme } from '@mui/material/styles';
+import * as React from 'react';
+
 import { Box, Button, Card, CardContent } from '@mui/material';
 import MuiDrawer from '@mui/material/Drawer';
-// import MuiAppBar from '@mui/material/AppBar';
-// import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
+
 import CssBaseline from '@mui/material/CssBaseline';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-// import IconButton from '@mui/material/IconButton';
-// import MenuIcon from '@mui/icons-material/Menu';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-// import RightIcon from '@/assets/svg/RightIcon.svg';
-// import LeftIcon from '@/assets/svg/LeftIcon.svg';
+import List from '@mui/material/List';
+import Typography from '@mui/material/Typography';
+
+import LeftIcon from '@/assets/svg/LeftIcon.svg';
+import RightIcon from '@/assets/svg/RightIcon.svg';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import { Link, Outlet } from 'react-router-dom';
+import DashboardIcon from '@/assets/svg/DashboardIcon';
+import LoanPoolIcon from '@/assets/svg/LoanPoolIcon';
+import DueDeligenceIcon from '@/assets/svg/DueDeligenceIcon';
+import CurrencyExchangeIcon from '@/assets/svg/CurrencyExchangeIcon';
+import PoolStatusIcon from '@/assets/svg/PoolStatusIcon';
+import ReportIcon from '@/assets/svg/ReportIcon';
 
 const drawerWidth = 240;
 
@@ -55,24 +55,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 	...theme.mixins.toolbar,
 }));
 
-// const AppBar = styled(MuiAppBar, {
-// 	shouldForwardProp: (prop) => prop !== 'open',
-// })(({ theme, open }) => ({
-// 	zIndex: theme.zIndex.drawer + 1,
-// 	transition: theme.transitions.create(['width', 'margin'], {
-// 		easing: theme.transitions.easing.sharp,
-// 		duration: theme.transitions.duration.leavingScreen,
-// 	}),
-// 	...(open && {
-// 		marginLeft: drawerWidth,
-// 		width: `calc(100% - ${drawerWidth}px)`,
-// 		transition: theme.transitions.create(['width', 'margin'], {
-// 			easing: theme.transitions.easing.sharp,
-// 			duration: theme.transitions.duration.enteringScreen,
-// 		}),
-// 	}),
-// }));
-
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
 	({ theme, open }) => ({
 		width: drawerWidth,
@@ -95,7 +77,8 @@ export default function BaseLayout() {
 	const [open, setOpen] = React.useState(false);
 
 	const handleDrawerOpen = () => {
-		setOpen(true);
+		console.log('@@@');
+		setOpen(!open);
 	};
 
 	// const handleDrawerClose = () => {
@@ -103,48 +86,20 @@ export default function BaseLayout() {
 	// };
 
 	const pages = [
-		{ text: 'Dashboard', to: 'stats' },
-		{ text: 'Add Product Loan Pool', to: 'lpc' },
-		{ text: 'Pool Timeline', to: 'lpt' },
-		{ text: 'Queries', to: 'queries' },
-		{ text: 'Transaction', to: 'txn' },
-		{ text: 'Sold Loan Pool', to: 'slp' },
-		{ text: 'reports', to: 'reports' },
+		{ text: 'Dashboard', to: 'stats', icon: <DashboardIcon /> },
+		{ text: 'Add Product Loan Pool', to: 'lpc', icon: <LoanPoolIcon /> },
+		{ text: 'Pool Timeline', to: 'lpt', icon: <DueDeligenceIcon /> },
+		{ text: 'Queries', to: 'queries', icon: <CurrencyExchangeIcon /> },
+		{ text: 'Transaction', to: 'txn', icon: <PoolStatusIcon /> },
+		{ text: 'Sold Loan Pool', to: 'slp', icon: <PoolStatusIcon /> },
+		{ text: 'reports', to: 'reports', icon: <ReportIcon /> },
 	];
 
 	return (
 		<Box sx={{ display: 'flex' }}>
 			<CssBaseline />
-			{/* <AppBar position="fixed" open={open}>
-				<Toolbar>
-					<IconButton
-						color="inherit"
-						aria-label="open drawer"
-						onClick={handleDrawerOpen}
-						edge="start"
-						sx={{
-							marginRight: 5,
-							...(open && { display: 'none' }),
-						}}
-					>
-						<MenuIcon />
-					</IconButton>
-					<Typography variant="h6" noWrap component="div">
-						NEW HEADER COMPONENT
-					</Typography>
-				</Toolbar>
-			</AppBar> */}
 
 			<Drawer variant="permanent" open={open}>
-				{/* <DrawerHeader>
-					<IconButton onClick={handleDrawerClose}>
-						{theme.direction === 'rtl' ? (
-							<ChevronRightIcon />
-						) : (
-							<ChevronLeftIcon />
-						)}
-					</IconButton>
-				</DrawerHeader> */}
 				<Card>
 					<CardContent>
 						<Button variant="contained" color="primary">
@@ -154,19 +109,7 @@ export default function BaseLayout() {
 				</Card>
 
 				<List>
-					{/* <IconButton
-						color="inherit"
-						aria-label="open drawer"
-						onClick={handleDrawerOpen}
-						edge="start"
-						sx={{
-							marginRight: 5,
-							...(open && { display: 'none' }),
-						}}
-					>
-						<MenuIcon />
-					</IconButton> */}
-					{pages.map((page, index) => (
+					{pages.map((page) => (
 						<ListItem
 							key={page.text}
 							disablePadding
@@ -190,11 +133,7 @@ export default function BaseLayout() {
 											justifyContent: 'center',
 										}}
 									>
-										{index % 2 === 0 ? (
-											<InboxIcon />
-										) : (
-											<MailIcon />
-										)}
+										{page.icon}
 									</ListItemIcon>
 									<ListItemText
 										primary={page.text}
@@ -212,7 +151,7 @@ export default function BaseLayout() {
 			>
 				<img
 					// src={theme.direction === 'rtl' ? { RightIcon } : { LeftIcon }}
-					src={open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+					src={open ? LeftIcon : RightIcon}
 					alt="Expand"
 					style={{
 						border: '0.1px solid lightgrey',
