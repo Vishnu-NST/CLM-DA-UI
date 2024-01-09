@@ -24,7 +24,6 @@ const InputComponent = ({
 				required
 				style={{
 					width: customWidth,
-					fontFamily: 'Poppins , sans-serif',
 					fontSize: 11,
 				}}
 				variant="outlined"
@@ -60,7 +59,6 @@ const InputComponent = ({
 						</InputAdornment>
 					),
 					sx: {
-						fontFamily: "'Poppins', sans-serif",
 						fontSize: '0.68rem !important',
 						borderRadius: '0.5rem',
 					},
