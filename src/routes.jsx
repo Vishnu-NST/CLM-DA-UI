@@ -8,7 +8,7 @@ import CreatePasswordForm from './pages/Auth/CreatePasswordForm';
 import PasswordsetupLinkInfo from './pages/Auth/PasswordsetupLinkInfo';
 import FortgotPasswordForm from './pages/Auth/ForgotPasswordForm';
 import LinkExpiredForm from './pages/Auth/LinkExpiredForm';
-import Dashboard from '@/components/Dashboard';
+import BaseLayout from '@/components/BaseLayout';
 import Stats from '@/pages/Stats/Stats';
 import LoanPoolCreation from '@/pages/LoanPoolCreation/LoanPoolCreation';
 import LoanPoolTimeline from './pages/LoanPoolTimeline/LoanPoolTimeline';
@@ -48,7 +48,7 @@ export const routes = [
 		path: '/dashboard/*',
 		element: (
 			<Suspense>
-				<Dashboard />
+				<BaseLayout />
 			</Suspense>
 		),
 		errorElement: <ErrorPage />,
