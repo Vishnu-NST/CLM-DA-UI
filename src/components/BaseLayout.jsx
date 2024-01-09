@@ -23,7 +23,7 @@ import CurrencyExchangeIcon from '@/assets/svg/CurrencyExchangeIcon';
 import PoolStatusIcon from '@/assets/svg/PoolStatusIcon';
 import ReportIcon from '@/assets/svg/ReportIcon';
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 
 const openedMixin = (theme) => ({
 	width: drawerWidth,
@@ -42,7 +42,7 @@ const closedMixin = (theme) => ({
 	overflowX: 'hidden',
 	width: `calc(${theme.spacing(7)} + 1px)`,
 	[theme.breakpoints.up('sm')]: {
-		width: `calc(${theme.spacing(8)} + 1px)`,
+		width: `calc(${theme.spacing(18)} + 1px)`,
 	},
 });
 
@@ -113,7 +113,10 @@ export default function BaseLayout() {
 						<ListItem
 							key={page.text}
 							disablePadding
-							sx={{ display: 'block' }}
+							sx={{
+								display: 'block',
+								ml: '0.6rem',
+							}}
 						>
 							<Link
 								to={page.to}
