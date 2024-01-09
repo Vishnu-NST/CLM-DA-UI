@@ -8,32 +8,22 @@ const InputComponent = ({
 	name,
 	placeholder,
 	type,
-	helperText,
 	startIcon,
 	customWidth,
-	isSubmitted,
+	value,
+	form,
+	error,
+	touched,
 }) => {
 	const [showPassword, setShowPassword] = useState(false);
 	const dynamicPwdType = showPassword ? 'text' : 'password';
 	const handleClickShowPassword = () => setShowPassword((show) => !show);
-	const [inputValue, setInputValue] = useState('');
-	const [fieldTouched, setFieldTouched] = useState(false);
-	const submitButton = document.getElementById('submitBtn');
-	const onChange = (inputValue) => {
-		setInputValue(inputValue);
-		setFieldTouched(inputValue.trim().length > 0 ? true : false);
-		if (fieldTouched) {
-			submitButton.style.backgroundColor = '#C4161C';
-			submitButton.style.cursor = 'pointer';
-		}
-	};
 	return (
 		<Box>
 			<TextField
 				required
 				style={{
 					width: customWidth,
-					fontFamily: 'Poppins , sans-serif',
 					fontSize: 11,
 				}}
 				variant="outlined"
@@ -42,14 +32,11 @@ const InputComponent = ({
 				name={name}
 				placeholder={placeholder}
 				type={id === 'password' ? dynamicPwdType : type}
-				value={inputValue}
-				onChange={(e) => onChange(e.target.value)}
-				error={isSubmitted && !fieldTouched && !inputValue.trim()}
-				helperText={
-					isSubmitted && !fieldTouched && !inputValue.trim()
-						? helperText
-						: ''
-				}
+				value={value}
+				onChange={form.handleChange}
+				error={Object.keys(form.errors).length}
+				helperText={touched && error}
+				onBlur={form.handleBlur}
 				InputProps={{
 					startAdornment: (
 						<InputAdornment position="start">{startIcon}</InputAdornment>
@@ -72,7 +59,6 @@ const InputComponent = ({
 						</InputAdornment>
 					),
 					sx: {
-						fontFamily: "'Poppins', sans-serif",
 						fontSize: '0.68rem !important',
 						borderRadius: '0.5rem',
 					},
