@@ -1,11 +1,18 @@
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
 
-import { Box, Card, CardContent, Grid, Typography } from '@mui/material';
+import {
+	Box,
+	BottomNavigation,
+	BottomNavigationAction,
+	Card,
+	CardContent,
+	Grid,
+	Typography,
+} from '@mui/material';
 import MuiDrawer from '@mui/material/Drawer';
 
 import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 
 import LeftIcon from '@/assets/svg/LeftIcon.svg';
@@ -22,6 +29,8 @@ import CurrencyExchangeIcon from '@/assets/svg/CurrencyExchangeIcon';
 import PoolStatusIcon from '@/assets/svg/PoolStatusIcon';
 import ReportIcon from '@/assets/svg/ReportIcon';
 import ProfileIcon from '@/assets/svg/ProfileIcon';
+// import MifixLogo from '@/assets/svg/MiFiXLogo';
+// import SignOutIcon from '@/assets/svg/SignOutIcon';
 
 const drawerWidth = 280;
 
@@ -86,13 +95,6 @@ export default function BaseLayout() {
 		{ text: 'Due Diligence', to: 'lpt', icon: <DueDeligenceIcon /> },
 		{ text: 'Transaction', to: 'queries', icon: <CurrencyExchangeIcon /> },
 		{ text: 'Pool Status', to: 'slp', icon: <PoolStatusIcon /> },
-		{ text: 'Reports', to: 'reports', icon: <ReportIcon /> },
-		{ text: 'Dashboard', to: 'stats', icon: <DashboardIcon /> },
-		{ text: 'Add Product Loan Pool', to: 'lpc', icon: <LoanPoolIcon /> },
-		{ text: 'Pool Timeline', to: 'lpt', icon: <DueDeligenceIcon /> },
-		{ text: 'Queries', to: 'queries', icon: <CurrencyExchangeIcon /> },
-		{ text: 'Transaction', to: 'txn', icon: <PoolStatusIcon /> },
-		{ text: 'Sold Loan Pool', to: 'slp', icon: <PoolStatusIcon /> },
 		{ text: 'Reports', to: 'reports', icon: <ReportIcon /> },
 	];
 
@@ -196,7 +198,29 @@ export default function BaseLayout() {
 						</ListItem>
 					))}
 				</List>
-				<Divider />
+				<BottomNavigation
+					showLabels
+					style={{
+						position: 'inherit',
+						bottom: 0,
+						left: 0,
+						display: 'flex',
+						flexDirection: 'column',
+					}}
+				>
+					<BottomNavigationAction icon={<ProfileIcon />} />
+					{/* <BottomNavigationAction
+						icon={
+							<SignOutIcon style={{ width: '30px', height: '30px' }} />
+						}
+					/>
+					<BottomNavigationAction
+						icon={
+							<MifixLogo style={{ width: '30px', height: '30px' }} />
+						}
+					/> */}
+					<BottomNavigationAction icon={<ProfileIcon />} />
+				</BottomNavigation>
 			</Drawer>
 			<div
 				style={{ marginTop: '4.4rem', marginLeft: '-12px', zIndex: '9999' }}
