@@ -5,6 +5,7 @@ import {
 	Box,
 	BottomNavigation,
 	BottomNavigationAction,
+	IconButton,
 	Card,
 	CardContent,
 	Grid,
@@ -17,6 +18,7 @@ import List from '@mui/material/List';
 
 import LeftIcon from '@/assets/svg/LeftIcon.svg';
 import RightIcon from '@/assets/svg/RightIcon.svg';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -29,8 +31,8 @@ import CurrencyExchangeIcon from '@/assets/svg/CurrencyExchangeIcon';
 import PoolStatusIcon from '@/assets/svg/PoolStatusIcon';
 import ReportIcon from '@/assets/svg/ReportIcon';
 import ProfileIcon from '@/assets/svg/ProfileIcon';
-// import MifixLogo from '@/assets/svg/MiFiXLogo';
-// import SignOutIcon from '@/assets/svg/SignOutIcon';
+import MifixLogo from '@/assets/svg/MiFiXLogo';
+import SignOutIcon from '@/assets/svg/SignOutIcon';
 
 const drawerWidth = 280;
 
@@ -115,9 +117,16 @@ export default function BaseLayout() {
 					<CardContent>
 						<Grid
 							container
-							sx={{ display: 'flex', alignItems: 'center' }}
+							sx={{
+								display: 'flex',
+								alignItems: 'center',
+								border: '1px solid lightgrey',
+								borderRadius: '0.5rem',
+								padding: '4px',
+								height: '4rem',
+							}}
 						>
-							<Grid item>
+							<Grid item style={{ marginTop: '0.1rem' }}>
 								<ProfileIcon />
 							</Grid>
 							{
@@ -161,6 +170,9 @@ export default function BaseLayout() {
 							sx={{
 								display: 'block',
 								ml: '0.6rem',
+								'&.MuiListItem-root.Mui-selected': {
+									backgroundColor: '#C4161C',
+								},
 							}}
 						>
 							<Link
@@ -201,25 +213,63 @@ export default function BaseLayout() {
 				<BottomNavigation
 					showLabels
 					style={{
-						position: 'inherit',
-						bottom: 0,
-						left: 0,
+						marginTop: '7rem',
 						display: 'flex',
 						flexDirection: 'column',
 					}}
 				>
-					<BottomNavigationAction icon={<ProfileIcon />} />
-					{/* <BottomNavigationAction
-						icon={
-							<SignOutIcon style={{ width: '30px', height: '30px' }} />
-						}
-					/>
+					<Grid
+						item
+						style={{
+							display: 'flex',
+							flexDirection: 'row',
+							gap: '8px',
+							color: '#8794C2',
+						}}
+					>
+						<div style={{ display: 'flex', alignItems: 'center' }}>
+							<IconButton
+								sx={{
+									marginLeft: '1.5rem',
+									'&.MuiIconButton-root': {
+										padding: '0',
+									},
+								}}
+								disableRipple
+							>
+								<SignOutIcon />
+							</IconButton>
+							{open && (
+								<>
+									<Typography
+										variant="body2"
+										style={{
+											fontSize: '0.85rem',
+											paddingTop: '0.2rem',
+											paddingBottom: '0.5rem',
+											marginRight: '7rem',
+										}}
+									>
+										Sign Out
+									</Typography>
+
+									<ChevronRightIcon
+										sx={{ marginBottom: 'auto' }}
+									/>
+								</>
+							)}
+						</div>
+					</Grid>
 					<BottomNavigationAction
-						icon={
-							<MifixLogo style={{ width: '30px', height: '30px' }} />
-						}
-					/> */}
-					<BottomNavigationAction icon={<ProfileIcon />} />
+						sx={{
+							border: '1px solid lightgrey',
+							borderRadius: '0.5rem',
+							padding: '0.2rem 0rem',
+							backgroundColor: '#F8F9FB',
+							width: '100',
+						}}
+						icon={<MifixLogo />}
+					/>
 				</BottomNavigation>
 			</Drawer>
 			<div
