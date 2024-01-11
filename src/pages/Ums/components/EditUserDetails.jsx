@@ -6,9 +6,9 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useNavigate } from 'react-router-dom';
-import CustomButton from '@/ReusableComponent/CustomButton';
-import InputComponent from '@/ReusableComponent/InputComponent';
-import ConformationDialogBox from '@/ReusableComponent/ConformationDialogBox';
+import CustomButton from '@/components/CustomButton';
+import InputComponent from '@/components/DAInputComponent';
+import ConformationDialogBox from '@/components/ConformationDialogBox';
 import SuccessIcon from '@/assets/svg/SuccessIcon';
 
 import {

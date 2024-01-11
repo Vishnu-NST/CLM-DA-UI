@@ -5,10 +5,10 @@ import Circle from '@/assets/svg/Circle';
 import './User.css';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import CustomButton from '@/ReusableComponent/CustomButton';
-import InputComponent from '@/ReusableComponent/InputComponent';
+import CustomButton from '@/components/CustomButton';
+import InputComponent from '@/components/DAInputComponent';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ConformationDialogBox from '@/ReusableComponent/ConformationDialogBox';
+import ConformationDialogBox from '@/components/ConformationDialogBox';
 import SuccessIcon from '@/assets/svg/SuccessIcon';
 import { useNavigate } from 'react-router-dom';
 

@@ -10,6 +10,7 @@ import {
 	CardContent,
 	Grid,
 	Typography,
+	Button,
 } from '@mui/material';
 import MuiDrawer from '@mui/material/Drawer';
 
@@ -23,7 +24,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import DashboardIcon from '@/assets/svg/DashboardIcon';
 import LoanPoolIcon from '@/assets/svg/LoanPoolIcon';
 import DueDeligenceIcon from '@/assets/svg/DueDeligenceIcon';
@@ -85,6 +86,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function BaseLayout() {
 	// const theme = useTheme();
+
+	const navigate = useNavigate();
+
 	const [open, setOpen] = React.useState(false);
 
 	const handleDrawerOpen = () => {
@@ -129,7 +133,14 @@ export default function BaseLayout() {
 							}}
 						>
 							<Grid item style={{ marginTop: '0.1rem' }}>
-								<ProfileIcon />
+								<Button
+									onClick={() => {
+										navigate('/panel/ums/profile');
+									}}
+									color="inherit"
+								>
+									<ProfileIcon />
+								</Button>
 							</Grid>
 							{
 								open ? (

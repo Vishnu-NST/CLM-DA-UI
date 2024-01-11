@@ -1,43 +1,19 @@
-import { Box, Tab, Tabs, Typography } from '@mui/material';
 import React from 'react';
+import { Link, Outlet } from 'react-router-dom';
+import { Box, Tab, Tabs } from '@mui/material';
 
-import User from './components/User';
-import Profile from './components/Profile';
-import { Link } from 'react-router-dom';
-
-function CustomTabPanel(props) {
-	const { children, value, index, ...other } = props;
-
-	return (
-		<div
-			role="tabpanel"
-			hidden={value !== index}
-			id={`simple-tabpanel-${index}`}
-			aria-labelledby={`simple-tab-${index}`}
-			{...other}
-		>
-			{value === index && (
-				<Box sx={{ pt: 5, pb: 3 }}>
-					<Typography>{children}</Typography>
-				</Box>
-			)}
-		</div>
-	);
-}
-
-function a11yProps(index) {
-	return {
-		id: `simple-tab-${index}`,
-		'aria-controls': `simple-tabpanel-${index}`,
-	};
-}
-
-const UserManagement = () => {
+export default function UmsTabs() {
 	const [value, setValue] = React.useState(0);
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 	};
+	function a11yProps(index) {
+		return {
+			id: `simple-tab-${index}`,
+			'aria-controls': `simple-tabpanel-${index}`,
+		};
+	}
 
 	return (
 		<div className="card-block">
@@ -87,19 +63,14 @@ const UserManagement = () => {
 									paddingBottom: '0rem',
 								}}
 								{...a11yProps(1)}
+								component={Link}
+								to="mgmt"
 							/>
 						</Tabs>
 					</Box>
-					<CustomTabPanel value={value} index={0}>
-						<Profile />
-					</CustomTabPanel>
-					<CustomTabPanel value={value} index={1}>
-						<User />
-					</CustomTabPanel>
+					<Outlet />
 				</div>
 			</div>
 		</div>
 	);
-};
-
-export default UserManagement;
+}

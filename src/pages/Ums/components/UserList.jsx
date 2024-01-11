@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import ReusableUserCard from '@/ReusableComponent/ReusableUserCard';
+import ReusableUserCard from '@/components/ReusableUserCard';
 import CardIcon from '@/assets/svg/CardIcon';
 import { Grid } from '@mui/material';
-import ConformationDialogBox from '@/ReusableComponent/ConformationDialogBox';
+import ConformationDialogBox from '@/components/ConformationDialogBox';
 import SuccessIcon from '@/assets/svg/SuccessIcon';
 import ForwardArrow from '@/assets/svg/ForwardArrow';
 import { useNavigate } from 'react-router-dom';
-import CustomButton from '@/ReusableComponent/CustomButton';
+import CustomButton from '@/components/CustomButton';
 import SuccessDltIcon from '@/assets/svg/SuccessDltIcon';
 const UserList = () => {
 	const navigate = useNavigate();

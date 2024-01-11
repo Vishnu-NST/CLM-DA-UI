@@ -9,7 +9,7 @@
 
 import React from 'react';
 import { Box, FormHelperText, InputAdornment } from '@mui/material';
-import Textarea from '@mui/joy/Textarea';
+// import Textarea from '@mui/joy/Textarea';
 
 const CustomTextarea = ({
 	rows,
@@ -32,7 +32,7 @@ const CustomTextarea = ({
 			>
 				{label}
 			</div>
-			<Textarea
+			{/* <Textarea
 				multiline={true}
 				rows={rows}
 				value={value}
@@ -47,7 +47,7 @@ const CustomTextarea = ({
 					width: '100%',
 					// Customize additional styles as needed
 				}}
-			/>
+			/> */}
 			{error && (
 				<FormHelperText
 					sx={{

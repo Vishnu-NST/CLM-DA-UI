@@ -1,5 +1,5 @@
 import { Grid, Typography } from '@mui/material';
-import CustomButton from '@/ReusableComponent/CustomButton';
+import CustomButton from '@/components/CustomButton';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';

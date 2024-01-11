@@ -4,11 +4,11 @@ import Circle from '@/assets/svg/Circle';
 import './User.css';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import InputComponent from '@/ReusableComponent/InputComponent';
+import InputComponent from '@/components/DAInputComponent';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import CustomButton from '@/ReusableComponent/CustomButton';
-import SelectComponent from '@/ReusableComponent/SelectComponent';
-import CustomTextarea from '@/ReusableComponent/CustomTextarea';
+import CustomButton from '@/components/CustomButton';
+import SelectComponent from '@/components/SelectComponent';
+import CustomTextarea from '@/components/CustomTextarea';
 import { useNavigate } from 'react-router-dom';
 import {
 	nbfcNameAttribute,
@@ -256,7 +256,7 @@ const Profile = () => {
 						<CustomButton
 							buttonDisabled={false}
 							customStyle={customButtonStyle}
-							onClick={() => navigate('/nbfc-profile')}
+							onClick={() => navigate('/panel/nbfc-profile')}
 						>
 							Update &nbsp;
 							<ArrowForwardIosIcon fontSize="11" />
