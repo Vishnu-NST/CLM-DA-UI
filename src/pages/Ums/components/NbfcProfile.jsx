@@ -1,11 +1,11 @@
 import { Grid, Typography } from '@mui/material';
-import CustomButton from '../../../components/CustomButton';
+import CustomButton from '@/ReusableComponent/CustomButton';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
-import NbfcLogo from '../../../assets/svg/NbfcLogo';
-import StarProfileIcon from '../../../assets/svg/StarProfileIcon';
-import EditProfileIcon from '../../../assets/svg/EditProfileIcon';
+import NbfcLogo from '@/assets/svg/NbfcLogo';
+import StarProfileIcon from '@/assets/svg/StarProfileIcon';
+import EditProfileIcon from '@/assets/svg/EditProfileIcon';
 
 const customButtonStyle = {
 	borderRadius: '7px',

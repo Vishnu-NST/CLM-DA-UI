@@ -1,14 +1,14 @@
 import React, { useRef } from 'react';
 import { Grid, Typography } from '@mui/material';
-import Circle from '../../../assets/svg/Circle';
+import Circle from '@/assets/svg/Circle';
 import './User.css';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import InputComponent from '../../../components/InputComponent';
+import InputComponent from '@/ReusableComponent/InputComponent';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import CustomButton from '../../../components/CustomButton';
-import SelectComponent from '../../../components/SelectComponent';
-import CustomTextarea from '../../../components/CustomTextarea';
+import CustomButton from '@/ReusableComponent/CustomButton';
+import SelectComponent from '@/ReusableComponent/SelectComponent';
+import CustomTextarea from '@/ReusableComponent/CustomTextarea';
 import { useNavigate } from 'react-router-dom';
 import {
 	nbfcNameAttribute,

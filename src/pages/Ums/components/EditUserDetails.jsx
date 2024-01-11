@@ -1,16 +1,15 @@
 import React, { useRef, useState } from 'react';
-// import {Link} from "react-router-dom";
 import { Grid, Typography } from '@mui/material';
-import Circle from '../../../assets/svg/Circle';
+import Circle from '@/assets/svg/Circle';
 import './User.css';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import CustomButton from '../../../components/CustomButton';
-import InputComponent from '../../../components/InputComponent';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ConformationDialogBox from '../../../components/ConformationDialogBox';
-import SuccessIcon from '../../../assets/svg/SuccessIcon';
 import { useNavigate } from 'react-router-dom';
+import CustomButton from '@/ReusableComponent/CustomButton';
+import InputComponent from '@/ReusableComponent/InputComponent';
+import ConformationDialogBox from '@/ReusableComponent/ConformationDialogBox';
+import SuccessIcon from '@/assets/svg/SuccessIcon';
 
 import {
 	userNameAttribute,
