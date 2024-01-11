@@ -31,7 +31,11 @@ const InputComponent = ({
 				id={id}
 				name={name}
 				placeholder={placeholder}
-				type={id === 'password' ? dynamicPwdType : type}
+				type={
+					id === 'password' || id === 'confirmPassword'
+						? dynamicPwdType
+						: type
+				}
 				value={value}
 				onChange={form.handleChange}
 				error={Object.keys(form.errors).length}

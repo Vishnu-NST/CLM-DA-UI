@@ -124,6 +124,8 @@ export default function BaseLayout() {
 								borderRadius: '0.5rem',
 								padding: '4px',
 								height: '4rem',
+								marginBottom: '1rem',
+								marginTop: '0.5rem',
 							}}
 						>
 							<Grid item style={{ marginTop: '0.1rem' }}>
