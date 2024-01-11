@@ -12,7 +12,10 @@ import BaseLayout from '@/components/BaseLayout';
 import Dashboard from '@/pages/Dashboard/Dashboard';
 import LoanPoolCreation from '@/pages/LoanPoolCreation/LoanPoolCreation';
 import LoanPoolTimeline from './pages/LoanPoolTimeline/LoanPoolTimeline';
-
+import UserManagement from './pages/Ums/UserManagement';
+import NbfcProfile from './pages/Ums/components/NbfcProfile';
+import UserList from './pages/Ums/components/UserList';
+import EditUserDetails from './pages/Ums/components/EditUserDetails';
 export const routes = [
 	{
 		path: '/',
@@ -81,5 +84,22 @@ export const routes = [
 				errorElement: <ErrorPage />,
 			},
 		],
+	},
+	{
+		path: '/user-management',
+		element: <UserManagement />,
+	},
+	{
+		path: '/nbfc-profile',
+		element: <NbfcProfile />,
+	},
+	{
+		path: '/user-list',
+		element: <UserList />,
+	},
+
+	{
+		path: '/edit-user-details',
+		element: <EditUserDetails />,
 	},
 ];
