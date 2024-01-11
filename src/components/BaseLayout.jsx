@@ -248,14 +248,13 @@ export default function BaseLayout() {
 											paddingTop: '0.2rem',
 											paddingBottom: '0.5rem',
 											marginRight: '7rem',
+											margin: '0.5rem 7rem 0 0.7rem',
 										}}
 									>
 										Sign Out
 									</Typography>
 
-									<ChevronRightIcon
-										sx={{ marginBottom: 'auto' }}
-									/>
+									<ChevronRightIcon />
 								</>
 							)}
 						</div>
