@@ -1,3 +1,4 @@
+import { capitalizeString } from '@/utils/common';
 import {
 	Box,
 	FormHelperText,
@@ -6,7 +7,6 @@ import {
 	OutlinedInput,
 	Select,
 } from '@mui/material';
-import { capitalizeString } from '../utils/utils';
 
 const SelectComponent = ({
 	multiple,
@@ -43,7 +43,9 @@ const SelectComponent = ({
 				onBlur={onBlur}
 				error={error}
 				startAdornment={
-					<InputAdornment position="start">{startIcon}</InputAdornment>
+					startIcon && (
+						<InputAdornment position="start">{startIcon}</InputAdornment>
+					)
 				}
 				input={
 					input || (
@@ -69,7 +71,9 @@ const SelectComponent = ({
 						background: 'white',
 						padding: '9.5px 14px !important',
 						borderRadius: '5px',
-						paddingLeft: '0rem !important',
+						paddingLeft: startIcon
+							? '0rem !important'
+							: '0.875rem !important',
 					},
 				}}
 			>

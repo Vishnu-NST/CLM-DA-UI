@@ -66,3 +66,39 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+.flex{
+  display: flex;
+  align-items: center;
+}
+.flex-start{
+  display: flex;
+  align-items: flex-start;
+}
+.flex-between{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.flex-center{
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+.mb-1{
+  margin-bottom: 1rem !important;
+}
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
+.mt-1{
+  margin-top: 1rem;
+}
+.mt-2{
+  margin-top: 2rem;
+}
+.mt-3{
+  margin-top: 3rem;
+}

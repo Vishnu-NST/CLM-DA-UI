@@ -12,6 +12,9 @@ import BaseLayout from '@/components/BaseLayout';
 import Dashboard from '@/pages/Dashboard/Dashboard';
 import LoanPoolCreation from '@/pages/LoanPoolCreation/LoanPoolCreation';
 import LoanPoolTimeline from './pages/LoanPoolTimeline/LoanPoolTimeline';
+import DueDiligence from './pages/NBFCDueDiligence/DueDiligence';
+import SelectPool from './pages/BSelectPool/SelectPool';
+
 // import UserManagement from '@/pages/Ums/UserManagement';
 // import NbfcProfile from './pages/Ums/components/NbfcProfile';
 // import UserList from './pages/Ums/components/UserList';
@@ -82,6 +85,24 @@ export const routes = [
 				element: (
 					<Suspense fallback={'Loading ...'}>
 						<LoanPoolTimeline />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'dd',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<DueDiligence />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'select-pool',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<SelectPool />
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
