@@ -4,6 +4,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { routes } from './routes.jsx';
 import { theme } from './theme.js';
+import './index.css';
 
 const router = createBrowserRouter(routes);
 

@@ -287,7 +287,15 @@ export default function BaseLayout() {
 					onClick={handleDrawerOpen}
 				/>
 			</div>
-			<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+			<Box
+				component="main"
+				sx={{
+					flexGrow: 1,
+					p: 3,
+					background: 'rgba(248, 249, 251, 1)',
+					width: '100%',
+				}}
+			>
 				<DrawerHeader />
 				<Outlet />
 			</Box>

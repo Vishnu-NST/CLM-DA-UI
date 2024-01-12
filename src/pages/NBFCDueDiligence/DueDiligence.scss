@@ -1,0 +1,54 @@
+.due-diligence-block{
+    margin: 2rem;
+}
+.query-card{
+    border-radius: 12px;
+    background-color: white;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+.query-card .title{
+    color: #1B1B1B;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+.pool-detail-btns{
+    margin-left: 3rem;
+    display: flex;
+}
+.pool-detail-btns .btn{
+    border-radius: 7px;
+    font-weight: 400;
+    font-size: 0.75rem;
+    padding:2px 10px;
+}
+.tag{
+    border-radius: 7px;
+    font-weight: 400;
+    font-size: 0.75rem;
+    padding:2px 10px;
+}
+.query-card .sub-txt{
+    color: #8794C2;
+    font-size: 0.875rem;
+    font-weight: 400;
+}
+.check-query-txt{
+    color: #C4161C !important;
+    font-weight: 600 !important;
+    font-size: 0.875rem !important;
+    display: table-cell !important;
+}
+.drawer-header{
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.drawer-header .title{
+    margin-left: 1rem;
+    margin-right: 0.5rem;
+    color: #1B1B1B;
+    font-weight: 400;
+    font-size: 0.875rem;
+}
