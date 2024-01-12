@@ -106,6 +106,8 @@ export const routes = [
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
+			},
+			{
 				path: 'ums',
 				element: (
 					<Suspense fallback={'Loading ...'}>
