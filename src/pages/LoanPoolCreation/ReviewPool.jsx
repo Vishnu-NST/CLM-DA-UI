@@ -1,4 +1,4 @@
-import EditIcon from '../../assets/svg/EditIcon';
+import EditImg from '../../assets/svg/EditImg';
 import { Grid } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import './LoanPool.scss';
@@ -44,7 +44,7 @@ const ReviewPool = () => {
 				<div className="flex-between">
 					<div className="title">Review Loan Pool</div>
 					<CustomButton customStyle={editBtnStyle}>
-						<EditIcon />
+						<EditImg />
 						&nbsp; Edit
 					</CustomButton>
 				</div>

@@ -1,7 +1,7 @@
 import { Checkbox, Grid } from '@mui/material';
 import ExcelIcon from '../../../assets/svg/ExcelIcon.png';
 import CustomButton from '../../../components/CustomButton';
-import DeleteIcon from '../../../assets/svg/DeleteIcon';
+import DeleteImg from '../../../assets/svg/DeleteImg';
 
 const btnStyle = {
 	background:
@@ -65,7 +65,7 @@ const UploadedFileComp = () => {
 						</div>
 						{/* <CustomButton customStyle={btnStyle}>Rejected</CustomButton> */}
 						<div>
-							<DeleteIcon />
+							<DeleteImg />
 						</div>
 					</div>
 				</Grid>
