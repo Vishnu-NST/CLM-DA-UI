@@ -15,6 +15,13 @@ import LoanPoolTimeline from './pages/LoanPoolTimeline/LoanPoolTimeline';
 import DueDiligence from './pages/NBFCDueDiligence/DueDiligence';
 import SelectPool from './pages/BSelectPool/SelectPool';
 
+// import UserManagement from '@/pages/Ums/UserManagement';
+// import NbfcProfile from './pages/Ums/components/NbfcProfile';
+// import UserList from './pages/Ums/components/UserList';
+// import EditUserDetails from './pages/Ums/components/EditUserDetails';
+import UmsTabs from './pages/Ums/UmsTabs';
+import Profile from './pages/Ums/components/Profile';
+import User from './pages/Ums/components/User';
 export const routes = [
 	{
 		path: '/',
@@ -99,6 +106,18 @@ export const routes = [
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
+				path: 'ums',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<UmsTabs />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+				children: [
+					// { index: true, element: <Navigate to={'newreport'} /> },
+					{ path: 'profile', element: <Profile /> },
+					{ path: 'mgmt', element: <User /> },
+				],
 			},
 		],
 	},
