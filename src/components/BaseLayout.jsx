@@ -116,7 +116,7 @@ export default function BaseLayout() {
 		},
 		{
 			text: 'Due Diligence',
-			to: 'lpt',
+			to: 'dd',
 			icon: (isSelected) => (
 				<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 			),
