@@ -85,7 +85,11 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function BaseLayout() {
-	// const theme = useTheme();
+	const [selectedIndex, setSelectedIndex] = React.useState(0);
+
+	const handleListItemClick = (event, index) => {
+		setSelectedIndex(index);
+	};
 
 	const navigate = useNavigate();
 
@@ -96,220 +100,280 @@ export default function BaseLayout() {
 	};
 
 	const pages = [
-		{ text: 'Dashboard', to: 'dashboard', icon: <DashboardIcon /> },
-		{ text: 'Create Loan Pool', to: 'lpc', icon: <LoanPoolIcon /> },
-		{ text: 'Due Diligence', to: 'lpt', icon: <DueDeligenceIcon /> },
-		{ text: 'Transaction', to: 'queries', icon: <CurrencyExchangeIcon /> },
-		{ text: 'Pool Status', to: 'slp', icon: <PoolStatusIcon /> },
-		{ text: 'Reports', to: 'reports', icon: <ReportIcon /> },
+		{
+			text: 'Dashboard',
+			to: 'dashboard',
+			icon: (isSelected) => (
+				<DashboardIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+			),
+		},
+		{
+			text: 'Create Loan Pool',
+			to: 'lpc',
+			icon: (isSelected) => (
+				<LoanPoolIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+			),
+		},
+		{
+			text: 'Due Diligence',
+			to: 'lpt',
+			icon: (isSelected) => (
+				<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+			),
+		},
+		{
+			text: 'Transaction',
+			to: 'queries',
+			icon: (isSelected) => (
+				<CurrencyExchangeIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+			),
+		},
+		{
+			text: 'Pool Status',
+			to: 'slp',
+			icon: (isSelected) => (
+				<PoolStatusIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+			),
+		},
+		{
+			text: 'Reports',
+			to: 'reports',
+			icon: (isSelected) => (
+				<ReportIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+			),
+		},
 	];
 
 	return (
-		<Box sx={{ display: 'flex' }}>
-			<CssBaseline />
+		<>
+			<Box sx={{ display: 'flex' }}>
+				<CssBaseline />
 
-			<Drawer variant="permanent" open={open}>
-				<Card
-					sx={{
-						height: '5.1rem',
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center',
-						paddingTop: '1rem',
-					}}
-				>
-					<CardContent>
-						<Grid
-							container
-							sx={{
-								display: 'flex',
-								alignItems: 'center',
-								border: '1px solid lightgrey',
-								borderRadius: '0.5rem',
-								padding: '4px',
-								height: '4rem',
-								marginBottom: '1rem',
-								marginTop: '0.5rem',
-							}}
-						>
-							<Grid item style={{ marginTop: '0.1rem' }}>
-								<Button
-									onClick={() => {
-										navigate('/panel/ums/profile');
-									}}
-									color="inherit"
-								>
-									<ProfileIcon />
-								</Button>
-							</Grid>
-							{
-								open ? (
-									<Grid
-										item
-										sx={{
-											display: 'flex',
-											flexDirection: 'column',
-											marginLeft: 1,
-										}}
-									>
-										<Typography
-											style={{
-												fontSize: '0.9rem',
-												fontWeight: 'bold',
-											}}
-										>
-											NBFC Company Name
-										</Typography>
-										<Typography
-											style={{
-												fontSize: '0.8rem',
-												color: 'var(--Sub-text-2, #8794C2)',
-											}}
-										>
-											NBFC@gmail.com
-										</Typography>
-									</Grid>
-								) : null /* Use null for the else condition */
-							}
-						</Grid>
-					</CardContent>
-				</Card>
-
-				<List>
-					{pages.map((page) => (
-						<ListItem
-							key={page.text}
-							disablePadding
-							sx={{
-								display: 'block',
-								ml: '0.6rem',
-								'&.MuiListItem-root.Mui-selected': {
-									backgroundColor: '#C4161C',
-								},
-							}}
-						>
-							<Link
-								to={page.to}
-								style={{ textDecoration: 'none', color: 'inherit' }}
-							>
-								<ListItemButton
-									sx={{
-										minHeight: 48,
-										justifyContent: open ? 'initial' : 'center',
-										px: 2.5,
-										color: 'var(--Sub-text-2, #8794C2)',
-									}}
-								>
-									<ListItemIcon
-										sx={{
-											minWidth: 0,
-											mr: open ? 3 : 'auto',
-											justifyContent: 'center',
-										}}
-									>
-										{page.icon}
-									</ListItemIcon>
-									<ListItemText
-										primary={page.text}
-										sx={{
-											opacity: open ? 1 : 0,
-											'& .MuiTypography-root': {
-												fontSize: '12px',
-											},
-										}}
-									/>
-								</ListItemButton>
-							</Link>
-						</ListItem>
-					))}
-				</List>
-				<BottomNavigation
-					showLabels
-					style={{
-						marginTop: '7rem',
-						display: 'flex',
-						flexDirection: 'column',
-					}}
-				>
-					<Grid
-						item
-						style={{
+				<Drawer variant="permanent" open={open}>
+					<Card
+						sx={{
+							height: '5.1rem',
 							display: 'flex',
-							flexDirection: 'row',
-							gap: '8px',
-							color: '#8794C2',
+							alignItems: 'center',
+							justifyContent: 'center',
+							paddingTop: '1rem',
 						}}
 					>
-						<div style={{ display: 'flex', alignItems: 'center' }}>
-							<IconButton
+						<CardContent>
+							<Grid
+								container
 								sx={{
-									marginLeft: '1.5rem',
-									'&.MuiIconButton-root': {
-										padding: '0',
-									},
+									display: 'flex',
+									alignItems: 'center',
+									border: '1px solid grey',
+									borderRadius: '1rem',
+									padding: '4px',
+									height: '4rem',
+									marginBottom: '1rem',
+									marginTop: 'auto',
 								}}
-								disableRipple
 							>
-								<SignOutIcon />
-							</IconButton>
-							{open && (
-								<>
-									<Typography
-										variant="body2"
-										style={{
-											fontSize: '0.85rem',
-											paddingTop: '0.2rem',
-											paddingBottom: '0.5rem',
-											marginRight: '7rem',
-											margin: '0.5rem 7rem 0 0.7rem',
+								<Grid item style={{ marginTop: '-1rem' }}>
+									<Button
+										onClick={() => {
+											navigate('/panel/ums/profile');
 										}}
+										sx={{ mt: '0.7rem' }}
+										color="inherit"
+										disableRipple
 									>
-										Sign Out
-									</Typography>
+										<ProfileIcon />
+									</Button>
+								</Grid>
+								{
+									open ? (
+										<Grid
+											item
+											sx={{
+												display: 'flex',
+												flexDirection: 'column',
+												marginLeft: 1,
+											}}
+										>
+											<Typography
+												sx={{
+													fontSize: '0.9rem',
+													fontWeight: 'bold',
+												}}
+											>
+												NBFC Company Name
+											</Typography>
+											<Typography
+												style={{
+													fontSize: '0.8rem',
+													color: 'var(--Sub-text-2, #8794C2)',
+												}}
+											>
+												NBFC@gmail.com
+											</Typography>
+										</Grid>
+									) : null /* Use null for the else condition */
+								}
+							</Grid>
+						</CardContent>
+					</Card>
 
-									<ChevronRightIcon />
-								</>
-							)}
-						</div>
-					</Grid>
-					<BottomNavigationAction
-						sx={{
-							border: '1px solid lightgrey',
-							borderRadius: '0.5rem',
-							padding: '0.2rem 0rem',
-							backgroundColor: '#F8F9FB',
-							width: '100',
+					<List>
+						{pages.map((page, index) => (
+							<ListItem
+								key={page.text}
+								disablePadding
+								sx={{
+									display: 'block',
+									ml: '0.6rem',
+									backgroundColor:
+										selectedIndex === index
+											? '#C4161C'
+											: 'transparent',
+									border: '1px solid #FFFF',
+									borderRadius: '0.5rem',
+									width: '90%',
+									marginBottom: '0.5rem',
+								}}
+							>
+								<Link
+									to={page.to}
+									sx={{ textDecoration: 'none', color: 'inherit' }}
+								>
+									<ListItemButton
+										sx={{
+											minHeight: 48,
+											justifyContent: open
+												? 'initial'
+												: 'center',
+											px: 2.5,
+											color:
+												selectedIndex === index
+													? '#FFFFFF'
+													: 'var(--Sub-text-2, #8794C2)',
+										}}
+										selected={selectedIndex === index}
+										onClick={(event) =>
+											handleListItemClick(event, index)
+										}
+									>
+										<ListItemIcon
+											sx={{
+												minWidth: 0,
+												mr: open ? 3 : 'auto',
+												justifyContent: 'center',
+												color:
+													selectedIndex === index
+														? '#FFFFFF'
+														: 'var(--Sub-text-2, #8794C2)',
+											}}
+										>
+											{page.icon(selectedIndex === index)}
+										</ListItemIcon>
+										<ListItemText
+											primary={page.text}
+											sx={{
+												opacity: open ? 1 : 0,
+												'& .MuiTypography-root': {
+													fontSize: '12px',
+												},
+											}}
+										/>
+									</ListItemButton>
+								</Link>
+							</ListItem>
+						))}
+					</List>
+
+					<BottomNavigation
+						showLabels
+						style={{
+							marginTop: '4rem',
 						}}
-						icon={<MifixLogo />}
-					/>
-				</BottomNavigation>
-			</Drawer>
-			<div
-				style={{ marginTop: '4.4rem', marginLeft: '-12px', zIndex: '9999' }}
-			>
-				<img
-					src={open ? LeftIcon : RightIcon}
-					alt="Expand"
+						sx={{
+							mt: '4rem',
+							display: 'flex',
+							flexDirection: 'column',
+						}}
+					>
+						<Grid
+							item
+							sx={{
+								display: 'flex',
+								flexDirection: 'row',
+								gap: '8px',
+								color: '#8794C2',
+							}}
+						>
+							<div style={{ display: 'flex', alignItems: 'center' }}>
+								<IconButton
+									sx={{
+										marginLeft: '1.5rem',
+										'&.MuiIconButton-root': {
+											padding: '0',
+										},
+									}}
+									disableRipple
+								>
+									<SignOutIcon />
+								</IconButton>
+								{open && (
+									<>
+										<Typography
+											variant="body2"
+											sx={{
+												fontSize: '0.85rem',
+												paddingTop: '0.2rem',
+												paddingBottom: '0.5rem',
+												marginRight: '7rem',
+												margin: '0.5rem 7rem 0 0.7rem',
+												pt: '0.2rem',
+												pb: '0.5rem',
+												m: '0.5rem 7rem 0 0.7rem',
+											}}
+										>
+											Sign Out
+										</Typography>
+										<ChevronRightIcon />
+									</>
+								)}
+							</div>
+						</Grid>
+						<BottomNavigationAction
+							sx={{
+								border: '1px solid lightgrey',
+								borderRadius: '0.5rem',
+								padding: '0.2rem 0rem',
+								backgroundColor: '#F8F9FB',
+								width: '100%',
+							}}
+							icon={<MifixLogo />}
+						/>
+					</BottomNavigation>
+				</Drawer>
+				<div
 					style={{
-						border: '0.1px solid lightgrey',
-						borderRadius: '50%',
-						backgroundColor: 'white',
+						marginTop: '4.4rem',
+						marginLeft: '-12px',
+						zIndex: '9999',
 					}}
-					onClick={handleDrawerOpen}
-				/>
-			</div>
-			<Box
-				component="main"
-				sx={{
-					flexGrow: 1,
-					p: 3,
-					background: 'rgba(248, 249, 251, 1)',
-					width: '100%',
-				}}
-			>
-				<DrawerHeader />
-				<Outlet />
+				>
+					<img
+						src={open ? LeftIcon : RightIcon}
+						alt="Expand"
+						style={{
+							border: '0.1px solid lightgrey',
+							borderRadius: '50%',
+							backgroundColor: 'white',
+						}}
+						onClick={handleDrawerOpen}
+					/>
+				</div>
+				<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+					<DrawerHeader />
+					<Outlet />
+				</Box>
 			</Box>
-		</Box>
+		</>
 	);
 }
