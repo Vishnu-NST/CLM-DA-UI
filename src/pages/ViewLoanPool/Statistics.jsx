@@ -1,11 +1,4 @@
-import {
-	Box,
-	Card,
-	CardContent,
-	Divider,
-	Grid,
-	Typography,
-} from '@mui/material';
+import { Box, Card, CardContent, Divider, Grid, Typography } from '@mui/material';
 import {
 	BarChart,
 	Bar,
@@ -56,6 +49,11 @@ const Statistics = () => {
 	const data02 = [
 		{ name: 'Group A', value: 2400, fill: '#C4161C' },
 		{ name: 'Group B', value: 5567, fill: '#8794C2' },
+	];
+
+	const data3 = [
+		{ name: 'First Loan Pool Cycle', value: 70, fill: '#8794C2' },
+		{ name: 'Second Loan Pool Cycle', value: 30, fill: '#E7EAF3' },
 	];
 
 	return (
@@ -338,6 +336,38 @@ const Statistics = () => {
 							</Typography>
 							<Divider />
 							{/* <LoanCycleChart /> */}
+							<ResponsiveContainer width="100%" height={300}>
+								<PieChart
+									width={500}
+									height={50}
+									margin={{
+										top: 0,
+										right: 0,
+										left: 0,
+										bottom: -10,
+									}}
+								>
+									<Pie
+										dataKey="value"
+										data={data3}
+										cx="50%"
+										cy="50%"
+										innerRadius={50}
+										outerRadius={120}
+										fill="#82ca9d"
+										startAngle={180}
+										endAngle={0}
+										paddingAngle={5}
+									/>
+									<Tooltip />
+									<Legend
+										// layout="horizontal"
+										// verticalAlign="top"
+										align="center"
+										wrapperStyle={{ top: 220 }}
+									/>
+								</PieChart>
+							</ResponsiveContainer>
 						</CardContent>
 					</Card>
 				</Grid>
