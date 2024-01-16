@@ -14,6 +14,7 @@ import LoanPoolCreation from '@/pages/LoanPoolCreation/LoanPoolCreation';
 import LoanPoolTimeline from './pages/LoanPoolTimeline/LoanPoolTimeline';
 import DueDiligence from './pages/NBFCDueDiligence/DueDiligence';
 import SelectPool from './pages/BSelectPool/SelectPool';
+import LoanPoolCard from './pages/ViewLoanPool/ViewLoanPool';
 
 // import UserManagement from '@/pages/Ums/UserManagement';
 // import NbfcProfile from './pages/Ums/components/NbfcProfile';
@@ -120,6 +121,15 @@ export const routes = [
 					{ path: 'profile', element: <Profile /> },
 					{ path: 'mgmt', element: <User /> },
 				],
+			},
+			{
+				path: 'view-loan-pool',
+				element: (
+					<Suspense fallback={'Loading...'}>
+						<ViewLoanPool />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />
 			},
 		],
 	},
