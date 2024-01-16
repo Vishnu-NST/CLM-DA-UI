@@ -1,21 +1,16 @@
-// import { getStorage } from '@/utils/common';
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-	baseURL: import.meta.env.VITE_UMS_BASE_URL,
+	baseURL: import.meta.env.VITE_OUTLOOK_BASE_URL,
 });
-
-// const storage = getStorage();
 
 axiosInstance.interceptors.request.use(
 	(config) => {
 		config.headers = config.headers || {};
 
-		// const wsoToken = storage.getItem('wsoToken');
-
-		// if (wsoToken) {
-		// 	config.headers['Authorization'] = `Bearer ${wsoToken}`;
-		// }
+		config.headers['Authorization'] = `Bearer ${
+			import.meta.env.VITE_OUTLOOK_AUTH_TOKEN
+		}`;
 
 		config.headers['Content-Type'] = 'application/json';
 
@@ -26,18 +21,14 @@ axiosInstance.interceptors.request.use(
 	},
 );
 
-class UMSClient {
+class OutlookClient {
 	constructor(endpoint) {
 		this.endpoint = endpoint;
 	}
 
-	login(payload) {
-		return axiosInstance.post(this.endpoint, payload).then((res) => res.data);
-	}
-
-	changePassword(payload) {
+	send(payload) {
 		return axiosInstance.post(this.endpoint, payload).then((res) => res.data);
 	}
 }
 
-export default UMSClient;
+export default OutlookClient;

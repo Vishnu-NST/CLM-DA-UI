@@ -7,13 +7,31 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { theme } from '@/theme';
 import './styles/SignUpAndLoginForms.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import DI from '@/hoc/DI';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { isAllFormFieldsTouched } from '@/utils/common';
+import useOutlook from '@/store/useOutlook';
 
-const SignUpForm = () => {
+const SignUpForm = (props) => {
+	console.log(props);
+
+	const outlook = useOutlook();
+	const navigate = useNavigate();
+
+	if (outlook.error) {
+		props.logger.error(
+			{ message: 'login falied' },
+			'user1',
+			props.componentName,
+		);
+	}
+
+	if (outlook.isSuccess) {
+		console.log(outlook.data);
+	}
+
 	const form = useFormik({
 		initialValues: {
 			firstName: '',
@@ -34,6 +52,14 @@ const SignUpForm = () => {
 		onSubmit: (values) => {
 			console.log('submit');
 			console.log(values);
+
+			outlook.mutate({
+				firstName: values.firstName,
+				lastName: values.lastName,
+				email: values.email,
+			});
+
+			navigate('/email-confirm');
 		},
 	});
 
