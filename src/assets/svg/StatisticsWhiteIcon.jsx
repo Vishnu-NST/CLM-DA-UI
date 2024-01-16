@@ -1,6 +1,6 @@
 import React from 'react';
 
-const StatisticsIcon = (props) => {
+const StatisticsWhiteIcon = (props) => {
 	return (
 		<svg
 			width="20"
@@ -13,11 +13,11 @@ const StatisticsIcon = (props) => {
 				<path
 					id="Vector"
 					d="M2.5 18.3334V11.5001H5.83333V18.3334H2.5ZM8.33333 18.3334V5.50006H11.6667V18.3334H8.33333ZM14.1667 18.3334V6.10352e-05H17.5V18.3334H14.1667Z"
-					fill="#00B85E"
+					fill="#FFFFFF"
 				/>
 			</g>
 		</svg>
 	);
 };
 
-export default StatisticsIcon;
+export default StatisticsWhiteIcon;

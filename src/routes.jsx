@@ -14,7 +14,7 @@ import LoanPoolCreation from '@/pages/LoanPoolCreation/LoanPoolCreation';
 import LoanPoolTimeline from './pages/LoanPoolTimeline/LoanPoolTimeline';
 import DueDiligence from './pages/NBFCDueDiligence/DueDiligence';
 import SelectPool from './pages/BSelectPool/SelectPool';
-import LoanPoolCard from './pages/ViewLoanPool/ViewLoanPool';
+import { ViewLoanPool } from './pages/ViewLoanPool/ViewLoanPool';
 
 // import UserManagement from '@/pages/Ums/UserManagement';
 // import NbfcProfile from './pages/Ums/components/NbfcProfile';
@@ -23,6 +23,9 @@ import LoanPoolCard from './pages/ViewLoanPool/ViewLoanPool';
 import UmsTabs from './pages/Ums/UmsTabs';
 import Profile from './pages/Ums/components/Profile';
 import User from './pages/Ums/components/User';
+import { LoanPoolCustomerDetails } from './pages/ViewLoanPool/CustomerDetails';
+import { ProspectDetails } from './pages/ViewLoanPool/ProspectDetails';
+import Statistics from './pages/ViewLoanPool/Statistics';
 export const routes = [
 	{
 		path: '/',
@@ -129,7 +132,34 @@ export const routes = [
 						<ViewLoanPool />
 					</Suspense>
 				),
-				errorElement: <ErrorPage />
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'customer-details',
+				element: (
+					<Suspense fallback={'Loading...'}>
+						<LoanPoolCustomerDetails />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'prospect-details',
+				element: (
+					<Suspense fallback={'Loading...'}>
+						<ProspectDetails />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'statistics',
+				element: (
+					<Suspense fallback={'Loading...'}>
+						<Statistics />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
 			},
 		],
 	},
