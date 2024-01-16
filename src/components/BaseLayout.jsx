@@ -4,7 +4,6 @@ import * as React from 'react';
 import {
 	Box,
 	BottomNavigation,
-	BottomNavigationAction,
 	IconButton,
 	Card,
 	CardContent,
@@ -34,6 +33,7 @@ import ReportIcon from '@/assets/svg/ReportIcon';
 import ProfileIcon from '@/assets/svg/ProfileIcon';
 import MifixLogo from '@/assets/svg/MiFiXLogo';
 import SignOutIcon from '@/assets/svg/SignOutIcon';
+import PoweredByMifix from '@/assets/svg/PoweredByMifix';
 
 const drawerWidth = 280;
 
@@ -339,16 +339,16 @@ export default function BaseLayout() {
 								)}
 							</div>
 						</Grid>
-						<BottomNavigationAction
+						<Box
 							sx={{
-								border: '1px solid lightgrey',
-								borderRadius: '0.5rem',
+								pointer: 'default',
 								padding: '0.2rem 0rem',
-								backgroundColor: '#F8F9FB',
-								width: '100%',
+								display: 'flex',
+								justifyContent: 'center',
 							}}
-							icon={<MifixLogo />}
-						/>
+						>
+							{open ? <PoweredByMifix /> : <MifixLogo />}
+						</Box>
 					</BottomNavigation>
 				</Drawer>
 				<div
