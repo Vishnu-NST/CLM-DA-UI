@@ -1,5 +1,5 @@
 import * as React from 'react';
-const ReportIcon = () => (
+const ReportIcon = (props) => (
 	<svg
 		width={24}
 		height={25}
@@ -31,7 +31,7 @@ const ReportIcon = () => (
 				<path
 					id="bar_chart_4_bars_2"
 					d="M2 21.5V19.5H22V21.5H2ZM3 18.5V11.5H6V18.5H3ZM8 18.5V6.5H11V18.5H8ZM13 18.5V9.5H16V18.5H13ZM18 18.5V3.5H21V18.5H18Z"
-					fill="#8794C2"
+					fill={props.stroke}
 				/>
 			</g>
 		</g>
