@@ -32,6 +32,10 @@ const PoolQueryList = ({ onCheckQueryClick }) => {
 					<TableHead
 						sx={{
 							background: '#F8F9FB',
+							'.MuiTableCell-root': {
+								fontSize: '0.875rem',
+								padding: '0.5rem',
+							},
 						}}
 					>
 						<TableRow>
@@ -92,6 +96,9 @@ const PoolQueryList = ({ onCheckQueryClick }) => {
 									'&:last-child td, &:last-child th': {
 										border: 0,
 									},
+									'.MuiTableCell-root': {
+										fontSize: '0.875rem',
+									},
 								}}
 							>
 								<TableCell component="th" scope="row">
@@ -120,10 +127,16 @@ const PoolQueryList = ({ onCheckQueryClick }) => {
 								<TableCell
 									align="center"
 									className="check-query-txt flex-center"
+									sx={{
+										display: 'table-cell !important',
+										cursor: 'pointer',
+									}}
 									onClick={() => onCheckQueryClick()}
 								>
-									Check query &nbsp;
-									<ArrowForwardIosIcon fontSize="11" />
+									<div className="flex-center">
+										Check query &nbsp;
+										<ArrowForwardIosIcon fontSize="11" />
+									</div>
 								</TableCell>
 							</TableRow>
 						))}

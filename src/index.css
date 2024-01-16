@@ -24,7 +24,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
@@ -86,6 +85,11 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
 }
+.flex-end{
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-end;
+}
 .mb-1{
   margin-bottom: 1rem !important;
 }
@@ -101,4 +105,9 @@ button:focus-visible {
 }
 .mt-3{
   margin-top: 3rem;
+}
+.flex-column-start{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
