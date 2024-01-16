@@ -224,15 +224,15 @@ export default function BaseLayout() {
 								key={page.text}
 								disablePadding
 								sx={{
+									width: open ? '88%' : '75%',
 									display: 'block',
-									ml: '0.6rem',
+									ml: open ? '1rem' : '0.6rem',
 									backgroundColor:
 										selectedIndex === index
 											? '#C4161C'
 											: 'transparent',
 									border: '1px solid #FFFF',
 									borderRadius: '0.5rem',
-									width: '90%',
 									marginBottom: '0.5rem',
 								}}
 							>
@@ -261,7 +261,7 @@ export default function BaseLayout() {
 											sx={{
 												minWidth: 0,
 												mr: open ? 3 : 'auto',
-												justifyContent: 'center',
+												ml: open ? 'auto' : 1,
 												color:
 													selectedIndex === index
 														? '#FFFFFF'
