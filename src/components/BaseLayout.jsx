@@ -84,8 +84,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 	}),
 );
 
-export default function BaseLayout() {
+export default function BaseLayout(props) {
 	// const theme = useTheme();
+
+	const { pages } = props;
 
 	const navigate = useNavigate();
 
@@ -94,15 +96,6 @@ export default function BaseLayout() {
 	const handleDrawerOpen = () => {
 		setOpen(!open);
 	};
-
-	const pages = [
-		{ text: 'Dashboard', to: 'dashboard', icon: <DashboardIcon /> },
-		{ text: 'Create Loan Pool', to: 'lpc', icon: <LoanPoolIcon /> },
-		{ text: 'Due Diligence', to: 'lpt', icon: <DueDeligenceIcon /> },
-		{ text: 'Transaction', to: 'queries', icon: <CurrencyExchangeIcon /> },
-		{ text: 'Pool Status', to: 'slp', icon: <PoolStatusIcon /> },
-		{ text: 'Reports', to: 'reports', icon: <ReportIcon /> },
-	];
 
 	return (
 		<Box sx={{ display: 'flex' }}>
