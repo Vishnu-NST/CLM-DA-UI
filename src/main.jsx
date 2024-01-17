@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { routes } from './routes.jsx';
+
 import { theme } from './theme.js';
-import './index.css';
+import './NBFC/index.css';
+import { routes } from './routes.jsx';
 
 const router = createBrowserRouter(routes);
 
