@@ -9,7 +9,7 @@ import PasswordsetupLinkInfo from './pages/Auth/PasswordsetupLinkInfo';
 import FortgotPasswordForm from './pages/Auth/ForgotPasswordForm';
 import LinkExpiredForm from './pages/Auth/LinkExpiredForm';
 import BaseLayout from '@/components/BaseLayout';
-import Dashboard from '@/pages/Dashboard/Dashboard';
+import DashboardBank from '@/pages/Dashboard/DashboardBank';
 import LoanPoolCreation from '@/pages/LoanPoolCreation/LoanPoolCreation';
 import LoanPoolTimeline from './pages/LoanPoolTimeline/LoanPoolTimeline';
 import DueDiligence from './pages/NBFCDueDiligence/DueDiligence';
@@ -70,7 +70,7 @@ export const routes = [
 				path: 'dashboard',
 				element: (
 					<Suspense fallback={'Loading ...'}>
-						<Dashboard />
+						<DashboardBank />
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
