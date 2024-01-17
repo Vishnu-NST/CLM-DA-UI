@@ -175,6 +175,15 @@ export const routes = [
 				),
 				errorElement: <ErrorPage />,
 			},
+			{
+				path: 'assetclass',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<AssetClassBank />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
 		],
 	},
 ];
