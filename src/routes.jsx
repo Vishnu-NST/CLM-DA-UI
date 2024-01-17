@@ -22,6 +22,31 @@ import UmsTabs from './target/NBFC/pages/Ums/UmsTabs';
 import Profile from './target/NBFC/pages/Ums/components/Profile';
 import User from './target/NBFC/pages/Ums/components/User';
 import AuthRequired from '@/components/AuthRequired';
+import DashboardIcon from '@/assets/svg/DashboardIcon';
+import LoanPoolIcon from '@/assets/svg/LoanPoolIcon';
+import DueDeligenceIcon from '@/assets/svg/DueDeligenceIcon';
+import CurrencyExchangeIcon from '@/assets/svg/CurrencyExchangeIcon';
+import PoolStatusIcon from '@/assets/svg/PoolStatusIcon';
+import ReportIcon from '@/assets/svg/ReportIcon';
+
+const nbfcPages = [
+	{ text: 'Dashboard', to: 'dashboard', icon: <DashboardIcon /> },
+	{ text: 'Create Loan Pool', to: 'lpc', icon: <LoanPoolIcon /> },
+	{ text: 'Due Diligence', to: 'lpt', icon: <DueDeligenceIcon /> },
+	{ text: 'Transaction', to: 'queries', icon: <CurrencyExchangeIcon /> },
+	{ text: 'Pool Status', to: 'slp', icon: <PoolStatusIcon /> },
+	{ text: 'Reports', to: 'reports', icon: <ReportIcon /> },
+];
+
+const bankPages = [
+	{ text: 'Dashboard', to: 'dashboard', icon: <DashboardIcon /> },
+	{ text: 'Select Product', to: 'lpc', icon: <LoanPoolIcon /> },
+	{ text: 'My Pool List', to: 'lpt', icon: <DueDeligenceIcon /> },
+	{ text: 'Due Diligence', to: 'queries', icon: <CurrencyExchangeIcon /> },
+	{ text: 'Transaction', to: 'slp', icon: <PoolStatusIcon /> },
+	{ text: 'Reports', to: 'reports', icon: <ReportIcon /> },
+	{ text: 'Demand Collected', to: 'reports', icon: <ReportIcon /> },
+];
 
 export const routes = [
 	{
@@ -61,7 +86,7 @@ export const routes = [
 		element: (
 			// <Suspense>
 			<AuthRequired>
-				<BaseLayout />
+				<BaseLayout pages={nbfcPages} />
 			</AuthRequired>
 			// </Suspense>
 		),
@@ -135,7 +160,7 @@ export const routes = [
 		element: (
 			<Suspense>
 				<AuthRequired>
-					<BaseLayout />
+					<BaseLayout pages={bankPages} />
 				</AuthRequired>
 			</Suspense>
 		),
