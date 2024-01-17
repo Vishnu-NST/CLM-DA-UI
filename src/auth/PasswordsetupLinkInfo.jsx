@@ -1,4 +1,4 @@
-import Mifix from '@/NBFC/assets/svg/Mifix.svg';
+import Mifix from '@/assets/svg/Mifix.svg';
 import { Grid, Typography } from '@mui/material';
 import './styles/SignUpAndLoginForms.scss';
 

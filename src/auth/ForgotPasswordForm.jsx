@@ -1,4 +1,4 @@
-import Mifix from '@/NBFC/assets/svg/Mifix.svg';
+import Mifix from '@/assets/svg/Mifix.svg';
 import { theme } from '@/theme';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { Button, Grid, Typography } from '@mui/material';
@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import InputComponent from './InputComponent';
 import './styles/SignUpAndLoginForms.scss';
-import { isAllFormFieldsTouched } from '@/NBFC/utils/common';
+import { isAllFormFieldsTouched } from '@/utils/common';
 
 const ForgotPasswordForm = () => {
 	const form = useFormik({

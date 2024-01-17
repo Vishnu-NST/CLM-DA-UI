@@ -5,7 +5,7 @@ import {
 	// TextField,
 	Typography,
 } from '@mui/material';
-import Mifix from '@/NBFC/assets/svg/Mifix.svg';
+import Mifix from '@/assets/svg/Mifix.svg';
 import InputComponent from './InputComponent';
 import KeyIcon from '@mui/icons-material/Key';
 import PasswordIcon from '@mui/icons-material/Password';
@@ -13,7 +13,7 @@ import { theme } from '@/theme';
 import './styles/SignUpAndLoginForms.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { isAllFormFieldsTouched } from '@/NBFC/utils/common';
+import { isAllFormFieldsTouched } from '@/utils/common';
 
 const CreatePasswordForm = () => {
 	const form = useFormik({

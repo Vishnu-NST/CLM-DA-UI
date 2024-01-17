@@ -1,6 +1,6 @@
 import { Button, Grid, Typography } from '@mui/material';
 import { theme } from '@/theme';
-import ErrorIcon from '@/NBFC/assets/svg/ErrorIcon.svg';
+import ErrorIcon from '@/assets/svg/ErrorIcon.svg';
 import './styles/SignUpAndLoginForms.scss';
 
 const LinkExpiredForm = () => {

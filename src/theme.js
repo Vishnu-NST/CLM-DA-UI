@@ -18,7 +18,7 @@ const rejected = '#EF0202';
 const active = '#09B66D';
 const inactive = '#FF3D57';
 
-import PoppinsReg from '@/NBFC/assets/fonts/Poppins/Poppins-Regular.ttf';
+import PoppinsReg from '@/assets/fonts/Poppins/Poppins-Regular.ttf';
 
 const theme = createTheme({
 	components: {
