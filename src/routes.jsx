@@ -22,6 +22,7 @@ import UmsTabs from './NBFC/pages/Ums/UmsTabs';
 import Profile from './NBFC/pages/Ums/components/Profile';
 import User from './NBFC/pages/Ums/components/User';
 import AuthRequired from '@/NBFC/components/AuthRequired';
+import AssetClassBank from './NBFC/pages/Ums/components/AssetClassBank';
 
 export const routes = [
 	{
@@ -146,6 +147,15 @@ export const routes = [
 				element: (
 					<Suspense fallback={'Loading ...'}>
 						<>bakn dashboard</>
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'assetclass',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<AssetClassBank />
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
