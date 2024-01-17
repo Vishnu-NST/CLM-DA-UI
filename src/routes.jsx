@@ -1,27 +1,27 @@
 import React, { Suspense } from 'react';
 
-import ErrorPage from '@/NBFC/components/Error/Error';
+import ErrorPage from '@/components/Error/Error';
 import SignUpForm from '@/auth/SignUpForm';
 import LoginPage from '@/auth/LoginForm';
 import CreatePasswordForm from './auth/CreatePasswordForm';
 import PasswordsetupLinkInfo from './auth/PasswordsetupLinkInfo';
 import FortgotPasswordForm from './auth/ForgotPasswordForm';
 import LinkExpiredForm from './auth/LinkExpiredForm';
-import BaseLayout from '@/NBFC/components/BaseLayout';
-import Dashboard from '@/NBFC/pages/Dashboard/Dashboard';
-import LoanPoolCreation from '@/NBFC/pages/LoanPoolCreation/LoanPoolCreation';
-import LoanPoolTimeline from './NBFC/pages/LoanPoolTimeline/LoanPoolTimeline';
-import DueDiligence from './NBFC/pages/NBFCDueDiligence/DueDiligence';
-import SelectPool from './NBFC/pages/BSelectPool/SelectPool';
+import BaseLayout from '@/components/BaseLayout';
+import Dashboard from '@/target/NBFC/pages/Dashboard/Dashboard';
+import LoanPoolCreation from '@/target/NBFC/pages/LoanPoolCreation/LoanPoolCreation';
+import LoanPoolTimeline from './target/NBFC/pages/LoanPoolTimeline/LoanPoolTimeline';
+import DueDiligence from './target/NBFC/pages/NBFCDueDiligence/DueDiligence';
+import SelectPool from './target/NBFC/pages/BSelectPool/SelectPool';
 
 // import UserManagement from '@/pages/Ums/UserManagement';
 // import NbfcProfile from './pages/Ums/components/NbfcProfile';
 // import UserList from './pages/Ums/components/UserList';
 // import EditUserDetails from './pages/Ums/components/EditUserDetails';
-import UmsTabs from './NBFC/pages/Ums/UmsTabs';
-import Profile from './NBFC/pages/Ums/components/Profile';
-import User from './NBFC/pages/Ums/components/User';
-import AuthRequired from '@/NBFC/components/AuthRequired';
+import UmsTabs from './target/NBFC/pages/Ums/UmsTabs';
+import Profile from './target/NBFC/pages/Ums/components/Profile';
+import User from './target/NBFC/pages/Ums/components/User';
+import AuthRequired from '@/components/AuthRequired';
 
 export const routes = [
 	{
