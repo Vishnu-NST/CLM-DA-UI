@@ -1,17 +1,17 @@
 import { useMemo } from 'react';
 import { Button, Grid, Typography } from '@mui/material';
 import InputComponent from './InputComponent';
-import LoginImage from '@/NBFC/assets/svg/LoginImage';
-import Mifix from '@/NBFC/assets/svg/Mifix.svg';
+import LoginImage from '@/assets/svg/LoginImage';
+import Mifix from '@/assets/svg/Mifix.svg';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { theme } from '@/theme';
 import './styles/SignUpAndLoginForms.scss';
 import { Link } from 'react-router-dom';
-import DI from '@/NBFC/hoc/DI';
+import DI from '@/hoc/DI';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { isAllFormFieldsTouched } from '@/NBFC/utils/common';
+import { isAllFormFieldsTouched } from '@/utils/common';
 
 const SignUpForm = () => {
 	const form = useFormik({

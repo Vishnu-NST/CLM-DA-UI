@@ -1,5 +1,5 @@
-import LoginImage from '@/NBFC/assets/svg/LoginImage';
-import Mifix from '@/NBFC/assets/svg/Mifix.svg';
+import LoginImage from '@/assets/svg/LoginImage';
+import Mifix from '@/assets/svg/Mifix.svg';
 import { theme } from '@/theme';
 import KeyIcon from '@mui/icons-material/Key';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
@@ -17,7 +17,7 @@ import {
 
 import { useMemo } from 'react';
 
-import { isAllFormFieldsTouched } from '@/NBFC/utils/common';
+import { isAllFormFieldsTouched } from '@/utils/common';
 import { useFormik } from 'formik';
 import InputComponent from './InputComponent';
 import './styles/SignUpAndLoginForms.scss';
@@ -42,7 +42,7 @@ const LoginPage = () => {
 			console.log('submit');
 			console.log(values);
 
-			if (true) {
+			if (false) {
 				return navigate('/nbfc/panel/dashboard');
 			} else {
 				return navigate('/bank/panel/dashboard');
