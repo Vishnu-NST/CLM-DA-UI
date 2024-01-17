@@ -98,6 +98,7 @@ const DueDiligence = () => {
 				anchor="right"
 				state={drawerState}
 				Component={DueDiligenceDrawer}
+				onClose={() => setDrawerState(false)}
 			/>
 		</>
 	);

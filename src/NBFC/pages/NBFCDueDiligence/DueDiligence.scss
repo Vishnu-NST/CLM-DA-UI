@@ -42,13 +42,125 @@
 .drawer-header{
     padding: 1rem;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
+    .title{
+        margin-right: 0.5rem;
+        color: #1B1B1B;
+        font-weight: 400;
+        font-size: 0.875rem;
+    }
+    .sub-title{
+       color: #8794C2;
+       font-weight: 400;
+       font-size: 0.875rem;
+       margin-top: 0.2rem !important;
+       margin-bottom: 0rem;
 }
-.drawer-header .title{
+}
+.ml-1{
     margin-left: 1rem;
-    margin-right: 0.5rem;
-    color: #1B1B1B;
-    font-weight: 400;
-    font-size: 0.875rem;
+}
+.logo-block{
+    border: 1px solid rgba(135, 148, 194, 0.2);
+    background-color: white;
+    border-radius: 50%;
+    padding: 0.4rem;
+    display: flex;
+}
+.timeline-container{
+    .title{
+        color: #8794C2;
+        font-weight: 400;
+        font-size: 0.875rem;
+    }
+    .sub-title{
+        margin: 0rem;
+        color: #1B1B1B;
+        font-weight: 400;
+        font-size: 0.875rem;
+    }
+    .time{
+        margin-top: 0.5rem;
+        color: #8794C2;
+        font-weight: 400;
+        font-size: 0.7rem;
+    }
+    .box-content{
+        background-color: #F8F9FB;
+        color: #8794C2;
+        font-weight: 400;
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+        padding: 0.6rem;
+    }
+    .excel-download-block{
+        border: 1px solid rgba(135, 148, 194, 0.2);
+        box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.1);
+        margin-top: 1rem;
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .title{
+            color: #8794C2;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+        .sub-title{
+            color: #8794C2;
+            font-weight: 400;
+            font-size: 0.75rem;
+        }
+    }
+    .upload-block{
+        border: 1px solid rgba(135, 148, 194, 0.2);
+        background: white;
+        width: 100%;
+        border-radius: 15px;
+        padding: 1rem;
+        margin-top: 1rem;
+        width: 20rem;
+        .title{
+            color: #1B1B1B;
+            font-weight: 400;
+            font-size: 0.875rem;
+        }
+    }
+    .uploaded-box{
+        border: 1px solid rgba(135, 148, 194, 0.2);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-top: 1rem;
+        .title{
+            color: #8794C2;
+            font-weight: 400;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+        .uploaded-content{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.7rem;
+            border-radius: 5px;
+            border: 1px solid rgba(135, 148, 194, 0.2);
+            .title{
+                color: rgba(135, 148, 194, 1);
+                font-weight: 500;
+                font-size: 0.875rem;
+                margin:0rem
+            }
+            .sub-title{
+                color: #8794C2;
+                font-weight: 500;
+                font-size: 0.875rem;
+            }
+        }
+    }
+    .reply-title{
+        color: #8794C2;
+        font-weight: 400;
+        font-size: 0.875rem;
+    }
 }

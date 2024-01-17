@@ -42,7 +42,7 @@ const LoginPage = () => {
 			console.log('submit');
 			console.log(values);
 
-			if (false) {
+			if (true) {
 				return navigate('/nbfc/panel/dashboard');
 			} else {
 				return navigate('/bank/panel/dashboard');
