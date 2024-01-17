@@ -1,31 +1,28 @@
 import React, { Suspense } from 'react';
 
-import ErrorPage from '@/components/Error/Error';
-// import AuthRequired from './components/AuthRequired';
-import SignUpForm from './pages/Auth/SignUpForm';
-import LoginPage from './pages/Auth/LoginForm';
-import CreatePasswordForm from './pages/Auth/CreatePasswordForm';
-import PasswordsetupLinkInfo from './pages/Auth/PasswordsetupLinkInfo';
-import FortgotPasswordForm from './pages/Auth/ForgotPasswordForm';
-import LinkExpiredForm from './pages/Auth/LinkExpiredForm';
-import BaseLayout from '@/components/BaseLayout';
-import DashboardBank from '@/pages/Dashboard/DashboardBank';
-import LoanPoolCreation from '@/pages/LoanPoolCreation/LoanPoolCreation';
-import LoanPoolTimeline from './pages/LoanPoolTimeline/LoanPoolTimeline';
-import DueDiligence from './pages/NBFCDueDiligence/DueDiligence';
-import SelectPool from './pages/BSelectPool/SelectPool';
-import { ViewLoanPool } from './pages/ViewLoanPool/ViewLoanPool';
+import ErrorPage from '@/NBFC/components/Error/Error';
+import SignUpForm from '@/auth/SignUpForm';
+import LoginPage from '@/auth/LoginForm';
+import CreatePasswordForm from './auth/CreatePasswordForm';
+import PasswordsetupLinkInfo from './auth/PasswordsetupLinkInfo';
+import FortgotPasswordForm from './auth/ForgotPasswordForm';
+import LinkExpiredForm from './auth/LinkExpiredForm';
+import BaseLayout from '@/NBFC/components/BaseLayout';
+import Dashboard from '@/NBFC/pages/Dashboard/Dashboard';
+import LoanPoolCreation from '@/NBFC/pages/LoanPoolCreation/LoanPoolCreation';
+import LoanPoolTimeline from './NBFC/pages/LoanPoolTimeline/LoanPoolTimeline';
+import DueDiligence from './NBFC/pages/NBFCDueDiligence/DueDiligence';
+import SelectPool from './NBFC/pages/BSelectPool/SelectPool';
 
 // import UserManagement from '@/pages/Ums/UserManagement';
 // import NbfcProfile from './pages/Ums/components/NbfcProfile';
 // import UserList from './pages/Ums/components/UserList';
 // import EditUserDetails from './pages/Ums/components/EditUserDetails';
-import UmsTabs from './pages/Ums/UmsTabs';
-import Profile from './pages/Ums/components/Profile';
-import User from './pages/Ums/components/User';
-import { LoanPoolCustomerDetails } from './pages/ViewLoanPool/CustomerDetails';
-import { ProspectDetails } from './pages/ViewLoanPool/ProspectDetails';
-import Statistics from './pages/ViewLoanPool/Statistics';
+import UmsTabs from './NBFC/pages/Ums/UmsTabs';
+import Profile from './NBFC/pages/Ums/components/Profile';
+import User from './NBFC/pages/Ums/components/User';
+import AuthRequired from '@/NBFC/components/AuthRequired';
+
 export const routes = [
 	{
 		path: '/',
@@ -57,21 +54,25 @@ export const routes = [
 		element: <LinkExpiredForm />,
 		errorElement: <ErrorPage />,
 	},
+
+	// nbfc routes
 	{
-		path: '/panel/*',
+		path: '/nbfc/panel/*',
 		element: (
-			<Suspense>
+			// <Suspense>
+			<AuthRequired>
 				<BaseLayout />
-			</Suspense>
+			</AuthRequired>
+			// </Suspense>
 		),
 		errorElement: <ErrorPage />,
 		children: [
 			{
 				path: 'dashboard',
 				element: (
-					<Suspense fallback={'Loading ...'}>
-						<DashboardBank />
-					</Suspense>
+					// <Suspense fallback={'Loading ...'}>
+					<Dashboard />
+					// </Suspense>
 				),
 				errorElement: <ErrorPage />,
 			},
@@ -125,38 +126,26 @@ export const routes = [
 					{ path: 'mgmt', element: <User /> },
 				],
 			},
+		],
+	},
+
+	// bank routes
+	{
+		path: '/bank/panel/*',
+		element: (
+			<Suspense>
+				<AuthRequired>
+					<BaseLayout />
+				</AuthRequired>
+			</Suspense>
+		),
+		errorElement: <ErrorPage />,
+		children: [
 			{
-				path: 'view-loan-pool',
+				path: 'dashboard',
 				element: (
-					<Suspense fallback={'Loading...'}>
-						<ViewLoanPool />
-					</Suspense>
-				),
-				errorElement: <ErrorPage />,
-			},
-			{
-				path: 'customer-details',
-				element: (
-					<Suspense fallback={'Loading...'}>
-						<LoanPoolCustomerDetails />
-					</Suspense>
-				),
-				errorElement: <ErrorPage />,
-			},
-			{
-				path: 'prospect-details',
-				element: (
-					<Suspense fallback={'Loading...'}>
-						<ProspectDetails />
-					</Suspense>
-				),
-				errorElement: <ErrorPage />,
-			},
-			{
-				path: 'statistics',
-				element: (
-					<Suspense fallback={'Loading...'}>
-						<Statistics />
+					<Suspense fallback={'Loading ...'}>
+						<>bakn dashboard</>
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
