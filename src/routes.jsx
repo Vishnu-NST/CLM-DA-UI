@@ -12,9 +12,15 @@ import Dashboard from '@/target/NBFC/pages/Dashboard/Dashboard';
 import LoanPoolCreation from '@/target/NBFC/pages/LoanPoolCreation/LoanPoolCreation';
 import LoanPoolTimeline from './target/NBFC/pages/LoanPoolTimeline/LoanPoolTimeline';
 import DueDiligence from './target/NBFC/pages/NBFCDueDiligence/DueDiligence';
+
 import UmsTabs from './target/NBFC/pages/Ums/UmsTabs';
 import Profile from './target/NBFC/pages/Ums/components/Profile';
 import User from './target/NBFC/pages/Ums/components/User';
+
+import BankUmsTabs from './target/Bank/pages/Ums/UmsTabs';
+import BankProfile from './target/Bank/pages/Ums/components/Profile';
+import BankUser from './target/Bank/pages/Ums/components/User';
+
 import AuthRequired from '@/components/AuthRequired';
 import DashboardIcon from '@/assets/svg/DashboardIcon';
 import LoanPoolIcon from '@/assets/svg/LoanPoolIcon';
@@ -291,6 +297,20 @@ export const routes = [
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'ums',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<BankUmsTabs />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+				children: [
+					// { index: true, element: <Navigate to={'newreport'} /> },
+					{ path: 'profile', element: <BankProfile /> },
+					{ path: 'mgmt', element: <BankUser /> },
+				],
 			},
 		],
 	},
