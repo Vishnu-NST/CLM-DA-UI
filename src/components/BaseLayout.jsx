@@ -121,7 +121,11 @@ export default function BaseLayout(props) {
 							<Grid item style={{ marginBottom: '1rem' }}>
 								<Button
 									onClick={() => {
-										navigate('/panel/ums/profile');
+										navigate(
+											`${location.pathname.match(
+												/\/\w+\//,
+											)}panel/ums/profile`,
+										);
 									}}
 									color="inherit"
 								>

@@ -1,4 +1,6 @@
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import FullPieChart from './FullPieChart';
+import { Grid } from '@mui/material';
 
 const LineChartComponent = () => {
 	const data = [
@@ -43,7 +45,7 @@ const LineChartComponent = () => {
 	);
 
 	return (
-		<>
+		<Grid display="flex" flexDirection="row">
 			<LineChart
 				width={400}
 				height={300}
@@ -107,7 +109,8 @@ const LineChartComponent = () => {
 					]}
 				/>
 			</LineChart>
-		</>
+			<FullPieChart />
+		</Grid>
 	);
 };
 

@@ -4,7 +4,7 @@ import ProtocolIcon from '../../../../assets/svg/ProtocolIcon';
 import LinkIcon from '../../../../assets/svg/LinkIcon';
 import * as yup from 'yup';
 import { Divider, Grid } from '@mui/material';
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import CustomButton from '@/components/CustomButton';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import {
@@ -65,7 +65,32 @@ const chooseFileBtnStyle = {
 };
 
 const SFTPIntegration = () => {
+	const [data, setData] = useState({});
 	const inputFileRef = useRef(null);
+	const [nbfc_name, setNbfcName] = useState(null);
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await fetch(
+					`http://52.66.247.118:30201/sftp_config/get_sftp_config/${nbfc_name}`,
+				);
+				const result = await response.json();
+				setNbfcName('Sriram');
+				setData(result);
+			} catch (error) {
+				console.error('Error fetching data:', error);
+			}
+		};
+
+		fetchData();
+	}, [nbfc_name]);
+	console.log(data);
+	useEffect(() => {
+		formik.setFieldValue('userName', data.user_name);
+		formik.setFieldValue('fileName', data.file_name);
+		formik.setFieldValue('password', data.password);
+		formik.setFieldValue('time', data.scheduled_time_on_daily_basis);
+	}, [data]);
 	const [excel, setExcel] = React.useState(null);
 	const arr = [1, 2, 3, 4, 5];
 	const formik = useFormik({

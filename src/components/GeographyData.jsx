@@ -44,12 +44,37 @@
 // export default GeographyData;
 
 // ScreenshotComponent.jsx
+import { Box } from '@mui/material';
 import React from 'react';
 const GeographyData = () => {
 	return (
-		<div>
-			<p>Geography</p>
-		</div>
+		<Box
+			sx={{
+				// width: '80vw',
+				height: '7px',
+				borderRadius: '50px',
+				backgroundColor: 'yellow',
+				position: 'relative',
+				'&::before': {
+					content: "'hi'",
+					position: 'absolute',
+					top: '0',
+					left: '0',
+					width: '70%',
+					height: '7px',
+					borderRadius: '50px',
+					backgroundColor: 'red',
+				},
+				'&::after': {
+					content: "'hello'",
+					position: 'absolute',
+					top: '-25px',
+					right: 'calc(30% + 1rem)',
+				},
+			}}
+		>
+			<Box sx={{ position: 'absolute', top: '-25px' }}>hi</Box>
+		</Box>
 	);
 };
 
