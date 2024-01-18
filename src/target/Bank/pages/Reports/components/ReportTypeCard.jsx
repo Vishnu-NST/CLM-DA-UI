@@ -85,7 +85,7 @@ export default function ReportTypeCard() {
 											{data?.reportTypeName}
 										</Typography>
 									</Grid>
-									<Grid item xs={1} align="right">
+									<Grid item xs={1} align="right" sx={{mt:3}}>
 										<Radio
 											size="small"
 											sx={{ color: '#C4161C' }}
