@@ -86,7 +86,10 @@ const DueDiligence = () => {
 
 	return (
 		<>
-			<HeaderComp title={'Due Diligence'} />
+			<HeaderComp
+				title={'Due Diligence'}
+				breadCrumbs={[{ data: 'Due Diligence Queries', path: null }]}
+			/>
 			<div className="due-diligence-block">
 				<Grid container>
 					<Grid item sm={4}>

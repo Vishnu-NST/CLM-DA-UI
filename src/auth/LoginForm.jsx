@@ -21,9 +21,12 @@ import { isAllFormFieldsTouched } from '@/utils/common';
 import { useFormik } from 'formik';
 import InputComponent from './InputComponent';
 import './styles/SignUpAndLoginForms.scss';
+import useLogin from '@/store/useLogin';
+import DI from '@/hoc/DI';
 
-const LoginPage = () => {
+const LoginPage = (props) => {
 	const navigate = useNavigate();
+	const login = useLogin();
 
 	const form = useFormik({
 		initialValues: {
@@ -41,18 +44,18 @@ const LoginPage = () => {
 		onSubmit: (values) => {
 			console.log('submit');
 			console.log(values);
-
-			if (false) {
-				return navigate('/nbfc/panel/dashboard');
-			} else {
-				return navigate('/bank/panel/dashboard');
-			}
+			handleLogin({
+				username: values.email,
+				password: values.password,
+			});
 		},
 	});
 
 	const isAllFieldsTouched = isAllFormFieldsTouched(form);
 
 	const isFormValid = isAllFieldsTouched && form.isValid;
+
+	const memoizedLoginImage = useMemo(() => <LoginImage />, []);
 
 	const emailProps = {
 		id: 'email',
@@ -84,9 +87,26 @@ const LoginPage = () => {
 		fontSize: '0.65rem',
 	};
 
-	// console.log({ isFormValid });
+	async function handleLogin(payload) {
+		// console.log(payload);
+		login.mutate(payload);
+	}
 
-	const memoizedLoginImage = useMemo(() => <LoginImage />, []);
+	if (login.isError) {
+		console.log(login.error.message);
+	}
+
+	if (login.isSuccess && login.data.result) {
+		props.storage.setItem('accessToken', login.data.result.accessToken);
+
+		if (login.data.result.org_type == 'bank') {
+			return navigate('/bank/panel/dashboard');
+		}
+
+		if (login.data.result.org_type == 'nbfc') {
+			return navigate('/nbfc/panel/dashboard');
+		}
+	}
 
 	return (
 		<>
@@ -150,6 +170,7 @@ const LoginPage = () => {
 						>
 							Sign up your account
 						</Typography>
+						{login.isError && <p>{login.error.message}</p>}
 						<form action="" onSubmit={form.handleSubmit}>
 							<Grid item>
 								<Typography className="labelCls">
@@ -243,4 +264,4 @@ const LoginPage = () => {
 	);
 };
 
-export default LoginPage;
+export default DI(LoginPage);

@@ -7,13 +7,17 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { theme } from '@/theme';
 import './styles/SignUpAndLoginForms.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import DI from '@/hoc/DI';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { isAllFormFieldsTouched } from '@/utils/common';
+import useSignup from '@/store/useSignUp';
 
 const SignUpForm = () => {
+	const signUp = useSignup();
+	const navigate = useNavigate();
+
 	const form = useFormik({
 		initialValues: {
 			firstName: '',
@@ -34,6 +38,7 @@ const SignUpForm = () => {
 		onSubmit: (values) => {
 			console.log('submit');
 			console.log(values);
+			signUp.mutate(values);
 		},
 	});
 
@@ -92,6 +97,14 @@ const SignUpForm = () => {
 	};
 
 	const memoizedLoginImage = useMemo(() => <LoginImage />, []);
+
+	if (signUp.isError) {
+		return navigate('/email-confirm');
+	}
+
+	if (signUp.isSuccess) {
+		return navigate('/email-confirm');
+	}
 
 	return (
 		<>

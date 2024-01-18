@@ -26,8 +26,9 @@ import { Link, Outlet, useNavigate } from 'react-router-dom';
 import ProfileIcon from '@/assets/svg/ProfileIcon';
 import MifixLogo from '@/assets/svg/MiFiXLogo';
 import SignOutIcon from '@/assets/svg/SignOutIcon';
+import DI from '@/hoc/DI';
 
-const drawerWidth = 200;
+const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
 	width: drawerWidth,
@@ -35,7 +36,7 @@ const openedMixin = (theme) => ({
 		easing: theme.transitions.easing.sharp,
 		duration: theme.transitions.duration.enteringScreen,
 	}),
-	overflowX: 'hidden',
+	overflow: 'hidden',
 });
 
 const closedMixin = (theme) => ({
@@ -43,7 +44,7 @@ const closedMixin = (theme) => ({
 		easing: theme.transitions.easing.sharp,
 		duration: theme.transitions.duration.leavingScreen,
 	}),
-	overflowX: 'hidden',
+	overflow: 'hidden',
 	width: `calc(${theme.spacing(7)} + 1px)`,
 	[theme.breakpoints.up('sm')]: {
 		width: `calc(${theme.spacing(18)} + 1px)`,
@@ -75,7 +76,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 	}),
 );
 
-export default function BaseLayout(props) {
+function BaseLayout(props) {
 	const [selectedIndex, setSelectedIndex] = React.useState(0);
 	const [open, setOpen] = React.useState(false);
 
@@ -118,10 +119,14 @@ export default function BaseLayout(props) {
 								marginTop: '0.5rem',
 							}}
 						>
-							<Grid item style={{ marginTop: '0.1rem' }}>
+							<Grid item style={{ marginBottom: '1rem' }}>
 								<Button
 									onClick={() => {
-										navigate('/panel/ums/profile');
+										navigate(
+											`${location.pathname.match(
+												/\/\w+\//,
+											)}panel/ums/profile`,
+										);
 									}}
 									color="inherit"
 								>
@@ -135,11 +140,12 @@ export default function BaseLayout(props) {
 										display: 'flex',
 										flexDirection: 'column',
 										marginLeft: 1,
+										marginBottom: '1.5rem',
 									}}
 								>
 									<Typography
 										style={{
-											fontSize: '0.9rem',
+											fontSize: '0.7rem',
 											fontWeight: 'bold',
 										}}
 									>
@@ -147,7 +153,7 @@ export default function BaseLayout(props) {
 									</Typography>
 									<Typography
 										style={{
-											fontSize: '0.8rem',
+											fontSize: '0.6rem',
 											color: 'var(--Sub-text-2, #8794C2)',
 										}}
 									>
@@ -166,15 +172,14 @@ export default function BaseLayout(props) {
 							disablePadding
 							sx={{
 								display: 'block',
-								ml: '0.6rem',
+								width: open ? '88%' : '80%',
+								ml: open ? '1rem' : '0.4rem',
 								backgroundColor:
 									selectedIndex === index
 										? '#C4161C'
 										: 'transparent',
 								border: '1px solid #FFFF',
 								borderRadius: '0.5rem',
-								width: '90%',
-								marginBottom: '0.5rem',
 							}}
 						>
 							<Link
@@ -193,6 +198,7 @@ export default function BaseLayout(props) {
 											selectedIndex === index
 												? '#FFFFFF'
 												: 'var(--Sub-text-2, #8794C2)',
+										marginLeft: open && '-1rem',
 									}}
 									selected={selectedIndex === index}
 									onClick={(event) =>
@@ -201,7 +207,6 @@ export default function BaseLayout(props) {
 								>
 									<ListItemIcon
 										sx={{
-											minWidth: 0,
 											mr: open ? 3 : 'auto',
 											justifyContent: 'center',
 											color:
@@ -219,6 +224,7 @@ export default function BaseLayout(props) {
 											'& .MuiTypography-root': {
 												fontSize: '12px',
 											},
+											marginLeft: open && '-1rem',
 										}}
 									/>
 								</ListItemButton>
@@ -229,7 +235,7 @@ export default function BaseLayout(props) {
 				<BottomNavigation
 					showLabels
 					style={{
-						marginTop: '7rem',
+						marginTop: '8rem',
 						display: 'flex',
 						flexDirection: 'column',
 					}}
@@ -243,7 +249,14 @@ export default function BaseLayout(props) {
 							color: '#8794C2',
 						}}
 					>
-						<div style={{ display: 'flex', alignItems: 'center' }}>
+						<div
+							style={{ display: 'flex', alignItems: 'center' }}
+							onClick={() => {
+								console.log('logout');
+								props.storage.removeItem('accessToken');
+								navigate('/sign-in');
+							}}
+						>
 							<IconButton
 								sx={{
 									marginLeft: '1.5rem',
@@ -317,3 +330,5 @@ export default function BaseLayout(props) {
 		</Box>
 	);
 }
+
+export default DI(BaseLayout);
