@@ -198,6 +198,7 @@ function BaseLayout(props) {
 											selectedIndex === index
 												? '#FFFFFF'
 												: 'var(--Sub-text-2, #8794C2)',
+										marginLeft: open && '-1rem',
 									}}
 									selected={selectedIndex === index}
 									onClick={(event) =>
@@ -223,6 +224,7 @@ function BaseLayout(props) {
 											'& .MuiTypography-root': {
 												fontSize: '12px',
 											},
+											marginLeft: open && '-1rem',
 										}}
 									/>
 								</ListItemButton>
