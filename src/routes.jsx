@@ -31,6 +31,7 @@ import DemandCollection from './target/NBFC/pages/DemandCollection/DemandCollect
 import PortfolioMonitoring from './target/Bank/pages/PortfolioMonitoring/PortfolioMonitoring';
 import { LoanPoolCustomerDetails } from './target/NBFC/pages/ViewLoanPool/LoanPoolCustomerDetails';
 import BankReports from './target/Bank/pages/Reports/Reports';
+import NBFCReports from './target/NBFC/pages/Reports/Reports';
 
 const nbfcPages = [
 	{
@@ -240,6 +241,15 @@ export const routes = [
 					{ path: 'profile', element: <Profile /> },
 					{ path: 'mgmt', element: <User /> },
 				],
+			},
+			{
+				path: 'reports',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<NBFCReports />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
 			},
 		],
 	},
