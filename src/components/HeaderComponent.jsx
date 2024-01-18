@@ -17,7 +17,7 @@ import LogoIcon from '../assets/svg/LogoIcon';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-export const HeaderComp = ({ title, breadCrumbs }) => {
+export const HeaderComp = ({ title, breadCrumbs, TabsComp, SearchComp }) => {
 	const notification = true;
 	const navigate = useNavigate();
 
@@ -77,7 +77,7 @@ export const HeaderComp = ({ title, breadCrumbs }) => {
 				}}
 			>
 				<Grid container>
-					<Grid align="left" item sm={10.2}>
+					<Grid align="left" item sm={2.5}>
 						<Typography
 							sx={{
 								ml: 1,
@@ -117,7 +117,21 @@ export const HeaderComp = ({ title, breadCrumbs }) => {
 							{title}
 						</Typography>
 					</Grid>
-					<Grid align="right" item sm={1.8} className="flex">
+					<Grid align="left" sm={4} item>
+						{TabsComp && <TabsComp />}
+					</Grid>
+					<Grid
+						align="right"
+						sx={{
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'flex-end',
+						}}
+						item
+						sm={5.3}
+					>
+						{SearchComp && <SearchComp />}
+						&nbsp; &nbsp; &nbsp;
 						<LogoIcon />
 						&nbsp; &nbsp;
 						<div>NBFC Logo</div>
