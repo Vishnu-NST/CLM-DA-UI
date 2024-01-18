@@ -3,10 +3,14 @@ import {
 	Box,
 	FormHelperText,
 	InputAdornment,
+	ListSubheader,
 	MenuItem,
 	OutlinedInput,
 	Select,
+	TextField,
 } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search'; // Import the search icon
+import React from 'react';
 
 const SelectComponent = ({
 	multiple,
@@ -23,7 +27,18 @@ const SelectComponent = ({
 	error,
 	helperText,
 	startIcon,
+	isSearch,
 }) => {
+	const [searchTerm, setSearchTerm] = React.useState('');
+
+	const handleSearchChange = (event) => {
+		setSearchTerm(event.target.value);
+	};
+
+	const filteredOptions = options?.filter((option) =>
+		option?.label.toLowerCase().includes(searchTerm.toLowerCase()),
+	);
+
 	return (
 		<Box sx={{ marginBottom: '1.625rem' }}>
 			<div
@@ -77,18 +92,46 @@ const SelectComponent = ({
 					},
 				}}
 			>
-				<MenuItem disabled value="">
-					<em
-						style={{
-							color: 'rgba(135, 148, 194, 0.6)',
-							fontStyle: 'normal',
-							fontSize: '12px',
-						}}
-					>
-						{placeholder}
-					</em>
-				</MenuItem>
-				{options?.map((option) => {
+				{isSearch && (
+					<ListSubheader>
+						<TextField
+							size="small"
+							autoFocus
+							placeholder={placeholder}
+							fullWidth
+							InputProps={{
+								endAdornment: (
+									<InputAdornment position="start">
+										<SearchIcon />
+									</InputAdornment>
+								),
+								sx: {
+									height: '2rem', // Adjust the height value as needed
+								},
+							}}
+							onChange={handleSearchChange}
+							onKeyDown={(e) => {
+								if (e.key !== 'Escape') {
+									e.stopPropagation();
+								}
+							}}
+						/>
+					</ListSubheader>
+				)}
+				{!isSearch && (
+					<MenuItem disabled value="">
+						<em
+							style={{
+								color: 'rgba(135, 148, 194, 0.6)',
+								fontStyle: 'normal',
+								fontSize: '12px',
+							}}
+						>
+							{placeholder}
+						</em>
+					</MenuItem>
+				)}
+				{filteredOptions?.map((option) => {
 					return (
 						<MenuItem
 							key={option?.label}

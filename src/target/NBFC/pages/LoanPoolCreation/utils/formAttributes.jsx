@@ -3,39 +3,39 @@ import AssetIcon from '../../../../../assets/svg/AssetIcon';
 import StarIcon from '../../../../../assets/svg/StarIcon';
 import PercentageIcon from '../../../../../assets/svg/PercentageIcon';
 
-export const assetClassAttributes = (formik) => {
+export const productAttributes = (formik) => {
 	return {
-		id: 'assetClass',
-		name: 'assetClass',
+		id: 'product',
+		name: 'product',
 		displayEmpty: true,
 		label: (
 			<div className="input-label">
-				Asset Class<span style={{ color: 'red' }}>*</span>
+				Product<span style={{ color: 'red' }}>*</span>
 			</div>
 		),
 		multiple: false,
-		placeholder: 'Select the Asset Class',
+		placeholder: 'Select the Product',
 		type: 'text',
-		value: formik.values.assetClass,
+		value: formik.values.product,
 		onChange: (event) => {
-			formik.setFieldValue('assetClass', event.target.value);
+			formik.setFieldValue('product', event.target.value);
 		},
-		onBlur: formik.handleBlur('assetClass'),
-		error: formik.touched.assetClass && Boolean(formik.errors.assetClass),
-		helperText: formik.touched.assetClass && formik.errors.assetClass,
+		onBlur: formik.handleBlur('product'),
+		error: formik.touched.product && Boolean(formik.errors.product),
+		helperText: formik.touched.product && formik.errors.product,
 		disabled: false,
 		options: [
 			{
-				label: 'Asset 1',
-				value: 'asset1',
+				label: 'Product 1',
+				value: 'product1',
 			},
 			{
-				label: 'Asset 2',
-				value: 'asset2',
+				label: 'Product 2',
+				value: 'product2',
 			},
 			{
-				label: 'Asset 3',
-				value: 'asset3',
+				label: 'Product 3',
+				value: 'product3',
 			},
 		],
 		startIcon: <AssetIcon />,
@@ -83,7 +83,7 @@ export const closureDateAttributes = (formik) => {
 		name: 'closureDate',
 		label: (
 			<div className="input-label">
-				Date of Birth<span style={{ color: 'red' }}>*</span>
+				Expected closure Date<span style={{ color: 'red' }}>*</span>
 			</div>
 		),
 		selectedDate: formik.values.closureDate,
@@ -161,7 +161,7 @@ export const averageBalanceTenorAttributes = (formik) => {
 		id: 'averageBalanceTenor',
 		name: 'averageBalanceTenor',
 		label: <div className="input-label">Average Balance Tenor</div>,
-		placeholder: 'Enter the Average IRR',
+		placeholder: 'Enter the Average Balance Tenor',
 		type: 'number',
 		value: formik.values.averageBalanceTenor,
 		onChange: formik.handleChange,
@@ -189,7 +189,7 @@ export const averageLoanAmtAttributes = (formik) => {
 		id: 'averageLoanAmt',
 		name: 'averageLoanAmt',
 		label: <div className="input-label">Average Loan Amount</div>,
-		placeholder: 'Enter the Amount',
+		placeholder: 'Enter the Average Loan Amount',
 		type: 'number',
 		value: formik.values.averageLoanAmt,
 		onChange: formik.handleChange,
@@ -208,6 +208,35 @@ export const averageLoanAmtAttributes = (formik) => {
 		helperText: formik.touched.averageLoanAmt && formik.errors.averageLoanAmt,
 		disabled: false,
 		startIcon: <INRIcon />,
+	};
+};
+
+export const par01PlusAttributes = (formik) => {
+	return {
+		id: 'par01Plus',
+		name: 'par01Plus',
+		label: (
+			<div className="input-label">
+				PAR 01+<span style={{ color: 'red' }}>*</span>
+			</div>
+		),
+		placeholder: 'Enter PAR 01+',
+		type: 'number',
+		value: formik.values.par01Plus,
+		onChange: formik.handleChange,
+		onBlur: formik.handleBlur,
+		onkeydown: (evt) => {
+			(evt.key === '+' ||
+				evt.key === '-' ||
+				evt.key === '.' ||
+				evt.key === 'e' ||
+				evt.key === 'ArrowUp' ||
+				evt.key === 'ArrowDown') &&
+				evt.preventDefault();
+		},
+		error: formik.touched.par01Plus && Boolean(formik.errors.par01Plus),
+		helperText: formik.touched.par01Plus && formik.errors.par01Plus,
+		disabled: false,
 	};
 };
 
@@ -434,8 +463,10 @@ export const firstCycleLoansAttributes = (formik) => {
 	return {
 		id: 'firstCycleLoans',
 		name: 'firstCycleLoans',
-		label: <div className="input-label">No. of first cycle loans</div>,
-		placeholder: 'Enter the No.of first cycle loans',
+		label: (
+			<div className="input-label">First cycle loans Outstanding Amount</div>
+		),
+		placeholder: 'Enter the First cycle loans Outstanding Amount',
 		type: 'number',
 		value: formik.values.firstCycleLoans,
 		onChange: formik.handleChange,
@@ -460,8 +491,10 @@ export const secondCycleLoansAttributes = (formik) => {
 	return {
 		id: 'secondCycleLoans',
 		name: 'secondCycleLoans',
-		label: <div className="input-label">No. of second cycle loans</div>,
-		placeholder: 'Enter the No.of second cycle loans',
+		label: (
+			<div className="input-label">Second cycle loans Outstanding Amount</div>
+		),
+		placeholder: 'Enter the Second cycle loans Outstanding Amount',
 		type: 'number',
 		value: formik.values.secondCycleLoans,
 		onChange: formik.handleChange,

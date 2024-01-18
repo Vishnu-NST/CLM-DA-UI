@@ -1,9 +1,9 @@
 import React from 'react';
 import { Card, Typography } from '@mui/material';
-import AssetClassStarIcon from '@/NBFC/assets/svg/AssetClassStarIcon';
-import ForwardArrow from '@/NBFC/assets/svg/ForwardArrow';
+import AssetClassStarIcon from '../../../../../assets/svg/AssetClassStarIcon';
+import ForwardArrow from '../../../../../assets/svg/ForwardArrow';
 
-const AssetClass = ({ productText, subText, linkText, linkText1, onClickLink }) => {
+const ProductCard = ({ productText, subText, linkText, linkText1, onClickLink }) => {
 	return (
 		<Card
 			sx={{
@@ -82,4 +82,4 @@ const AssetClass = ({ productText, subText, linkText, linkText1, onClickLink }) 
 	);
 };
 
-export default AssetClass;
+export default ProductCard;

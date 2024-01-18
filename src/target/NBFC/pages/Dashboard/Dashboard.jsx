@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
 	Box,
 	Card,
@@ -23,6 +24,7 @@ import {
 	Tooltip,
 	ResponsiveContainer,
 } from 'recharts';
+import HeaderComp from '@/components/HeaderComponent';
 
 const PoolAssetDataStyle = {
 	color: 'var(--Sub-text-2, #8794C2)',
@@ -76,6 +78,7 @@ const Dashboard = () => {
 
 	return (
 		<>
+			<HeaderComp title={'Dashboard'} />
 			<Grid
 				container
 				spacing={4}

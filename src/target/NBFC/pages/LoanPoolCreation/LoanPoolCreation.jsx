@@ -6,7 +6,7 @@ import DatePickerComponent from '../../../../components/DatePickerComponent';
 import InputComponent from '../../../../components/InputComponent';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import {
-	assetClassAttributes,
+	productAttributes,
 	aumAttributes,
 	averageBalanceTenorAttributes,
 	averageIrrAttributes,
@@ -23,12 +23,14 @@ import {
 	par90PlusAttributes,
 	secondCycleLoansAttributes,
 	statesCoveredAttributes,
+	par01PlusAttributes,
 } from './utils/formAttributes';
 import CustomButton from '../../../../components/CustomButton';
 import './LoanPool.scss';
 import React from 'react';
 import DataIntegration from './DataIntegration';
 import ReviewPool from './ReviewPool';
+import HeaderComp from '@/components/HeaderComponent';
 
 const customButtonStyle = {
 	borderRadius: '7px',
@@ -44,16 +46,17 @@ const customButtonStyle = {
 
 const validationSchema = yup.object({
 	closureDate: yup.string().required('Closure Date is required'),
-	assetClass: yup.string().required('Asset Class is required'),
+	product: yup.string().required('Product is required'),
 	creditRatings: yup.string(),
 	aum: yup.string().required('AUM is required'),
 	averageIrr: yup.string().required('Average IRR is required'),
 	averageBalanceTenor: yup.string(),
 	averageLoanAmt: yup.string(),
+	par01Plus: yup.string().required('PAR 01+ is required'),
 	par30: yup.string().required('PAR 30 is required'),
 	par60: yup.string().required('PAR 60 is required'),
 	par90: yup.string().required('PAR 90 is required'),
-	par90Plus: yup.string().required('PAR 90 Plus is required'),
+	par90Plus: yup.string().required('PAR 90+ is required'),
 	nbfcCovered: yup.string(),
 	statesCovered: yup.string(),
 	districtsCovered: yup.string(),
@@ -63,19 +66,30 @@ const validationSchema = yup.object({
 });
 
 const LoanPoolCreation = () => {
+	const breadCrumbs = [
+		{
+			data: 'add Product portfolio',
+			path: '/nbfc/panel/dd',
+		},
+		{
+			data: 'loan pool',
+			path: null,
+		},
+	];
 	const [showForm, setShowForm] = React.useState(true);
 	const [showDataIntegration, setShowDataIntegration] = React.useState(false);
 	const [showReview, setShowReview] = React.useState(false);
 
 	const formik = useFormik({
 		initialValues: {
-			assetClass: '',
+			product: '',
 			creditRatings: '',
 			aum: '',
 			averageIrr: '',
 			averageBalanceTenor: '',
 			averageLoanAmt: '',
 			closureDate: null,
+			par01Plus: '',
 			par30: '',
 			par60: '',
 			par90: '',
@@ -97,6 +111,7 @@ const LoanPoolCreation = () => {
 
 	return (
 		<>
+			<HeaderComp title={'Loan Pool Creation'} breadCrumbs={breadCrumbs} />
 			{showForm && (
 				<div className="card-block">
 					<div className="loan-pool-form-block">
@@ -106,7 +121,7 @@ const LoanPoolCreation = () => {
 							<Grid container>
 								<Grid item sm={4} className="pr-2">
 									<SelectComponent
-										{...assetClassAttributes(formik)}
+										{...productAttributes(formik)}
 									/>
 								</Grid>
 								<Grid item sm={4} className="pr-2">
@@ -140,6 +155,11 @@ const LoanPoolCreation = () => {
 							</Grid>
 							<div className="sub-title">Additional Info</div>
 							<Grid container>
+								<Grid item sm={4} className="pr-2">
+									<InputComponent
+										{...par01PlusAttributes(formik)}
+									/>
+								</Grid>
 								<Grid item sm={4} className="pr-2">
 									<InputComponent {...par30Attributes(formik)} />
 								</Grid>
