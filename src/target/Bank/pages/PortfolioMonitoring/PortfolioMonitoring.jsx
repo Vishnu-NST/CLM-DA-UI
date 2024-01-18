@@ -22,7 +22,7 @@ export default function PortfolioMonitoring() {
 		<>
 			{toggle === true ? (
 				<>
-					<HeaderComp title={'Portfolio Monitoring'} />
+					<HeaderComp title={'Loan Pool Monitoring'} />
 					<Box
 						align="center"
 						sx={{ backgroundColor: '#F8F9FB', height: '100%' }}
