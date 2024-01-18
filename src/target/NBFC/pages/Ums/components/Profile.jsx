@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useRef } from 'react';
 import { Grid, Typography } from '@mui/material';
 import Circle from '@/assets/svg/Circle';
@@ -8,7 +9,6 @@ import InputComponent from '@/components/DAInputComponent';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CustomButton from '@/components/CustomButton';
 import SelectComponent from '@/components/SelectComponent';
-import CustomTextarea from '@/components/CustomTextarea';
 import { useNavigate } from 'react-router-dom';
 import {
 	nbfcNameAttribute,
@@ -30,6 +30,7 @@ import {
 	profileCityAttribute,
 	profilePincodeAttribute,
 } from './formAttributes';
+import MultilineInputComponent from '@/components/MultilineInputComponent';
 const customButtonStyle = {
 	borderRadius: '7px',
 	padding: '0.5rem 2.5rem',
@@ -209,7 +210,7 @@ const Profile = () => {
 						<InputComponent {...ccsScoreAttribute(formik)} />
 					</Grid>
 				</Grid>
-				<Grid item sm={12} className="pr-2">
+				{/* <Grid item sm={12} className="pr-2">
 					<CustomTextarea {...overviewAttribute(formik)} />
 					<hr
 						style={{
@@ -223,6 +224,20 @@ const Profile = () => {
 							margin: '3rem 0 2rem ',
 						}}
 					/>
+				</Grid> */}
+				<Grid item sm={12} className="pr-2">
+					<div>
+						<Typography
+							sx={{
+								color: '#8794C2',
+								fontSize: '0.8rem',
+								marginBottom: '0.6rem',
+							}}
+						>
+							Overview (200 words limit)
+						</Typography>
+					</div>
+					<MultilineInputComponent {...overviewAttribute} />
 				</Grid>
 
 				<div className="sub-title">Registered Address</div>

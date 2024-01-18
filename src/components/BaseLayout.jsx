@@ -103,6 +103,7 @@ function BaseLayout(props) {
 						alignItems: 'center',
 						justifyContent: 'center',
 						paddingTop: '1rem',
+						overflow: 'visible',
 					}}
 				>
 					<CardContent>
