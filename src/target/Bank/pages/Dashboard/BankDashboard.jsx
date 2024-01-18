@@ -2,6 +2,7 @@ import { AppBar, Card, Grid, Typography } from '@mui/material';
 import CollectivePoolData from '@/components/CollectivePoolData';
 import GeographyData from '@/components/GeographyData';
 import LineChart from '@/components/LineChart';
+import LoanCyclePieChart from '@/components/LoanCyclePieChart';
 
 const BankDashboard = () => {
 	return (
@@ -45,11 +46,7 @@ const BankDashboard = () => {
 							<CollectivePoolData />
 						</Card>
 					</Grid>
-					<Grid item xs={4}>
-						<Card>
-							<Typography>Chart 2</Typography>
-						</Card>
-					</Grid>
+					<LoanCyclePieChart />
 					<Card>
 						<GeographyData />
 					</Card>
