@@ -33,6 +33,9 @@ import { LoanPoolCustomerDetails } from './target/NBFC/pages/ViewLoanPool/LoanPo
 import BankReports from './target/Bank/pages/Reports/Reports';
 import NBFCReports from './target/NBFC/pages/Reports/Reports';
 
+//Bank
+import CustomerDetails from './target/Bank/pages/BankDueDiligence/CustomerDetails';
+
 const nbfcPages = [
 	{
 		text: 'Dashboard',
@@ -64,7 +67,7 @@ const nbfcPages = [
 	},
 	{
 		text: 'Pool Status',
-		to: 'slp',
+		to: 'lpt',
 		icon: (isSelected) => (
 			<PoolStatusIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
@@ -280,6 +283,24 @@ export const routes = [
 				element: (
 					<Suspense fallback={'Loading ...'}>
 						<BankDueDiligence />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'customerdetails',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<CustomerDetails />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'ProspectDetails',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<ProspectDetails />
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
