@@ -30,23 +30,93 @@ import PoolList from './target/Bank/pages/Pools/PoolList';
 import DemandCollection from './target/NBFC/pages/DemandCollection/DemandCollection';
 
 const nbfcPages = [
-	{ text: 'Dashboard', to: 'dashboard', icon: <DashboardIcon /> },
-	{ text: 'Create Loan Pool', to: 'lpc', icon: <LoanPoolIcon /> },
-	{ text: 'Due Diligence', to: 'dd', icon: <DueDeligenceIcon /> },
-	{ text: 'Transaction', to: 'queries', icon: <CurrencyExchangeIcon /> },
-	{ text: 'Pool Status', to: 'slp', icon: <PoolStatusIcon /> },
-	{ text: 'Reports', to: 'reports', icon: <ReportIcon /> },
-	{ text: 'Demand Collection', to: 'dc', icon: <ReportIcon /> },
+	{
+		text: 'Dashboard',
+		to: 'dashboard',
+		icon: (isSelected) => (
+			<DashboardIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Create Loan Pool',
+		to: 'lpc',
+		icon: (isSelected) => (
+			<LoanPoolIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Due Diligence',
+		to: 'lpt',
+		icon: (isSelected) => (
+			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Transaction',
+		to: 'queries',
+		icon: (isSelected) => (
+			<CurrencyExchangeIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Pool Status',
+		to: 'slp',
+		icon: (isSelected) => (
+			<PoolStatusIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Reports',
+		to: 'reports',
+		icon: (isSelected) => (
+			<ReportIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
 ];
 
 const bankPages = [
-	{ text: 'Dashboard', to: 'dashboard', icon: <DashboardIcon /> },
-	{ text: 'Select Product', to: 'product', icon: <LoanPoolIcon /> },
-	{ text: 'My Pool List', to: 'pool', icon: <DueDeligenceIcon /> },
-	{ text: 'Due Diligence', to: 'dd', icon: <CurrencyExchangeIcon /> },
-	{ text: 'Transaction', to: 'slp', icon: <PoolStatusIcon /> },
-	{ text: 'Reports', to: 'reports', icon: <ReportIcon /> },
-	{ text: 'Demand Collected', to: 'reports', icon: <ReportIcon /> },
+	{
+		text: 'Dashboard',
+		to: 'dashboard',
+		icon: (isSelected) => (
+			<DashboardIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Create Loan Pool',
+		to: 'lpc',
+		icon: (isSelected) => (
+			<LoanPoolIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Due Diligence',
+		to: 'lpt',
+		icon: (isSelected) => (
+			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Transaction',
+		to: 'queries',
+		icon: (isSelected) => (
+			<CurrencyExchangeIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Pool Status',
+		to: 'slp',
+		icon: (isSelected) => (
+			<PoolStatusIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Reports',
+		to: 'reports',
+		icon: (isSelected) => (
+			<ReportIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
 ];
 
 export const routes = [
