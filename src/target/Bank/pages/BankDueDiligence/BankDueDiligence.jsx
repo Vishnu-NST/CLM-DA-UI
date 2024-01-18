@@ -11,7 +11,7 @@ import './BankDueDiligence.scss';
 import NavigateNextSharpIcon from '@mui/icons-material/NavigateNextSharp';
 import BDDStepper from './BDDStepper';
 import HeaderComp from '@/components/HeaderComponent';
-
+import { useNavigate } from 'react-router-dom';
 const data = [
 	{
 		bankName: 'Bank A',
@@ -279,24 +279,15 @@ function BankDueDiligence() {
 			setCurrentPage(currentPage - 1);
 		}
 	};
+	const navigate = useNavigate();
+
+	const handleCustomerDetailsClick = () => {
+		navigate('/bank/panel/customerdetails');
+	};
 
 	return (
 		<>
 			<HeaderComp title={'Due Diligence'} />
-			{/* <Box display="flex" flexDirection="row" justifyContent="space-between">
-                <Typography
-                    variant="body1"
-                    style={{ fontSize: '1.375rem', color: '#1B1B1B' }}
-                >
-                    Due Diligence
-                </Typography>
-                <Typography
-                    variant="body2"
-                    style={{ fontSize: '1.375rem', color: '#1B1B1B' }}
-                >
-                    LOGO
-                </Typography>
-            </Box> */}
 			<Box
 				display="flex"
 				alignItems="center"
@@ -412,7 +403,7 @@ function BankDueDiligence() {
 								{item.daysLeft} days left
 							</Typography>
 						</Box>
-						<Box>
+						<Box onClick={handleCustomerDetailsClick}>
 							<Typography
 								style={{
 									cursor: 'pointer',
