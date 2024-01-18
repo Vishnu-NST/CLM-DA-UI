@@ -26,15 +26,54 @@ export const productAttributes = (formik) => {
 		disabled: false,
 		options: [
 			{
-				label: 'Product 1',
+				label: 'Pool XYZ 1',
 				value: 'product1',
 			},
 			{
-				label: 'Product 2',
+				label: 'Pool XYZ 2',
 				value: 'product2',
 			},
 			{
-				label: 'Product 3',
+				label: 'Pool XYZ 3',
+				value: 'product3',
+			},
+		],
+		startIcon: <AssetIcon />,
+	};
+};
+
+export const poolNameAttributes = (formik) => {
+	return {
+		id: 'poolName',
+		name: 'poolName',
+		displayEmpty: true,
+		label: (
+			<div className="input-label">
+				Choose Pool<span style={{ color: 'red' }}>*</span>
+			</div>
+		),
+		multiple: false,
+		placeholder: 'Choose Pool name',
+		type: 'text',
+		value: formik.values.poolName,
+		onChange: (event) => {
+			formik.setFieldValue('poolName', event.target.value);
+		},
+		onBlur: formik.handleBlur('poolName'),
+		error: formik.touched.poolName && Boolean(formik.errors.poolName),
+		helperText: formik.touched.poolName && formik.errors.poolName,
+		disabled: false,
+		options: [
+			{
+				label: 'Pool 1',
+				value: 'product1',
+			},
+			{
+				label: 'Pool 2',
+				value: 'product2',
+			},
+			{
+				label: 'Pool 3',
 				value: 'product3',
 			},
 		],
@@ -93,6 +132,43 @@ export const closureDateAttributes = (formik) => {
 		onBlur: formik.handleBlur,
 		error: formik.touched.closureDate && Boolean(formik.errors.closureDate),
 		helperText: formik.touched.closureDate && formik.errors.closureDate,
+	};
+};
+
+export const fromDateAttributes = (formik) => {
+	return {
+		id: 'fromDate',
+		name: 'fromDate',
+		label: (
+			<div className="input-label">
+				Choose From Date<span style={{ color: 'red' }}>*</span>
+			</div>
+		),
+		selectedDate: formik.values.fromDate,
+		handleDateChange: (event) => {
+			formik.setFieldValue('fromDate', event);
+		},
+		onBlur: formik.handleBlur,
+		error: formik.touched.fromDate && Boolean(formik.errors.fromDate),
+		helperText: formik.touched.fromDate && formik.errors.fromDate,
+	};
+};
+export const toDateAttributes = (formik) => {
+	return {
+		id: 'toDate',
+		name: 'ToDate',
+		label: (
+			<div className="input-label">
+				Choose To Date<span style={{ color: 'red' }}>*</span>
+			</div>
+		),
+		selectedDate: formik.values.toDate,
+		handleDateChange: (event) => {
+			formik.setFieldValue('toDate', event);
+		},
+		onBlur: formik.handleBlur,
+		error: formik.touched.toDate && Boolean(formik.errors.toDate),
+		helperText: formik.touched.toDate && formik.errors.toDate,
 	};
 };
 

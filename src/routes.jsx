@@ -12,22 +12,15 @@ import Dashboard from '@/target/NBFC/pages/Dashboard/Dashboard';
 import LoanPoolCreation from '@/target/NBFC/pages/LoanPoolCreation/LoanPoolCreation';
 import LoanPoolTimeline from './target/NBFC/pages/LoanPoolTimeline/LoanPoolTimeline';
 import DueDiligence from './target/NBFC/pages/NBFCDueDiligence/DueDiligence';
-
 import UmsTabs from './target/NBFC/pages/Ums/UmsTabs';
 import Profile from './target/NBFC/pages/Ums/components/Profile';
 import User from './target/NBFC/pages/Ums/components/User';
-
-import BankUmsTabs from './target/Bank/pages/Ums/UmsTabs';
-import BankProfile from './target/Bank/pages/Ums/components/Profile';
-import BankUser from './target/Bank/pages/Ums/components/User';
-
 import AuthRequired from '@/components/AuthRequired';
 import DashboardIcon from '@/assets/svg/DashboardIcon';
 import LoanPoolIcon from '@/assets/svg/LoanPoolIcon';
 import DueDeligenceIcon from '@/assets/svg/DueDeligenceIcon';
 import CurrencyExchangeIcon from '@/assets/svg/CurrencyExchangeIcon';
 import PoolStatusIcon from '@/assets/svg/PoolStatusIcon';
-import DemandCollectionIcon from '@/assets/svg/DemandCollectionIcon';
 import ReportIcon from '@/assets/svg/ReportIcon';
 import BankDueDiligence from './target/Bank/pages/BankDueDiligence/BankDueDiligence';
 import BankDashboard from './target/Bank/pages/Dashboard/BankDashboard';
@@ -35,11 +28,9 @@ import ProductList from './target/Bank/pages/Product/ProductList';
 import SelectProduct from './target/Bank/pages/Product/SelectProduct';
 import PoolList from './target/Bank/pages/Pools/PoolList';
 import DemandCollection from './target/NBFC/pages/DemandCollection/DemandCollection';
+import PortfolioMonitoring from './target/Bank/pages/PortfolioMonitoring/PortfolioMonitoring';
 import { LoanPoolCustomerDetails } from './target/NBFC/pages/ViewLoanPool/LoanPoolCustomerDetails';
-import Statistics from './target/NBFC/pages/ViewLoanPool/Statistics';
-import { ProspectDetails } from './target/NBFC/pages/ViewLoanPool/ProspectDetails';
-import { BankPoolCustomerDetails } from './target/Bank/pages/Pools/BankPoolCustomerDetails';
-import { BankProspectDetails } from './target/Bank/pages/Pools/BankProspectDetails';
+import BankReports from './target/Bank/pages/Reports/Reports';
 
 const nbfcPages = [
 	{
@@ -51,14 +42,14 @@ const nbfcPages = [
 	},
 	{
 		text: 'Create Loan Pool',
-		to: 'lpc/create',
+		to: 'lpc',
 		icon: (isSelected) => (
 			<LoanPoolIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
 	},
 	{
 		text: 'Due Diligence',
-		to: 'dd',
+		to: 'lpt',
 		icon: (isSelected) => (
 			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
@@ -82,13 +73,6 @@ const nbfcPages = [
 		to: 'reports',
 		icon: (isSelected) => (
 			<ReportIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
-		),
-	},
-	{
-		text: 'Demand Collection',
-		to: 'dc',
-		icon: (isSelected) => (
-			<DemandCollectionIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
 	},
 ];
@@ -110,7 +94,7 @@ const bankPages = [
 	},
 	{
 		text: 'Due Diligence',
-		to: 'dd',
+		to: 'lpt',
 		icon: (isSelected) => (
 			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
@@ -137,17 +121,10 @@ const bankPages = [
 		),
 	},
 	{
-		text: 'Select Product',
-		to: 'product',
+		text: 'Portfolio Monitoring',
+		to: 'loan-pool-monitoring',
 		icon: (isSelected) => (
-			<ReportIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
-		),
-	},
-	{
-		text: 'Pool List',
-		to: 'pool',
-		icon: (isSelected) => (
-			<ReportIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
 	},
 ];
@@ -190,7 +167,7 @@ export const routes = [
 		element: (
 			// <Suspense>
 			<AuthRequired>
-				<BaseLayout pages={nbfcPages} org="nbfc" />
+				<BaseLayout pages={nbfcPages} />
 			</AuthRequired>
 			// </Suspense>
 		),
@@ -206,7 +183,7 @@ export const routes = [
 				errorElement: <ErrorPage />,
 			},
 			{
-				path: 'lpc/:tabValue',
+				path: 'lpc',
 				element: (
 					<Suspense fallback={'Loading ...'}>
 						<LoanPoolCreation />
@@ -251,24 +228,6 @@ export const routes = [
 				errorElement: <ErrorPage />,
 			},
 			{
-				path: 'customer-statistics',
-				element: (
-					<Suspense fallback={'Loading ...'}>
-						<Statistics />
-					</Suspense>
-				),
-				errorElement: <ErrorPage />,
-			},
-			{
-				path: 'prospect-details',
-				element: (
-					<Suspense fallback={'Loading ...'}>
-						<ProspectDetails />
-					</Suspense>
-				),
-				errorElement: <ErrorPage />,
-			},
-			{
 				path: 'ums',
 				element: (
 					<Suspense fallback={'Loading ...'}>
@@ -291,7 +250,7 @@ export const routes = [
 		element: (
 			<Suspense>
 				<AuthRequired>
-					<BaseLayout pages={bankPages} org="bank" />
+					<BaseLayout pages={bankPages} />
 				</AuthRequired>
 			</Suspense>
 		),
@@ -343,33 +302,19 @@ export const routes = [
 				errorElement: <ErrorPage />,
 			},
 			{
-				path: 'ums',
+				path: 'loan-pool-monitoring',
 				element: (
 					<Suspense fallback={'Loading ...'}>
-						<BankUmsTabs />
-					</Suspense>
-				),
-				errorElement: <ErrorPage />,
-				children: [
-					// { index: true, element: <Navigate to={'newreport'} /> },
-					{ path: 'profile', element: <BankProfile /> },
-					{ path: 'mgmt', element: <BankUser /> },
-				],
-			},
-			{
-				path: 'customer-details',
-				element: (
-					<Suspense fallback={'Loading ...'}>
-						<BankPoolCustomerDetails />
+						<PortfolioMonitoring />
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
 			},
 			{
-				path: 'prospect-details',
+				path: 'reports',
 				element: (
 					<Suspense fallback={'Loading ...'}>
-						<BankProspectDetails />
+						<BankReports />
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
