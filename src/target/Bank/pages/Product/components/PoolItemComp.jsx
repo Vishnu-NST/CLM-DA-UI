@@ -106,6 +106,7 @@ const PoolItemComp = ({ poolData, idx }) => {
 							border: '1px solid rgba(135, 148, 194, 0.2)',
 							color: '#8794C2',
 							fontSize: '0.875rem',
+							height: 'auto',
 							'& .MuiToggleButtonGroup-grouped.Mui-selected': {
 								color: 'white',
 								backgroundColor: '#C4161C',

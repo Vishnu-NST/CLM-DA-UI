@@ -1,13 +1,11 @@
 import { Button, Card, Checkbox, Grid, Paper, Typography } from '@mui/material';
-// import StatisticsIcon from '../assets/svg/StatisticsIcon';
-// import EditIcon from '../assets/svg/EditIcon';
-// import DeleteIcon from '../assets/svg/DeleteIcon';
 import StatisticsIcon from '@/assets/svg/StatisticsIcon';
 import EditIcon from '@/assets/svg/EditIcon';
 import DeleteIcon from '@/assets/svg/DeleteIcon';
+import { useNavigate } from 'react-router-dom';
 
-const LoanPoolCard = ({}) => {
-	const data = [];
+const LoanPoolCard = () => {
+	const navigate = useNavigate();
 
 	const styles = {
 		lightCardardStyle: {
@@ -144,6 +142,7 @@ const LoanPoolCard = ({}) => {
 								fontFamily: 'Poppins, sans-serif',
 								cursor: 'pointer',
 							}}
+							onClick={() => navigate('/nbfc/panel/customer-details')}
 						>
 							Customer details &gt;
 						</Typography>

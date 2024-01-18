@@ -1,7 +1,13 @@
+import HeaderComp from '@/components/HeaderComponent';
 import React from 'react';
 
 const LoanPoolTimeline = () => {
-	return <div>LoanPoolTimeline</div>;
+	return (
+		<>
+			<HeaderComp title={'Loan Pool Timeline'} />
+			<div>LoanPoolTimeline</div>;
+		</>
+	);
 };
 
 export default LoanPoolTimeline;

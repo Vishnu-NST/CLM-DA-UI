@@ -2,11 +2,8 @@ import { AppBar, Card, Grid, Typography } from '@mui/material';
 import CollectivePoolData from '@/components/CollectivePoolData';
 import GeographyData from '@/components/GeographyData';
 import LineChart from '@/components/LineChart';
-import { useAppState } from '@/store/useAppState';
 
-const Dashboard = () => {
-	const { app } = useAppState();
-	console.log(app);
+const BankDashboard = () => {
 	return (
 		<>
 			<AppBar
@@ -62,4 +59,4 @@ const Dashboard = () => {
 	);
 };
 
-export default Dashboard;
+export default BankDashboard;
