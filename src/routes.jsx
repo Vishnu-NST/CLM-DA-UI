@@ -28,6 +28,7 @@ import ProductList from './target/Bank/pages/Product/ProductList';
 import SelectProduct from './target/Bank/pages/Product/SelectProduct';
 import PoolList from './target/Bank/pages/Pools/PoolList';
 import DemandCollection from './target/NBFC/pages/DemandCollection/DemandCollection';
+import { LoanPoolCustomerDetails } from './target/NBFC/pages/ViewLoanPool/LoanPoolCustomerDetails';
 
 const nbfcPages = [
 	{
@@ -204,6 +205,15 @@ export const routes = [
 				element: (
 					<Suspense fallback={'Loading ...'}>
 						<DemandCollection />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'customer-details',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<LoanPoolCustomerDetails />
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
