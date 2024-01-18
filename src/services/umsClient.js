@@ -1,21 +1,21 @@
-import { getStorage } from '@/utils/common';
+// import { getStorage } from '@/utils/common';
 import axios from 'axios';
 
 const axiosInstance = axios.create({
 	baseURL: import.meta.env.VITE_UMS_BASE_URL,
 });
 
-const storage = getStorage();
+// const storage = getStorage();
 
 axiosInstance.interceptors.request.use(
 	(config) => {
 		config.headers = config.headers || {};
 
-		const wsoToken = storage.getItem('wsoToken');
+		// const wsoToken = storage.getItem('wsoToken');
 
-		if (wsoToken) {
-			config.headers['Authorization'] = `Bearer ${wsoToken}`;
-		}
+		// if (wsoToken) {
+		// 	config.headers['Authorization'] = `Bearer ${wsoToken}`;
+		// }
 
 		config.headers['Content-Type'] = 'application/json';
 
@@ -32,6 +32,10 @@ class UMSClient {
 	}
 
 	login(payload) {
+		return axiosInstance.post(this.endpoint, payload).then((res) => res.data);
+	}
+
+	signup(payload) {
 		return axiosInstance.post(this.endpoint, payload).then((res) => res.data);
 	}
 }

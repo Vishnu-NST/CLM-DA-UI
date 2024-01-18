@@ -34,6 +34,7 @@ import ReportIcon from '@/assets/svg/ReportIcon';
 import ProfileIcon from '@/assets/svg/ProfileIcon';
 import MifixLogo from '@/assets/svg/MiFiXLogo';
 import SignOutIcon from '@/assets/svg/SignOutIcon';
+import DI from '@/hoc/DI';
 
 const drawerWidth = 280;
 
@@ -84,7 +85,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 	}),
 );
 
-export default function BaseLayout(props) {
+function BaseLayout(props) {
 	// const theme = useTheme();
 
 	const { pages } = props;
@@ -233,7 +234,14 @@ export default function BaseLayout(props) {
 							color: '#8794C2',
 						}}
 					>
-						<div style={{ display: 'flex', alignItems: 'center' }}>
+						<div
+							style={{ display: 'flex', alignItems: 'center' }}
+							onClick={() => {
+								console.log('logout');
+								props.storage.removeItem('accessToken');
+								navigate('/sign-in');
+							}}
+						>
 							<IconButton
 								sx={{
 									marginLeft: '1.5rem',
@@ -306,3 +314,5 @@ export default function BaseLayout(props) {
 		</Box>
 	);
 }
+
+export default DI(BaseLayout);

@@ -23,6 +23,7 @@ import {
 	Tooltip,
 	ResponsiveContainer,
 } from 'recharts';
+import { useAppState } from '@/store/useAppState';
 
 const PoolAssetDataStyle = {
 	color: 'var(--Sub-text-2, #8794C2)',
@@ -31,6 +32,9 @@ const PoolAssetDataStyle = {
 	letterSpacing: '-0.015rem',
 };
 const Dashboard = () => {
+	const { app } = useAppState();
+	console.log(app);
+
 	const data = [
 		{
 			name: 'Quarter 1',

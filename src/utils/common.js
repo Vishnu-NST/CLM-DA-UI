@@ -85,3 +85,13 @@ export function isAllFormFieldsTouched(form) {
 export const capitalizeString = (str) => {
 	return str?.charAt(0)?.toUpperCase() + str?.slice(1) || '';
 };
+
+export function decodeToken(token) {
+	try {
+		const [header, payload, signature] = token.split('.');
+		const decodedPayload = JSON.parse(atob(payload));
+		return decodedPayload;
+	} catch (e) {
+		return null;
+	}
+}
