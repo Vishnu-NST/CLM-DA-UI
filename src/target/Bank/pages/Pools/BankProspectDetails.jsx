@@ -36,7 +36,7 @@ const breadCrumbs = [
 		path: null,
 	},
 ];
-export const ProspectDetails = () => {
+export const BankProspectDetails = () => {
 	return (
 		<>
 			<HeaderComp title={'Manish Easwar'} breadCrumbs={breadCrumbs} />

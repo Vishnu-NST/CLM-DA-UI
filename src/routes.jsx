@@ -27,6 +27,7 @@ import LoanPoolIcon from '@/assets/svg/LoanPoolIcon';
 import DueDeligenceIcon from '@/assets/svg/DueDeligenceIcon';
 import CurrencyExchangeIcon from '@/assets/svg/CurrencyExchangeIcon';
 import PoolStatusIcon from '@/assets/svg/PoolStatusIcon';
+import DemandCollectionIcon from '@/assets/svg/DemandCollectionIcon';
 import ReportIcon from '@/assets/svg/ReportIcon';
 import BankDueDiligence from './target/Bank/pages/BankDueDiligence/BankDueDiligence';
 import BankDashboard from './target/Bank/pages/Dashboard/BankDashboard';
@@ -35,6 +36,10 @@ import SelectProduct from './target/Bank/pages/Product/SelectProduct';
 import PoolList from './target/Bank/pages/Pools/PoolList';
 import DemandCollection from './target/NBFC/pages/DemandCollection/DemandCollection';
 import { LoanPoolCustomerDetails } from './target/NBFC/pages/ViewLoanPool/LoanPoolCustomerDetails';
+import Statistics from './target/NBFC/pages/ViewLoanPool/Statistics';
+import { ProspectDetails } from './target/NBFC/pages/ViewLoanPool/ProspectDetails';
+import { BankPoolCustomerDetails } from './target/Bank/pages/Pools/BankPoolCustomerDetails';
+import { BankProspectDetails } from './target/Bank/pages/Pools/BankProspectDetails';
 
 const nbfcPages = [
 	{
@@ -46,14 +51,14 @@ const nbfcPages = [
 	},
 	{
 		text: 'Create Loan Pool',
-		to: 'lpc',
+		to: 'lpc/create',
 		icon: (isSelected) => (
 			<LoanPoolIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
 	},
 	{
 		text: 'Due Diligence',
-		to: 'lpt',
+		to: 'dd',
 		icon: (isSelected) => (
 			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
@@ -79,6 +84,13 @@ const nbfcPages = [
 			<ReportIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
 	},
+	{
+		text: 'Demand Collection',
+		to: 'dc',
+		icon: (isSelected) => (
+			<DemandCollectionIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
 ];
 
 const bankPages = [
@@ -98,7 +110,7 @@ const bankPages = [
 	},
 	{
 		text: 'Due Diligence',
-		to: 'lpt',
+		to: 'dd',
 		icon: (isSelected) => (
 			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
@@ -120,6 +132,20 @@ const bankPages = [
 	{
 		text: 'Reports',
 		to: 'reports',
+		icon: (isSelected) => (
+			<ReportIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Select Product',
+		to: 'product',
+		icon: (isSelected) => (
+			<ReportIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Pool List',
+		to: 'pool',
 		icon: (isSelected) => (
 			<ReportIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
@@ -180,7 +206,7 @@ export const routes = [
 				errorElement: <ErrorPage />,
 			},
 			{
-				path: 'lpc',
+				path: 'lpc/:tabValue',
 				element: (
 					<Suspense fallback={'Loading ...'}>
 						<LoanPoolCreation />
@@ -220,6 +246,24 @@ export const routes = [
 				element: (
 					<Suspense fallback={'Loading ...'}>
 						<LoanPoolCustomerDetails />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'customer-statistics',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<Statistics />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'prospect-details',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<ProspectDetails />
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
@@ -311,6 +355,24 @@ export const routes = [
 					{ path: 'profile', element: <BankProfile /> },
 					{ path: 'mgmt', element: <BankUser /> },
 				],
+			},
+			{
+				path: 'customer-details',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<BankPoolCustomerDetails />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'prospect-details',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<BankProspectDetails />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
 			},
 		],
 	},

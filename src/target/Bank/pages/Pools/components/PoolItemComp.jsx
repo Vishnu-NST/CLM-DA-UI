@@ -5,6 +5,7 @@ import React from 'react';
 import UnLock from '../../../../../assets/svg/UnLock';
 import Lock from '../../../../../assets/svg/Lock';
 import CustomButton from '@/components/CustomButton';
+import { useNavigate } from 'react-router-dom';
 
 const daysLeftBtnStyle = {
 	borderRadius: '30px',
@@ -34,6 +35,7 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 const PoolItemComp = ({ poolData, idx }) => {
 	const [alignment, setAlignment] = React.useState('unLock');
+	const navigate = useNavigate();
 
 	const handleChange = (event, newAlignment) => {
 		if (newAlignment != null) {
@@ -91,9 +93,11 @@ const PoolItemComp = ({ poolData, idx }) => {
 				</Grid>
 				<Grid item sm={1.5} className="flex">
 					<div
+						onClick={() => navigate('/bank/panel/customer-details')}
 						className="customer-detail-txt"
 						style={{
 							fontSize: '0.7rem',
+							cursor: 'pointer',
 						}}
 					>
 						Customer Details <KeyboardArrowRightOutlinedIcon />

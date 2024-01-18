@@ -13,6 +13,7 @@ import InputComponent from '@/components/InputComponent';
 import SelectComponent from '@/components/SelectComponent';
 import CustomButton from '@/components/CustomButton';
 import './Product.scss';
+import PoolAllFilter from './PoolAllFilters';
 
 const arrowBtnStyle = {
 	border: '1px solid rgba(112, 126, 174, 0.5)',
@@ -75,6 +76,7 @@ const ProductList = () => {
 	const [poolName, setPoolName] = React.useState();
 	const [poolFilter, setPoolFilter] = React.useState('');
 	const [labelIndex, setLabelIndex] = React.useState(0);
+	const [isFilterOpen, setIsFilterOpen] = React.useState(false);
 	const labels = [
 		'Search Pool Name',
 		'Search AUM',
@@ -206,112 +208,121 @@ const ProductList = () => {
 	];
 
 	return (
-		<div className="p-3">
-			<Grid container>
-				<Grid item sm={7} className="flex-start">
-					<div
-						style={{
-							width: '18rem',
-						}}
-					>
-						<InputComponent {...searchPoolNameAttributes} />
-					</div>
-					&nbsp; &nbsp;
-					<div className="filter-box">
-						<div>Filters</div>
-						&nbsp; &nbsp;
-						<FilterListOutlinedIcon
+		<>
+			<div className="p-3">
+				<Grid container>
+					<Grid item sm={7} className="flex-start">
+						<div
 							style={{
-								fontSize: '1.15rem',
+								width: '18rem',
 							}}
-						/>
-					</div>
+						>
+							<InputComponent {...searchPoolNameAttributes} />
+						</div>
+						&nbsp; &nbsp;
+						<div
+							className="filter-box"
+							onClick={() => setIsFilterOpen(true)}
+						>
+							<div>Filters</div>
+							&nbsp; &nbsp;
+							<FilterListOutlinedIcon
+								style={{
+									fontSize: '1.15rem',
+								}}
+							/>
+						</div>
+					</Grid>
+					<Grid item sm={5} className="filters-block">
+						<div
+							style={{
+								width: '10rem',
+							}}
+						>
+							<SelectComponent {...poolFilterListAttributes} />
+						</div>
+						&nbsp; &nbsp; &nbsp; &nbsp;
+						<CustomButton
+							buttonType={'submit'}
+							buttonDisabled={false}
+							customStyle={customButtonStyle}
+						>
+							View Statistics &nbsp;&nbsp;
+							<SignalIcon fill={'white'} width={10} height={10} />
+						</CustomButton>
+						&nbsp; &nbsp; &nbsp; &nbsp;
+						<div className="flex">
+							<div className="pagination-txt">01-10 of 100</div>
+							&nbsp;
+							<div className="flex">
+								<CustomButton customStyle={arrowBtnStyle}>
+									<KeyboardArrowLeftOutlinedIcon />
+								</CustomButton>
+								&nbsp;
+								<CustomButton customStyle={arrowBtnStyle}>
+									<KeyboardArrowRightOutlinedIcon />
+								</CustomButton>
+							</div>
+						</div>
+					</Grid>
 				</Grid>
-				<Grid item sm={5} className="filters-block">
-					<div
-						style={{
-							width: '10rem',
+				<Grid container>
+					<Grid item sm={12} className="flex mb-1">
+						{filteredItems?.map((item, idx) => {
+							return <FilteredItemComp data={item} key={idx} />;
+						})}
+					</Grid>
+				</Grid>
+				{/* Pool list */}
+				<div className="pool-list-block">
+					{poolList?.map((item, idx) => {
+						return <PoolItemComp poolData={item} idx={idx} key={idx} />;
+					})}
+				</div>
+				<Grid container className="mt-3">
+					<Grid
+						item
+						sm={12}
+						sx={{
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'flex-end',
 						}}
 					>
-						<SelectComponent {...poolFilterListAttributes} />
-					</div>
-					&nbsp; &nbsp; &nbsp; &nbsp;
-					<CustomButton
-						buttonType={'submit'}
-						buttonDisabled={false}
-						customStyle={customButtonStyle}
-					>
-						View Statistics &nbsp;&nbsp;
-						<SignalIcon fill={'white'} width={10} height={10} />
-					</CustomButton>
-					&nbsp; &nbsp; &nbsp; &nbsp;
-					<div className="flex">
-						<div className="pagination-txt">01-10 of 100</div>
-						&nbsp;
-						<div className="flex">
-							<CustomButton customStyle={arrowBtnStyle}>
-								<KeyboardArrowLeftOutlinedIcon />
-							</CustomButton>
-							&nbsp;
-							<CustomButton customStyle={arrowBtnStyle}>
-								<KeyboardArrowRightOutlinedIcon />
-							</CustomButton>
-						</div>
-					</div>
+						<CustomButton
+							buttonDisabled={false}
+							customStyle={secondaryBtnStyle}
+						>
+							Customer details &nbsp;
+							<ArrowForwardIosIcon fontSize="11" />
+						</CustomButton>
+						&nbsp; &nbsp; &nbsp;
+						<CustomButton
+							buttonDisabled={false}
+							customStyle={customButtonStyle}
+						>
+							<Lock fill={'white'} />
+							&nbsp;Lock All Pools
+						</CustomButton>
+					</Grid>
 				</Grid>
-			</Grid>
-			<Grid container>
-				<Grid item sm={12} className="flex mb-1">
-					{filteredItems?.map((item, idx) => {
-						return <FilteredItemComp data={item} key={idx} />;
-					})}
+				<Grid conatiner className="mt-3">
+					<Grid item sm={12} className="fixed-box">
+						<CustomButton
+							buttonDisabled={false}
+							customStyle={processBtnStyle}
+						>
+							Process &nbsp;
+							<ArrowForwardIosIcon fontSize="11" />
+						</CustomButton>
+					</Grid>
 				</Grid>
-			</Grid>
-			{/* Pool list */}
-			<div className="pool-list-block">
-				{poolList?.map((item, idx) => {
-					return <PoolItemComp poolData={item} idx={idx} key={idx} />;
-				})}
 			</div>
-			<Grid container className="mt-3">
-				<Grid
-					item
-					sm={12}
-					sx={{
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'flex-end',
-					}}
-				>
-					<CustomButton
-						buttonDisabled={false}
-						customStyle={secondaryBtnStyle}
-					>
-						Customer details &nbsp;
-						<ArrowForwardIosIcon fontSize="11" />
-					</CustomButton>
-					&nbsp; &nbsp; &nbsp;
-					<CustomButton
-						buttonDisabled={false}
-						customStyle={customButtonStyle}
-					>
-						<Lock fill={'white'} />
-						&nbsp;Lock All Pools
-					</CustomButton>
-				</Grid>
-			</Grid>
-			<Grid conatiner className="mt-3">
-				<Grid item sm={12} className="fixed-box">
-					<CustomButton
-						buttonDisabled={false}
-						customStyle={processBtnStyle}
-					>
-						Process &nbsp;
-						<ArrowForwardIosIcon fontSize="11" />
-					</CustomButton>
-				</Grid>
-			</Grid>
-		</div>
+			<PoolAllFilter
+				isOpen={isFilterOpen}
+				handleClose={() => setIsFilterOpen(false)}
+			/>
+		</>
 	);
 };
 
