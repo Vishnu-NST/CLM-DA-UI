@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import { Button, Pagination } from '@mui/material';
@@ -15,6 +16,7 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import StatisticsWhiteIcon from '@/assets/svg/StatisticsWhiteIcon';
 import HeaderComp from '@/components/HeaderComponent';
 import { useNavigate } from 'react-router-dom';
+import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined';
 
 function createData(
 	name,
@@ -140,24 +142,24 @@ const rows = [
 
 const breadCrumbs = [
 	{
-		data: 'Menu',
+		data: 'Select Product',
 		path: null,
 	},
 	{
-		data: 'loan pool creation',
-		path: '/nbfc/panel/lpc/create',
+		data: 'JLG',
+		path: null,
 	},
 	{
-		data: 'loan pool details',
-		path: '/nbfc/panel/lpc/view',
+		data: 'MUTH-JLG',
+		path: null,
 	},
 	{
-		data: 'customer details',
+		data: 'Customer details',
 		path: null,
 	},
 ];
 
-export const LoanPoolCustomerDetails = () => {
+export const BankPoolCustomerDetails = () => {
 	const navigate = useNavigate();
 
 	return (
@@ -167,9 +169,9 @@ export const LoanPoolCustomerDetails = () => {
 				<br />
 				<br />
 				<Grid sx={{ width: 1100 }} container spacing={0}>
-					<Grid item xs={5} align="left">
+					<Grid item sm={3.5} align="left">
 						<TextField
-							sx={{ backgroundColor: '#FFFFFF', width: '26.0625rem' }}
+							sx={{ backgroundColor: '#FFFFFF', width: 'auto' }}
 							label="Search Customer Name"
 							InputProps={{
 								endAdornment: (
@@ -181,8 +183,24 @@ export const LoanPoolCustomerDetails = () => {
 							variant="outlined"
 						/>
 					</Grid>
-					<Grid item xs={2}></Grid>
-					<Grid item xs={2} align="right">
+					<Grid
+						item
+						sm={2}
+						sx={{
+							width: 'fit-content',
+						}}
+					>
+						<div className="filter-box" onClick={() => {}}>
+							<div>Filters</div>
+							&nbsp; &nbsp;
+							<FilterListOutlinedIcon
+								style={{
+									fontSize: '1.15rem',
+								}}
+							/>
+						</div>
+					</Grid>
+					{/* <Grid item xs={2} align="right">
 						<Button
 							color="error"
 							variant="contained"
@@ -202,8 +220,16 @@ export const LoanPoolCustomerDetails = () => {
 							</Typography>{' '}
 							<StatisticsWhiteIcon />
 						</Button>
-					</Grid>
-					<Grid item xs={3} align="center">
+					</Grid> */}
+					<Grid
+						item
+						sm={6.5}
+						sx={{
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'flex-end',
+						}}
+					>
 						<Pagination
 							sx={{ mt: 1.5 }}
 							count={11}
@@ -319,7 +345,7 @@ export const LoanPoolCustomerDetails = () => {
 										},
 									}}
 									onClick={() =>
-										navigate('/nbfc/panel/prospect-details')
+										navigate('/bank/panel/prospect-details')
 									}
 								>
 									<TableCell>

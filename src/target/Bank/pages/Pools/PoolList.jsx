@@ -157,7 +157,10 @@ const PoolList = () => {
 
 	return (
 		<>
-			<HeaderComp title={'Pool'} />
+			<HeaderComp
+				title={'My Pool List'}
+				breadCrumbs={[{ data: 'My Pool List', path: null }]}
+			/>
 			<div className="p-3">
 				<Grid container>
 					<Grid item sm={7} className="flex-start">

@@ -27,12 +27,13 @@ import {
 } from './utils/formAttributes';
 import CustomButton from '../../../../components/CustomButton';
 import './LoanPool.scss';
-import React from 'react';
+import React, { useEffect } from 'react';
 import DataIntegration from './DataIntegration';
 import ReviewPool from './ReviewPool';
 import HeaderComp from '@/components/HeaderComponent';
 import { ViewLoanPool } from '../ViewLoanPool/ViewLoanPool';
 import SearchIcon from '../../../../assets/svg/SearchIcon';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function CustomTabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -97,25 +98,54 @@ const validationSchema = yup.object({
 const LoanPoolCreation = () => {
 	const [value, setValue] = React.useState(0);
 	const [searchVal, setSearchVal] = React.useState('');
-
-	const breadCrumbs = [
+	const navigate = useNavigate();
+	const [breadCrumbs, setBreadCrumbs] = React.useState([
 		{
-			data: 'add Product portfolio',
-			path: '/nbfc/panel/dd',
-		},
-		{
-			data: 'loan pool',
+			data: 'Menu',
 			path: null,
 		},
-	];
+		{
+			data: 'loan pool Creation',
+			path: null,
+		},
+	]);
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
+		if (newValue === 1) {
+			setBreadCrumbs([
+				{
+					data: 'Menu',
+					path: null,
+				},
+				{
+					data: 'loan pool Creation',
+					path: '/nbfc/panel/lpc/create',
+				},
+				{
+					data: 'loan pool details',
+					path: null,
+				},
+			]);
+			navigate('/nbfc/panel/lpc/view');
+		} else if (newValue === 0) {
+			setBreadCrumbs([
+				{
+					data: 'Menu',
+					path: null,
+				},
+				{
+					data: 'loan pool Creation',
+					path: null,
+				},
+			]);
+		}
 	};
 
 	const [showForm, setShowForm] = React.useState(true);
 	const [showDataIntegration, setShowDataIntegration] = React.useState(false);
 	const [showReview, setShowReview] = React.useState(false);
+	const params = useParams();
 
 	const searchAttributes = {
 		id: 'searchVal',
@@ -174,7 +204,6 @@ const LoanPoolCreation = () => {
 			<>
 				<Box
 					sx={{
-						paddingTop: '0.5rem',
 						borderBottom: 1,
 						borderColor: 'rgba(112, 126, 174, 0.2)',
 						width: 'fit-content',
@@ -234,6 +263,39 @@ const LoanPoolCreation = () => {
 			</>
 		) : null;
 	};
+
+	useEffect(() => {
+		if (params.tabValue === 'create') {
+			setValue(0);
+			setBreadCrumbs([
+				{
+					data: 'Menu',
+					path: null,
+				},
+				{
+					data: 'loan pool Creation',
+					path: null,
+				},
+			]);
+		} else if (params.tabValue === 'view') {
+			setValue(1);
+			setBreadCrumbs([
+				{
+					data: 'Menu',
+					path: null,
+				},
+				{
+					data: 'loan pool Creation',
+					path: '/nbfc/panel/lpc/create',
+				},
+				{
+					data: 'loan pool details',
+					path: null,
+				},
+			]);
+			navigate('/nbfc/panel/lpc/view');
+		}
+	}, [params.tabValue]);
 
 	return (
 		<>

@@ -1,8 +1,8 @@
 import { Box, Tab, Tabs, Typography } from '@mui/material';
 import React from 'react';
-import SFTPIntegration from './SFTPIntegration';
-import APIIntegration from './APIIntegration';
 import HeaderComp from '@/components/HeaderComponent';
+import DemandData from './DemandData';
+import CollectionData from './CollectionData';
 
 function CustomTabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -31,6 +31,17 @@ function a11yProps(index) {
 	};
 }
 
+const breadCrumbs = [
+	{
+		data: 'Menu',
+		path: null,
+	},
+	{
+		data: 'Demand Collection',
+		path: null,
+	},
+];
+
 const DemandCollection = () => {
 	const [value, setValue] = React.useState(0);
 
@@ -38,66 +49,76 @@ const DemandCollection = () => {
 		setValue(newValue);
 	};
 
+	const TabComponent = () => {
+		return (
+			<>
+				<Box
+					sx={{
+						borderBottom: 1,
+						borderColor: 'rgba(112, 126, 174, 0.2)',
+						width: 'fit-content',
+					}}
+				>
+					<Tabs
+						value={value}
+						onChange={handleChange}
+						aria-label="basic tabs example"
+						TabIndicatorProps={{
+							style: {
+								backgroundColor: '#C4161C',
+							},
+						}}
+						sx={{
+							'& .MuiTab-root.Mui-selected': {
+								color: '#C4161C',
+								fontFamily: 'Poppins, sans-serif',
+								fontWeight: '600',
+								fontSize: '0.8rem',
+							},
+							fontFamily: 'Poppins, sans-serif',
+							fontSize: '0.8rem',
+							fontWeight: '600',
+							color: '#8794C2',
+						}}
+					>
+						<Tab
+							label="Demand"
+							sx={{
+								paddingBottom: '0rem',
+								paddingLeft: '0rem',
+								fontSize: '0.8rem',
+								fontFamily: 'Poppins, sans-serif',
+							}}
+							{...a11yProps(0)}
+						/>
+						<Tab
+							label="Collection"
+							sx={{
+								paddingBottom: '0rem',
+								fontSize: '0.8rem',
+								fontFamily: 'Poppins, sans-serif',
+							}}
+							{...a11yProps(1)}
+						/>
+					</Tabs>
+				</Box>
+			</>
+		);
+	};
+
 	return (
 		<>
-			<HeaderComp title={'Demand Collection'} />
-			<div className="card-block">
-				<div className="loan-pool-form-block">
-					<div className="title">Demand Data</div>
-					<div>
-						<Box
-							sx={{
-								paddingTop: '1rem',
-								borderBottom: 1,
-								borderColor: 'rgba(112, 126, 174, 0.2)',
-								width: 'fit-content',
-							}}
-						>
-							<Tabs
-								value={value}
-								onChange={handleChange}
-								aria-label="basic tabs example"
-								TabIndicatorProps={{
-									style: {
-										backgroundColor: '#C4161C',
-									},
-								}}
-								sx={{
-									'& .MuiTab-root.Mui-selected': {
-										color: '#C4161C',
-										fontWeight: '600',
-										fontSize: '0.8rem',
-									},
-									fontWeight: '600',
-									color: '#8794C2',
-								}}
-							>
-								<Tab
-									label="SFTP Integration"
-									sx={{
-										paddingBottom: '0rem',
-										paddingLeft: '0rem',
-									}}
-									{...a11yProps(0)}
-								/>
-								<Tab
-									label="API Integration"
-									sx={{
-										paddingBottom: '0rem',
-									}}
-									{...a11yProps(1)}
-								/>
-							</Tabs>
-						</Box>
-						<CustomTabPanel value={value} index={0}>
-							<SFTPIntegration />
-						</CustomTabPanel>
-						<CustomTabPanel value={value} index={1}>
-							<APIIntegration />
-						</CustomTabPanel>
-					</div>
-				</div>
-			</div>
+			<HeaderComp
+				title={'Demand Collection'}
+				breadCrumbs={breadCrumbs}
+				TabsComp={TabComponent}
+			/>
+			<CustomTabPanel value={value} index={0}>
+				<DemandData />
+			</CustomTabPanel>
+			<CustomTabPanel value={value} index={1}>
+				<CollectionData />
+			</CustomTabPanel>
 		</>
 	);
 };
