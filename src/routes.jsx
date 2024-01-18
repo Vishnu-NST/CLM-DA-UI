@@ -21,7 +21,10 @@ import LoanPoolIcon from '@/assets/svg/LoanPoolIcon';
 import DueDeligenceIcon from '@/assets/svg/DueDeligenceIcon';
 import CurrencyExchangeIcon from '@/assets/svg/CurrencyExchangeIcon';
 import PoolStatusIcon from '@/assets/svg/PoolStatusIcon';
+import PoolListIcon from '@/assets/svg/PoolListIcon';
+import DemandCollectionIcon from '@/assets/svg/DemandCollectionIcon';
 import ReportIcon from '@/assets/svg/ReportIcon';
+import SelectProductIcon from '@/assets/svg/SelectProductIcon';
 import BankDueDiligence from './target/Bank/pages/BankDueDiligence/BankDueDiligence';
 import BankDashboard from './target/Bank/pages/Dashboard/BankDashboard';
 import ProductList from './target/Bank/pages/Product/ProductList';
@@ -86,13 +89,6 @@ const bankPages = [
 		),
 	},
 	{
-		text: 'Create Loan Pool',
-		to: 'lpc',
-		icon: (isSelected) => (
-			<LoanPoolIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
-		),
-	},
-	{
 		text: 'Due Diligence',
 		to: 'lpt',
 		icon: (isSelected) => (
@@ -104,13 +100,6 @@ const bankPages = [
 		to: 'queries',
 		icon: (isSelected) => (
 			<CurrencyExchangeIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
-		),
-	},
-	{
-		text: 'Pool Status',
-		to: 'slp',
-		icon: (isSelected) => (
-			<PoolStatusIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
 	},
 	{
