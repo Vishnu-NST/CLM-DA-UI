@@ -78,6 +78,13 @@ const nbfcPages = [
 			<ReportIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
 	},
+	{
+		text: 'Demand Collection',
+		to: 'dc',
+		icon: (isSelected) => (
+			<DemandCollectionIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
 ];
 
 const bankPages = [
@@ -114,6 +121,20 @@ const bankPages = [
 		to: 'loan-pool-monitoring',
 		icon: (isSelected) => (
 			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Select Product',
+		to: 'product',
+		icon: (isSelected) => (
+			<SelectProductIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Pool List',
+		to: 'pool',
+		icon: (isSelected) => (
+			<PoolListIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
 	},
 ];
