@@ -34,6 +34,10 @@ import DemandCollection from './target/NBFC/pages/DemandCollection/DemandCollect
 import PortfolioMonitoring from './target/Bank/pages/PortfolioMonitoring/PortfolioMonitoring';
 import { LoanPoolCustomerDetails } from './target/NBFC/pages/ViewLoanPool/LoanPoolCustomerDetails';
 import BankReports from './target/Bank/pages/Reports/Reports';
+import NBFCReports from './target/NBFC/pages/Reports/Reports';
+
+//Bank
+import CustomerDetails from './target/Bank/pages/BankDueDiligence/CustomerDetails';
 
 const nbfcPages = [
 	{
@@ -66,7 +70,7 @@ const nbfcPages = [
 	},
 	{
 		text: 'Pool Status',
-		to: 'slp',
+		to: 'lpt',
 		icon: (isSelected) => (
 			<PoolStatusIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
@@ -251,6 +255,15 @@ export const routes = [
 					{ path: 'mgmt', element: <User /> },
 				],
 			},
+			{
+				path: 'reports',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<NBFCReports />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
 		],
 	},
 
@@ -280,6 +293,24 @@ export const routes = [
 				element: (
 					<Suspense fallback={'Loading ...'}>
 						<BankDueDiligence />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'customerdetails',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<CustomerDetails />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'ProspectDetails',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<ProspectDetails />
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
