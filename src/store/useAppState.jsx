@@ -1,8 +1,8 @@
 import { create } from 'zustand';
-import { createJSONStorage } from 'zustand/middleware';
+// import { createJSONStorage } from	 'zustand/middleware';
 
 import initialAppState from './intialAppState';
-import { getStorage } from '@/utils/common';
+// import { getStorage } from '@/utils/common';
 
 export const useAppState = create()(
 	(set) => ({
@@ -30,8 +30,8 @@ export const useAppState = create()(
 				};
 			}),
 	}),
-	{
-		name: 'userAppState', // name of the item in the storage (must be unique)
-		storage: createJSONStorage(() => getStorage()), // (optional) by default, 'localStorage' is used
-	},
+	// {
+	// 	name: 'userAppState', // name of the item in the storage (must be unique)
+	// 	storage: createJSONStorage(() => getStorage()), // (optional) by default, 'localStorage' is used
+	// },
 );

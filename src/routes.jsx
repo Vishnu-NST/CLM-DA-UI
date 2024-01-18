@@ -158,7 +158,7 @@ export const routes = [
 		element: (
 			// <Suspense>
 			<AuthRequired>
-				<BaseLayout pages={nbfcPages} />
+				<BaseLayout pages={nbfcPages} org="nbfc" />
 			</AuthRequired>
 			// </Suspense>
 		),
@@ -241,7 +241,7 @@ export const routes = [
 		element: (
 			<Suspense>
 				<AuthRequired>
-					<BaseLayout pages={bankPages} />
+					<BaseLayout pages={bankPages} org="bank" />
 				</AuthRequired>
 			</Suspense>
 		),

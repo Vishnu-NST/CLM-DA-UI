@@ -1,6 +1,6 @@
 let initialAppState = {
 	loading: false,
-	user: null,
+	user: {},
 };
 
 const customAppState = {};
