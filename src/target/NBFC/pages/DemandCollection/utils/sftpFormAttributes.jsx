@@ -35,6 +35,22 @@ export const fileNameAttributes = (formik) => {
 	};
 };
 
+export const urlAttributes = (formik) => {
+	return {
+		id: 'url',
+		name: 'url',
+		label: <div className="input-label">URL</div>,
+		placeholder: 'Enter URL',
+		type: 'text',
+		value: formik.values.url,
+		onChange: formik.handleChange,
+		onBlur: formik.handleBlur,
+		error: formik.touched.url && Boolean(formik.errors.url),
+		helperText: formik.touched.url && formik.errors.url,
+		disabled: false,
+	};
+};
+
 export const passwordAttributes = (formik) => {
 	return {
 		id: 'password',
@@ -49,22 +65,6 @@ export const passwordAttributes = (formik) => {
 		helperText: formik.touched.password && formik.errors.password,
 		disabled: false,
 		startIcon: <PasswordIcon />,
-	};
-};
-
-export const urlAttributes = (formik) => {
-	return {
-		id: 'url',
-		name: 'url',
-		label: <div className="input-label">URL</div>,
-		placeholder: 'Enter URL',
-		type: 'text',
-		value: formik.values.url,
-		onChange: formik.handleChange,
-		onBlur: formik.handleBlur,
-		error: formik.touched.url && Boolean(formik.errors.url),
-		helperText: formik.touched.url && formik.errors.url,
-		disabled: false,
 	};
 };
 
@@ -96,6 +96,37 @@ export const frequencyAttributes = (formik) => {
 			},
 		],
 		startIcon: <DateIcon />,
+	};
+};
+
+export const poolSelectionAttributes = (formik) => {
+	return {
+		id: 'pool',
+		name: 'pool',
+		displayEmpty: true,
+		label: <div className="input-label">Pool Selection</div>,
+		multiple: false,
+		placeholder: 'Select a pool',
+		type: 'text',
+		value: formik.values.pool,
+		onChange: (event) => {
+			formik.setFieldValue('pool', event.target.value);
+		},
+		onBlur: formik.handleBlur('pool'),
+		error: formik.touched.pool && Boolean(formik.errors.pool),
+		helperText: formik.touched.pool && formik.errors.pool,
+		disabled: false,
+		options: [
+			{
+				label: 'Pool 2',
+				value: 'pool2',
+			},
+			{
+				label: 'Pool1',
+				value: 'pool1',
+			},
+		],
+		isSearch: true,
 	};
 };
 

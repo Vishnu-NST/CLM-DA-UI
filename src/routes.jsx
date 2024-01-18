@@ -12,12 +12,6 @@ import Dashboard from '@/target/NBFC/pages/Dashboard/Dashboard';
 import LoanPoolCreation from '@/target/NBFC/pages/LoanPoolCreation/LoanPoolCreation';
 import LoanPoolTimeline from './target/NBFC/pages/LoanPoolTimeline/LoanPoolTimeline';
 import DueDiligence from './target/NBFC/pages/NBFCDueDiligence/DueDiligence';
-import SelectPool from './target/NBFC/pages/BSelectPool/SelectPool';
-
-// import UserManagement from '@/pages/Ums/UserManagement';
-// import NbfcProfile from './pages/Ums/components/NbfcProfile';
-// import UserList from './pages/Ums/components/UserList';
-// import EditUserDetails from './pages/Ums/components/EditUserDetails';
 import UmsTabs from './target/NBFC/pages/Ums/UmsTabs';
 import Profile from './target/NBFC/pages/Ums/components/Profile';
 import User from './target/NBFC/pages/Ums/components/User';
@@ -28,21 +22,28 @@ import DueDeligenceIcon from '@/assets/svg/DueDeligenceIcon';
 import CurrencyExchangeIcon from '@/assets/svg/CurrencyExchangeIcon';
 import PoolStatusIcon from '@/assets/svg/PoolStatusIcon';
 import ReportIcon from '@/assets/svg/ReportIcon';
+import BankDueDiligence from './target/Bank/pages/BankDueDiligence/BankDueDiligence';
+import BankDashboard from './target/Bank/pages/Dashboard/BankDashboard';
+import ProductList from './target/Bank/pages/Product/ProductList';
+import SelectProduct from './target/Bank/pages/Product/SelectProduct';
+import PoolList from './target/Bank/pages/Pools/PoolList';
+import DemandCollection from './target/NBFC/pages/DemandCollection/DemandCollection';
 
 const nbfcPages = [
 	{ text: 'Dashboard', to: 'dashboard', icon: <DashboardIcon /> },
 	{ text: 'Create Loan Pool', to: 'lpc', icon: <LoanPoolIcon /> },
-	{ text: 'Due Diligence', to: 'lpt', icon: <DueDeligenceIcon /> },
+	{ text: 'Due Diligence', to: 'dd', icon: <DueDeligenceIcon /> },
 	{ text: 'Transaction', to: 'queries', icon: <CurrencyExchangeIcon /> },
 	{ text: 'Pool Status', to: 'slp', icon: <PoolStatusIcon /> },
 	{ text: 'Reports', to: 'reports', icon: <ReportIcon /> },
+	{ text: 'Demand Collection', to: 'dc', icon: <ReportIcon /> },
 ];
 
 const bankPages = [
 	{ text: 'Dashboard', to: 'dashboard', icon: <DashboardIcon /> },
-	{ text: 'Select Product', to: 'lpc', icon: <LoanPoolIcon /> },
-	{ text: 'My Pool List', to: 'lpt', icon: <DueDeligenceIcon /> },
-	{ text: 'Due Diligence', to: 'queries', icon: <CurrencyExchangeIcon /> },
+	{ text: 'Select Product', to: 'product', icon: <LoanPoolIcon /> },
+	{ text: 'My Pool List', to: 'pool', icon: <DueDeligenceIcon /> },
+	{ text: 'Due Diligence', to: 'dd', icon: <CurrencyExchangeIcon /> },
 	{ text: 'Transaction', to: 'slp', icon: <PoolStatusIcon /> },
 	{ text: 'Reports', to: 'reports', icon: <ReportIcon /> },
 	{ text: 'Demand Collected', to: 'reports', icon: <ReportIcon /> },
@@ -129,10 +130,10 @@ export const routes = [
 				errorElement: <ErrorPage />,
 			},
 			{
-				path: 'select-pool',
+				path: 'dc',
 				element: (
 					<Suspense fallback={'Loading ...'}>
-						<SelectPool />
+						<DemandCollection />
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
@@ -170,16 +171,43 @@ export const routes = [
 				path: 'dashboard',
 				element: (
 					<Suspense fallback={'Loading ...'}>
-						<>bakn dashboard</>
+						<BankDashboard />
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
 			},
 			{
-				path: 'assetclass',
+				path: 'dd',
 				element: (
 					<Suspense fallback={'Loading ...'}>
-						<AssetClassBank />
+						<BankDueDiligence />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'product-list',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<ProductList />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'product',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<SelectProduct />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'pool',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<PoolList />
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,

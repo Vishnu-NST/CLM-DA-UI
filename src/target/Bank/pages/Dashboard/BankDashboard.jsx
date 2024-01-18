@@ -3,7 +3,7 @@ import CollectivePoolData from '@/components/CollectivePoolData';
 import GeographyData from '@/components/GeographyData';
 import LineChart from '@/components/LineChart';
 
-const Dashboard = () => {
+const BankDashboard = () => {
 	return (
 		<>
 			<AppBar
@@ -59,4 +59,4 @@ const Dashboard = () => {
 	);
 };
 
-export default Dashboard;
+export default BankDashboard;

@@ -1,19 +1,129 @@
 import React from 'react';
-import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Grid } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CustomDrawer from '@/components/CustomDrawer';
 import PoolQueryList from './PoolQueryList';
 import DueDiligenceDrawer from './DueDiligenceDrawer';
+import SearchIcon from '../../../../assets/svg/SearchIcon';
+import InputComponent from '@/components/InputComponent';
+import CustomButton from '@/components/CustomButton';
+import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
+import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import './DueDiligence.scss';
+import SelectComponent from '@/components/SelectComponent';
+import HeaderComp from '@/components/HeaderComponent';
+
+const arrowBtnStyle = {
+	border: '1px solid rgba(112, 126, 174, 0.5)',
+	borderRadius: '7px',
+	padding: '0.3rem 0.2rem',
+	width: 'fit-content',
+	minWidth: 'fit-content',
+	color: '#C4161C',
+	backgroundColor: 'white',
+};
 
 const arr = [1, 2, 3];
 
 const DueDiligence = () => {
 	const [drawerState, setDrawerState] = React.useState(false);
+	const [searchValue, setSearchValue] = React.useState();
+	const [filterValue, setFilterValue] = React.useState('');
+
+	const searchQueryAttributes = {
+		id: 'searchQuery',
+		name: 'searchQuery',
+		placeholder: `Search queries`,
+		type: 'text',
+		value: searchValue,
+		onChange: (event) => {
+			setSearchValue(event.target.value);
+		},
+		onkeydown: (evt) => {
+			(evt.key === '+' ||
+				evt.key === '-' ||
+				evt.key === '.' ||
+				evt.key === 'e' ||
+				evt.key === 'ArrowUp' ||
+				evt.key === 'ArrowDown') &&
+				evt.preventDefault();
+		},
+		disabled: false,
+		endIcon: <SearchIcon />,
+	};
+
+	const queryFilterListAttributes = {
+		id: 'queryFilter',
+		name: 'queryFilter',
+		displayEmpty: true,
+		multiple: false,
+		placeholder: 'Select query type',
+		type: 'text',
+		value: filterValue,
+		onChange: (event) => {
+			setFilterValue(event.target.value);
+		},
+		disabled: false,
+		options: [
+			{
+				label: 'All Queries',
+				value: 'all',
+			},
+			{
+				label: 'On going Queries',
+				value: 'ongoing',
+			},
+			{
+				label: 'Closed Queries',
+				value: 'closed',
+			},
+			{
+				label: 'Pending Queries',
+				value: 'pending',
+			},
+		],
+	};
 
 	return (
 		<>
+			<HeaderComp title={'Due Diligence'} />
 			<div className="due-diligence-block">
+				<Grid container>
+					<Grid item sm={4}>
+						<InputComponent {...searchQueryAttributes} />
+					</Grid>
+					<Grid
+						item
+						sm={8}
+						className="flex-end"
+						sx={{
+							display: 'flex',
+							alignItems: 'flex-start',
+						}}
+					>
+						<div
+							style={{
+								width: '30%',
+							}}
+						>
+							<SelectComponent {...queryFilterListAttributes} />
+						</div>
+						&nbsp; &nbsp; &nbsp;
+						<div className="flex">
+							<div className="pagination-txt">01-10 of 100</div>
+							&nbsp;
+							<div className="flex">
+								<CustomButton customStyle={arrowBtnStyle}>
+									<KeyboardArrowLeftOutlinedIcon />
+								</CustomButton>
+								&nbsp;
+								<CustomButton customStyle={arrowBtnStyle}>
+									<KeyboardArrowRightOutlinedIcon />
+								</CustomButton>
+							</div>
+						</div>
+					</Grid>
+				</Grid>
 				{arr?.map((item, idx) => {
 					return (
 						<div className="query-card" key={idx}>

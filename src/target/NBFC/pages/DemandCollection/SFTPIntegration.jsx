@@ -12,6 +12,7 @@ import {
 	frequencyAttributes,
 	noOfTimeAttributes,
 	passwordAttributes,
+	poolSelectionAttributes,
 	timeAttributes,
 	urlAttributes,
 	userNameAttributes,
@@ -50,9 +51,9 @@ const validationSchema = yup.object({
 	userName: yup.string().required('User Name is required'),
 	fileName: yup.string().required('File Name is required'),
 	password: yup.string().required('Password is required'),
-	// frequency: yup.string().required('Frequency is required'),
+	url: yup.string().required('Url is required'),
+	pool: yup.string().required('Pool is required'),
 	time: yup.string(),
-	// noOfTime: yup.string().required('No of Time is required'),
 });
 
 const chooseFileBtnStyle = {
@@ -72,10 +73,10 @@ const SFTPIntegration = () => {
 		initialValues: {
 			userName: '',
 			fileName: '',
+			url: '',
 			password: '',
-			// frequency: '',
 			time: '',
-			// noOfTime: '',
+			pool: '',
 		},
 		validationSchema: validationSchema,
 		onSubmit: async (values) => {
@@ -120,26 +121,13 @@ const SFTPIntegration = () => {
 						</Grid>
 						<Grid item sm={6} className="pr-2">
 							<InputComponent {...urlAttributes(formik)} />
-							{/* <div
-								className="input-label"
-								style={{
-									color: 'rgba(135, 148, 194, 1)',
-									fontSize: '12px',
-								}}
-							>
-								URL
-							</div>
-							<div className="url-link">sftp://user@hpe.com/a.txt</div> */}
 						</Grid>
-						{/* <Grid item sm={1.7} className="pr-05">
-							<SelectComponent {...frequencyAttributes(formik)} />
-						</Grid> */}
-						<Grid item sm={4} className="pr-05">
+						<Grid item sm={6} className="pr-2">
+							<SelectComponent {...poolSelectionAttributes(formik)} />
+						</Grid>
+						<Grid item sm={6} className="pr-2">
 							<SelectComponent {...timeAttributes(formik)} />
 						</Grid>
-						{/* <Grid item sm={1.3}>
-							<InputComponent {...noOfTimeAttributes(formik)} />
-						</Grid> */}
 					</Grid>
 				</form>
 			</div>

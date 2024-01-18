@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
 
@@ -25,15 +26,10 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import DashboardIcon from '@/assets/svg/DashboardIcon';
-import LoanPoolIcon from '@/assets/svg/LoanPoolIcon';
-import DueDeligenceIcon from '@/assets/svg/DueDeligenceIcon';
-import CurrencyExchangeIcon from '@/assets/svg/CurrencyExchangeIcon';
-import PoolStatusIcon from '@/assets/svg/PoolStatusIcon';
-import ReportIcon from '@/assets/svg/ReportIcon';
 import ProfileIcon from '@/assets/svg/ProfileIcon';
 import MifixLogo from '@/assets/svg/MiFiXLogo';
 import SignOutIcon from '@/assets/svg/SignOutIcon';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 const drawerWidth = 280;
 
@@ -59,9 +55,9 @@ const closedMixin = (theme) => ({
 });
 
 const DrawerHeader = styled('div')(({ theme }) => ({
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'flex-end',
+	// display: 'flex',
+	// alignItems: 'center',
+	// justifyContent: 'flex-end',
 	padding: theme.spacing(0, 1),
 	// necessary for content to be below app bar
 	...theme.mixins.toolbar,
@@ -300,7 +296,15 @@ export default function BaseLayout(props) {
 					width: '100%',
 				}}
 			>
-				<DrawerHeader />
+				{/* <DrawerHeader>
+					<div className="bread-crumb">bread</div>
+					<div className="flex-between">
+						<div className="flex">
+							<ChevronLeftIcon />
+							<div>kjhg</div>
+						</div>
+					</div>
+				</DrawerHeader> */}
 				<Outlet />
 			</Box>
 		</Box>

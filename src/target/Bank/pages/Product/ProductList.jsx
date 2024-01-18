@@ -9,10 +9,10 @@ import SignalIcon from '../../../../assets/svg/SignalIcon';
 import Lock from '../../../../assets/svg/Lock';
 import FilteredItemComp from './components/FilteredItemComp';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import './SelectPool.scss';
 import InputComponent from '@/components/InputComponent';
 import SelectComponent from '@/components/SelectComponent';
 import CustomButton from '@/components/CustomButton';
+import './Product.scss';
 
 const arrowBtnStyle = {
 	border: '1px solid rgba(112, 126, 174, 0.5)',
@@ -71,7 +71,7 @@ const secondaryBtnStyle = {
 	},
 };
 
-const SelectPool = () => {
+const ProductList = () => {
 	const [poolName, setPoolName] = React.useState();
 	const [poolFilter, setPoolFilter] = React.useState('');
 	const [labelIndex, setLabelIndex] = React.useState(0);
@@ -315,4 +315,4 @@ const SelectPool = () => {
 	);
 };
 
-export default SelectPool;
+export default ProductList;
