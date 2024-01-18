@@ -33,9 +33,6 @@ const PoolAssetDataStyle = {
 	letterSpacing: '-0.015rem',
 };
 const Dashboard = () => {
-	const { app } = useAppState();
-	console.log(app);
-
 	const data = [
 		{
 			name: 'Quarter 1',

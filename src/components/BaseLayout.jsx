@@ -76,7 +76,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 	}),
 );
 
-export default function BaseLayout(props) {
+function BaseLayout(props) {
 	const [selectedIndex, setSelectedIndex] = React.useState(0);
 	const [open, setOpen] = React.useState(false);
 
