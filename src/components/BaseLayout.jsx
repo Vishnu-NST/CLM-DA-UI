@@ -1,10 +1,10 @@
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
 
+import PoweredByMifix from '../assets/svg/PoweredByMifix';
 import {
 	Box,
 	BottomNavigation,
-	BottomNavigationAction,
 	IconButton,
 	Card,
 	CardContent,
@@ -25,12 +25,6 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import DashboardIcon from '@/assets/svg/DashboardIcon';
-import LoanPoolIcon from '@/assets/svg/LoanPoolIcon';
-import DueDeligenceIcon from '@/assets/svg/DueDeligenceIcon';
-import CurrencyExchangeIcon from '@/assets/svg/CurrencyExchangeIcon';
-import PoolStatusIcon from '@/assets/svg/PoolStatusIcon';
-import ReportIcon from '@/assets/svg/ReportIcon';
 import ProfileIcon from '@/assets/svg/ProfileIcon';
 import MifixLogo from '@/assets/svg/MiFiXLogo';
 import SignOutIcon from '@/assets/svg/SignOutIcon';
@@ -68,16 +62,16 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-	({ theme, open }) => ({
+	({ theme, isOpen }) => ({
 		width: drawerWidth,
 		flexShrink: 0,
 		whiteSpace: 'nowrap',
 		boxSizing: 'border-box',
-		...(open && {
+		...(isOpen && {
 			...openedMixin(theme),
 			'& .MuiDrawer-paper': openedMixin(theme),
 		}),
-		...(!open && {
+		...(!isOpen && {
 			...closedMixin(theme),
 			'& .MuiDrawer-paper': closedMixin(theme),
 		}),
@@ -85,23 +79,27 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function BaseLayout(props) {
-	// const theme = useTheme();
-
-	const { pages } = props;
-
-	const navigate = useNavigate();
-
+	const [selectedIndex, setSelectedIndex] = React.useState(0);
 	const [open, setOpen] = React.useState(false);
 
 	const handleDrawerOpen = () => {
 		setOpen(!open);
 	};
 
+	const handleListItemClick = (event, index) => {
+		setSelectedIndex(index);
+	};
+	// const theme = useTheme();
+
+	const { pages } = props;
+
+	const navigate = useNavigate();
+
 	return (
 		<Box sx={{ display: 'flex' }}>
 			<CssBaseline />
 
-			<Drawer variant="permanent" open={open}>
+			<Drawer variant="permanent" isOpen={open}>
 				<Card
 					sx={{
 						height: '5.1rem',
@@ -135,72 +133,85 @@ export default function BaseLayout(props) {
 									<ProfileIcon />
 								</Button>
 							</Grid>
-							{
-								open ? (
-									<Grid
-										item
-										sx={{
-											display: 'flex',
-											flexDirection: 'column',
-											marginLeft: 1,
+							{open ? (
+								<Grid
+									item
+									sx={{
+										display: 'flex',
+										flexDirection: 'column',
+										marginLeft: 1,
+									}}
+								>
+									<Typography
+										style={{
+											fontSize: '0.9rem',
+											fontWeight: 'bold',
 										}}
 									>
-										<Typography
-											style={{
-												fontSize: '0.9rem',
-												fontWeight: 'bold',
-											}}
-										>
-											NBFC Company Name
-										</Typography>
-										<Typography
-											style={{
-												fontSize: '0.8rem',
-												color: 'var(--Sub-text-2, #8794C2)',
-											}}
-										>
-											NBFC@gmail.com
-										</Typography>
-									</Grid>
-								) : null /* Use null for the else condition */
-							}
+										NBFC Company Name
+									</Typography>
+									<Typography
+										style={{
+											fontSize: '0.8rem',
+											color: 'var(--Sub-text-2, #8794C2)',
+										}}
+									>
+										NBFC@gmail.com
+									</Typography>
+								</Grid>
+							) : null}
 						</Grid>
 					</CardContent>
 				</Card>
-
 				<List>
-					{pages.map((page) => (
+					{pages.map((page, index) => (
 						<ListItem
 							key={page.text}
 							disablePadding
 							sx={{
 								display: 'block',
 								ml: '0.6rem',
-								'&.MuiListItem-root.Mui-selected': {
-									backgroundColor: '#C4161C',
-								},
+								backgroundColor:
+									selectedIndex === index
+										? '#C4161C'
+										: 'transparent',
+								border: '1px solid #FFFF',
+								borderRadius: '0.5rem',
+								width: '90%',
+								marginBottom: '0.5rem',
 							}}
 						>
 							<Link
 								to={page.to}
-								style={{ textDecoration: 'none', color: 'inherit' }}
+								sx={{ textDecoration: 'none', color: 'inherit' }}
 							>
 								<ListItemButton
 									sx={{
 										minHeight: 48,
 										justifyContent: open ? 'initial' : 'center',
 										px: 2.5,
-										color: 'var(--Sub-text-2, #8794C2)',
+										color:
+											selectedIndex === index
+												? '#FFFFFF'
+												: 'var(--Sub-text-2, #8794C2)',
 									}}
+									selected={selectedIndex === index}
+									onClick={(event) =>
+										handleListItemClick(event, index)
+									}
 								>
 									<ListItemIcon
 										sx={{
 											minWidth: 0,
 											mr: open ? 3 : 'auto',
 											justifyContent: 'center',
+											color:
+												selectedIndex === index
+													? '#FFFFFF'
+													: 'var(--Sub-text-2, #8794C2)',
 										}}
 									>
-										{page.icon}
+										{page.icon(selectedIndex === index)}
 									</ListItemIcon>
 									<ListItemText
 										primary={page.text}
@@ -265,20 +276,27 @@ export default function BaseLayout(props) {
 							)}
 						</div>
 					</Grid>
-					<BottomNavigationAction
+
+					<Box
 						sx={{
 							border: '1px solid lightgrey',
 							borderRadius: '0.5rem',
 							padding: '0.2rem 0rem',
-							backgroundColor: '#F8F9FB',
-							width: '100',
+							display: 'flex',
+							justifyContent: 'center',
 						}}
-						icon={<MifixLogo />}
-					/>
+					>
+						{open ? <PoweredByMifix /> : <MifixLogo />}
+					</Box>
 				</BottomNavigation>
 			</Drawer>
 			<div
-				style={{ marginTop: '4.4rem', marginLeft: '-12px', zIndex: '9999' }}
+				style={{
+					marginTop: '4.4rem',
+					marginLeft: '-12px',
+					zIndex: '9999',
+					cursor: 'pointer',
+				}}
 			>
 				<img
 					src={open ? LeftIcon : RightIcon}

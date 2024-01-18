@@ -29,23 +29,117 @@ import CurrencyExchangeIcon from '@/assets/svg/CurrencyExchangeIcon';
 import PoolStatusIcon from '@/assets/svg/PoolStatusIcon';
 import ReportIcon from '@/assets/svg/ReportIcon';
 
+// const nbfcPages = [
+// 	{
+// 		text: 'Dashboard',
+// 		to: 'dashboard',
+// 		icon: (isSelected) => (
+// 			<DashboardIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+// 		),
+// 	},
+// 	{ text: 'Create Loan Pool', to: 'lpc', icon: <LoanPoolIcon /> },
+// 	{ text: 'Due Diligence', to: 'lpt', icon: <DueDeligenceIcon /> },
+// 	{ text: 'Transaction', to: 'queries', icon: <CurrencyExchangeIcon /> },
+// 	{ text: 'Pool Status', to: 'slp', icon: <PoolStatusIcon /> },
+// 	{ text: 'Reports', to: 'reports', icon: <ReportIcon /> },
+// ];
 const nbfcPages = [
-	{ text: 'Dashboard', to: 'dashboard', icon: <DashboardIcon /> },
-	{ text: 'Create Loan Pool', to: 'lpc', icon: <LoanPoolIcon /> },
-	{ text: 'Due Diligence', to: 'lpt', icon: <DueDeligenceIcon /> },
-	{ text: 'Transaction', to: 'queries', icon: <CurrencyExchangeIcon /> },
-	{ text: 'Pool Status', to: 'slp', icon: <PoolStatusIcon /> },
-	{ text: 'Reports', to: 'reports', icon: <ReportIcon /> },
+	{
+		text: 'Dashboard',
+		to: 'dashboard',
+		icon: (isSelected) => (
+			<DashboardIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Create Loan Pool',
+		to: 'lpc',
+		icon: (isSelected) => (
+			<LoanPoolIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Due Diligence',
+		to: 'lpt',
+		icon: (isSelected) => (
+			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Transaction',
+		to: 'queries',
+		icon: (isSelected) => (
+			<CurrencyExchangeIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Pool Status',
+		to: 'slp',
+		icon: (isSelected) => (
+			<PoolStatusIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Reports',
+		to: 'reports',
+		icon: (isSelected) => (
+			<ReportIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
 ];
+// const bankPages = [
+// 	{ text: 'Dashboard', to: 'dashboard', icon: <DashboardIcon /> },
+// 	{ text: 'Select Product', to: 'lpc', icon: <LoanPoolIcon /> },
+// 	{ text: 'My Pool List', to: 'lpt', icon: <DueDeligenceIcon /> },
+// 	{ text: 'Due Diligence', to: 'queries', icon: <CurrencyExchangeIcon /> },
+// 	{ text: 'Transaction', to: 'slp', icon: <PoolStatusIcon /> },
+// 	{ text: 'Reports', to: 'reports', icon: <ReportIcon /> },
+// 	{ text: 'Demand Collected', to: 'reports', icon: <ReportIcon /> },
+// ];
 
 const bankPages = [
-	{ text: 'Dashboard', to: 'dashboard', icon: <DashboardIcon /> },
-	{ text: 'Select Product', to: 'lpc', icon: <LoanPoolIcon /> },
-	{ text: 'My Pool List', to: 'lpt', icon: <DueDeligenceIcon /> },
-	{ text: 'Due Diligence', to: 'queries', icon: <CurrencyExchangeIcon /> },
-	{ text: 'Transaction', to: 'slp', icon: <PoolStatusIcon /> },
-	{ text: 'Reports', to: 'reports', icon: <ReportIcon /> },
-	{ text: 'Demand Collected', to: 'reports', icon: <ReportIcon /> },
+	{
+		text: 'Dashboard',
+		to: 'dashboard',
+		icon: (isSelected) => (
+			<DashboardIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Create Loan Pool',
+		to: 'lpc',
+		icon: (isSelected) => (
+			<LoanPoolIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Due Diligence',
+		to: 'lpt',
+		icon: (isSelected) => (
+			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Transaction',
+		to: 'queries',
+		icon: (isSelected) => (
+			<CurrencyExchangeIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Pool Status',
+		to: 'slp',
+		icon: (isSelected) => (
+			<PoolStatusIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Reports',
+		to: 'reports',
+		icon: (isSelected) => (
+			<ReportIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
 ];
 
 export const routes = [
@@ -179,7 +273,7 @@ export const routes = [
 				path: 'assetclass',
 				element: (
 					<Suspense fallback={'Loading ...'}>
-						<AssetClassBank />
+						{/* <AssetClassBank //> */}
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
