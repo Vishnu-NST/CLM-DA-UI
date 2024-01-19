@@ -1,0 +1,35 @@
+$white: #ffffff;
+.flex{
+    display: flex;
+}
+.flexDirectionRow{
+    flex-direction: row;
+}
+.flexDirectionColunm{
+    flex-direction:column;
+}
+.fs8{
+    font-size: 0.875rem;
+}
+.fs6{
+    font-size: 0.6875rem;
+}
+ 
+ 
+ 
+ 
+ 
+.bankDD-search{
+    background-color: $white;
+    display: flex;
+    justify-content:space-around ;
+    padding: 1.25rem 0.625rem;
+    border-radius: 25px;
+}
+ 
+ 
+.pagination-txt{
+    color: #8794C2;
+    font-weight: 400;
+    font-size: 0.75rem;
+}

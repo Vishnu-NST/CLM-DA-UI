@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createTheme } from '@mui/material/styles';
 const primaryMain = '#C4161C';
 const primaryLight = '#8794C2';
