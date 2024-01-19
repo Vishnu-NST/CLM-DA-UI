@@ -38,6 +38,10 @@ import NBFCReports from './target/NBFC/pages/Reports/Reports';
 
 //Bank
 import CustomerDetails from './target/Bank/pages/BankDueDiligence/CustomerDetails';
+// import NBFCTransaction from './target/NBFC/pages/Transaction/NBFCTransaction';
+import { BankProspectDetails } from './target/Bank/pages/Pools/BankProspectDetails';
+import Statistics from './target/NBFC/pages/ViewLoanPool/Statistics';
+import { ProspectDetails } from './target/NBFC/pages/ViewLoanPool/ProspectDetails';
 
 const nbfcPages = [
 	{
@@ -49,23 +53,16 @@ const nbfcPages = [
 	},
 	{
 		text: 'Create Loan Pool',
-		to: 'lpc',
+		to: 'lpc/create',
 		icon: (isSelected) => (
 			<LoanPoolIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
 	},
 	{
 		text: 'Due Diligence',
-		to: 'lpt',
+		to: 'dd',
 		icon: (isSelected) => (
 			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
-		),
-	},
-	{
-		text: 'Transaction',
-		to: 'queries',
-		icon: (isSelected) => (
-			<CurrencyExchangeIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
 	},
 	{
@@ -89,6 +86,13 @@ const nbfcPages = [
 			<DemandCollectionIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
 	},
+	// {
+	// 	text: 'Transaction',
+	// 	to: 'transaction',
+	// 	icon: (isSelected) => (
+	// 		<DemandCollectionIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+	// 	),
+	// },
 ];
 
 const bankPages = [
@@ -101,7 +105,7 @@ const bankPages = [
 	},
 	{
 		text: 'Due Diligence',
-		to: 'lpt',
+		to: 'dd',
 		icon: (isSelected) => (
 			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
@@ -197,7 +201,7 @@ export const routes = [
 				errorElement: <ErrorPage />,
 			},
 			{
-				path: 'lpc',
+				path: 'lpc/:tabValue',
 				element: (
 					<Suspense fallback={'Loading ...'}>
 						<LoanPoolCreation />
@@ -205,6 +209,33 @@ export const routes = [
 				),
 				errorElement: <ErrorPage />,
 			},
+			{
+				path: 'customer-statistics',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<Statistics />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'prospect-details',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<ProspectDetails />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			// {
+			// 	path: 'transaction',
+			// 	element: (
+			// 		<Suspense fallback={'Loading ...'}>
+			// 			<NBFCTransaction />
+			// 		</Suspense>
+			// 	),
+			// 	errorElement: <ErrorPage />,
+			// },
 			{
 				path: 'lpt',
 				element: (
@@ -310,7 +341,7 @@ export const routes = [
 				path: 'ProspectDetails',
 				element: (
 					<Suspense fallback={'Loading ...'}>
-						<ProspectDetails />
+						<BankProspectDetails />
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
