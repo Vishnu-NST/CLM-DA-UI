@@ -316,18 +316,18 @@ export const par01PlusAttributes = (formik) => {
 	};
 };
 
-export const par30Attributes = (formik) => {
+export const par30PlusAttributes = (formik) => {
 	return {
-		id: 'par30',
-		name: 'par30',
+		id: 'par30Plus',
+		name: 'par30Plus',
 		label: (
 			<div className="input-label">
-				PAR 30<span style={{ color: 'red' }}>*</span>
+				PAR 30+<span style={{ color: 'red' }}>*</span>
 			</div>
 		),
-		placeholder: 'Enter PAR 30',
+		placeholder: 'Enter PAR 30+',
 		type: 'number',
-		value: formik.values.par30,
+		value: formik.values.par30Plus,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -339,8 +339,8 @@ export const par30Attributes = (formik) => {
 				evt.key === 'ArrowDown') &&
 				evt.preventDefault();
 		},
-		error: formik.touched.par30 && Boolean(formik.errors.par30),
-		helperText: formik.touched.par30 && formik.errors.par30,
+		error: formik.touched.par30Plus && Boolean(formik.errors.par30Plus),
+		helperText: formik.touched.par30Plus && formik.errors.par30Plus,
 		disabled: false,
 	};
 };
@@ -349,11 +349,7 @@ export const par60Attributes = (formik) => {
 	return {
 		id: 'par60',
 		name: 'par60',
-		label: (
-			<div className="input-label">
-				PAR 60<span style={{ color: 'red' }}>*</span>
-			</div>
-		),
+		label: <div className="input-label">PAR 60</div>,
 		placeholder: 'Enter PAR 60',
 		type: 'number',
 		value: formik.values.par60,
@@ -378,11 +374,7 @@ export const par90Attributes = (formik) => {
 	return {
 		id: 'par90',
 		name: 'par90',
-		label: (
-			<div className="input-label">
-				PAR 90<span style={{ color: 'red' }}>*</span>
-			</div>
-		),
+		label: <div className="input-label">PAR 90</div>,
 		placeholder: 'Enter PAR 90',
 		type: 'number',
 		value: formik.values.par90,
@@ -407,11 +399,7 @@ export const par90PlusAttributes = (formik) => {
 	return {
 		id: 'par90Plus',
 		name: 'par90Plus',
-		label: (
-			<div className="input-label">
-				PAR 90+<span style={{ color: 'red' }}>*</span>
-			</div>
-		),
+		label: <div className="input-label">PAR 90+</div>,
 		placeholder: 'Enter PAR 90+',
 		type: 'number',
 		value: formik.values.par90Plus,

@@ -17,7 +17,7 @@ import {
 	firstCycleLoansAttributes,
 	loansCoveredAttributes,
 	nbfcCoveredAttributes,
-	par30Attributes,
+	par30PlusAttributes,
 	par60Attributes,
 	par90Attributes,
 	par90PlusAttributes,
@@ -83,10 +83,10 @@ const validationSchema = yup.object({
 	averageBalanceTenor: yup.string(),
 	averageLoanAmt: yup.string(),
 	par01Plus: yup.string().required('PAR 01+ is required'),
-	par30: yup.string().required('PAR 30 is required'),
-	par60: yup.string().required('PAR 60 is required'),
-	par90: yup.string().required('PAR 90 is required'),
-	par90Plus: yup.string().required('PAR 90+ is required'),
+	par30Plus: yup.string().required('PAR 30 is required'),
+	par60: yup.string(),
+	par90: yup.string(),
+	par90Plus: yup.string(),
 	nbfcCovered: yup.string(),
 	statesCovered: yup.string(),
 	districtsCovered: yup.string(),
@@ -180,7 +180,7 @@ const LoanPoolCreation = () => {
 			averageLoanAmt: '',
 			closureDate: null,
 			par01Plus: '',
-			par30: '',
+			par30Plus: '',
 			par60: '',
 			par90: '',
 			par90Plus: '',
@@ -358,7 +358,7 @@ const LoanPoolCreation = () => {
 									</Grid>
 									<Grid item sm={4} className="pr-2">
 										<InputComponent
-											{...par30Attributes(formik)}
+											{...par30PlusAttributes(formik)}
 										/>
 									</Grid>
 									<Grid item sm={4} className="pr-2">
