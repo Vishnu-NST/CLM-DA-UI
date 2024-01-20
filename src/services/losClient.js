@@ -31,6 +31,18 @@ class LOSClient {
 	getViewLoanPoolList() {
 		return axiosInstance.get(this.endpoint).then((res) => res.data);
 	}
+
+	deleteLoanPool(payload) {
+		return axiosInstance.delete(this.endpoint, payload).then((res) => res.data);
+	}
+
+	getLoanPoolCustomerDetails() {
+		return axiosInstance.get(this.endpoint).then((res) => res.data);
+	}
+
+	getLoanPoolProspectDetails() {
+		return axiosInstance.get(this.endpoint).then((res) => res.data);
+	}
 }
 
 export default LOSClient;

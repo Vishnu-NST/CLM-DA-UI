@@ -7,14 +7,25 @@ import CustomButton from '@/components/CustomButton';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import useGetViewLoanPoolList from '@/store/useGetViewLoanPoolList';
+import useDeleteLoanPool from '@/store/useDeleteLoanPool';
+import useGetViewLoanPoolCustomerDetails from '@/store/useGetLoanPoolCustomerDetails';
 
 const LoanPoolCard = () => {
 	const navigate = useNavigate();
 
 	const data = useGetViewLoanPoolList();
-	console.log(data.data);
 
-	const [poolId, setPoolId] = useState('');
+	const setLoanPoolId = useGetViewLoanPoolCustomerDetails();
+
+	const deleteLoanPool = useDeleteLoanPool();
+
+	const handleDeleteLoanPool = (payload) => {
+		deleteLoanPool.mutate(payload);
+	};
+
+	const handleSetLoanPoolId = (payload) => {
+		setLoanPoolId(payload);
+	};
 
 	const styles = {
 		lightCardardStyle: {
@@ -153,11 +164,11 @@ const LoanPoolCard = () => {
 										pt: 1,
 										position: 'relative',
 										top: '-40px',
-										right: '-28px',
+										right: '-45px',
 										width: '121px',
 									}}
 								>
-									{item?.days_left_until_closure}
+									{item?.days_left_until_closure} days
 								</Typography>
 							</Grid>
 
@@ -166,9 +177,14 @@ const LoanPoolCard = () => {
 								item
 								xs={1.5}
 								align="left"
-								onClick={() =>
-									navigate('/nbfc/panel/customer-details')
-								}
+								onClick={() => {
+									{
+										navigate(
+											`/nbfc/panel/customer-details/${item?.pool_id}`,
+										);
+										// handleSetLoanPoolId(item?.pool_id);
+									}
+								}}
 							>
 								<Typography
 									sx={{
@@ -193,7 +209,15 @@ const LoanPoolCard = () => {
 							</Grid>
 
 							<Grid item xs={0.5} sx={{ mt: 2 }} align="center">
-								<DeleteIcon />
+								<Typography
+									sx={{ cursor: 'pointer' }}
+									onClick={
+										() => handleDeleteLoanPool(item?.pool_id)
+										// console.log(item?.pool_id)
+									}
+								>
+									<DeleteIcon />
+								</Typography>
 							</Grid>
 						</Grid>
 					</Card>

@@ -184,9 +184,9 @@ export const routes = [
 		path: '/nbfc/panel/*',
 		element: (
 			// <Suspense>
-			<AuthRequired>
-				<BaseLayout pages={nbfcPages} />
-			</AuthRequired>
+			// <AuthRequired>
+			<BaseLayout pages={nbfcPages} />
+			// </AuthRequired>
 			// </Suspense>
 		),
 		errorElement: <ErrorPage />,
@@ -219,7 +219,7 @@ export const routes = [
 				errorElement: <ErrorPage />,
 			},
 			{
-				path: 'prospect-details',
+				path: 'prospect-details/:customerId/:poolId',
 				element: (
 					<Suspense fallback={'Loading ...'}>
 						<ProspectDetails />
@@ -264,7 +264,7 @@ export const routes = [
 				errorElement: <ErrorPage />,
 			},
 			{
-				path: 'customer-details',
+				path: 'customer-details/:poolId',
 				element: (
 					<Suspense fallback={'Loading ...'}>
 						<LoanPoolCustomerDetails />
@@ -303,9 +303,9 @@ export const routes = [
 		path: '/bank/panel/*',
 		element: (
 			<Suspense>
-				<AuthRequired>
-					<BaseLayout pages={bankPages} />
-				</AuthRequired>
+				{/* <AuthRequired> */}
+				<BaseLayout pages={bankPages} />
+				{/* </AuthRequired> */}
 			</Suspense>
 		),
 		errorElement: <ErrorPage />,

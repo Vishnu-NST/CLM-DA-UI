@@ -1,142 +1,19 @@
-import * as React from 'react';
+import StatisticsWhiteIcon from '@/assets/svg/StatisticsWhiteIcon';
+import HeaderComp from '@/components/HeaderComponent';
+import useGetViewLoanPoolCustomerDetails from '@/store/useGetLoanPoolCustomerDetails';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import { Button, Pagination, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import { Button, Pagination } from '@mui/material';
+import InputAdornment from '@mui/material/InputAdornment';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import CustomerDetailsIcon from '../../../../assets/svg/CustomerDetailsIcon';
-import { Typography } from '@mui/material';
-import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import StatisticsWhiteIcon from '@/assets/svg/StatisticsWhiteIcon';
-import HeaderComp from '@/components/HeaderComponent';
 import { useNavigate } from 'react-router-dom';
-
-function createData(
-	name,
-	principalOutstanding,
-	balanceTenure,
-	state,
-	district,
-	irepBranch,
-	documentation,
-) {
-	return {
-		name,
-		principalOutstanding,
-		balanceTenure,
-		state,
-		district,
-		irepBranch,
-		documentation,
-	};
-}
-
-const rows = [
-	createData(
-		'Abishek T',
-		'₹ 36,000/-',
-		'22 Months',
-		'Tamil Nadu',
-		'Chennai',
-		'Broadway',
-		'8/8',
-	),
-	createData(
-		'Esaineshhvara K',
-		'₹ 36,000/-',
-		'22 Months',
-		'Tamil Nadu',
-		'Chennai',
-		'Broadway',
-		'8/8',
-	),
-	createData(
-		'Hareesh Kumaar S',
-		'₹ 36,000/-',
-		'22 Months',
-		'Tamil Nadu',
-		'Chennai',
-		'Broadway',
-		'8/8',
-	),
-	createData(
-		'Jaswant Kanna V',
-		'₹ 36,000/-',
-		'22 Months',
-		'Tamil Nadu',
-		'Chennai',
-		'Broadway',
-		'8/8',
-	),
-	createData(
-		'Kishore Kumar S K',
-		'₹ 36,000/-',
-		'22 Months',
-		'Tamil Nadu',
-		'Chennai',
-		'Broadway',
-		'8/8',
-	),
-	createData(
-		'Manish Easwar A',
-		'₹ 36,000/-',
-		'22 Months',
-		'Tamil Nadu',
-		'Chennai',
-		'Broadway',
-		'8/8',
-	),
-	createData(
-		'Praveenkumar M',
-		'₹ 36,000/-',
-		'22 Months',
-		'Tamil Nadu',
-		'Chennai',
-		'Broadway',
-		'8/8',
-	),
-	createData(
-		'Sanjith G',
-		'₹ 36,000/-',
-		'22 Months',
-		'Tamil Nadu',
-		'Chennai',
-		'Broadway',
-		'8/8',
-	),
-	createData(
-		'Abishek Thirumoorthi',
-		'₹ 36,000/-',
-		'22 Months',
-		'Tamil Nadu',
-		'Chennai',
-		'Broadway',
-		'8/8',
-	),
-	createData(
-		'Varun Nivas V M',
-		'₹ 36,000/-',
-		'22 Months',
-		'Tamil Nadu',
-		'Chennai',
-		'Broadway',
-		'8/8',
-	),
-	createData(
-		'Veera Pandi',
-		'₹ 36,000/-',
-		'22 Months',
-		'Tamil Nadu',
-		'Chennai',
-		'Broadway',
-		'8/8',
-	),
-];
+import CustomerDetailsIcon from '../../../../assets/svg/CustomerDetailsIcon';
 
 const breadCrumbs = [
 	{
@@ -160,9 +37,11 @@ const breadCrumbs = [
 export const LoanPoolCustomerDetails = () => {
 	const navigate = useNavigate();
 
+	const data = useGetViewLoanPoolCustomerDetails();
+
 	return (
 		<>
-			<HeaderComp title={'IREP-MF April 23-1'} breadCrumbs={breadCrumbs} />
+			<HeaderComp title={data?.data[0]?.pool_id} breadCrumbs={breadCrumbs} />
 			<div style={{ backgroundColor: '#F8F9FB' }}>
 				<br />
 				<br />
@@ -309,9 +188,9 @@ export const LoanPoolCustomerDetails = () => {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{rows.map((row, index) => (
+							{data?.data?.map((row, index) => (
 								<TableRow
-									key={row.name}
+									key={row?.name}
 									sx={{
 										cursor: 'pointer',
 										'&:last-child td, &:last-child th': {
@@ -319,7 +198,9 @@ export const LoanPoolCustomerDetails = () => {
 										},
 									}}
 									onClick={() =>
-										navigate('/nbfc/panel/prospect-details')
+										navigate(
+											`/nbfc/panel/prospect-details/${row?.customer_id}/${row?.pool_id}`,
+										)
 									}
 								>
 									<TableCell>
@@ -349,7 +230,7 @@ export const LoanPoolCustomerDetails = () => {
 													marginLeft: '1rem',
 												}}
 											>
-												{row.name}
+												{row?.name}
 											</Typography>
 										</div>
 									</TableCell>
@@ -360,7 +241,7 @@ export const LoanPoolCustomerDetails = () => {
 												fontSize: '0.875rem',
 											}}
 										>
-											{row.principalOutstanding}
+											{row?.outstanding_amount}
 										</Typography>
 									</TableCell>
 									<TableCell align="left">
@@ -370,7 +251,7 @@ export const LoanPoolCustomerDetails = () => {
 												fontSize: '0.875rem',
 											}}
 										>
-											{row.balanceTenure}
+											{row?.tenor}
 										</Typography>
 									</TableCell>
 									<TableCell align="left">
@@ -390,7 +271,7 @@ export const LoanPoolCustomerDetails = () => {
 												fontSize: '0.875rem',
 											}}
 										>
-											{row.district}
+											{row?.district_name}
 										</Typography>
 									</TableCell>
 									<TableCell align="left">
@@ -400,7 +281,7 @@ export const LoanPoolCustomerDetails = () => {
 												fontSize: '0.875rem',
 											}}
 										>
-											{row.irepBranch}
+											{row?.branch_name}
 										</Typography>
 									</TableCell>
 									<TableCell align="left">
@@ -408,9 +289,10 @@ export const LoanPoolCustomerDetails = () => {
 											sx={{
 												fontFamily: 'Poppins, sans-serif',
 												fontSize: '0.875rem',
+												color: '#00B85E',
 											}}
 										>
-											{row.documentation}
+											8/8
 										</Typography>
 									</TableCell>
 								</TableRow>
