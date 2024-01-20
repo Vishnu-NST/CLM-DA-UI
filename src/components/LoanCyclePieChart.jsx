@@ -1,5 +1,5 @@
 import { Card, CardContent, Divider, Grid, Typography } from '@mui/material';
-import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Legend, ResponsiveContainer } from 'recharts';
 const LoanCyclePieChart = () => {
 	const loanCycleData = [
 		{ name: 'First Cycle Loans Outstanding Amount', value: 70, fill: '#00B85E' },
@@ -9,8 +9,12 @@ const LoanCyclePieChart = () => {
 			fill: '#8794C2',
 		},
 	];
+	const LegendCls = {
+		fontColor: '#8794C2',
+		fontSize: '0.75rem',
+	};
 	return (
-		<Grid item xs={4}>
+		<Grid item xs={4} minWidth="100%">
 			<Card>
 				<CardContent>
 					<Typography
@@ -24,35 +28,25 @@ const LoanCyclePieChart = () => {
 						Loan cycle
 					</Typography>
 					<Divider />
-					<ResponsiveContainer width="100%" height={300}>
-						<PieChart
-							width={500}
-							height={50}
-							margin={{
-								top: 0,
-								right: 0,
-								left: 0,
-								bottom: -10,
-							}}
-						>
+					<ResponsiveContainer height={280}>
+						<PieChart type="circle" height={50}>
 							<Pie
 								dataKey="value"
 								data={loanCycleData}
 								cx="50%"
 								cy="50%"
-								innerRadius={50}
 								outerRadius={120}
 								fill="#82ca9d"
 								startAngle={180}
-								endAngle={0}
 								paddingAngle={5}
+								endAngle={0}
+								cornerRadius={15}
+								innerRadius={80}
 							/>
-							<Tooltip />
 							<Legend
-								layout="horizontal"
-								// verticalAlign="top"
+								layout="vertical"
 								align="center"
-								wrapperStyle={{ top: 220 }}
+								wrapperStyle={LegendCls}
 							/>
 						</PieChart>
 					</ResponsiveContainer>
