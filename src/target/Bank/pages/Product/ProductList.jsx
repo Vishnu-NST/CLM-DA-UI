@@ -16,6 +16,7 @@ import './Product.scss';
 import PoolAllFilter from './PoolAllFilters';
 import { useLocation } from 'react-router-dom';
 import * as utils from '@/utils/common';
+import { useAppState } from '@/store/useAppState';
 
 const arrowBtnStyle = {
 	border: '1px solid rgba(112, 126, 174, 0.5)',
@@ -77,8 +78,9 @@ const secondaryBtnStyle = {
 const ProductList = () => {
 	const location = useLocation();
 	const [poolData, setPoolData] = useState([]);
+	const { app } = useAppState();
 	const productName = location.state && location.state.productName;
-	const userId = 123,
+	const userId = app.user.userId,
 		skipVal = 0,
 		limit = 100;
 	const [poolName, setPoolName] = React.useState();

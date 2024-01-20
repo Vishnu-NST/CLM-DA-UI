@@ -1,52 +1,92 @@
-import { AppBar, Card, Grid, Typography } from '@mui/material';
-import CollectivePoolData from '@/components/CollectivePoolData';
+import FullPieChart from '@/components/FullPieChart';
 import GeographyData from '@/components/GeographyData';
-import LineChart from '@/components/LineChart';
+import LineChartComponent from '@/components/LineChart';
 import LoanCyclePieChart from '@/components/LoanCyclePieChart';
+import { Card, Divider, Grid, Typography } from '@mui/material';
+import { Box } from '@mui/system';
 
 const BankDashboard = () => {
+	const aumStyles = {
+		color: 'var(--Sub-text-2, #8794C2)',
+		fontFamily: 'PoppinsReg',
+		fontSize: '0.75rem',
+	};
+	const aumTargetStyles = {
+		color: 'var(--Extra, #00B85E)',
+		fontSize: '1.2rem',
+		fontFamily: 'Poppins',
+		fontWeight: 600,
+	};
 	return (
 		<>
-			<AppBar
-				elevation={0}
-				sx={{
-					width: '95%',
-					height: '8%',
-					backgroundColor: '#fff',
-					mt: '1.5rem',
-					mb: '1.5rem',
-				}}
-			>
-				<Typography
-					variant="h6"
-					component="div"
-					sx={{
-						gap: '5px',
-						ml: '2rem',
-						fontWeight: '600',
-						fontSize: '22px',
-						color: '#1B1B1B',
-					}}
-				>
-					Dashboard
-				</Typography>
-			</AppBar>
-			<Grid container direction="column" height="80vh">
-				<Grid item container height="60%" width="90%">
-					<Grid item xs={12}>
-						<Card>
-							<LineChart />
-						</Card>
-					</Grid>
+			<Grid container>
+				<Grid item sm={7}>
+					<Card>
+						<Grid item display="flex" xs={12} flexDirection="row">
+							<Grid item xs={4} display="flex" flexDirection="column">
+								<Typography
+									style={{
+										color: 'var(--TEXT1, #1B1B1B)',
+										fontFamily: 'Poppins',
+										fontSize: '2rem',
+										fontStyle: 'normal',
+										fontWeight: 600,
+									}}
+								>
+									₹50Cr
+								</Typography>
+								<Typography sx={aumStyles}>AUM Target</Typography>
+							</Grid>
+							<Grid
+								item
+								xs={1.5}
+								display="flex"
+								flexDirection="column"
+							>
+								<Typography sx={aumTargetStyles}>+ ₹45cr</Typography>
+								<Typography sx={aumStyles}>Total AUM</Typography>
+							</Grid>
+							<Grid
+								item
+								xs={2.5}
+								display="flex"
+								flexDirection="column"
+							>
+								<Typography sx={aumTargetStyles}>+ ₹35cr</Typography>
+								<Typography sx={aumStyles}>
+									Recent Added AUM
+								</Typography>
+							</Grid>
+							<Grid item xs={2} display="flex" flexDirection="column">
+								<Typography sx={aumTargetStyles}>+ ₹10cr</Typography>
+								<Typography sx={aumStyles}>Past AUM</Typography>
+							</Grid>
+						</Grid>
+						<LineChartComponent />
+					</Card>
 				</Grid>
-
-				<Grid item container height="40%" width="90%">
-					<Grid item xs={4}>
-						<Card>
-							<CollectivePoolData />
-						</Card>
-					</Grid>
-					<LoanCyclePieChart />
+				<Grid item sm={5} width>
+					<Box
+						sx={{
+							backgroundColor: '#F8F9FB',
+							borderRadius: '8px',
+							display: 'flex',
+							justifyContent: 'center',
+						}}
+					>
+						<FullPieChart />
+					</Box>
+				</Grid>
+			</Grid>
+			<Divider />
+			&nbsp; &nbsp; &nbsp;
+			<Grid container spacing={5}>
+				<Grid item sm={6}>
+					<Card>
+						<LoanCyclePieChart />
+					</Card>
+				</Grid>
+				<Grid item sm={6}>
 					<Card>
 						<GeographyData />
 					</Card>
