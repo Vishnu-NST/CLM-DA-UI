@@ -31,6 +31,7 @@ import {
 	profilePincodeAttribute,
 } from './formAttributes';
 import MultilineInputComponent from '@/components/MultilineInputComponent';
+import useCreateOrg from '@/store/useCreateOrg';
 const customButtonStyle = {
 	borderRadius: '7px',
 	padding: '0.5rem 2.5rem',
@@ -59,33 +60,68 @@ const validationSchema = yup.object({
 	creditRatings: yup.string().required('Credit Ratings is required'),
 	ccsScore: yup.string().required('CCS Score is required'),
 });
-const Profile = () => {
+
+const ProfileCreation = () => {
+	const createOrgQuery = useCreateOrg();
+
 	const navigate = useNavigate();
 	const fileInputRef = useRef(null);
 
 	const handleFileClick = () => {
 		fileInputRef.current.click();
 	};
+
 	const handleFileChange = (event) => {
 		const selectedFile = event.target.files[0];
 		// Do something with the selected file, such as uploading to a server or processing it.
 		console.log('Selected file:', selectedFile);
 	};
+
 	const formik = useFormik({
 		initialValues: {
-			assetClass: '',
+			// assetClass: '',
 			creditRatings: '',
-			aum: '',
-			averageIrr: '',
-			averageBalanceTenor: '',
-			averageLoanAmt: '',
-			closureDate: null,
+			// aum: '',
+			// averageIrr: '',
+			// averageBalanceTenor: '',
+			// averageLoanAmt: '',
+			// closureDate: null,
+			nbfcName: '',
+			nbfcGroupName: '',
+			nbfcGroupID: '',
+			nbfcGroupHead: '',
+			nbfcEmailAdderss: '',
+			registrationNumber: '',
+			dateOfIncorporation: '',
+			classOfCompany: '',
+			noOfEmployees: '',
+			cinNumber: '',
+			overview: '',
+			ccsScore: '',
+			nbfcaddressOne: '',
+			nbfcaddressTwo: '',
+			profileStateAttribute: '',
+			profileCity: '',
+			profilePincode: '',
 		},
 		validationSchema: validationSchema,
 		onSubmit: async (values) => {
 			console.log({ values });
+			createOrgQuery.mutate(values);
 		},
 	});
+
+	if (createOrgQuery.isError) {
+		//
+	}
+
+	if (createOrgQuery.isSuccess) {
+		return navigate(
+			`${location.pathname.match(/\/\w+\//)}panel/ums/profile-detail`,
+		);
+	}
+
+	console.log(formik.values);
 
 	return (
 		<>
@@ -237,7 +273,7 @@ const Profile = () => {
 							Overview (200 words limit)
 						</Typography>
 					</div>
-					<MultilineInputComponent {...overviewAttribute} />
+					<MultilineInputComponent {...overviewAttribute(formik)} />
 				</Grid>
 
 				<div className="sub-title">Registered Address</div>
@@ -271,7 +307,8 @@ const Profile = () => {
 						<CustomButton
 							buttonDisabled={false}
 							customStyle={customButtonStyle}
-							onClick={() => navigate('/panel/nbfc-profile')}
+							type="submit"
+							// onClick={() => navigate('/panel/nbfc-profile')}
 						>
 							Update &nbsp;
 							<ArrowForwardIosIcon fontSize="11" />
@@ -283,4 +320,4 @@ const Profile = () => {
 	);
 };
 
-export default Profile;
+export default ProfileCreation;
