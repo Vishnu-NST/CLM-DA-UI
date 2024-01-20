@@ -31,9 +31,13 @@ class PMSClient {
 		this.endpoint = endpoint;
 	}
 
-	// getProductList(payload) {
-	// 	return axiosInstance.get(this.endpoint, payload).then((res) => res.data);
-	// }
+	getProductList() {
+		return axiosInstance.get(this.endpoint).then((res) => res.data);
+	}
+
+	getCreditRatings() {
+		return axiosInstance.get(this.endpoint).then((res) => res.data);
+	}
 }
 
 export default PMSClient;
