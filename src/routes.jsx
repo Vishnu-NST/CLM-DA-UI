@@ -187,9 +187,9 @@ export const routes = [
 		path: '/nbfc/panel/*',
 		element: (
 			// <Suspense>
-			// <AuthRequired>
-			<BaseLayout pages={nbfcPages} />
-			// </AuthRequired>
+			<AuthRequired>
+				<BaseLayout pages={nbfcPages} />
+			</AuthRequired>
 			// </Suspense>
 		),
 		errorElement: <ErrorPage />,

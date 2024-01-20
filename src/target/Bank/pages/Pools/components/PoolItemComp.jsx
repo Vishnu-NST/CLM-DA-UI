@@ -43,7 +43,6 @@ const PoolItemComp = ({ poolData, idx }) => {
 		}
 	};
 
-	console.log({ alignment });
 	return (
 		<div
 			className="pool-card"
