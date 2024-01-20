@@ -95,3 +95,14 @@ export function decodeToken(token) {
 		return null;
 	}
 }
+
+export function formatDate(dateString) {
+	const dateObject = new Date(dateString);
+
+	const options = { day: 'numeric', month: 'long', year: 'numeric' };
+	const formattedDate = new Intl.DateTimeFormat('en-US', options).format(
+		dateObject,
+	);
+
+	return formattedDate;
+}

@@ -93,7 +93,7 @@ const PoolItemComp = ({ poolData, idx }) => {
 					sx={{
 						cursor: 'pointer',
 					}}
-					onClick={() => navigate('/bank/panel/customer-details')}
+					onClick={() => navigate('/bank/panel/customerdetails')}
 				>
 					<div className="customer-detail-txt">
 						Customer Details <KeyboardArrowRightOutlinedIcon />

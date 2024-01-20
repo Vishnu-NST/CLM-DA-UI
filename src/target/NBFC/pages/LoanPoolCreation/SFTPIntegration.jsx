@@ -90,7 +90,7 @@ const SFTPIntegration = () => {
 		formik.setFieldValue('fileName', data.file_name);
 		formik.setFieldValue('password', data.password);
 		formik.setFieldValue('time', data.scheduled_time_on_daily_basis);
-	}, [data]);
+	});
 	const [excel, setExcel] = React.useState(null);
 	const arr = [1, 2, 3, 4, 5];
 	const formik = useFormik({
