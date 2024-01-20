@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-	baseURL: import.meta.env.VITE_LOS_BASE_URL,
+	baseURL: import.meta.env.VITE_DEMAND_BASE_URL,
 });
 
 axiosInstance.interceptors.request.use(
@@ -23,20 +23,22 @@ axiosInstance.interceptors.request.use(
 	},
 );
 
-class LOSClient {
+class DemandClient {
 	constructor(endpoint) {
 		this.endpoint = endpoint;
 	}
 
-	getViewLoanPoolList() {
-		return axiosInstance.get(this.endpoint).then((res) => res.data);
+	uploadDemandFile(payload) {
+		return axiosInstance
+			.post(this.endpoint, payload, {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+				},
+			})
+			.then((res) => res.data);
 	}
 
-	createPool(payload) {
-		return axiosInstance.post(this.endpoint, payload).then((res) => res.data);
-	}
-
-	createPoolFileUpload(payload) {
+	uploadCollectionFile(payload) {
 		return axiosInstance
 			.post(this.endpoint, payload, {
 				headers: {
@@ -47,4 +49,4 @@ class LOSClient {
 	}
 }
 
-export default LOSClient;
+export default DemandClient;

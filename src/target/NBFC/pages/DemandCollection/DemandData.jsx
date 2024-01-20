@@ -88,7 +88,7 @@ const DemandData = () => {
 						</Tabs>
 					</Box>
 					<CustomTabPanel value={value} index={0}>
-						<SFTPIntegration />
+						<SFTPIntegration tabValue={'Demand'} />
 					</CustomTabPanel>
 					<CustomTabPanel value={value} index={1}>
 						<APIIntegration />
