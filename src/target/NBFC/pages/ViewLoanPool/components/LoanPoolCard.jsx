@@ -6,28 +6,15 @@ import { useNavigate } from 'react-router-dom';
 import CustomButton from '@/components/CustomButton';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import useGetViewLoanPoolList from '@/store/useGetViewLoanPoolList';
 
 const LoanPoolCard = () => {
 	const navigate = useNavigate();
-	const [data, setData] = useState([]);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const response = await fetch(
-					`http://52.66.247.118:30203/pool/get_pools?skip=0&limit=100`,
-				);
-				const result = await response.json();
-				setData(result);
-			} catch (error) {
-				console.error('Error fetching data: ', error);
-			}
-			console.log(data);
-		};
-		fetchData();
-	}, []);
+	const data = useGetViewLoanPoolList();
+	console.log(data.data);
 
-	
+	const [poolId, setPoolId] = useState('');
 
 	const styles = {
 		lightCardardStyle: {
@@ -49,6 +36,7 @@ const LoanPoolCard = () => {
 			fontSize: '0.875rem',
 			fontWeight: 500,
 			fontFamily: 'Poppins, sans-serif',
+			// textOverflow: 'ellipsis',
 		},
 		titleStyles: {
 			color: '#8794C2',
@@ -103,7 +91,7 @@ const LoanPoolCard = () => {
 
 	return (
 		<>
-			{[1, 2, 3, 4, 5, 6, 7, 8, 9]?.map((item, idx) => {
+			{data.data?.map((item, idx) => {
 				return (
 					<Card
 						elevation={0}
@@ -121,23 +109,23 @@ const LoanPoolCard = () => {
 
 							<Grid sx={{ mt: 1.2 }} item xs={2} align="left">
 								<Typography sx={styles.valueStyles}>
-									MUTH-MF April 23-1
+									{item?.name}
 								</Typography>
 								<Typography sx={styles.titleStyles}>
-									Added on 15th april 2023
+									{new Date(item?.createdOn).toLocaleDateString()}
 								</Typography>
 							</Grid>
 
 							<Grid sx={{ mt: 1.2 }} item xs={1} align="left">
 								<Typography sx={styles.valueStyles}>
-									₹ 50 cr
+									{item?.aum}
 								</Typography>
 								<Typography sx={styles.titleStyles}>AUM</Typography>
 							</Grid>
 
 							<Grid sx={{ mt: 1.2 }} item xs={1} align="left">
 								<Typography sx={styles.ratings.greenRatings}>
-									AAA+
+									{item?.credit_ratings}
 								</Typography>
 								<Typography sx={styles.titleStyles}>
 									Credit Ratings
@@ -145,7 +133,9 @@ const LoanPoolCard = () => {
 							</Grid>
 
 							<Grid sx={{ mt: 1.2 }} item xs={1} align="left">
-								<Typography sx={styles.valueStyles}>30%</Typography>
+								<Typography sx={styles.valueStyles}>
+									{item?.irr}
+								</Typography>
 								<Typography sx={styles.titleStyles}>
 									Average IRR
 								</Typography>
@@ -167,7 +157,7 @@ const LoanPoolCard = () => {
 										width: '121px',
 									}}
 								>
-									24 days left
+									{item?.days_left_until_closure}
 								</Typography>
 							</Grid>
 
