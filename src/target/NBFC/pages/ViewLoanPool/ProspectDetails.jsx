@@ -40,9 +40,19 @@ const breadCrumbs = [
 
 export const ProspectDetails = () => {
 	console.log('called');
-	const data = useGetLoanPoolProspectDetails();
-	console.log('mf', data);
-	const prospectDetails = data ? data?.data[0] : [];
+	const dataQuery = useGetLoanPoolProspectDetails();
+
+	console.log(dataQuery.data);
+
+	if (dataQuery.isError) {
+		//
+	}
+
+	let prospectDetails;
+
+	if (dataQuery.isSuccess) {
+		prospectDetails = dataQuery.data[0];
+	}
 
 	return (
 		<>
