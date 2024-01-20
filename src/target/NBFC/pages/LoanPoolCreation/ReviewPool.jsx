@@ -3,6 +3,7 @@ import { Grid } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import './LoanPool.scss';
 import CustomButton from '@/components/CustomButton';
+import { formatDate } from '@/utils/common';
 
 const customButtonStyle = {
 	borderRadius: '7px',
@@ -37,7 +38,8 @@ const editBtnStyle = {
 	backgroundColor: 'rgba(248, 249, 251, 1)',
 };
 
-const ReviewPool = () => {
+const ReviewPool = ({ formikValues, onCreateLoanPool }) => {
+	console.log({ formikValues }, 'review');
 	return (
 		<div className="card-block">
 			<div className="loan-pool-form-block">
@@ -53,35 +55,45 @@ const ReviewPool = () => {
 					<div className="review-title">Basic Info</div>
 					<Grid container className="mt-2" rowGap={3}>
 						<Grid item sm={3}>
-							<div className="review-data">JLG</div>
+							<div className="review-data">
+								{formikValues?.asset_class}
+							</div>
 							<div className="review-sub-title">Product</div>
 						</Grid>
 						<Grid item sm={3}>
-							<div className="review-data">15/04/2023</div>
+							<div className="review-data">
+								{formatDate(formikValues?.expected_closure_date)}
+							</div>
 							<div className="review-sub-title">
 								Expected Closure Date
 							</div>
 						</Grid>
 						<Grid item sm={3}>
-							<div className="review-data">AAA+</div>
+							<div className="review-data">
+								{formikValues?.credit_ratings}
+							</div>
 							<div className="review-sub-title">Credit Ratings</div>
 						</Grid>
 						<Grid item sm={3}>
-							<div className="review-data">50Cr</div>
+							<div className="review-data">{formikValues?.aum}</div>
 							<div className="review-sub-title">AUM</div>
 						</Grid>
 						<Grid item sm={3}>
-							<div className="review-data">30%</div>
+							<div className="review-data">{formikValues?.irr}</div>
 							<div className="review-sub-title">Average IRR</div>
 						</Grid>
 						<Grid item sm={3}>
-							<div className="review-data">3 Months</div>
+							<div className="review-data">
+								{formikValues?.average_balance_tenor}
+							</div>
 							<div className="review-sub-title">
 								Average Balance Tenor
 							</div>
 						</Grid>
 						<Grid item sm={3}>
-							<div className="review-data">1,20,000/-</div>
+							<div className="review-data">
+								{formikValues?.average_loan_amount}/-
+							</div>
 							<div className="review-sub-title">
 								Average Loan Amount
 							</div>
@@ -93,51 +105,73 @@ const ReviewPool = () => {
 					<div className="review-title">Additional Info</div>
 					<Grid container className="mt-2" rowGap={3}>
 						<Grid item sm={2.4}>
-							<div className="review-data">XXXXX</div>
-							<div className="review-sub-title">PAR 30</div>
+							<div className="review-data">
+								{formikValues?.par01Plus}
+							</div>
+							<div className="review-sub-title">PAR 01+</div>
 						</Grid>
 						<Grid item sm={2.4}>
-							<div className="review-data">XXXXX</div>
+							<div className="review-data">
+								{formikValues?.par30Plus}
+							</div>
+							<div className="review-sub-title">PAR 30+</div>
+						</Grid>
+						<Grid item sm={2.4}>
+							<div className="review-data">{formikValues?.par60}</div>
 							<div className="review-sub-title">PAR 60</div>
 						</Grid>
 						<Grid item sm={2.4}>
-							<div className="review-data">XXXXX</div>
+							<div className="review-data">{formikValues?.par90}</div>
 							<div className="review-sub-title">PAR 90</div>
 						</Grid>
 						<Grid item sm={2.4}>
-							<div className="review-data">XXXXX</div>
+							<div className="review-data">
+								{formikValues?.par90Plus}
+							</div>
 							<div className="review-sub-title">PAR 90+</div>
 						</Grid>
 						<Grid item sm={2.4}>
-							<div className="review-data">XXXXX</div>
+							<div className="review-data">
+								{formikValues?.no_ofNbfc_branches_covered}
+							</div>
 							<div className="review-sub-title">
 								No.of NBFC Covered
 							</div>
 						</Grid>
 						<Grid item sm={2.4}>
-							<div className="review-data">XXXXX</div>
+							<div className="review-data">
+								{formikValues?.no_ofStates_coverd}
+							</div>
 							<div className="review-sub-title">
 								No.of States Covered
 							</div>
 						</Grid>
 						<Grid item sm={2.4}>
-							<div className="review-data">XXXXX</div>
+							<div className="review-data">
+								{formikValues?.no_ofDistricts_coverd}
+							</div>
 							<div className="review-sub-title">
 								No.of Districts Covered
 							</div>
 						</Grid>
 						<Grid item sm={2.4}>
-							<div className="review-data">XXXXX</div>
+							<div className="review-data">
+								{formikValues?.no_of_loans}
+							</div>
 							<div className="review-sub-title">No.of Loans</div>
 						</Grid>
 						<Grid item sm={2.4}>
-							<div className="review-data">XXXXX</div>
+							<div className="review-data">
+								{formikValues?.no_ofSecondCycle_loans}
+							</div>
 							<div className="review-sub-title">
 								No.of Second Cycle Loans
 							</div>
 						</Grid>
 						<Grid item sm={2.4}>
-							<div className="review-data">XXXXX</div>
+							<div className="review-data">
+								{formikValues?.no_ofFirstCycle_loans}
+							</div>
 							<div className="review-sub-title">
 								No.of First Cycle Loans
 							</div>
@@ -164,6 +198,7 @@ const ReviewPool = () => {
 						<CustomButton
 							buttonDisabled={false}
 							customStyle={customButtonStyle}
+							onClick={onCreateLoanPool}
 						>
 							Create Pool &nbsp;
 							<ArrowForwardIosIcon fontSize="11" />

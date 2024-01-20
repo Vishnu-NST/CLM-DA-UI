@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchIcon from '../../../../assets/svg/SearchIcon';
 import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
@@ -14,6 +14,8 @@ import SelectComponent from '@/components/SelectComponent';
 import CustomButton from '@/components/CustomButton';
 import './Product.scss';
 import PoolAllFilter from './PoolAllFilters';
+import { useLocation } from 'react-router-dom';
+import * as utils from '@/utils/common';
 
 const arrowBtnStyle = {
 	border: '1px solid rgba(112, 126, 174, 0.5)',
@@ -73,6 +75,12 @@ const secondaryBtnStyle = {
 };
 
 const ProductList = () => {
+	const location = useLocation();
+	const [poolData, setPoolData] = useState([]);
+	const productName = location.state && location.state.productName;
+	const userId = 123,
+		skipVal = 0,
+		limit = 100;
 	const [poolName, setPoolName] = React.useState();
 	const [poolFilter, setPoolFilter] = React.useState('');
 	const [labelIndex, setLabelIndex] = React.useState(0);
@@ -93,6 +101,21 @@ const ProductList = () => {
 		return () => clearInterval(intervalId); // Cleanup interval on component unmount
 	}, []);
 
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await fetch(
+					`http://52.66.247.118:30203/pool/get_bank_pool_details/${userId}/${productName}?skip=${skipVal}&limit=${limit}`,
+				);
+				const result = await response.json();
+				setPoolData(result);
+			} catch (error) {
+				console.error('Error fetching data:', error);
+			}
+		};
+
+		fetchData();
+	}, [productName]);
 	const searchPoolNameAttributes = {
 		id: 'poolName',
 		name: 'poolName',
@@ -146,59 +169,18 @@ const ProductList = () => {
 			},
 		],
 	};
-
-	const poolList = [
-		{
-			poolName: 'MUTH-JLG April 23-1',
-			addedDate: '15th april 2023',
-			poolLogo: '',
-			aumValue: '50 cr',
+	const poolList =
+		poolData &&
+		poolData.map((ele) => ({
+			poolName: ele.name,
+			addedDate: utils.formatDate(ele.createdOn),
+			poolLogo: ele.nbfc_logo,
+			aumValue: ele.aum,
 			creditRatings: 'AAA+',
-			averageIRR: '30%',
-			daysLeft: '10',
-			status: 'unlock',
-		},
-		{
-			poolName: 'TATA-JLG April 23-1',
-			addedDate: '15th april 2023',
-			poolLogo: '',
-			aumValue: '50 cr',
-			creditRatings: 'BB+',
-			averageIRR: '30%',
-			daysLeft: '18',
-			status: 'unlock',
-		},
-		{
-			poolName: 'MANA-JLG April 23-1',
-			addedDate: '15th april 2023',
-			poolLogo: '',
-			aumValue: '50 cr',
-			creditRatings: 'CC+',
-			averageIRR: '30%',
-			daysLeft: '30',
-			status: 'lock',
-		},
-		{
-			poolName: 'IIFC-JLG April 23-1',
-			addedDate: '15th april 2023',
-			poolLogo: '',
-			aumValue: '50 cr',
-			creditRatings: 'AAA+',
-			averageIRR: '30%',
-			daysLeft: '20',
-			status: 'unlock',
-		},
-		{
-			poolName: 'TATA-JLG April 23-1',
-			addedDate: '15th april 2023',
-			poolLogo: '',
-			aumValue: '50 cr',
-			creditRatings: 'BB+',
-			averageIRR: '30%',
-			daysLeft: '25',
-			status: 'lock',
-		},
-	];
+			averageIRR: ele.irr,
+			daysLeft: ele.days_left_until_closure,
+			status: ele.isLocked === true ? 'lock' : 'unlock',
+		}));
 
 	const filteredItems = [
 		'05-10 days',

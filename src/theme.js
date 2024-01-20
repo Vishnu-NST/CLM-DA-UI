@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createTheme } from '@mui/material/styles';
 const primaryMain = '#C4161C';
 const primaryLight = '#8794C2';
@@ -70,7 +71,7 @@ const theme = createTheme({
 	typography: {
 		fontSize: 16,
 		fontWeight: 400,
-		fontFamily: 'PoppinsReg',
+		fontFamily: 'Poppins, sans-serif',
 	},
 	spacing: (factor) => `${0.25 * factor}rem`, // Custom spacing function,
 });

@@ -88,6 +88,7 @@ const DemandCollection = () => {
 								paddingLeft: '0rem',
 								fontSize: '0.8rem',
 								fontFamily: 'Poppins, sans-serif',
+								textTransform: 'none',
 							}}
 							{...a11yProps(0)}
 						/>
@@ -97,6 +98,7 @@ const DemandCollection = () => {
 								paddingBottom: '0rem',
 								fontSize: '0.8rem',
 								fontFamily: 'Poppins, sans-serif',
+								textTransform: 'none',
 							}}
 							{...a11yProps(1)}
 						/>

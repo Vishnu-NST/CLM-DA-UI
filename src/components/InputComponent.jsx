@@ -47,7 +47,8 @@ const InputComponent = ({
 					'& .MuiOutlinedInput-input': {
 						height: height ? `${height}rem` : '0.1375em',
 						fontSize: 11,
-						background: 'white',
+						background: 'white !important',
+						borderRadius: '8px',
 					},
 					'& .MuiOutlinedInput-notchedOutline': {
 						border: '1px solid rgba(112, 126, 174, 0.5)',
@@ -69,6 +70,14 @@ const InputComponent = ({
 						},
 					'& .MuiFormHelperText-root': {
 						marginLeft: '0.375rem',
+						fontWeight: 400,
+						fontSize: '0.75rem',
+						lineHeight: '1.66',
+						textAlign: 'left',
+						marginTop: '3px',
+						marginRight: '14px',
+						marginBottom: 0,
+						color: '#f44336',
 					},
 				}}
 				InputProps={{
