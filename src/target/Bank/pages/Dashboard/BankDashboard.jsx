@@ -2,6 +2,8 @@ import FullPieChart from '@/components/FullPieChart';
 import GeographyData from '@/components/GeographyData';
 import LineChartComponent from '@/components/LineChart';
 import LoanCyclePieChart from '@/components/LoanCyclePieChart';
+import { useAppState } from '@/store/useAppState';
+
 import { Card, Divider, Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 
@@ -17,6 +19,8 @@ const BankDashboard = () => {
 		fontFamily: 'Poppins',
 		fontWeight: 600,
 	};
+  const app = useAppState();
+	console.log(app);
 	return (
 		<>
 			<Grid container>

@@ -1,8 +1,8 @@
 import { Box, Tab, Tabs, Typography } from '@mui/material';
 import React from 'react';
 
-import User from './components/User';
-import Profile from './components/Profile';
+import User from './components/UserCreation';
+import ProfileCreation from './components/ProfileCreation';
 import { Link } from 'react-router-dom';
 
 function CustomTabPanel(props) {
@@ -91,7 +91,7 @@ const UserManagement = () => {
 						</Tabs>
 					</Box>
 					<CustomTabPanel value={value} index={0}>
-						<Profile />
+						<ProfileCreation />
 					</CustomTabPanel>
 					<CustomTabPanel value={value} index={1}>
 						<User />

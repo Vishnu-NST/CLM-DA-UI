@@ -36,7 +36,7 @@ const SelectComponent = ({
 	};
 
 	const filteredOptions = options?.filter((option) =>
-		option?.label.toLowerCase().includes(searchTerm.toLowerCase()),
+		option?.label?.toString().toLowerCase().includes(searchTerm?.toLowerCase()),
 	);
 
 	return (
@@ -140,7 +140,7 @@ const SelectComponent = ({
 								fontSize: '0.875rem',
 							}}
 						>
-							{capitalizeString(option?.label)}
+							{capitalizeString(option?.label.toString())}
 						</MenuItem>
 					);
 				})}

@@ -55,7 +55,7 @@ export default function UmsTabs() {
 								}}
 								{...a11yProps(0)}
 								component={Link}
-								to="profile"
+								to="profile-detail"
 							/>
 							<Tab
 								label="User Management"
@@ -64,7 +64,7 @@ export default function UmsTabs() {
 								}}
 								{...a11yProps(1)}
 								component={Link}
-								to="mgmt"
+								to="users"
 							/>
 						</Tabs>
 					</Box>

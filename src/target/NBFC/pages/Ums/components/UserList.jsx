@@ -8,7 +8,10 @@ import ForwardArrow from '@/assets/svg/ForwardArrow';
 import { useNavigate } from 'react-router-dom';
 import CustomButton from '@/components/CustomButton';
 import SuccessDltIcon from '@/assets/svg/SuccessDltIcon';
+import useGetUsers from '@/store/useGetUsers';
+
 const UserList = () => {
+	const getUsersQuery = useGetUsers();
 	const navigate = useNavigate();
 	const [openDialog, setOpenDialog] = useState({ open: false });
 	const [confirmDeleteDialog, setConfirmDeleteDialog] = useState(false);
@@ -22,6 +25,7 @@ const UserList = () => {
 		console.log('Delete clicked');
 		setConfirmDeleteDialog(true);
 	};
+
 	const handleResendInvite = () => {
 		console.log('Resend Invite clicked');
 		setOpenDialog({
@@ -59,6 +63,7 @@ const UserList = () => {
 			onButtonClick3: handleCloseDialog,
 		});
 	};
+
 	const customButtonStyle = {
 		borderRadius: '7px',
 		padding: '0.5rem 2.5rem',
@@ -70,7 +75,17 @@ const UserList = () => {
 		},
 		fontWeight: '500',
 	};
+
 	console.log({ openDialog });
+
+	console.log(getUsersQuery.data);
+
+	if (getUsersQuery.isLoading) {
+		return 'Loading ...';
+	}
+
+	console.log(getUsersQuery.data);
+
 	return (
 		<div className="card-block">
 			<div className="loan-pool-form-block">
@@ -79,50 +94,42 @@ const UserList = () => {
 						buttonDisabled={false}
 						customStyle={customButtonStyle}
 						// onClick={handleOpenDialog}
-						onClick={() => navigate('/user-management')}
+						onClick={() =>
+							navigate(
+								`${location.pathname.match(
+									/\/\w+\//,
+								)}panel/ums/user-create`,
+							)
+						}
 					>
 						Add User &nbsp;
 					</CustomButton>
 				</Grid>
 				<Grid container>
-					<ReusableUserCard
-						status="online"
-						onEdit={handleEdit}
-						onDelete={handleDelete}
-						cardIcon={<CardIcon />}
-						name="John Michael"
-						username="johnmichael*****"
-						role="Relationship Manager"
-						roleType="Role"
-						onResendInvite={() => handleResendInvite('addNewUser')}
-						//resendInviteText="Re-send Invite"
-						//forwardArrowIcon={<ForwardArrow />}
-					/>
-					<ReusableUserCard
-						status="offline"
-						onEdit={handleEdit}
-						onDelete={handleDelete}
-						cardIcon={<CardIcon />}
-						name="Vimal Raj"
-						username="vimalraj*****"
-						role="Relationship Manager"
-						roleType="Role"
-						onResendInvite={handleResendInvite}
-						//resendInviteText=""
-						// forwardArrowIcon={<ForwardArrow />}
-					/>
-					<ReusableUserCard
-						status=""
-						onEdit={handleEdit}
-						onDelete={handleDelete}
-						cardIcon={<CardIcon />}
-						name="Sujith Raj"
-						role="Relationship Manager"
-						roleType="Role"
-						onResendInvite={handleResendInvite}
-						resendInviteText="Re-send Invite"
-						forwardArrowIcon={<ForwardArrow />}
-					/>
+					{getUsersQuery.data &&
+						getUsersQuery.data.length > 0 &&
+						getUsersQuery?.data.map((user, idx) => {
+							return (
+								<ReusableUserCard
+									key={idx}
+									status="online"
+									onEdit={handleEdit}
+									onDelete={handleDelete}
+									cardIcon={<CardIcon />}
+									name={`${user.first_name ?? 'FF'} ${
+										user.last_name ?? 'LL'
+									}`}
+									username={`${user.user_name}`}
+									role="Relationship Manager"
+									roleType="Role"
+									onResendInvite={() =>
+										handleResendInvite('addNewUser')
+									}
+									//resendInviteText="Re-send Invite"
+									//forwardArrowIcon={<ForwardArrow />}
+								/>
+							);
+						})}
 				</Grid>
 
 				<ConformationDialogBox
