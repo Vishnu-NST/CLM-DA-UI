@@ -106,3 +106,19 @@ export function formatDate(dateString) {
 
 	return formattedDate;
 }
+
+export function convertIntegersToStrings(obj) {
+	const convertedObj = {};
+
+	for (const key in obj) {
+		if (typeof obj[key] === 'number') {
+			// Convert only if the value is a number
+			convertedObj[key] = obj[key].toString();
+		} else {
+			// Keep the original value for non-numeric properties
+			convertedObj[key] = obj[key];
+		}
+	}
+
+	return convertedObj;
+}

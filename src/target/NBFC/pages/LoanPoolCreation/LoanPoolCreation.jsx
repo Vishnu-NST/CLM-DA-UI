@@ -41,6 +41,8 @@ import useCreatePool from '@/store/useCreatePool';
 import DialogSuccessIcon from '../../../../assets/svg/DialogSuccessIcon';
 import ConformationDialogBox from '@/components/ConformationDialogBox';
 import useCreatePoolFileUpload from '@/store/useCreatePoolFileUpload';
+import { convertIntegersToStrings, formatDate } from '@/utils/common';
+import { useAppState } from '@/store/useAppState';
 
 function CustomTabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -159,6 +161,7 @@ const LoanPoolCreation = () => {
 	const [sftpUploadedFile, setSftpUploadedFile] = React.useState();
 	const params = useParams();
 	const poolCreation = useCreatePool();
+	const { createdPoolId } = useAppState();
 	const [isSuccessDialog, setIsSuccessDialog] = React.useState(false);
 	const [dataIntegrationFormValues, setDataIntegrationFormValues] =
 		React.useState();
@@ -285,13 +288,26 @@ const LoanPoolCreation = () => {
 		console.log({ formik });
 		console.log({ dataIntegrationFormValues });
 		console.log({ sftpUploadedFile });
-		poolCreation.mutate({
-			...formik.values,
-			...dataIntegrationFormValues,
+		const updatedFormikValues = convertIntegersToStrings(formik.values);
+		const updatedDataIntegrationValues = convertIntegersToStrings(
+			dataIntegrationFormValues,
+		);
+		let obj = {
+			...updatedFormikValues,
+			...updatedDataIntegrationValues,
 			upload_csvFile_name: null,
-		});
-		poolFileUpload.mutate({ pool_id: 123, file: sftpUploadedFile });
-		setIsSuccessDialog(true);
+			name: 'string',
+			sftp_frequency: 'string',
+			sftp_no_oftime: 'string',
+			par30: 'string',
+			bank_id: null,
+			expected_closure_date: '2024-01-20',
+		};
+		delete obj.par30Plus;
+		delete obj.par01Plus;
+		poolCreation.mutate(obj);
+		// poolFileUpload.mutate({ pool_id: 123, file: sftpUploadedFile });
+		// setIsSuccessDialog(true);
 	};
 
 	useEffect(() => {
@@ -327,10 +343,27 @@ const LoanPoolCreation = () => {
 		}
 	}, [params.tabValue]);
 
+	console.log({ poolCreation });
+	useEffect(() => {
+		const successData = poolCreation.data;
+		if (successData?.pool_id && sftpUploadedFile) {
+			poolFileUpload.mutate({
+				pool_id: successData?.pool_id,
+				file: sftpUploadedFile,
+			});
+		}
+	}, [poolCreation.data]);
+
+	if (poolFileUpload.isSuccess) {
+		setIsSuccessDialog(true);
+	}
+
 	const handleDialogClose = () => {
 		setIsSuccessDialog(false);
 		navigate('/nbfc/panel/lpc/view');
 	};
+
+	console.log({ sftpUploadedFile });
 
 	return (
 		<>
