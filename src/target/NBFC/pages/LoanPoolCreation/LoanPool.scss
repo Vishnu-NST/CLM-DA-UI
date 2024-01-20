@@ -50,7 +50,6 @@
 }
 .sftp-form-block{
     margin-top: 3rem;
-    width: 70%;
 }
 .upload-txt{
     color: #1B1B1B;
@@ -158,4 +157,10 @@
     color: #8794C2;
     font-weight: 400;
     font-size: 0.8rem;
+}
+.uploaded-txt{
+    margin-left: 1rem;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: flex-start;
 }

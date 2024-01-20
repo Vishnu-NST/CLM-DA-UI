@@ -1,5 +1,3 @@
-import { useFormik } from 'formik';
-import * as yup from 'yup';
 import { Grid } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import {
@@ -24,28 +22,7 @@ const customButtonStyle = {
 	fontWeight: '500',
 };
 
-const validationSchema = yup.object({
-	prodIP: yup.string().required('IP address is required'),
-	prodPort: yup.string().required('Port is required'),
-	uatIP: yup.string().required('IP address is required'),
-	uatPort: yup.string().required('Port is required'),
-});
-
-const APIIntegration = ({ onSubmit }) => {
-	const formik = useFormik({
-		initialValues: {
-			prodIP: '',
-			prodPort: '',
-			uatIP: '',
-			uatPort: '',
-		},
-		validationSchema: validationSchema,
-		onSubmit: async (values) => {
-			console.log({ values });
-			onSubmit();
-		},
-	});
-
+const APIIntegration = ({ apiFormik }) => {
 	return (
 		<>
 			<div className="flex">
@@ -53,31 +30,35 @@ const APIIntegration = ({ onSubmit }) => {
 				&nbsp; &nbsp;
 				<div className="title">Swagger</div>
 			</div>
-			<form onSubmit={formik.handleSubmit}>
+			<form onSubmit={apiFormik.handleSubmit}>
 				<div className="tab-sub-title">Production</div>
 				<div className="flex mb-1">
 					<div className="swagger-title">Swagger Link&nbsp;</div>
-					<div className="swagger-link">DA.Mifix.co.in</div>
+					<div className="swagger-link">
+						{apiFormik.initialValues.api_prod_swagger_link}
+					</div>
 				</div>
 				<Grid container className="pr-5">
 					<Grid item sm={6} className="pr-2">
-						<InputComponent {...prodIPAttributes(formik)} />
+						<InputComponent {...prodIPAttributes(apiFormik)} />
 					</Grid>
 					<Grid item sm={6} className="pr-2">
-						<InputComponent {...prodPortAttributes(formik)} />
+						<InputComponent {...prodPortAttributes(apiFormik)} />
 					</Grid>
 				</Grid>
 				<div className="tab-sub-title">UAT</div>
 				<div className="flex mb-1">
 					<div className="swagger-title">Swagger Link&nbsp;</div>
-					<div className="swagger-link">swagger.DA-UAT.mifix.co.in</div>
+					<div className="swagger-link">
+						{apiFormik.initialValues.api_uat_swagger_link}
+					</div>
 				</div>
 				<Grid container className="pr-5">
 					<Grid item sm={6} className="pr-2">
-						<InputComponent {...uatIPAttributes(formik)} />
+						<InputComponent {...uatIPAttributes(apiFormik)} />
 					</Grid>
 					<Grid item sm={6} className="pr-2">
-						<InputComponent {...uatPortAttributes(formik)} />
+						<InputComponent {...uatPortAttributes(apiFormik)} />
 					</Grid>
 				</Grid>
 				<Grid container className="mt-3">

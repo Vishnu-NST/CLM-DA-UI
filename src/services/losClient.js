@@ -31,6 +31,14 @@ class LOSClient {
 	getViewLoanPoolList() {
 		return axiosInstance.get(this.endpoint).then((res) => res.data);
 	}
+
+	createPool() {
+		return axiosInstance.post(this.endpoint).then((res) => res.data);
+	}
+
+	createPoolFileUpload() {
+		return axiosInstance.post(this.endpoint).then((res) => res.data);
+	}
 }
 
 export default LOSClient;

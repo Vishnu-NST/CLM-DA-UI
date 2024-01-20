@@ -73,6 +73,7 @@ const DemandData = () => {
 								sx={{
 									paddingBottom: '0rem',
 									paddingLeft: '0rem',
+									textTransform: 'none',
 								}}
 								{...a11yProps(0)}
 							/>
@@ -80,6 +81,7 @@ const DemandData = () => {
 								label="API Integration"
 								sx={{
 									paddingBottom: '0rem',
+									textTransform: 'none',
 								}}
 								{...a11yProps(1)}
 							/>
