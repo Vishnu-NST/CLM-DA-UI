@@ -13,8 +13,8 @@ import LoanPoolCreation from '@/target/NBFC/pages/LoanPoolCreation/LoanPoolCreat
 import LoanPoolTimeline from './target/NBFC/pages/LoanPoolTimeline/LoanPoolTimeline';
 import DueDiligence from './target/NBFC/pages/NBFCDueDiligence/DueDiligence';
 import UmsTabs from './target/NBFC/pages/Ums/UmsTabs';
-import Profile from './target/NBFC/pages/Ums/components/Profile';
-import User from './target/NBFC/pages/Ums/components/User';
+import ProfileCreation from './target/NBFC/pages/Ums/components/ProfileCreation';
+import UserCreation from './target/NBFC/pages/Ums/components/UserCreation';
 import AuthRequired from '@/components/AuthRequired';
 import DashboardIcon from '@/assets/svg/DashboardIcon';
 import LoanPoolIcon from '@/assets/svg/LoanPoolIcon';
@@ -42,6 +42,8 @@ import CustomerDetails from './target/Bank/pages/BankDueDiligence/CustomerDetail
 import { BankProspectDetails } from './target/Bank/pages/Pools/BankProspectDetails';
 import Statistics from './target/NBFC/pages/ViewLoanPool/Statistics';
 import { ProspectDetails } from './target/NBFC/pages/ViewLoanPool/ProspectDetails';
+import ProfileDetails from './target/NBFC/pages/Ums/components/ProfileDetails';
+import UserList from './target/NBFC/pages/Ums/components/UserList';
 
 const nbfcPages = [
 	{
@@ -283,8 +285,10 @@ export const routes = [
 				errorElement: <ErrorPage />,
 				children: [
 					// { index: true, element: <Navigate to={'newreport'} /> },
-					{ path: 'profile', element: <Profile /> },
-					{ path: 'mgmt', element: <User /> },
+					{ path: 'profile-create', element: <ProfileCreation /> },
+					{ path: 'profile-detail', element: <ProfileDetails /> },
+					{ path: 'user-create', element: <UserCreation /> },
+					{ path: 'users', element: <UserList /> },
 				],
 			},
 			{

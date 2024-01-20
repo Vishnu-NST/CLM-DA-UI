@@ -38,6 +38,18 @@ class UMSClient {
 	signup(payload) {
 		return axiosInstance.post(this.endpoint, payload).then((res) => res.data);
 	}
+
+	createOrg(payload) {
+		return axiosInstance.post(this.endpoint, payload).then((res) => res.data);
+	}
+
+	post(payload) {
+		return axiosInstance.post(this.endpoint, payload).then((res) => res.data);
+	}
+
+	get(payload) {
+		return axiosInstance.get(this.endpoint, payload).then((res) => res.data);
+	}
 }
 
 export default UMSClient;

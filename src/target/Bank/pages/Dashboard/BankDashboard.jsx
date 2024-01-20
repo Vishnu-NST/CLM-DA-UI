@@ -3,8 +3,11 @@ import CollectivePoolData from '@/components/CollectivePoolData';
 import GeographyData from '@/components/GeographyData';
 import LineChart from '@/components/LineChart';
 import LoanCyclePieChart from '@/components/LoanCyclePieChart';
+import { useAppState } from '@/store/useAppState';
 
 const BankDashboard = () => {
+	const app = useAppState();
+	console.log(app);
 	return (
 		<>
 			<AppBar

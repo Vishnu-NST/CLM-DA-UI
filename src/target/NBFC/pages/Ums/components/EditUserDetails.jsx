@@ -18,7 +18,7 @@ import {
 	mobileNumberAttribute,
 	addressOneAttribute,
 	addressTwoAttribute,
-	stageAttribute,
+	stateAttribute,
 	cityAttribute,
 	pinCodeAttribute,
 } from './formAttributes';
@@ -195,7 +195,7 @@ export const EditUserDetails = () => {
 								<InputComponent {...addressTwoAttribute(formik)} />
 							</Grid>
 							<Grid item sm={4} className="pr-2">
-								<InputComponent {...stageAttribute(formik)} />
+								<InputComponent {...stateAttribute(formik)} />
 							</Grid>
 							<Grid item sm={4} className="pr-2">
 								<InputComponent {...cityAttribute(formik)} />

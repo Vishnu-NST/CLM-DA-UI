@@ -117,18 +117,18 @@ export const addressTwoAttribute = (formik) => {
 		disabled: false,
 	};
 };
-export const stageAttribute = (formik) => {
+export const stateAttribute = (formik) => {
 	return {
-		id: 'stage',
-		name: 'stage',
-		label: <div className="input-label">Stage</div>,
-		placeholder: 'Enter Your stage',
+		id: 'state',
+		name: 'state',
+		label: <div className="input-label">State</div>,
+		placeholder: 'Enter Your state',
 		type: 'text',
-		value: formik.values.stage,
+		value: formik.values.state,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
-		error: formik.touched.stage && Boolean(formik.errors.stage),
-		helperText: formik.touched.stage && formik.errors.stage,
+		error: formik.touched.state && Boolean(formik.errors.state),
+		helperText: formik.touched.state && formik.errors.state,
 		disabled: false,
 	};
 };
@@ -446,45 +446,46 @@ export const ccsScoreAttribute = (formik) => {
 		disabled: false,
 	};
 };
+// export const overviewAttribute = (formik) => {
+// 	return {
+// 		id: 'overview',
+// 		name: 'overview',
+// 		label: (
+// 			<p className="input-label">
+// 				Description<span style={{ color: 'red' }}>*</span>
+// 			</p>
+// 		),
+// 		placeholder: 'Write Something...',
+// 		type: 'text',
+// 		value: formik.values.overview,
+// 		onChange: formik.handleChange,
+// 		// disabled: false,
+// 		multiline: true,
+// 		rows: 4,
+// 	};
+// };
+
 export const overviewAttribute = (formik) => {
 	return {
 		id: 'overview',
 		name: 'overview',
-		// label: (
-		//   <p className="input-label">
-		// 	Description<span style={{ color: "red" }}>*</span>
-		//   </p>
-		// ),
-		placeholder: 'Write Something...',
+		label: (
+			<div className="input-label">
+				Overview (200 words limit)<span style={{ color: 'red' }}>*</span>
+			</div>
+		),
+		placeholder: 'Enter overview about your NBFC',
 		type: 'text',
+		rows: 5,
 		value: formik.values.overview,
 		onChange: formik.handleChange,
+		onBlur: formik.handleBlur,
+		error: formik.touched.overview && Boolean(formik.errors.overview),
+		helperText: formik.touched.overview && formik.errors.overview,
 		disabled: false,
-		multiline: true,
-		rows: 4,
 	};
 };
 
-// export const overviewAttribute = (formik) => {
-//   return {
-//     id: "overview",
-//     name: "overview",
-//     label: (
-//       <div className="input-label">
-//         Overview (200 words limit)<span style={{ color: "red" }}>*</span>
-//       </div>
-//     ),
-//     placeholder: "Enter overview about your NBFC",
-//     type: "text",
-//     rows: 5,
-//     value: formik.values.overview,
-//     onChange: formik.handleChange,
-//     onBlur: formik.handleBlur,
-//     error: formik.touched.overview && Boolean(formik.errors.overview),
-//     helperText: formik.touched.overview && formik.errors.overview,
-//     disabled: false,
-//   };
-// };
 export const nbfcaddressOneAttribute = (formik) => {
 	return {
 		id: 'nbfcaddressOne',
