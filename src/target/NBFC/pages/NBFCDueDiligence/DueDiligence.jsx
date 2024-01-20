@@ -87,7 +87,7 @@ const DueDiligence = () => {
 	return (
 		<>
 			<HeaderComp
-				title={'Due Diligence'}
+				title={'Due Diligence Queries'}
 				breadCrumbs={[{ data: 'Due Diligence Queries', path: null }]}
 			/>
 			<div className="due-diligence-block">

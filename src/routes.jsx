@@ -19,7 +19,7 @@ import AuthRequired from '@/components/AuthRequired';
 import DashboardIcon from '@/assets/svg/DashboardIcon';
 import LoanPoolIcon from '@/assets/svg/LoanPoolIcon';
 import DueDeligenceIcon from '@/assets/svg/DueDeligenceIcon';
-import CurrencyExchangeIcon from '@/assets/svg/CurrencyExchangeIcon';
+// import CurrencyExchangeIcon from '@/assets/svg/CurrencyExchangeIcon';
 import PoolStatusIcon from '@/assets/svg/PoolStatusIcon';
 import PoolListIcon from '@/assets/svg/PoolListIcon';
 import DemandCollectionIcon from '@/assets/svg/DemandCollectionIcon';
@@ -103,34 +103,7 @@ const bankPages = [
 			<DashboardIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
 	},
-	{
-		text: 'Due Diligence',
-		to: 'dd',
-		icon: (isSelected) => (
-			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
-		),
-	},
-	{
-		text: 'Transaction',
-		to: 'queries',
-		icon: (isSelected) => (
-			<CurrencyExchangeIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
-		),
-	},
-	{
-		text: 'Reports',
-		to: 'reports',
-		icon: (isSelected) => (
-			<ReportIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
-		),
-	},
-	{
-		text: 'Portfolio Monitoring',
-		to: 'loan-pool-monitoring',
-		icon: (isSelected) => (
-			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
-		),
-	},
+
 	{
 		text: 'Select Product',
 		to: 'product',
@@ -143,6 +116,34 @@ const bankPages = [
 		to: 'pool',
 		icon: (isSelected) => (
 			<PoolListIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Due Diligence',
+		to: 'dd',
+		icon: (isSelected) => (
+			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	// {
+	// 	text: 'Transaction',
+	// 	to: 'queries',
+	// 	icon: (isSelected) => (
+	// 		<CurrencyExchangeIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+	// 	),
+	// },
+	{
+		text: 'Reports',
+		to: 'reports',
+		icon: (isSelected) => (
+			<ReportIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Portfolio Monitoring',
+		to: 'loan-pool-monitoring',
+		icon: (isSelected) => (
+			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
 	},
 ];
