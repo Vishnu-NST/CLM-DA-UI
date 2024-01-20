@@ -7,24 +7,10 @@ import {
 	TableRow,
 } from '@mui/material';
 import UserIcon from '../../../../assets/svg/UserIcon';
-import ErrorIcon from '../../../../assets/svg/ErrorIcon';
-import SuccessImg from '../../../../assets/svg/SuccessImg';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { getCreditRatingColor } from '@/utils/common';
 
-function createData(poolName, customerCount, isKYC, isLoan, isOther) {
-	return { poolName, customerCount, isKYC, isLoan, isOther };
-}
-
-const rows = [
-	createData('MUTH-JLG April 23-1', 129, false, true, true),
-	createData('TATA-JLG April 23-1', 149, false, true, false),
-	createData('JL-JLG April 23-1', 130, false, true, true),
-	createData('TATA-JLG April 23-1', 159, true, false, true),
-	createData('KA-JLG April 23-1', 127, false, true, false),
-	createData('BRUEA-JLG April 23-1', 100, true, true, false),
-];
-
-const PoolQueryList = ({ onCheckQueryClick }) => {
+const PoolQueryList = ({ poolData, onCheckQueryClick }) => {
 	return (
 		<div className="">
 			<TableContainer>
@@ -50,7 +36,7 @@ const PoolQueryList = ({ onCheckQueryClick }) => {
 								sx={{
 									color: '#8794C2',
 								}}
-								align="right"
+								align="center"
 							>
 								Customers
 							</TableCell>
@@ -58,25 +44,25 @@ const PoolQueryList = ({ onCheckQueryClick }) => {
 								sx={{
 									color: '#8794C2',
 								}}
-								align="right"
+								align="center"
 							>
-								KYC docs
+								AUM
 							</TableCell>
 							<TableCell
 								sx={{
 									color: '#8794C2',
 								}}
-								align="right"
+								align="center"
 							>
-								Loan docs
+								Credit Ratings
 							</TableCell>
 							<TableCell
 								sx={{
 									color: '#8794C2',
 								}}
-								align="right"
+								align="center"
 							>
-								Other docs
+								Average IRR
 							</TableCell>
 							<TableCell
 								sx={{
@@ -89,57 +75,53 @@ const PoolQueryList = ({ onCheckQueryClick }) => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{rows.map((row, idx) => (
-							<TableRow
-								key={idx}
+						<TableRow
+							sx={{
+								'&:last-child td, &:last-child th': {
+									border: 0,
+								},
+								'.MuiTableCell-root': {
+									fontSize: '0.875rem',
+								},
+							}}
+						>
+							<TableCell component="th" scope="row">
+								{poolData.pool_name}
+							</TableCell>
+							<TableCell align="center" className="flex-center">
+								{poolData?.customers}
+								&nbsp;
+								<UserIcon />
+							</TableCell>
+							<TableCell align="center">₹{poolData?.aum}cr</TableCell>
+							<TableCell
+								align="center"
 								sx={{
-									'&:last-child td, &:last-child th': {
-										border: 0,
-									},
-									'.MuiTableCell-root': {
-										fontSize: '0.875rem',
-									},
+									color: getCreditRatingColor(
+										poolData?.credit_rating,
+									),
 								}}
 							>
-								<TableCell component="th" scope="row">
-									{row.poolName}
-								</TableCell>
-								<TableCell
-									align="center"
-									className="flex-center"
-									sx={{
-										display: 'table-cell !important',
-									}}
-								>
-									{row.customerCount}
-									&nbsp;
-									<UserIcon />
-								</TableCell>
-								<TableCell align="center">
-									{row.isKYC ? <SuccessImg /> : <ErrorIcon />}
-								</TableCell>
-								<TableCell align="center">
-									{row.isLoan ? <SuccessImg /> : <ErrorIcon />}
-								</TableCell>
-								<TableCell align="center">
-									{row.isOther ? <SuccessImg /> : <ErrorIcon />}
-								</TableCell>
-								<TableCell
-									align="center"
-									className="check-query-txt flex-center"
-									sx={{
-										display: 'table-cell !important',
-										cursor: 'pointer',
-									}}
-									onClick={() => onCheckQueryClick()}
-								>
-									<div className="flex-center">
-										Check query &nbsp;
-										<ArrowForwardIosIcon fontSize="11" />
-									</div>
-								</TableCell>
-							</TableRow>
-						))}
+								{poolData?.credit_rating}
+							</TableCell>
+							<TableCell align="center">
+								{poolData?.average_irr}
+							</TableCell>
+							<TableCell
+								align="center"
+								className="check-query-txt flex-center"
+								sx={{
+									display: 'table-cell !important',
+									cursor: 'pointer',
+								}}
+								onClick={() => onCheckQueryClick()}
+							>
+								<div className="flex-center">
+									Check query &nbsp;
+									<ArrowForwardIosIcon fontSize="11" />
+								</div>
+							</TableCell>
+						</TableRow>
 					</TableBody>
 				</Table>
 			</TableContainer>

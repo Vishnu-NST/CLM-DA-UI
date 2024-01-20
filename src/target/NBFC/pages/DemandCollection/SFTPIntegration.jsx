@@ -91,7 +91,6 @@ const SFTPIntegration = ({ tabValue }) => {
 	const handleDrop = (event) => {
 		event.preventDefault();
 		const droppedFile = event.dataTransfer.files[0];
-		console.log({ droppedFile });
 		setExcel(droppedFile);
 	};
 
@@ -101,7 +100,6 @@ const SFTPIntegration = ({ tabValue }) => {
 
 	const handleExcelSelect = async (event) => {
 		const file = event.target.files[0];
-		console.log({ file });
 		if (tabValue === 'Demand') {
 			demandUpload.mutate(file);
 		} else if (tabValue === 'Collection') {

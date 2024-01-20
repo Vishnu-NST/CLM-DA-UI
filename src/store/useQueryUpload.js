@@ -1,14 +1,14 @@
 import { useMutation } from '@tanstack/react-query';
 import LOSClient from '@/services/losClient';
 
-const useCreatePoolFileUpload = () => {
-	const losClient = new LOSClient('/pool/createpool-fileupload/');
+const useDdQueryFileUpload = () => {
+	const losClient = new LOSClient('/query/upload');
 
 	return useMutation({
 		mutationFn: (data) => {
 			let formData = new FormData();
 			formData.append('file', data?.file);
-			formData.append('pool_id', data?.pool_id);
+			formData.append('query_id', data?.query_id);
 			return losClient.createPoolFileUpload(formData);
 		},
 		onSuccess: (data) => {
@@ -20,4 +20,4 @@ const useCreatePoolFileUpload = () => {
 	});
 };
 
-export default useCreatePoolFileUpload;
+export default useDdQueryFileUpload;

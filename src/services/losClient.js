@@ -45,6 +45,14 @@ class LOSClient {
 			})
 			.then((res) => res.data);
 	}
+
+	getQueryList() {
+		return axiosInstance.get(this.endpoint).then((res) => res.data);
+	}
+
+	getQueryDetail() {
+		return axiosInstance.get(this.endpoint).then((res) => res.data);
+	}
 }
 
 export default LOSClient;

@@ -128,7 +128,6 @@ const ProductList = () => {
 		type: 'text',
 		value: poolName,
 		onChange: (event) => {
-			console.log({ event });
 			setPoolName(event.target.value);
 		},
 		onkeydown: (evt) => {

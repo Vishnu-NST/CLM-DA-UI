@@ -6,7 +6,6 @@ const useDemandUpload = () => {
 
 	return useMutation({
 		mutationFn: (data) => {
-			console.log({ data }, 'uploading');
 			let formData = new FormData();
 			formData.append('file', data);
 			return demandClient.uploadDemandFile(formData);
