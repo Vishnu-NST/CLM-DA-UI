@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_LOS_BASE_URL
-})
+	baseURL: import.meta.env.VITE_LOS_BASE_URL,
+});
 
 axiosInstance.interceptors.request.use(
 	(config) => {
@@ -27,6 +27,10 @@ class LOSClient {
 	constructor(endpoint) {
 		this.endpoint = endpoint;
 	}
+
+	getViewLoanPoolList() {
+		return axiosInstance.get(this.endpoint).then((res) => res.data);
+	}
 }
 
-export default LOSClient
+export default LOSClient;

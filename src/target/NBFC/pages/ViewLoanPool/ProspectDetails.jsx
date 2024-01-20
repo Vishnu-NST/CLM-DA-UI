@@ -237,7 +237,7 @@ export const ProspectDetails = () => {
 							padding: '1.875rem',
 							borderRadius: '1.25rem',
 							backgroundColor: '#F8F9FB',
-							height: '9rem',
+							height: '11.5rem',
 							border: '1px solid rgba(135, 148, 194, 0.20)',
 						}}
 					>
@@ -507,7 +507,7 @@ export const ProspectDetails = () => {
 									padding: '1.875rem',
 									borderRadius: '1.25rem',
 									backgroundColor: '#F8F9FB',
-									height: '18rem',
+									height: '22rem',
 									border: '1px solid rgba(135, 148, 194, 0.20)',
 								}}
 							>
@@ -597,7 +597,7 @@ export const ProspectDetails = () => {
 									padding: '1.875rem',
 									borderRadius: '1.25rem',
 									backgroundColor: '#F8F9FB',
-									height: '18rem',
+									height: '22rem',
 									border: '1px solid rgba(135, 148, 194, 0.20)',
 								}}
 							>
