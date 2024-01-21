@@ -11,8 +11,14 @@ import {
 } from '@mui/material';
 import TargetAmount from '@/assets/svg/TargetAmount';
 import CollectedAmount from '@/assets/svg/CollectedAmount';
+import useGetOverallLoanPoolSummary from '@/store/useGetOverallLoanPoolSummary';
 
 export default function SummaryAccordion() {
+
+	const summary = useGetOverallLoanPoolSummary();
+	
+	const summaryData = summary?.data?.data;
+	
 	return (
 		<Accordion
 			elevation={0}
@@ -21,6 +27,7 @@ export default function SummaryAccordion() {
 				borderRadius: '0px',
 				width: '97%',
 			}}
+			defaultExpanded
 		>
 			<AccordionSummary
 				expandIcon={<ExpandMoreIcon sx={{ color: '#8794C2' }} />}
@@ -102,7 +109,7 @@ export default function SummaryAccordion() {
 												color: '#000000',
 											}}
 										>
-											₹ 88,620
+											₹ {summaryData?.overall?.collected.toLocaleString("en-IN")}
 										</Typography>
 									</Card>
 								</Grid>
@@ -149,7 +156,7 @@ export default function SummaryAccordion() {
 												color: '#000000',
 											}}
 										>
-											₹ 28,620
+											₹ {summaryData?.overall?.target.toLocaleString("en-IN")}
 										</Typography>
 									</Card>
 								</Grid>
@@ -240,7 +247,7 @@ export default function SummaryAccordion() {
 												color: '#000000',
 											}}
 										>
-											₹ 88,620
+											₹ {summaryData?.regular?.target.toLocaleString("en-IN")}
 										</Typography>
 									</Card>
 								</Grid>
@@ -287,7 +294,7 @@ export default function SummaryAccordion() {
 												color: '#000000',
 											}}
 										>
-											₹ 28,620
+											₹ {summaryData?.regular?.collected.toLocaleString("en-IN")}
 										</Typography>
 									</Card>
 								</Grid>
@@ -378,7 +385,7 @@ export default function SummaryAccordion() {
 												color: '#000000',
 											}}
 										>
-											₹ 88,620
+											₹ {summaryData?.sma?.target.toLocaleString("en-IN")}
 										</Typography>
 									</Card>
 								</Grid>
@@ -425,7 +432,7 @@ export default function SummaryAccordion() {
 												color: '#000000',
 											}}
 										>
-											₹ 28,620
+											₹ {summaryData?.sma?.collected.toLocaleString("en-IN")}
 										</Typography>
 									</Card>
 								</Grid>
@@ -516,7 +523,7 @@ export default function SummaryAccordion() {
 												color: '#000000',
 											}}
 										>
-											₹ 88,620
+											₹ {summaryData?.npa?.target.toLocaleString("en-IN")}
 										</Typography>
 									</Card>
 								</Grid>
@@ -563,7 +570,7 @@ export default function SummaryAccordion() {
 												color: '#000000',
 											}}
 										>
-											₹ 28,620
+											₹ {summaryData?.npa?.collected.toLocaleString("en-IN")}
 										</Typography>
 									</Card>
 								</Grid>

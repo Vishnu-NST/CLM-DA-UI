@@ -42,6 +42,7 @@ import CustomerDetails from './target/Bank/pages/BankDueDiligence/CustomerDetail
 import { BankProspectDetails } from './target/Bank/pages/Pools/BankProspectDetails';
 import Statistics from './target/NBFC/pages/ViewLoanPool/Statistics';
 import { ProspectDetails } from './target/NBFC/pages/ViewLoanPool/ProspectDetails';
+import CustomerList from './target/Bank/pages/PortfolioMonitoring/CustomerList';
 
 const nbfcPages = [
 	{
@@ -381,6 +382,14 @@ export const routes = [
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'loan-pool-monitoring/:poolId',
+				element: (
+					<Suspense fallback={'Loading...'}>
+						<CustomerList />
+					</Suspense>
+				),
 			},
 			{
 				path: 'reports',

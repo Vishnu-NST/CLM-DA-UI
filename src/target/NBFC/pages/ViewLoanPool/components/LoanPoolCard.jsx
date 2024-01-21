@@ -27,6 +27,21 @@ const LoanPoolCard = () => {
 		setLoanPoolId(payload);
 	};
 
+	const customButtonStyle = {
+		width:"15rem",
+		mt:4,
+		mr:5,
+		borderRadius: '7px',
+		padding: '0.5rem 2.5rem',
+		color: '#FFFFFF',
+		backgroundColor: '#C4161C',
+		'&:hover': {
+			color: '#FFFFFF',
+			backgroundColor: '#C4161C',
+		},
+		fontWeight: '500',
+	};
+
 	const styles = {
 		lightCardardStyle: {
 			background: '#FFFFFF',
@@ -230,19 +245,20 @@ const LoanPoolCard = () => {
 					bottom: 0,
 					left: '50%',
 					transform: 'translateX(-50%)',
-					width: '74rem',
+					width: '72rem',
 					height: '4.5rem',
 					borderTopRightRadius: '0.9375rem',
 					borderTopLeftRadius: '0.9375rem',
 					backgroundColor: 'white',
 					borderTop: '1px solid #ddd', // Add a border if needed
+					ml: 9.5,
 				}}
 				align="right"
 			>
 				<CustomButton
-					sx={{ mt: 2, mr: 2 }}
-					variant="contained"
-					color="error"
+					buttonType={'submit'}
+					buttonDisabled={false}
+					customStyle={customButtonStyle}
 				>
 					Push to the Bank &gt;
 				</CustomButton>
