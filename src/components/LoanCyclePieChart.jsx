@@ -12,6 +12,7 @@ const LoanCyclePieChart = () => {
 	const LegendCls = {
 		fontColor: '#8794C2',
 		fontSize: '0.75rem',
+		marginTop: '-5px',
 	};
 	return (
 		<Grid item xs={4} minWidth="100%">

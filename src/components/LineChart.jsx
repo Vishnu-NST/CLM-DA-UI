@@ -1,6 +1,6 @@
 import { LineChart, Line, XAxis, YAxis, Legend } from 'recharts';
 
-const LineChartComponent = () => {
+const LineChartComponent = (props) => {
 	const data = [
 		{ name: 'SEP', 'Recent AUM': 30, 'Past AUM': 20 },
 		{ name: 'OCT', 'Recent AUM': 35, 'Past AUM': 25 },
@@ -77,27 +77,29 @@ const LineChartComponent = () => {
 					strokeWidth={3}
 					dot={false}
 				/>
-				<Legend
-					align="left"
-					verticalAlign="middle"
-					layout="vertical"
-					formatter={(value) => (
-						<span style={{ fontSize: '0.75rem' }}>{value}</span>
-					)}
-					payload={[
-						{
-							value: 'Recent AUM',
-							type: 'circle',
-							color: '#00B85E',
-						},
-						{
-							value: 'Past AUM',
-							type: 'circle',
-							rotation: '90deg',
-							color: '#8794C2',
-						},
-					]}
-				/>
+				{props.showLegend && (
+					<Legend
+						align="left"
+						verticalAlign="middle"
+						layout="vertical"
+						formatter={(value) => (
+							<span style={{ fontSize: '0.75rem' }}>{value}</span>
+						)}
+						payload={[
+							{
+								value: 'Recent AUM',
+								type: 'circle',
+								color: '#00B85E',
+							},
+							{
+								value: 'Past AUM',
+								type: 'circle',
+								rotation: '90deg',
+								color: '#8794C2',
+							},
+						]}
+					/>
+				)}
 			</LineChart>
 		</>
 	);
