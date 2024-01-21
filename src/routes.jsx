@@ -26,7 +26,7 @@ import DemandCollectionIcon from '@/assets/svg/DemandCollectionIcon';
 import ReportIcon from '@/assets/svg/ReportIcon';
 import SelectProductIcon from '@/assets/svg/SelectProductIcon';
 import BankDueDiligence from './target/Bank/pages/BankDueDiligence/BankDueDiligence';
-import BankDashboard from './target/Bank/pages/Dashboard/BankDashboard';
+import BankDashboard from './target/Bank/pages/Dashboard/Dashboard';
 import ProductList from './target/Bank/pages/Product/ProductList';
 import SelectProduct from './target/Bank/pages/Product/SelectProduct';
 import PoolList from './target/Bank/pages/Pools/PoolList';
