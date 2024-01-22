@@ -42,6 +42,7 @@ import CustomerDetails from './target/Bank/pages/BankDueDiligence/CustomerDetail
 import { BankProspectDetails } from './target/Bank/pages/Pools/BankProspectDetails';
 import Statistics from './target/NBFC/pages/ViewLoanPool/Statistics';
 import { ProspectDetails } from './target/NBFC/pages/ViewLoanPool/ProspectDetails';
+import CustomerList from './target/Bank/pages/PortfolioMonitoring/CustomerList';
 import CustomerVerification from './target/Bank/pages/BankDueDiligence/CustomerVerification';
 import Query from './target/Bank/pages/BankDueDiligence/Query';
 import ProfileDetails from './target/NBFC/pages/Ums/components/ProfileDetails';
@@ -189,9 +190,9 @@ export const routes = [
 		path: '/nbfc/panel/*',
 		element: (
 			// <Suspense>
-			<AuthRequired>
-				<BaseLayout pages={nbfcPages} />
-			</AuthRequired>
+			// <AuthRequired>
+			<BaseLayout pages={nbfcPages} />
+			// </AuthRequired>
 			// </Suspense>
 		),
 		errorElement: <ErrorPage />,
@@ -224,7 +225,7 @@ export const routes = [
 				errorElement: <ErrorPage />,
 			},
 			{
-				path: 'prospect-details',
+				path: 'prospect-details/:customerId/:poolId',
 				element: (
 					<Suspense fallback={'Loading ...'}>
 						<ProspectDetails />
@@ -269,7 +270,7 @@ export const routes = [
 				errorElement: <ErrorPage />,
 			},
 			{
-				path: 'customer-details',
+				path: 'customer-details/:poolId',
 				element: (
 					<Suspense fallback={'Loading ...'}>
 						<LoanPoolCustomerDetails />
@@ -310,9 +311,9 @@ export const routes = [
 		path: '/bank/panel/*',
 		element: (
 			<Suspense>
-				<AuthRequired>
-					<BaseLayout pages={bankPages} />
-				</AuthRequired>
+				{/* <AuthRequired> */}
+				<BaseLayout pages={bankPages} />
+				{/* </AuthRequired> */}
 			</Suspense>
 		),
 		errorElement: <ErrorPage />,
@@ -407,6 +408,14 @@ export const routes = [
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'loan-pool-monitoring/:poolId',
+				element: (
+					<Suspense fallback={'Loading...'}>
+						<CustomerList />
+					</Suspense>
+				),
 			},
 			{
 				path: 'reports',

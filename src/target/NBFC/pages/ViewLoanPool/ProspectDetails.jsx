@@ -13,6 +13,7 @@ import {
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import ProfilePicture from '@/assets/svg/ProspectDummy.png';
 import HeaderComp from '@/components/HeaderComponent';
+import useGetLoanPoolProspectDetails from '@/store/useGetLoanPoolProspectDetails';
 
 const breadCrumbs = [
 	{
@@ -36,10 +37,26 @@ const breadCrumbs = [
 		path: null,
 	},
 ];
+
 export const ProspectDetails = () => {
+	console.log('called');
+	const dataQuery = useGetLoanPoolProspectDetails();
+
+	console.log(dataQuery.data);
+
+	if (dataQuery.isError) {
+		//
+	}
+
+	let prospectDetails;
+
+	if (dataQuery.isSuccess) {
+		prospectDetails = dataQuery.data[0];
+	}
+
 	return (
 		<>
-			<HeaderComp title={'Manish Easwar'} breadCrumbs={breadCrumbs} />
+			<HeaderComp title={'XYZ_123'} breadCrumbs={breadCrumbs} />
 			<div style={{ margin: '1rem' }}>
 				<div
 					style={{
@@ -57,6 +74,7 @@ export const ProspectDetails = () => {
 							borderRadius: '1.25rem',
 							backgroundColor: '#F8F9FB',
 							border: '1px solid rgba(135, 148, 194, 0.20)',
+							height: 'auto',
 						}}
 					>
 						<Grid container>
@@ -82,7 +100,7 @@ export const ProspectDetails = () => {
 												mb: 3,
 											}}
 										>
-											Manish Easwar A
+											{prospectDetails?.name}
 										</Typography>
 									</Grid>
 									<Grid item xs={3.5}>
@@ -106,7 +124,7 @@ export const ProspectDetails = () => {
 													mt: 1,
 												}}
 											>
-												139700305
+												{prospectDetails?.customer_id}
 											</Typography>
 											<Typography
 												sx={{
@@ -144,7 +162,9 @@ export const ProspectDetails = () => {
 													mt: 1,
 												}}
 											>
-												18277700047693
+												{
+													prospectDetails?.loan_account_number
+												}
 											</Typography>
 											<Typography
 												sx={{
@@ -173,7 +193,7 @@ export const ProspectDetails = () => {
 							padding: '1.875rem',
 							borderRadius: '1.25rem',
 							backgroundColor: '#F8F9FB',
-							height: '9rem',
+							height: 'auto',
 							border: '1px solid rgba(135, 148, 194, 0.20)',
 						}}
 					>
@@ -237,7 +257,7 @@ export const ProspectDetails = () => {
 							padding: '1.875rem',
 							borderRadius: '1.25rem',
 							backgroundColor: '#F8F9FB',
-							height: '11.5rem',
+							height: 'auto',
 							border: '1px solid rgba(135, 148, 194, 0.20)',
 						}}
 					>
@@ -262,7 +282,9 @@ export const ProspectDetails = () => {
 										fontWeight: 500,
 									}}
 								>
-									26/10/1980
+									{new Date(
+										prospectDetails?.dob,
+									).toLocaleDateString()}
 								</Typography>
 								<Typography
 									sx={{
@@ -284,7 +306,7 @@ export const ProspectDetails = () => {
 										fontWeight: 500,
 									}}
 								>
-									ATFE34M53
+									{prospectDetails?.pan_no}
 								</Typography>
 								<Typography
 									sx={{
@@ -306,7 +328,7 @@ export const ProspectDetails = () => {
 										fontWeight: 500,
 									}}
 								>
-									43 years
+									{prospectDetails?.age}
 								</Typography>
 								<Typography
 									sx={{
@@ -328,7 +350,7 @@ export const ProspectDetails = () => {
 										fontWeight: 500,
 									}}
 								>
-									12th
+									{prospectDetails?.educational_qualification}
 								</Typography>
 								<Typography
 									sx={{
@@ -350,7 +372,7 @@ export const ProspectDetails = () => {
 										fontWeight: 500,
 									}}
 								>
-									Female
+									{prospectDetails?.gender}
 								</Typography>
 								<Typography
 									sx={{
@@ -372,7 +394,7 @@ export const ProspectDetails = () => {
 										fontWeight: 500,
 									}}
 								>
-									Married
+									{prospectDetails?.marital_status}
 								</Typography>
 								<Typography
 									sx={{
@@ -394,7 +416,7 @@ export const ProspectDetails = () => {
 										fontWeight: 500,
 									}}
 								>
-									Swamy Nayaka
+									{prospectDetails?.father_name}
 								</Typography>
 								<Typography
 									sx={{
@@ -416,7 +438,7 @@ export const ProspectDetails = () => {
 										fontWeight: 500,
 									}}
 								>
-									Manjula
+									{prospectDetails?.mother_name}
 								</Typography>
 								<Typography
 									sx={{
@@ -438,7 +460,7 @@ export const ProspectDetails = () => {
 										fontWeight: 500,
 									}}
 								>
-									Siddu
+									{prospectDetails?.spouse_name}
 								</Typography>
 								<Typography
 									sx={{
@@ -460,7 +482,7 @@ export const ProspectDetails = () => {
 										fontWeight: 500,
 									}}
 								>
-									Self-Employed
+									{prospectDetails?.profession}
 								</Typography>
 								<Typography
 									sx={{
@@ -482,7 +504,7 @@ export const ProspectDetails = () => {
 										fontWeight: 500,
 									}}
 								>
-									₹ 2 LPA
+									{prospectDetails?.annual_income}
 								</Typography>
 								<Typography
 									sx={{
@@ -507,7 +529,7 @@ export const ProspectDetails = () => {
 									padding: '1.875rem',
 									borderRadius: '1.25rem',
 									backgroundColor: '#F8F9FB',
-									height: '22rem',
+									height: 'auto',
 									border: '1px solid rgba(135, 148, 194, 0.20)',
 								}}
 							>
@@ -530,7 +552,7 @@ export const ProspectDetails = () => {
 										fontWeight: 500,
 									}}
 								>
-									8495859885
+									{prospectDetails?.mobile_number}
 								</Typography>
 								<Typography
 									sx={{
@@ -551,8 +573,7 @@ export const ProspectDetails = () => {
 										fontWeight: 500,
 									}}
 								>
-									326.Ragigudda slum J P Nagar, 2nd phase Bangalore
-									South .Bangalore Bangalore. Karnataka. 560078
+									{prospectDetails?.kyc_address}
 								</Typography>
 								<Typography
 									sx={{
@@ -573,8 +594,7 @@ export const ProspectDetails = () => {
 										fontWeight: 500,
 									}}
 								>
-									326.Ragigudda slum J P Nagar, 2nd phase Bangalore
-									South .Bangalore Bangalore. Karnataka. 560078
+									{prospectDetails?.communication_address}
 								</Typography>
 								<Typography
 									sx={{
@@ -597,7 +617,7 @@ export const ProspectDetails = () => {
 									padding: '1.875rem',
 									borderRadius: '1.25rem',
 									backgroundColor: '#F8F9FB',
-									height: '22rem',
+									height: 'auto',
 									border: '1px solid rgba(135, 148, 194, 0.20)',
 								}}
 							>
@@ -622,7 +642,7 @@ export const ProspectDetails = () => {
 												fontWeight: 500,
 											}}
 										>
-											JLG
+											{prospectDetails?.product_name}
 										</Typography>
 										<Typography
 											sx={{
@@ -644,7 +664,9 @@ export const ProspectDetails = () => {
 												fontWeight: 500,
 											}}
 										>
-											04-08-2022 14:39:25
+											{new Date(
+												prospectDetails?.loan_disbursement_date,
+											).toLocaleDateString()}
 										</Typography>
 										<Typography
 											sx={{
@@ -654,7 +676,8 @@ export const ProspectDetails = () => {
 												fontWeight: 400,
 											}}
 										>
-											Disbursement Date & Time
+											Disbursement Date
+											{/* & Time */}
 										</Typography>
 									</Grid>
 									<Grid item xs={3}>
@@ -666,7 +689,9 @@ export const ProspectDetails = () => {
 												fontWeight: 500,
 											}}
 										>
-											₹ 39158
+											{
+												prospectDetails?.disbursement_loan_amount
+											}
 										</Typography>
 										<Typography
 											sx={{
@@ -688,7 +713,7 @@ export const ProspectDetails = () => {
 												fontWeight: 500,
 											}}
 										>
-											24 Months
+											{prospectDetails?.tenor} Months
 										</Typography>
 										<Typography
 											sx={{
@@ -710,7 +735,7 @@ export const ProspectDetails = () => {
 												fontWeight: 500,
 											}}
 										>
-											15 Months
+											{prospectDetails?.balance_tenor} Months
 										</Typography>
 										<Typography
 											sx={{
@@ -732,7 +757,7 @@ export const ProspectDetails = () => {
 												fontWeight: 500,
 											}}
 										>
-											26%
+											{prospectDetails?.interest_rate}%
 										</Typography>
 										<Typography
 											sx={{
@@ -754,7 +779,7 @@ export const ProspectDetails = () => {
 												fontWeight: 500,
 											}}
 										>
-											01-02-2023
+											{prospectDetails?.loan_due_date}
 										</Typography>
 										<Typography
 											sx={{
@@ -776,7 +801,7 @@ export const ProspectDetails = () => {
 												fontWeight: 500,
 											}}
 										>
-											Full payment done
+											{prospectDetails?.outstanding_amount}
 										</Typography>
 										<Typography
 											sx={{
@@ -938,7 +963,7 @@ export const ProspectDetails = () => {
 													color: '#1B1B1B',
 												}}
 											>
-												Manish Easwar
+												{prospectDetails?.family_name}
 											</Typography>
 										</TableCell>
 										<TableCell align="left">
@@ -951,7 +976,7 @@ export const ProspectDetails = () => {
 													color: '#1B1B1B',
 												}}
 											>
-												01-01-1979
+												{prospectDetails?.family_dob}
 											</Typography>
 										</TableCell>
 										<TableCell align="left">
@@ -964,7 +989,7 @@ export const ProspectDetails = () => {
 													color: '#1B1B1B',
 												}}
 											>
-												44
+												{prospectDetails?.family_age}
 											</Typography>
 										</TableCell>
 										<TableCell align="left">
@@ -977,7 +1002,7 @@ export const ProspectDetails = () => {
 													color: '#1B1B1B',
 												}}
 											>
-												Male
+												{prospectDetails?.family_gender}
 											</Typography>
 										</TableCell>
 										<TableCell align="left">
@@ -990,7 +1015,7 @@ export const ProspectDetails = () => {
 													color: '#1B1B1B',
 												}}
 											>
-												Spouse
+												{prospectDetails?.family_relation}
 											</Typography>
 										</TableCell>
 										<TableCell align="left">
@@ -1003,193 +1028,9 @@ export const ProspectDetails = () => {
 													color: '#1B1B1B',
 												}}
 											>
-												₹ 2 LPA
-											</Typography>
-										</TableCell>
-									</TableRow>
-									<TableRow>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												2
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												Esaineshhvara
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												01-01-1979
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												44
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												Male
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												Spouse
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												₹ 2 LPA
-											</Typography>
-										</TableCell>
-									</TableRow>
-									<TableRow>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												3
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												Anantha Krishnan
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												01-01-1979
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												44
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												Male
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												Spouse
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												₹ 2 LPA
+												{
+													prospectDetails?.family_annual_income
+												}
 											</Typography>
 										</TableCell>
 									</TableRow>
@@ -1329,7 +1170,7 @@ export const ProspectDetails = () => {
 													color: '#1B1B1B',
 												}}
 											>
-												Dec 2022
+												{prospectDetails?.repayment_month}
 											</Typography>
 										</TableCell>
 										<TableCell align="left">
@@ -1342,7 +1183,10 @@ export const ProspectDetails = () => {
 													color: '#1B1B1B',
 												}}
 											>
-												₹ 2155
+												₹{' '}
+												{
+													prospectDetails?.repayment_EMI_amount
+												}
 											</Typography>
 										</TableCell>
 										<TableCell align="left">
@@ -1355,7 +1199,10 @@ export const ProspectDetails = () => {
 													color: '#1B1B1B',
 												}}
 											>
-												₹ 0
+												₹{' '}
+												{
+													prospectDetails?.repayment_amount_overdue
+												}
 											</Typography>
 										</TableCell>
 										<TableCell align="left">
@@ -1368,7 +1215,9 @@ export const ProspectDetails = () => {
 													color: '#1B1B1B',
 												}}
 											>
-												10 January 2023
+												{
+													prospectDetails?.repayment_transaction_date
+												}
 											</Typography>
 										</TableCell>
 										<TableCell
@@ -1404,157 +1253,9 @@ export const ProspectDetails = () => {
 													fontWeight: 500,
 												}}
 											>
-												Full Payment Done
+												{prospectDetails?.repayment_status}
 											</Typography>
 										</TableCell>
-									</TableRow>
-
-									<TableRow>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												2
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												Dec 2022
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												₹ 2155
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												₹ 0
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												10 January 2023
-											</Typography>
-										</TableCell>
-										{/* <TableCell sx={{ display:'flex', flexDirection:'row'}}align="left">
-                                        <Paper align="center" elevation={0} sx={{mt:0, background: 'linear-gradient(to bottom, #F78736, #F7873600)', borderRadius:"1.875rem", height: "2.5rem", width:"13rem", opacity: "0.1"}} />
-                                        <Typography sx={{color:"#F78736", pt:1 ,position:'relative', left:'-182px', minWidth:'150px', fontFamily: "Poppins, sans-serif", fontSize: "0.875rem", fontWeight: 500 }}>
-                                            Partial Payment Done
-                                        </Typography>
-                                    </TableCell> */}
-									</TableRow>
-
-									<TableRow>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												3
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												Dec 2022
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												₹ 2155
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												₹ 0
-											</Typography>
-										</TableCell>
-										<TableCell align="left">
-											<Typography
-												sx={{
-													fontFamily:
-														'Poppins, sans-serif',
-													fontSize: '0.875rem',
-													fontWeight: 500,
-													color: '#1B1B1B',
-												}}
-											>
-												10 January 2023
-											</Typography>
-										</TableCell>
-										{/* <TableCell sx={{ display:'flex', flexDirection:'row'}}align="left">
-                                        <Paper align="center" elevation={0} sx={{mt:0, background: 'linear-gradient(to bottom, #C4161C, #C4161C00)', borderRadius:"1.875rem", height: "2.5rem", width:"15rem", opacity: "0.1"}} />
-                                        <Typography sx={{color:"#C4161C", pt:1 ,position:'relative', left:'-182px', minWidth:'150px', fontFamily: "Poppins, sans-serif", fontSize: "0.875rem", fontWeight: 500 }}>
-                                            Reschedule - 20 Feb 2024
-                                        </Typography>
-                                    </TableCell> */}
 									</TableRow>
 								</TableBody>
 							</Table>
