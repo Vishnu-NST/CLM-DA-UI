@@ -126,7 +126,7 @@ function BaseLayout(props) {
 										navigate(
 											`${location.pathname.match(
 												/\/\w+\//,
-											)}panel/ums/profile`,
+											)}panel/ums/profile-create`,
 										);
 									}}
 									color="inherit"

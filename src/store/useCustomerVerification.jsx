@@ -1,11 +1,11 @@
-import { useQuery, useMutation } from '@tanstack/react-query';
-import { useParams } from 'react-router';
+// import APIClient from '@/services/apiClient';
 import LOSClient from '@/services/losClient';
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router';
 
 const useCustomerVerification = () => {
 	const params = useParams();
-
-	const { data, isError, isSuccess, error } = useQuery({
+	return useQuery({
 		queryKey: ['pool'],
 		queryFn: () => {
 			console.log({ params });
@@ -16,19 +16,6 @@ const useCustomerVerification = () => {
 			return losClient.get({ id: 1 });
 		},
 	});
-
-	const mutation = useMutation({
-		mutationFn: (data) =>
-			LOSClient.post({
-				pool_id: data.poolId,
-				kyc_verification: data.KYC,
-				loan_agreement_verification: data.loanDoc,
-				other_document_verification: data.otherDoc,
-				is_approved: data.approval,
-			}),
-	});
-
-	return { data, isError, isSuccess, error, mutation };
 };
 
 export default useCustomerVerification;

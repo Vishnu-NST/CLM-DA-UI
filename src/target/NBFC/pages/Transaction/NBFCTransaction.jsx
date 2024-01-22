@@ -249,7 +249,7 @@ const NBFCTransaction = () => {
 							}}
 						>
 							<div>
-								<TickIcon />
+								<TickIcon fill={'#C4161C'} />
 							</div>
 							<div>
 								<Typography

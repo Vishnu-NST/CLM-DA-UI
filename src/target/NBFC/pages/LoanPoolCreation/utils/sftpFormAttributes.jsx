@@ -4,16 +4,16 @@ import DateIcon from '../../../../../assets/svg/DateIcon';
 
 export const userNameAttributes = (formik) => {
 	return {
-		id: 'userName',
-		name: 'userName',
+		id: 'sftp_username',
+		name: 'sftp_username',
 		label: <div className="input-label">User Name</div>,
 		placeholder: 'Enter the user name',
 		type: 'text',
-		value: formik.values.userName,
+		value: formik.values.sftp_username,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
-		error: formik.touched.userName && Boolean(formik.errors.userName),
-		helperText: formik.touched.userName && formik.errors.userName,
+		error: formik.touched.sftp_username && Boolean(formik.errors.sftp_username),
+		helperText: formik.touched.sftp_username && formik.errors.sftp_username,
 		disabled: false,
 		startIcon: <PersonIcon />,
 	};
@@ -21,32 +21,32 @@ export const userNameAttributes = (formik) => {
 
 export const fileNameAttributes = (formik) => {
 	return {
-		id: 'fileName',
-		name: 'fileName',
+		id: 'sftp_filename',
+		name: 'sftp_filename',
 		label: <div className="input-label">File Name</div>,
 		placeholder: 'Enter file name',
 		type: 'text',
-		value: formik.values.fileName,
+		value: formik.values.sftp_filename,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
-		error: formik.touched.fileName && Boolean(formik.errors.fileName),
-		helperText: formik.touched.fileName && formik.errors.fileName,
+		error: formik.touched.sftp_filename && Boolean(formik.errors.sftp_filename),
+		helperText: formik.touched.sftp_filename && formik.errors.sftp_filename,
 		disabled: false,
 	};
 };
 
 export const passwordAttributes = (formik) => {
 	return {
-		id: 'password',
-		name: 'password',
+		id: 'sftp_password',
+		name: 'sftp_password',
 		label: <div className="input-label">Password</div>,
 		placeholder: 'Enter password',
 		type: 'password',
-		value: formik.values.password,
+		value: formik.values.sftp_password,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
-		error: formik.touched.password && Boolean(formik.errors.password),
-		helperText: formik.touched.password && formik.errors.password,
+		error: formik.touched.sftp_password && Boolean(formik.errors.sftp_password),
+		helperText: formik.touched.sftp_password && formik.errors.sftp_password,
 		disabled: false,
 		startIcon: <PasswordIcon />,
 	};
@@ -54,16 +54,16 @@ export const passwordAttributes = (formik) => {
 
 export const urlAttributes = (formik) => {
 	return {
-		id: 'url',
-		name: 'url',
+		id: 'sftp_url',
+		name: 'sftp_url',
 		label: <div className="input-label">URL</div>,
 		placeholder: 'Enter URL',
 		type: 'text',
-		value: formik.values.url,
+		value: formik.values.sftp_url,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
-		error: formik.touched.url && Boolean(formik.errors.url),
-		helperText: formik.touched.url && formik.errors.url,
+		error: formik.touched.sftp_url && Boolean(formik.errors.sftp_url),
+		helperText: formik.touched.sftp_url && formik.errors.sftp_url,
 		disabled: false,
 	};
 };
@@ -101,8 +101,8 @@ export const frequencyAttributes = (formik) => {
 
 export const timeAttributes = (formik) => {
 	return {
-		id: 'time',
-		name: 'time',
+		id: 'sftp_time',
+		name: 'sftp_time',
 		displayEmpty: true,
 		multiple: false,
 		label: (
@@ -111,15 +111,15 @@ export const timeAttributes = (formik) => {
 				<span style={{ color: 'red' }}>*</span>
 			</div>
 		),
-		// placeholder: "Select the time",
+		placeholder: 'Select the time',
 		type: 'text',
-		value: formik.values.time || '01:00',
+		value: formik.values.sftp_time || '01:00',
 		onChange: (event) => {
-			formik.setFieldValue('time', event.target.value);
+			formik.setFieldValue('sftp_time', event.target.value);
 		},
-		onBlur: formik.handleBlur('time'),
-		error: formik.touched.time && Boolean(formik.errors.time),
-		helperText: formik.touched.time && formik.errors.time,
+		onBlur: formik.handleBlur('sftp_time'),
+		error: formik.touched.sftp_time && Boolean(formik.errors.sftp_time),
+		helperText: formik.touched.sftp_time && formik.errors.sftp_time,
 		disabled: false,
 		options: [
 			{

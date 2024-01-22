@@ -13,20 +13,20 @@ import LoanPoolCreation from '@/target/NBFC/pages/LoanPoolCreation/LoanPoolCreat
 import LoanPoolTimeline from './target/NBFC/pages/LoanPoolTimeline/LoanPoolTimeline';
 import DueDiligence from './target/NBFC/pages/NBFCDueDiligence/DueDiligence';
 import UmsTabs from './target/NBFC/pages/Ums/UmsTabs';
-import Profile from './target/NBFC/pages/Ums/components/Profile';
-import User from './target/NBFC/pages/Ums/components/User';
+import ProfileCreation from './target/NBFC/pages/Ums/components/ProfileCreation';
+import UserCreation from './target/NBFC/pages/Ums/components/UserCreation';
 import AuthRequired from '@/components/AuthRequired';
 import DashboardIcon from '@/assets/svg/DashboardIcon';
 import LoanPoolIcon from '@/assets/svg/LoanPoolIcon';
 import DueDeligenceIcon from '@/assets/svg/DueDeligenceIcon';
-import CurrencyExchangeIcon from '@/assets/svg/CurrencyExchangeIcon';
+// import CurrencyExchangeIcon from '@/assets/svg/CurrencyExchangeIcon';
 import PoolStatusIcon from '@/assets/svg/PoolStatusIcon';
 import PoolListIcon from '@/assets/svg/PoolListIcon';
 import DemandCollectionIcon from '@/assets/svg/DemandCollectionIcon';
 import ReportIcon from '@/assets/svg/ReportIcon';
 import SelectProductIcon from '@/assets/svg/SelectProductIcon';
 import BankDueDiligence from './target/Bank/pages/BankDueDiligence/BankDueDiligence';
-import BankDashboard from './target/Bank/pages/Dashboard/BankDashboard';
+import BankDashboard from './target/Bank/pages/Dashboard/Dashboard';
 import ProductList from './target/Bank/pages/Product/ProductList';
 import SelectProduct from './target/Bank/pages/Product/SelectProduct';
 import PoolList from './target/Bank/pages/Pools/PoolList';
@@ -44,6 +44,8 @@ import Statistics from './target/NBFC/pages/ViewLoanPool/Statistics';
 import { ProspectDetails } from './target/NBFC/pages/ViewLoanPool/ProspectDetails';
 import CustomerVerification from './target/Bank/pages/BankDueDiligence/CustomerVerification';
 import Query from './target/Bank/pages/BankDueDiligence/Query';
+import ProfileDetails from './target/NBFC/pages/Ums/components/ProfileDetails';
+import UserList from './target/NBFC/pages/Ums/components/UserList';
 
 const nbfcPages = [
 	{
@@ -105,34 +107,7 @@ const bankPages = [
 			<DashboardIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
 	},
-	{
-		text: 'Due Diligence',
-		to: 'dd',
-		icon: (isSelected) => (
-			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
-		),
-	},
-	{
-		text: 'Transaction',
-		to: 'queries',
-		icon: (isSelected) => (
-			<CurrencyExchangeIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
-		),
-	},
-	{
-		text: 'Reports',
-		to: 'reports',
-		icon: (isSelected) => (
-			<ReportIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
-		),
-	},
-	{
-		text: 'Portfolio Monitoring',
-		to: 'loan-pool-monitoring',
-		icon: (isSelected) => (
-			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
-		),
-	},
+
 	{
 		text: 'Select Product',
 		to: 'product',
@@ -145,6 +120,34 @@ const bankPages = [
 		to: 'pool',
 		icon: (isSelected) => (
 			<PoolListIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Due Diligence',
+		to: 'dd',
+		icon: (isSelected) => (
+			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	// {
+	// 	text: 'Transaction',
+	// 	to: 'queries',
+	// 	icon: (isSelected) => (
+	// 		<CurrencyExchangeIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+	// 	),
+	// },
+	{
+		text: 'Reports',
+		to: 'reports',
+		icon: (isSelected) => (
+			<ReportIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
+		),
+	},
+	{
+		text: 'Portfolio Monitoring',
+		to: 'loan-pool-monitoring',
+		icon: (isSelected) => (
+			<DueDeligenceIcon stroke={isSelected ? '#FFF' : '#8794C2'} />
 		),
 	},
 ];
@@ -284,8 +287,10 @@ export const routes = [
 				errorElement: <ErrorPage />,
 				children: [
 					// { index: true, element: <Navigate to={'newreport'} /> },
-					{ path: 'profile', element: <Profile /> },
-					{ path: 'mgmt', element: <User /> },
+					{ path: 'profile-create', element: <ProfileCreation /> },
+					{ path: 'profile-detail', element: <ProfileDetails /> },
+					{ path: 'user-create', element: <UserCreation /> },
+					{ path: 'users', element: <UserList /> },
 				],
 			},
 			{

@@ -98,6 +98,7 @@ const LoginPage = (props) => {
 
 	if (login.isSuccess && login.data.result) {
 		props.storage.setItem('accessToken', login.data.result.accessToken);
+		props.storage.setItem('userOrgId', login.data.result.org_id);
 
 		if (login.data.result.org_type == 'bank') {
 			return navigate('/bank/panel/dashboard');

@@ -18,6 +18,7 @@ axiosInstance.interceptors.request.use(
 		// }
 
 		config.headers['Content-Type'] = 'application/json';
+		// config.headers['Content-Type'] = 'application/json';
 
 		return config;
 	},
@@ -37,6 +38,38 @@ class LOSClient {
 
 	get(payload) {
 		return axiosInstance.get(this.endpoint, payload).then((res) => res.data);
+	}
+	getCustomerVerificationDetails(payload) {
+		return axiosInstance.get(this.endpoint, payload).then((res) => res.data);
+	}
+
+	getViewLoanPoolList() {
+		return axiosInstance.get(this.endpoint).then((res) => res.data);
+	}
+
+	createPool(payload) {
+		return axiosInstance.post(this.endpoint, payload).then((res) => res.data);
+	}
+
+	createPoolFileUpload(payload) {
+		return axiosInstance
+			.post(this.endpoint, payload, {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+				},
+			})
+			.then((res) => res.data);
+	}
+
+	getQueryList() {
+		return axiosInstance.get(this.endpoint).then((res) => res.data);
+	}
+
+	getQueryDetail() {
+		return axiosInstance.get(this.endpoint).then((res) => res.data);
+	}
+	DDCustomerApproval(payload) {
+		return axiosInstance.post(this.endpoint, payload).then((res) => res.data);
 	}
 }
 

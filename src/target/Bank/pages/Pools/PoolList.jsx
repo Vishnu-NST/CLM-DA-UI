@@ -79,7 +79,6 @@ const PoolList = () => {
 		type: 'text',
 		value: searchVal,
 		onChange: (event) => {
-			console.log({ event });
 			setSearchVal(event.target.value);
 		},
 		onkeydown: (evt) => {

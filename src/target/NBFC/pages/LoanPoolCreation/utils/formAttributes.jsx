@@ -3,10 +3,10 @@ import AssetIcon from '../../../../../assets/svg/AssetIcon';
 import StarIcon from '../../../../../assets/svg/StarIcon';
 import PercentageIcon from '../../../../../assets/svg/PercentageIcon';
 
-export const productAttributes = (formik) => {
+export const productAttributes = (formik, productList) => {
 	return {
-		id: 'product',
-		name: 'product',
+		id: 'asset_class',
+		name: 'asset_class',
 		displayEmpty: true,
 		label: (
 			<div className="input-label">
@@ -16,28 +16,21 @@ export const productAttributes = (formik) => {
 		multiple: false,
 		placeholder: 'Select the Product',
 		type: 'text',
-		value: formik.values.product,
+		value: formik.values.asset_class,
 		onChange: (event) => {
-			formik.setFieldValue('product', event.target.value);
+			formik.setFieldValue('asset_class', event.target.value);
 		},
-		onBlur: formik.handleBlur('product'),
-		error: formik.touched.product && Boolean(formik.errors.product),
-		helperText: formik.touched.product && formik.errors.product,
+		onBlur: formik.handleBlur('asset_class'),
+		error: formik.touched.asset_class && Boolean(formik.errors.asset_class),
+		helperText: formik.touched.asset_class && formik.errors.asset_class,
 		disabled: false,
-		options: [
-			{
-				label: 'Pool XYZ 1',
-				value: 'product1',
-			},
-			{
-				label: 'Pool XYZ 2',
-				value: 'product2',
-			},
-			{
-				label: 'Pool XYZ 3',
-				value: 'product3',
-			},
-		],
+		options:
+			(productList?.length &&
+				productList.map((item) => ({
+					value: item?.name || '',
+					label: item?.name || '',
+				}))) ||
+			[],
 		startIcon: <AssetIcon />,
 	};
 };
@@ -81,57 +74,55 @@ export const poolNameAttributes = (formik) => {
 	};
 };
 
-export const creditRatingAttributes = (formik) => {
+export const creditRatingAttributes = (formik, creditRatingList) => {
 	return {
-		id: 'creditRatings',
-		name: 'creditRatings',
+		id: 'credit_ratings',
+		name: 'credit_ratings',
 		displayEmpty: true,
 		label: <div className="input-label">Credit Ratings</div>,
 		multiple: false,
 		placeholder: 'Select Credit Ratings',
 		type: 'text',
-		value: formik.values.creditRatings,
+		value: formik.values.credit_ratings,
 		onChange: (event) => {
-			formik.setFieldValue('creditRatings', event.target.value);
+			formik.setFieldValue('credit_ratings', event.target.value);
 		},
-		onBlur: formik.handleBlur('creditRatings'),
-		error: formik.touched.creditRatings && Boolean(formik.errors.creditRatings),
-		helperText: formik.touched.creditRatings && formik.errors.creditRating,
+		onBlur: formik.handleBlur('credit_ratings'),
+		error:
+			formik.touched.credit_ratings && Boolean(formik.errors.credit_ratings),
+		helperText: formik.touched.credit_ratings && formik.errors.credit_ratings,
 		disabled: false,
-		options: [
-			{
-				label: 'Credit Rating 1',
-				value: 'credit Rating1',
-			},
-			{
-				label: 'Credit Rating 2',
-				value: 'credit Rating2',
-			},
-			{
-				label: 'Credit Rating 3',
-				value: 'credit Rating3',
-			},
-		],
+		options:
+			(creditRatingList?.length &&
+				creditRatingList.map((item) => ({
+					value: item?.desc || '',
+					label: item?.desc || '',
+				}))) ||
+			[],
 		startIcon: <StarIcon />,
 	};
 };
 
 export const closureDateAttributes = (formik) => {
 	return {
-		id: 'closureDate',
-		name: 'closureDate',
+		id: 'expected_closure_date',
+		name: 'expected_closure_date',
 		label: (
 			<div className="input-label">
 				Expected closure Date<span style={{ color: 'red' }}>*</span>
 			</div>
 		),
-		selectedDate: formik.values.closureDate,
+		selectedDate: formik.values.expected_closure_date,
 		handleDateChange: (event) => {
-			formik.setFieldValue('closureDate', event);
+			formik.setFieldValue('expected_closure_date', event);
 		},
 		onBlur: formik.handleBlur,
-		error: formik.touched.closureDate && Boolean(formik.errors.closureDate),
-		helperText: formik.touched.closureDate && formik.errors.closureDate,
+		error:
+			formik.touched.expected_closure_date &&
+			Boolean(formik.errors.expected_closure_date),
+		helperText:
+			formik.touched.expected_closure_date &&
+			formik.errors.expected_closure_date,
 	};
 };
 
@@ -204,8 +195,8 @@ export const aumAttributes = (formik) => {
 
 export const averageIrrAttributes = (formik) => {
 	return {
-		id: 'averageIrr',
-		name: 'averageIrr',
+		id: 'irr',
+		name: 'irr',
 		label: (
 			<div className="input-label">
 				Average IRR<span style={{ color: 'red' }}>*</span>
@@ -213,7 +204,7 @@ export const averageIrrAttributes = (formik) => {
 		),
 		placeholder: 'Enter the Average IRR',
 		type: 'number',
-		value: formik.values.averageIrr,
+		value: formik.values.irr,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -225,8 +216,8 @@ export const averageIrrAttributes = (formik) => {
 				evt.key === 'ArrowDown') &&
 				evt.preventDefault();
 		},
-		error: formik.touched.averageIrr && Boolean(formik.errors.averageIrr),
-		helperText: formik.touched.averageIrr && formik.errors.averageIrr,
+		error: formik.touched.irr && Boolean(formik.errors.irr),
+		helperText: formik.touched.irr && formik.errors.irr,
 		disabled: false,
 		startIcon: <PercentageIcon />,
 	};
@@ -234,12 +225,12 @@ export const averageIrrAttributes = (formik) => {
 
 export const averageBalanceTenorAttributes = (formik) => {
 	return {
-		id: 'averageBalanceTenor',
-		name: 'averageBalanceTenor',
+		id: 'average_balance_tenor',
+		name: 'average_balance_tenor',
 		label: <div className="input-label">Average Balance Tenor</div>,
 		placeholder: 'Enter the Average Balance Tenor',
 		type: 'number',
-		value: formik.values.averageBalanceTenor,
+		value: formik.values.average_balance_tenor,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -252,22 +243,23 @@ export const averageBalanceTenorAttributes = (formik) => {
 				evt.preventDefault();
 		},
 		error:
-			formik.touched.averageBalanceTenor &&
-			Boolean(formik.errors.averageBalanceTenor),
+			formik.touched.average_balance_tenor &&
+			Boolean(formik.errors.average_balance_tenor),
 		helperText:
-			formik.touched.averageBalanceTenor && formik.errors.averageBalanceTenor,
+			formik.touched.average_balance_tenor &&
+			formik.errors.average_balance_tenor,
 		disabled: false,
 	};
 };
 
 export const averageLoanAmtAttributes = (formik) => {
 	return {
-		id: 'averageLoanAmt',
-		name: 'averageLoanAmt',
+		id: 'average_loan_amount',
+		name: 'average_loan_amount',
 		label: <div className="input-label">Average Loan Amount</div>,
 		placeholder: 'Enter the Average Loan Amount',
 		type: 'number',
-		value: formik.values.averageLoanAmt,
+		value: formik.values.average_loan_amount,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -280,8 +272,10 @@ export const averageLoanAmtAttributes = (formik) => {
 				evt.preventDefault();
 		},
 		error:
-			formik.touched.averageLoanAmt && Boolean(formik.errors.averageLoanAmt),
-		helperText: formik.touched.averageLoanAmt && formik.errors.averageLoanAmt,
+			formik.touched.average_loan_amount &&
+			Boolean(formik.errors.average_loan_amount),
+		helperText:
+			formik.touched.average_loan_amount && formik.errors.average_loan_amount,
 		disabled: false,
 		startIcon: <INRIcon />,
 	};
@@ -316,18 +310,18 @@ export const par01PlusAttributes = (formik) => {
 	};
 };
 
-export const par30Attributes = (formik) => {
+export const par30PlusAttributes = (formik) => {
 	return {
-		id: 'par30',
-		name: 'par30',
+		id: 'par30Plus',
+		name: 'par30Plus',
 		label: (
 			<div className="input-label">
-				PAR 30<span style={{ color: 'red' }}>*</span>
+				PAR 30+<span style={{ color: 'red' }}>*</span>
 			</div>
 		),
-		placeholder: 'Enter PAR 30',
+		placeholder: 'Enter PAR 30+',
 		type: 'number',
-		value: formik.values.par30,
+		value: formik.values.par30Plus,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -339,8 +333,8 @@ export const par30Attributes = (formik) => {
 				evt.key === 'ArrowDown') &&
 				evt.preventDefault();
 		},
-		error: formik.touched.par30 && Boolean(formik.errors.par30),
-		helperText: formik.touched.par30 && formik.errors.par30,
+		error: formik.touched.par30Plus && Boolean(formik.errors.par30Plus),
+		helperText: formik.touched.par30Plus && formik.errors.par30Plus,
 		disabled: false,
 	};
 };
@@ -349,11 +343,7 @@ export const par60Attributes = (formik) => {
 	return {
 		id: 'par60',
 		name: 'par60',
-		label: (
-			<div className="input-label">
-				PAR 60<span style={{ color: 'red' }}>*</span>
-			</div>
-		),
+		label: <div className="input-label">PAR 60</div>,
 		placeholder: 'Enter PAR 60',
 		type: 'number',
 		value: formik.values.par60,
@@ -378,11 +368,7 @@ export const par90Attributes = (formik) => {
 	return {
 		id: 'par90',
 		name: 'par90',
-		label: (
-			<div className="input-label">
-				PAR 90<span style={{ color: 'red' }}>*</span>
-			</div>
-		),
+		label: <div className="input-label">PAR 90</div>,
 		placeholder: 'Enter PAR 90',
 		type: 'number',
 		value: formik.values.par90,
@@ -407,11 +393,7 @@ export const par90PlusAttributes = (formik) => {
 	return {
 		id: 'par90Plus',
 		name: 'par90Plus',
-		label: (
-			<div className="input-label">
-				PAR 90+<span style={{ color: 'red' }}>*</span>
-			</div>
-		),
+		label: <div className="input-label">PAR 90+</div>,
 		placeholder: 'Enter PAR 90+',
 		type: 'number',
 		value: formik.values.par90Plus,
@@ -434,12 +416,12 @@ export const par90PlusAttributes = (formik) => {
 
 export const nbfcCoveredAttributes = (formik) => {
 	return {
-		id: 'nbfcCovered',
-		name: 'nbfcCovered',
+		id: 'no_ofNbfc_branches_covered',
+		name: 'no_ofNbfc_branches_covered',
 		label: <div className="input-label">No. of NBFC Branches Covered</div>,
 		placeholder: 'Enter the No.of NBFC Branches Covered',
 		type: 'number',
-		value: formik.values.nbfcCovered,
+		value: formik.values.no_ofNbfc_branches_covered,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -451,20 +433,24 @@ export const nbfcCoveredAttributes = (formik) => {
 				evt.key === 'ArrowDown') &&
 				evt.preventDefault();
 		},
-		error: formik.touched.nbfcCovered && Boolean(formik.errors.nbfcCovered),
-		helperText: formik.touched.nbfcCovered && formik.errors.nbfcCovered,
+		error:
+			formik.touched.no_ofNbfc_branches_covered &&
+			Boolean(formik.errors.no_ofNbfc_branches_covered),
+		helperText:
+			formik.touched.no_ofNbfc_branches_covered &&
+			formik.errors.no_ofNbfc_branches_covered,
 		disabled: false,
 	};
 };
 
 export const statesCoveredAttributes = (formik) => {
 	return {
-		id: 'statesCovered',
-		name: 'statesCovered',
+		id: 'no_ofStates_coverd',
+		name: 'no_ofStates_coverd',
 		label: <div className="input-label">No. of States Covered</div>,
 		placeholder: 'Enter the No.of States Covered',
 		type: 'number',
-		value: formik.values.statesCovered,
+		value: formik.values.no_ofStates_coverd,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -476,20 +462,23 @@ export const statesCoveredAttributes = (formik) => {
 				evt.key === 'ArrowDown') &&
 				evt.preventDefault();
 		},
-		error: formik.touched.statesCovered && Boolean(formik.errors.statesCovered),
-		helperText: formik.touched.statesCovered && formik.errors.statesCovered,
+		error:
+			formik.touched.no_ofStates_coverd &&
+			Boolean(formik.errors.no_ofStates_coverd),
+		helperText:
+			formik.touched.no_ofStates_coverd && formik.errors.no_ofStates_coverd,
 		disabled: false,
 	};
 };
 
 export const districtsCoveredAttributes = (formik) => {
 	return {
-		id: 'districtsCovered',
-		name: 'districtsCovered',
+		id: 'no_ofDistricts_coverd',
+		name: 'no_ofDistricts_coverd',
 		label: <div className="input-label">No. of Districts Covered</div>,
 		placeholder: 'Enter the No.of Districts Covered',
 		type: 'number',
-		value: formik.values.districtsCovered,
+		value: formik.values.no_ofDistricts_coverd,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -502,22 +491,23 @@ export const districtsCoveredAttributes = (formik) => {
 				evt.preventDefault();
 		},
 		error:
-			formik.touched.districtsCovered &&
-			Boolean(formik.errors.districtsCovered),
+			formik.touched.no_ofDistricts_coverd &&
+			Boolean(formik.errors.no_ofDistricts_coverd),
 		helperText:
-			formik.touched.districtsCovered && formik.errors.districtsCovered,
+			formik.touched.no_ofDistricts_coverd &&
+			formik.errors.no_ofDistricts_coverd,
 		disabled: false,
 	};
 };
 
 export const loansCoveredAttributes = (formik) => {
 	return {
-		id: 'loansCovered',
-		name: 'loansCovered',
+		id: 'no_of_loans',
+		name: 'no_of_loans',
 		label: <div className="input-label">No. of Loans</div>,
 		placeholder: 'Enter the No.of Loans',
 		type: 'number',
-		value: formik.values.loansCovered,
+		value: formik.values.no_of_loans,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -529,22 +519,22 @@ export const loansCoveredAttributes = (formik) => {
 				evt.key === 'ArrowDown') &&
 				evt.preventDefault();
 		},
-		error: formik.touched.loansCovered && Boolean(formik.errors.loansCovered),
-		helperText: formik.touched.loansCovered && formik.errors.loansCovered,
+		error: formik.touched.no_of_loans && Boolean(formik.errors.no_of_loans),
+		helperText: formik.touched.no_of_loans && formik.errors.no_of_loans,
 		disabled: false,
 	};
 };
 
 export const firstCycleLoansAttributes = (formik) => {
 	return {
-		id: 'firstCycleLoans',
-		name: 'firstCycleLoans',
+		id: 'no_ofFirstCycle_loans',
+		name: 'no_ofFirstCycle_loans',
 		label: (
 			<div className="input-label">First cycle loans Outstanding Amount</div>
 		),
 		placeholder: 'Enter the First cycle loans Outstanding Amount',
 		type: 'number',
-		value: formik.values.firstCycleLoans,
+		value: formik.values.no_ofFirstCycle_loans,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -557,22 +547,25 @@ export const firstCycleLoansAttributes = (formik) => {
 				evt.preventDefault();
 		},
 		error:
-			formik.touched.firstCycleLoans && Boolean(formik.errors.firstCycleLoans),
-		helperText: formik.touched.firstCycleLoans && formik.errors.firstCycleLoans,
+			formik.touched.no_ofFirstCycle_loans &&
+			Boolean(formik.errors.no_ofFirstCycle_loans),
+		helperText:
+			formik.touched.no_ofFirstCycle_loans &&
+			formik.errors.no_ofFirstCycle_loans,
 		disabled: false,
 	};
 };
 
 export const secondCycleLoansAttributes = (formik) => {
 	return {
-		id: 'secondCycleLoans',
-		name: 'secondCycleLoans',
+		id: 'no_ofSecondCycle_loans',
+		name: 'no_ofSecondCycle_loans',
 		label: (
 			<div className="input-label">Second cycle loans Outstanding Amount</div>
 		),
 		placeholder: 'Enter the Second cycle loans Outstanding Amount',
 		type: 'number',
-		value: formik.values.secondCycleLoans,
+		value: formik.values.no_ofSecondCycle_loans,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -585,10 +578,11 @@ export const secondCycleLoansAttributes = (formik) => {
 				evt.preventDefault();
 		},
 		error:
-			formik.touched.secondCycleLoans &&
-			Boolean(formik.errors.secondCycleLoans),
+			formik.touched.no_ofSecondCycle_loans &&
+			Boolean(formik.errors.no_ofSecondCycle_loans),
 		helperText:
-			formik.touched.secondCycleLoans && formik.errors.secondCycleLoans,
+			formik.touched.no_ofSecondCycle_loans &&
+			formik.errors.no_ofSecondCycle_loans,
 		disabled: false,
 	};
 };

@@ -20,6 +20,8 @@ import {
 import UploadedFileComp from './components/UploadedFileComp';
 import InputComponent from '@/components/InputComponent';
 import SelectComponent from '@/components/SelectComponent';
+import useDemandUpload from '@/store/useDemandUpload';
+import useCollectionUpload from '@/store/useCollectionUpload';
 
 const customButtonStyle = {
 	borderRadius: '7px',
@@ -65,9 +67,11 @@ const chooseFileBtnStyle = {
 	borderRadius: '8px',
 };
 
-const SFTPIntegration = () => {
+const SFTPIntegration = ({ tabValue }) => {
 	const inputFileRef = useRef(null);
 	const [excel, setExcel] = React.useState(null);
+	const demandUpload = useDemandUpload();
+	const collectionUpload = useCollectionUpload();
 	const arr = [1, 2, 3, 4, 5];
 	const formik = useFormik({
 		initialValues: {
@@ -87,7 +91,6 @@ const SFTPIntegration = () => {
 	const handleDrop = (event) => {
 		event.preventDefault();
 		const droppedFile = event.dataTransfer.files[0];
-		console.log({ droppedFile });
 		setExcel(droppedFile);
 	};
 
@@ -95,9 +98,13 @@ const SFTPIntegration = () => {
 		event.preventDefault();
 	};
 
-	const handleExcelSelect = (event) => {
+	const handleExcelSelect = async (event) => {
 		const file = event.target.files[0];
-		console.log({ file });
+		if (tabValue === 'Demand') {
+			demandUpload.mutate(file);
+		} else if (tabValue === 'Collection') {
+			collectionUpload.mutate(file);
+		}
 	};
 
 	return (
@@ -149,15 +156,20 @@ const SFTPIntegration = () => {
 								{' '}
 								Drag and Drop files here
 							</span>
-							<input
-								type="file"
-								id="file"
-								accept=".xlsx, .csv, .xls"
-								ref={inputFileRef}
-								style={{ display: 'none' }}
-								onChange={(event) => handleExcelSelect(event)}
-								key={excel ? 'file-selected' : 'no-file-selected'}
-							/>
+							<form encType="multipart/form-data">
+								<input
+									name="excel"
+									type="file"
+									id="file"
+									accept=".xlsx, .csv, .xls"
+									ref={inputFileRef}
+									style={{ display: 'none' }}
+									onChange={(event) => handleExcelSelect(event)}
+									key={
+										excel ? 'file-selected' : 'no-file-selected'
+									}
+								/>
+							</form>
 						</div>
 						&nbsp;
 						<div

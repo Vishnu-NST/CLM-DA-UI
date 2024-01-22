@@ -8,13 +8,17 @@ import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import BankNameLogo from '@/assets/svg/BankNameLogo';
-// import NBFCNameLogo from '.././../assets/svg/NBFCNameLogo';
+import NBFCNameLogo from '@/assets/svg/NBFCNameLogo';
 import ExcelIcon from '@/assets/svg/ExcelIcon.png';
 import DownloadIcon from '@/assets/svg/DownloadIcon';
 import MsgTextIcon from '@/assets/svg/MsgTextIcon';
 import DirectSendIcon from '@/assets/svg/DirectSendIcon';
 import CustomButton from '@/components/CustomButton';
 import MultilineInputComponent from '@/components/MultilineInputComponent';
+import { capitalize } from 'lodash';
+import { changeDateFormatForDd } from '@/utils/common';
+import useGetQueryDetail from '@/store/useGetQueryDetail';
+import useDdQueryFileUpload from '@/store/useQueryUpload';
 
 const btnStyle = {
 	border: '1px solid rgba(135, 148, 194, 0.2)',
@@ -49,13 +53,14 @@ const uploadBtnStyle = {
 	fontWeight: '500',
 };
 
-const DueDiligenceDrawer = ({ onClose }) => {
-	const arr = [3, 4];
+const DueDiligenceDrawer = ({ queryData, onClose }) => {
 	const [isUploadField, setIsUploadField] = React.useState(false);
 	const inputFileRef = useRef(null);
 	const [excel, setExcel] = React.useState(null);
 	const [comments, setComments] = React.useState();
 	const [isReply, setIsReply] = React.useState(false);
+	const queryDetail = useGetQueryDetail(queryData?.query_id);
+	const uploadDdFile = useDdQueryFileUpload();
 
 	const commentAttributes = {
 		id: 'description',
@@ -79,6 +84,40 @@ const DueDiligenceDrawer = ({ onClose }) => {
 		setExcel(file);
 	};
 
+	const getChatSendName = (qData) => {
+		if (qData?.sender_id === qData?.nbfc_id) {
+			return {
+				icon: <NBFCNameLogo />,
+				name: qData?.nbfc_name,
+			};
+		} else if (qData?.sender_id === qData?.bank_id) {
+			return {
+				icon: <BankNameLogo />,
+				name: qData?.bank_name,
+			};
+		} else {
+			return {
+				icon: <BankNameLogo />,
+				name: 'Bank name',
+			};
+		}
+	};
+
+	const handleDownload = (fileUrl) => {
+		const link = document.createElement('a');
+		link.href = fileUrl;
+		link.download = 'filename.txt';
+		link.target = '_blank';
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+	};
+
+	const handleUpload = () => {
+		uploadDdFile.mutate({ file: excel, query_id: queryData?.query_id });
+		onClose();
+	};
+
 	return (
 		<>
 			<div className="drawer-header">
@@ -86,7 +125,9 @@ const DueDiligenceDrawer = ({ onClose }) => {
 					<TimerIcon />
 					<div className="ml-1 flex-column-start">
 						<div className="flex">
-							<div className="title">MUTH-JLG April 23-1</div>
+							<div className="title">
+								{queryData?.pooldata?.pool_name}
+							</div>
 							<div
 								className="tag"
 								style={{
@@ -101,15 +142,18 @@ const DueDiligenceDrawer = ({ onClose }) => {
 								className="tag"
 								style={{
 									background:
-										'linear-gradient(to bottom,rgba(247, 135, 54, 0.2),rgba(247, 135, 54, 0))',
-									color: '#F78736',
+										'linear-gradient(to bottom,rgba(0, 184, 94, 0.1),rgba(0, 184, 94, 0))',
+									color: '#00B85E',
 								}}
 							>
-								On going
+								{capitalize(queryData?.data?.status)}
 							</div>
 						</div>
 						<div className="sub-title">
-							Raised on 26 Dec, 2023 at 05:30 PM
+							Raised on{' '}
+							{changeDateFormatForDd(
+								new Date(queryData?.data?.created_at),
+							)}
 						</div>
 					</div>
 				</div>
@@ -138,26 +182,26 @@ const DueDiligenceDrawer = ({ onClose }) => {
 					},
 				}}
 			>
-				{arr.map((item, idx) => {
+				{queryDetail?.data?.map((item, idx) => {
 					return (
 						<TimelineItem key={idx}>
 							<TimelineSeparator>
 								<div className="logo-block">
-									<BankNameLogo />
+									{getChatSendName(item)?.icon}
 								</div>
 								<TimelineConnector />
 							</TimelineSeparator>
 							<TimelineContent>
-								<div className="title">Bank Name</div>
-								<div className="sub-title">
-									has requested you to upload the docs
+								<div className="title">
+									{getChatSendName(item)?.name}
 								</div>
-								<div className="time">28 Dec,9:30 PM</div>
-								<div className="box-content">
-									All the documents are requested below in a excel
-									sheet. Kindly, provide all the documents
-									immediately for the smoother process.
+								<div className="sub-title">{item?.action}</div>
+								<div className="time">
+									{changeDateFormatForDd(
+										new Date(item?.created_at),
+									)}
 								</div>
+								<div className="box-content">{item?.message}</div>
 								<div className="excel-download-block">
 									<div className="flex">
 										<div className="">
@@ -171,6 +215,7 @@ const DueDiligenceDrawer = ({ onClose }) => {
 										</div>
 									</div>
 									<div
+										onClick={() => handleDownload(item?.fileurl)}
 										style={{
 											cursor: 'pointer',
 										}}
@@ -254,9 +299,11 @@ const DueDiligenceDrawer = ({ onClose }) => {
 										&nbsp; &nbsp;
 										<div>
 											<div className="title">
-												KYC Documents.xlsx
+												{excel?.name}
 											</div>
-											<div className="sub-title">120 KB</div>
+											<div className="sub-title">
+												{excel?.size}KB
+											</div>
 										</div>
 									</div>
 									<CloseIcon
@@ -275,6 +322,7 @@ const DueDiligenceDrawer = ({ onClose }) => {
 									<CustomButton
 										customStyle={uploadBtnStyle}
 										className="flex-end"
+										onClick={handleUpload}
 									>
 										Upload Documents
 									</CustomButton>

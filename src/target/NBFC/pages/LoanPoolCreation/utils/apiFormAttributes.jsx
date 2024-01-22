@@ -1,7 +1,7 @@
 export const prodIPAttributes = (formik) => {
 	return {
-		id: 'prodIP',
-		name: 'prodIP',
+		id: 'api_prod_ipaddress',
+		name: 'api_prod_ipaddress',
 		label: (
 			<div className="input-label">
 				IP Address<span style={{ color: 'red' }}>*</span>
@@ -9,19 +9,22 @@ export const prodIPAttributes = (formik) => {
 		),
 		placeholder: 'Enter IP address',
 		type: 'text',
-		value: formik.values.prodIP,
+		value: formik.values.api_prod_ipaddress,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
-		error: formik.touched.prodIP && Boolean(formik.errors.prodIP),
-		helperText: formik.touched.prodIP && formik.errors.prodIP,
+		error:
+			formik.touched.api_prod_ipaddress &&
+			Boolean(formik.errors.api_prod_ipaddress),
+		helperText:
+			formik.touched.api_prod_ipaddress && formik.errors.api_prod_ipaddress,
 		disabled: false,
 	};
 };
 
 export const prodPortAttributes = (formik) => {
 	return {
-		id: 'prodPort',
-		name: 'prodPort',
+		id: 'api_prod_port',
+		name: 'api_prod_port',
 		label: (
 			<div className="input-label">
 				Port<span style={{ color: 'red' }}>*</span>
@@ -29,7 +32,7 @@ export const prodPortAttributes = (formik) => {
 		),
 		placeholder: 'Enter port',
 		type: 'number',
-		value: formik.values.prodPort,
+		value: formik.values.api_prod_port,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -41,16 +44,16 @@ export const prodPortAttributes = (formik) => {
 				evt.key === 'ArrowDown') &&
 				evt.preventDefault();
 		},
-		error: formik.touched.prodPort && Boolean(formik.errors.prodPort),
-		helperText: formik.touched.prodPort && formik.errors.prodPort,
+		error: formik.touched.api_prod_port && Boolean(formik.errors.api_prod_port),
+		helperText: formik.touched.api_prod_port && formik.errors.api_prod_port,
 		disabled: false,
 	};
 };
 
 export const uatIPAttributes = (formik) => {
 	return {
-		id: 'uatIP',
-		name: 'uatIP',
+		id: 'api_uat_ipaddress',
+		name: 'api_uat_ipaddress',
 		label: (
 			<div className="input-label">
 				IP Address<span style={{ color: 'red' }}>*</span>
@@ -58,19 +61,22 @@ export const uatIPAttributes = (formik) => {
 		),
 		placeholder: 'Enter IP address',
 		type: 'text',
-		value: formik.values.uatIP,
+		value: formik.values.api_uat_ipaddress,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
-		error: formik.touched.uatIP && Boolean(formik.errors.uatIP),
-		helperText: formik.touched.uatIP && formik.errors.uatIP,
+		error:
+			formik.touched.api_uat_ipaddress &&
+			Boolean(formik.errors.api_uat_ipaddress),
+		helperText:
+			formik.touched.api_uat_ipaddress && formik.errors.api_uat_ipaddress,
 		disabled: false,
 	};
 };
 
 export const uatPortAttributes = (formik) => {
 	return {
-		id: 'uatPort',
-		name: 'uatPort',
+		id: 'api_uat_port',
+		name: 'api_uat_port',
 		label: (
 			<div className="input-label">
 				Port<span style={{ color: 'red' }}>*</span>
@@ -78,7 +84,7 @@ export const uatPortAttributes = (formik) => {
 		),
 		placeholder: 'Enter port',
 		type: 'number',
-		value: formik.values.uatPort,
+		value: formik.values.api_uat_port,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -90,8 +96,8 @@ export const uatPortAttributes = (formik) => {
 				evt.key === 'ArrowDown') &&
 				evt.preventDefault();
 		},
-		error: formik.touched.uatPort && Boolean(formik.errors.uatPort),
-		helperText: formik.touched.uatPort && formik.errors.uatPort,
+		error: formik.touched.api_uat_port && Boolean(formik.errors.api_uat_port),
+		helperText: formik.touched.api_uat_port && formik.errors.api_uat_port,
 		disabled: false,
 	};
 };

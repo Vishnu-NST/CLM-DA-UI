@@ -9,7 +9,7 @@ import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRig
 import Typography from '@mui/material/Typography';
 import './LoanPool.scss';
 import NavigateNextSharpIcon from '@mui/icons-material/NavigateNextSharp';
-import BDDStepper from '../../../Bank/pages/BankDueDiligence/BDDStepper';
+import Stepper from './DDStepper';
 import HeaderComp from '@/components/HeaderComponent';
 import { useNavigate } from 'react-router-dom';
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
@@ -411,7 +411,7 @@ function LoanPoolTimeline() {
 						</Box>
 					</Box>
 					<Box sx={{ marginTop: '1rem' }}>
-						<BDDStepper status={item.status}></BDDStepper>
+						<Stepper status={item.status}></Stepper>
 					</Box>
 				</React.Fragment>
 			))}

@@ -19,10 +19,11 @@ import {
 	mobileNumberAttribute,
 	addressOneAttribute,
 	addressTwoAttribute,
-	stageAttribute,
+	stateAttribute,
 	cityAttribute,
 	pinCodeAttribute,
 } from './formAttributes';
+import useCreateUser from '@/store/useCreateUser';
 const customButtonStyle = {
 	borderRadius: '7px',
 	padding: '0.5rem 2.5rem',
@@ -46,6 +47,21 @@ const validationSchema = yup.object({
 	//addressTwo:yup.string().required("Address is required"),
 });
 export const User = () => {
+	const [openDialog, setOpenDialog] = useState(false);
+
+	const handleOpenDialog = (e) => {
+		e.preventDefault();
+		setOpenDialog(true);
+	};
+
+	const handleCloseDialog = () => {
+		setOpenDialog(false);
+		//if id==ur btn/ navigate to"route";
+	};
+
+	const createUserQuery = useCreateUser(() => {
+		setOpenDialog(true);
+	});
 	const navigate = useNavigate();
 	const fileInputRef = useRef(null);
 
@@ -59,29 +75,31 @@ export const User = () => {
 	};
 	const formik = useFormik({
 		initialValues: {
-			assetClass: '',
-			creditRatings: '',
-			aum: '',
-			averageIrr: '',
-			averageBalanceTenor: '',
-			averageLoanAmt: '',
-			closureDate: null,
+			userName: '',
+			userOfficialEmailAdderss: '',
+			userRole: '',
+			mobileNumber: '',
+			addressOne: '',
+			addressTwo: '',
+			state: null,
 		},
 		validationSchema: validationSchema,
 		onSubmit: async (values) => {
 			console.log({ values });
+			createUserQuery.mutate(values);
 		},
 	});
-	const [openDialog, setOpenDialog] = useState(false);
-	const handleOpenDialog = (e) => {
-		e.preventDefault();
-		setOpenDialog(true);
-	};
 
-	const handleCloseDialog = () => {
-		setOpenDialog(false);
-		//if id==ur btn/ navigate to"route";
-	};
+	if (createUserQuery.isError) {
+		console.log(createUserQuery.error);
+	}
+
+	if (createUserQuery.isSuccess) {
+		console.log(createUserQuery.data);
+	}
+
+	console.log(formik.values);
+
 	return (
 		<>
 			<div className="title">
@@ -193,7 +211,7 @@ export const User = () => {
 						<InputComponent {...addressTwoAttribute(formik)} />
 					</Grid>
 					<Grid item sm={4} className="pr-2">
-						<InputComponent {...stageAttribute(formik)} />
+						<InputComponent {...stateAttribute(formik)} />
 					</Grid>
 					<Grid item sm={4} className="pr-2">
 						<InputComponent {...cityAttribute(formik)} />
@@ -215,14 +233,15 @@ export const User = () => {
 						<CustomButton
 							buttonDisabled={false}
 							customStyle={customButtonStyle}
-							onClick={handleOpenDialog}
+							// onClick={handleOpenDialog}
+							type="submit"
 						>
 							Add User &nbsp;
 							<ArrowForwardIosIcon fontSize="11" />
 						</CustomButton>
 
 						<ConformationDialogBox
-							open={openDialog}
+							open={false}
 							handleClose={handleCloseDialog}
 							title="Dialog Title"
 							contentTitle="User has been created Successfully"

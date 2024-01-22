@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import './BankDueDiligence.scss';
 import useCustomerVerification from '@/store/useCustomerVerification';
+import useCustomerApproval from '@/store/useCustomerApproval';
 import HeaderComp from '@/components/HeaderComponent';
 const CustomerVerification = () => {
 	const data = [
@@ -130,6 +131,7 @@ const CustomerVerification = () => {
 		},
 	];
 	const cusVerification = useCustomerVerification();
+	const cusApproval = useCustomerApproval();
 	const datas = cusVerification.data ? cusVerification.data : [];
 	console.log('datas', datas);
 
@@ -176,12 +178,10 @@ const CustomerVerification = () => {
 	};
 
 	async function handlePoolApproval(payload) {
-		cusVerification.mutate(payload);
+		setApproval(true);
+		cusApproval.mutate(payload);
 	}
 
-	const poolHandleApproval = () => {
-		setApproval(true);
-	};
 	const getBackgroundImage = (daysLeft) => {
 		if (daysLeft >= 20 && daysLeft <= 30) {
 			return 'linear-gradient(to bottom, #bbefd6, #ffffff)';
@@ -455,7 +455,7 @@ const CustomerVerification = () => {
 							},
 						}}
 						variant="outlined"
-						onClick={poolHandleApproval}
+						onClick={handlePoolApproval}
 					>
 						Approve <NavigateNextSharpIcon />
 					</Button>
