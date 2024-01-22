@@ -410,7 +410,7 @@ export const routes = [
 				errorElement: <ErrorPage />,
 			},
 			{
-				path: 'loan-pool-monitoring/:poolId',
+				path: 'loan-pool-monitoring/customer-list',
 				element: (
 					<Suspense fallback={'Loading...'}>
 						<CustomerList />
