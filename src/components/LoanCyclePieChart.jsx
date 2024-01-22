@@ -1,14 +1,15 @@
 import { Card, CardContent, Divider, Grid, Typography } from '@mui/material';
 import { PieChart, Pie, Legend, ResponsiveContainer } from 'recharts';
-const LoanCyclePieChart = () => {
-	const loanCycleData = [
-		{ name: 'First Cycle Loans Outstanding Amount', value: 70, fill: '#00B85E' },
-		{
-			name: 'Second Cycle Loans Outstanding Amount',
-			value: 30,
-			fill: '#8794C2',
-		},
-	];
+const LoanCyclePieChart = (props) => {
+	const data = props.data;
+	const fillValues = ['#00B85E', '#8794C2'];
+	const formattedData = data
+		? Object.entries(data).map(([name, value], index) => ({
+				name,
+				value,
+				fill: fillValues[index],
+			}))
+		: null;
 	const LegendCls = {
 		fontColor: '#8794C2',
 		fontSize: '0.75rem',
@@ -33,7 +34,7 @@ const LoanCyclePieChart = () => {
 						<PieChart type="circle" height={50}>
 							<Pie
 								dataKey="value"
-								data={loanCycleData}
+								data={formattedData}
 								cx="50%"
 								cy="50%"
 								outerRadius={120}
@@ -48,6 +49,20 @@ const LoanCyclePieChart = () => {
 								layout="vertical"
 								align="center"
 								wrapperStyle={LegendCls}
+								// formatter={(value) => (
+								// 	<span style={{ fontSize: '0.75rem' }}>
+								// 		{value == 'firstCycleLOA'
+								// 			? 'First cycle loans Outstanding Amount'
+								// 			: 'Second cycle loans Outstanding Amount'}
+								// 	</span>
+								// )}
+								formatter={(value, entry) => (
+									<span style={{ fontSize: '0.75rem' }}>
+										{entry.payload.name === 'firstCycleLOA'
+											? `First cycle loans Outstanding Amount: ${entry.payload.payload.payload.value}`
+											: `Second cycle loans Outstanding Amount: ${entry.payload.payload.payload.value}`}
+									</span>
+								)}
 							/>
 						</PieChart>
 					</ResponsiveContainer>
