@@ -12,6 +12,8 @@ import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRig
 import './DueDiligence.scss';
 import SelectComponent from '@/components/SelectComponent';
 import HeaderComp from '@/components/HeaderComponent';
+import useGetQueryList from '@/store/useGetQueryList';
+import { capitalizeString, changeDateFormatForDd } from '@/utils/common';
 
 const arrowBtnStyle = {
 	border: '1px solid rgba(112, 126, 174, 0.5)',
@@ -23,12 +25,12 @@ const arrowBtnStyle = {
 	backgroundColor: 'white',
 };
 
-const arr = [1, 2, 3];
-
 const DueDiligence = () => {
 	const [drawerState, setDrawerState] = React.useState(false);
 	const [searchValue, setSearchValue] = React.useState();
 	const [filterValue, setFilterValue] = React.useState('');
+	const queryData = useGetQueryList();
+	const [checkQueryData, setCheckQueryData] = React.useState();
 
 	const searchQueryAttributes = {
 		id: 'searchQuery',
@@ -87,7 +89,7 @@ const DueDiligence = () => {
 	return (
 		<>
 			<HeaderComp
-				title={'Due Diligence'}
+				title={'Due Diligence Queries'}
 				breadCrumbs={[{ data: 'Due Diligence Queries', path: null }]}
 			/>
 			<div className="due-diligence-block">
@@ -127,7 +129,7 @@ const DueDiligence = () => {
 						</div>
 					</Grid>
 				</Grid>
-				{arr?.map((item, idx) => {
+				{queryData?.data?.map((item, idx) => {
 					return (
 						<div className="query-card" key={idx}>
 							<Accordion
@@ -155,18 +157,20 @@ const DueDiligence = () => {
 										<div className="flex-column">
 											<div className="flex">
 												<div className="title">
-													QID | 761AD April 26-1
+													QID | {item?.query_id}
 												</div>
 												<div className="pool-detail-btns">
 													<div
 														className="btn"
 														style={{
 															background:
-																'linear-gradient(to bottom,rgba(247, 135, 54, 0.2),rgba(247, 135, 54, 0))',
-															color: '#F78736',
+																'linear-gradient(to bottom,rgba(0, 184, 94, 0.1),rgba(0, 184, 94, 0))',
+															color: '#00B85E',
 														}}
 													>
-														On going
+														{capitalizeString(
+															item?.data?.status,
+														)}
 													</div>
 													&nbsp; &nbsp;
 													<div
@@ -187,7 +191,10 @@ const DueDiligence = () => {
 													paddingTop: '0.3rem',
 												}}
 											>
-												Raised on 26 Dec, 2023 at 05:30 PM
+												Raised on{' '}
+												{changeDateFormatForDd(
+													new Date(item?.data?.created_at),
+												)}
 											</div>
 										</div>
 										<div className="sub-txt">
@@ -197,9 +204,11 @@ const DueDiligence = () => {
 								</AccordionSummary>
 								<AccordionDetails>
 									<PoolQueryList
-										onCheckQueryClick={() =>
-											setDrawerState(true)
-										}
+										poolData={item?.pooldata}
+										onCheckQueryClick={() => {
+											setCheckQueryData(item);
+											setDrawerState(true);
+										}}
 									/>
 								</AccordionDetails>
 							</Accordion>
@@ -210,6 +219,7 @@ const DueDiligence = () => {
 			<CustomDrawer
 				anchor="right"
 				state={drawerState}
+				queryData={checkQueryData}
 				Component={DueDiligenceDrawer}
 				onClose={() => setDrawerState(false)}
 			/>

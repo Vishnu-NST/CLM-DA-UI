@@ -1,14 +1,14 @@
 import React from 'react';
-import Profile from './components/Profile';
-import NbfcProfile from './components/NbfcProfile';
+import ProfileCreation from './components/ProfileCreation';
+import ProfileDetails from './components/ProfileDetails';
 
 const ProfileOrProfileCreation = () => {
 	const firstTime = true;
 
 	if (firstTime) {
-		return <Profile />;
+		return <ProfileCreation />;
 	} else {
-		return <NbfcProfile />;
+		return <ProfileDetails />;
 	}
 };
 

@@ -12,170 +12,327 @@ import NavigateNextSharpIcon from '@mui/icons-material/NavigateNextSharp';
 import BDDStepper from './BDDStepper';
 import HeaderComp from '@/components/HeaderComponent';
 import { useNavigate } from 'react-router-dom';
+import useDD from '@/store/useDD';
 const data = [
 	{
-		bankName: 'Bank A',
-		amount: '10 cr',
-		creditRating: 'A+',
-		averageIRR: '10%',
-		daysLeft: 15,
-		status: 'completed',
+		pool_id: 'POOL-47',
+		name: 'Natonal Insurance',
+		createdOn: '2024-01-19T07:35:28.386251',
+		nbfc_logo: 'N/A',
+		aum: '50cr',
+		credit_ratings: '1cb6ecf1-6b67-45b9-85f9-4d46ce2327f5',
+		irr: '30%',
+		days_left_until_closure: 693,
+		due_diligence_status: 'Due Diligence completed',
+		pool_status: 'Pool completed',
+		transaction_status: 'Transaction completed',
+		handover_status: 'completed',
 	},
 	{
-		bankName: 'Bank B',
-		amount: '20 cr',
-		creditRating: 'B',
-		averageIRR: '15%',
-		daysLeft: 25,
-		status: 'approved',
+		pool_id: 'POOL-48',
+		name: 'ABC Corporation',
+		createdOn: '2024-01-20T08:45:12.123456',
+		nbfc_logo: 'XYZ',
+		aum: '75cr',
+		credit_ratings: '2ab8edc3-8a12-56c7-93f4-7e85ab36d8c2',
+		irr: '25%',
+		days_left_until_closure: 500,
+		due_diligence_status: 'Due Diligence completed',
+		pool_status: 'Pool completed',
+		transaction_status: 'Transaction completed',
+		handover_status: 'pending',
 	},
 	{
-		bankName: 'Bank C',
-		amount: '30 cr',
-		creditRating: 'C',
-		averageIRR: '12%',
-		daysLeft: 3,
-		status: 'rejected',
+		pool_id: 'POOL-49',
+		name: 'Global Investments',
+		createdOn: '2024-02-01T10:20:15.987654',
+		nbfc_logo: 'GlobInv',
+		aum: '120cr',
+		credit_ratings: '3cf2a7b1-3e45-98a2-12d5-56e87c9b01ef',
+		irr: '18%',
+		days_left_until_closure: 800,
+		due_diligence_status: 'Due Diligence completed',
+		pool_status: 'Pool completed',
+		transaction_status: 'Transaction pending',
+		handover_status: null,
 	},
 	{
-		bankName: 'Bank D',
-		amount: '25 cr',
-		creditRating: 'A',
-		averageIRR: '18%',
-		daysLeft: 20,
-		status: 'processing',
+		pool_id: 'POOL-50',
+		name: 'Tech Finance Ltd.',
+		createdOn: '2024-02-05T12:30:45.543210',
+		nbfc_logo: 'TechFin',
+		aum: '90cr',
+		credit_ratings: '4d987bc1-12f3-45a8-89c2-67e34d21b6ca',
+		irr: '22%',
+		days_left_until_closure: 600,
+		due_diligence_status: 'Due Diligence completed',
+		pool_status: 'Pool pending',
+		transaction_status: '',
+		handover_status: '',
 	},
 	{
-		bankName: 'Bank E',
-		amount: '15 cr',
-		creditRating: 'B+',
-		averageIRR: '22%',
-		daysLeft: 30,
-		status: 'completed',
+		pool_id: 'POOL-51',
+		name: 'Investment Ventures',
+		createdOn: '2024-02-10T14:55:30.876543',
+		nbfc_logo: 'InvVent',
+		aum: '80cr',
+		credit_ratings: '5a4567b2-89c1-23d4-56e7-89a01234b5cd',
+		irr: '28%',
+		days_left_until_closure: 450,
+		due_diligence_status: 'Due Diligence completed',
+		pool_status: '',
+		transaction_status: '',
+		handover_status: '',
 	},
 	{
-		bankName: 'Bank F',
-		amount: '12 cr',
-		creditRating: 'A-',
-		averageIRR: '14%',
-		daysLeft: 22,
-		status: 'approved',
+		pool_id: 'POOL-52',
+		name: 'Finance Innovators',
+		createdOn: '2024-02-15T16:10:20.345678',
+		nbfc_logo: 'FinInnov',
+		aum: '65cr',
+		credit_ratings: '6b3456c3-45d8-12a7-67e9-01d23456c7b8',
+		irr: '24%',
+		days_left_until_closure: 550,
+		due_diligence_status: 'Due Diligence rejected',
+		pool_status: '',
+		transaction_status: '',
+		handover_status: '',
 	},
 	{
-		bankName: 'Bank G',
-		amount: '18 cr',
-		creditRating: 'B-',
-		averageIRR: '16%',
-		daysLeft: 18,
-		status: 'rejected',
+		pool_id: 'POOL-52',
+		name: 'Finance Innovators',
+		createdOn: '2024-02-15T16:10:20.345678',
+		nbfc_logo: 'FinInnov',
+		aum: '65cr',
+		credit_ratings: '6b3456c3-45d8-12a7-67e9-01d23456c7b8',
+		irr: '24%',
+		days_left_until_closure: 550,
+		due_diligence_status: 'Due Diligence completed',
+		pool_status: 'pool rejected',
+		transaction_status: '',
+		handover_status: '',
 	},
 	{
-		bankName: 'Bank H',
-		amount: '28 cr',
-		creditRating: 'A+',
-		averageIRR: '20%',
-		daysLeft: 12,
-		status: 'processing',
+		pool_id: 'POOL-53',
+		name: 'Capital Funders',
+		createdOn: '2024-02-20T18:25:40.987654',
+		nbfc_logo: 'CapFunds',
+		aum: '100cr',
+		credit_ratings: '7c6789d4-23a1-56b2-89c3-45d01234e5f6',
+		irr: '20%',
+		days_left_until_closure: 700,
+		due_diligence_status: '',
+		pool_status: '',
+		transaction_status: '',
+		handover_status: '',
 	},
 	{
-		bankName: 'Bank I',
-		amount: '22 cr',
-		creditRating: 'C+',
-		averageIRR: '25%',
-		daysLeft: 28,
-		status: 'completed',
+		pool_id: 'POOL-47',
+		name: 'Natonal Insurance',
+		createdOn: '2024-01-19T07:35:28.386251',
+		nbfc_logo: 'N/A',
+		aum: '50cr',
+		credit_ratings: '1cb6ecf1-6b67-45b9-85f9-4d46ce2327f5',
+		irr: '30%',
+		days_left_until_closure: 693,
+		due_diligence_status: 'Due Diligence completed',
+		pool_status: 'Pool completed',
+		transaction_status: 'Transaction completed',
+		handover_status: 'completed',
 	},
 	{
-		bankName: 'Bank J',
-		amount: '8 cr',
-		creditRating: 'A',
-		averageIRR: '14%',
-		daysLeft: 24,
-		status: 'approved',
+		pool_id: 'POOL-48',
+		name: 'ABC Corporation',
+		createdOn: '2024-01-20T08:45:12.123456',
+		nbfc_logo: 'XYZ',
+		aum: '75cr',
+		credit_ratings: '2ab8edc3-8a12-56c7-93f4-7e85ab36d8c2',
+		irr: '25%',
+		days_left_until_closure: 500,
+		due_diligence_status: 'Due Diligence completed',
+		pool_status: 'Pool completed',
+		transaction_status: 'Transaction completed',
+		handover_status: 'pending',
 	},
 	{
-		bankName: 'Bank K',
-		amount: '16 cr',
-		creditRating: 'B',
-		averageIRR: '19%',
-		daysLeft: 14,
-		status: 'rejected',
+		pool_id: 'POOL-49',
+		name: 'Global Investments',
+		createdOn: '2024-02-01T10:20:15.987654',
+		nbfc_logo: 'GlobInv',
+		aum: '120cr',
+		credit_ratings: '3cf2a7b1-3e45-98a2-12d5-56e87c9b01ef',
+		irr: '18%',
+		days_left_until_closure: 800,
+		due_diligence_status: 'Due Diligence completed',
+		pool_status: 'Pool completed',
+		transaction_status: 'Transaction pending',
+		handover_status: ' ',
 	},
 	{
-		bankName: 'Bank L',
-		amount: '24 cr',
-		creditRating: 'A+',
-		averageIRR: '21%',
-		daysLeft: 16,
-		status: 'processing',
+		pool_id: 'POOL-50',
+		name: 'Tech Finance Ltd.',
+		createdOn: '2024-02-05T12:30:45.543210',
+		nbfc_logo: 'TechFin',
+		aum: '90cr',
+		credit_ratings: '4d987bc1-12f3-45a8-89c2-67e34d21b6ca',
+		irr: '22%',
+		days_left_until_closure: 600,
+		due_diligence_status: 'Due Diligence completed',
+		pool_status: 'Pool pending',
+		transaction_status: '',
+		handover_status: '',
 	},
 	{
-		bankName: 'Bank M',
-		amount: '14 cr',
-		creditRating: 'B+',
-		averageIRR: '17%',
-		daysLeft: 26,
-		status: 'completed',
+		pool_id: 'POOL-51',
+		name: 'Investment Ventures',
+		createdOn: '2024-02-10T14:55:30.876543',
+		nbfc_logo: 'InvVent',
+		aum: '80cr',
+		credit_ratings: '5a4567b2-89c1-23d4-56e7-89a01234b5cd',
+		irr: '28%',
+		days_left_until_closure: 450,
+		due_diligence_status: 'Due Diligence completed',
+		pool_status: '',
+		transaction_status: '',
+		handover_status: '',
 	},
 	{
-		bankName: 'Bank N',
-		amount: '11 cr',
-		creditRating: 'C-',
-		averageIRR: '13%',
-		daysLeft: 21,
-		status: 'approved',
+		pool_id: 'POOL-52',
+		name: 'Finance Innovators',
+		createdOn: '2024-02-15T16:10:20.345678',
+		nbfc_logo: 'FinInnov',
+		aum: '65cr',
+		credit_ratings: '6b3456c3-45d8-12a7-67e9-01d23456c7b8',
+		irr: '24%',
+		days_left_until_closure: 550,
+		due_diligence_status: 'Due Diligence rejected',
+		pool_status: '',
+		transaction_status: '',
+		handover_status: '',
 	},
 	{
-		bankName: 'Bank O',
-		amount: '19 cr',
-		creditRating: 'A-',
-		averageIRR: '23%',
-		daysLeft: 19,
-		status: 'rejected',
+		pool_id: 'POOL-53',
+		name: 'Capital Funders',
+		createdOn: '2024-02-20T18:25:40.987654',
+		nbfc_logo: 'CapFunds',
+		aum: '100cr',
+		credit_ratings: '7c6789d4-23a1-56b2-89c3-45d01234e5f6',
+		irr: '20%',
+		days_left_until_closure: 700,
+		due_diligence_status: '',
+		pool_status: '',
+		transaction_status: '',
+		handover_status: '',
 	},
 	{
-		bankName: 'Bank P',
-		amount: '29 cr',
-		creditRating: 'B-',
-		averageIRR: '18%',
-		daysLeft: 11,
-		status: 'processing',
+		pool_id: 'POOL-47',
+		name: 'Natonal Insurance',
+		createdOn: '2024-01-19T07:35:28.386251',
+		nbfc_logo: 'N/A',
+		aum: '50cr',
+		credit_ratings: '1cb6ecf1-6b67-45b9-85f9-4d46ce2327f5',
+		irr: '30%',
+		days_left_until_closure: 693,
+		due_diligence_status: 'Due Diligence completed',
+		pool_status: 'Pool completed',
+		transaction_status: 'Transaction completed',
+		handover_status: 'completed',
 	},
 	{
-		bankName: 'Bank Q',
-		amount: '23 cr',
-		creditRating: 'A+',
-		averageIRR: '24%',
-		daysLeft: 27,
-		status: 'completed',
+		pool_id: 'POOL-48',
+		name: 'ABC Corporation',
+		createdOn: '2024-01-20T08:45:12.123456',
+		nbfc_logo: 'XYZ',
+		aum: '75cr',
+		credit_ratings: '2ab8edc3-8a12-56c7-93f4-7e85ab36d8c2',
+		irr: '25%',
+		days_left_until_closure: 500,
+		due_diligence_status: 'Due Diligence completed',
+		pool_status: 'Pool completed',
+		transaction_status: 'Transaction completed',
+		handover_status: 'pending',
 	},
 	{
-		bankName: 'Bank R',
-		amount: '9 cr',
-		creditRating: 'C+',
-		averageIRR: '16%',
-		daysLeft: 23,
-		status: 'approved',
+		pool_id: 'POOL-49',
+		name: 'Global Investments',
+		createdOn: '2024-02-01T10:20:15.987654',
+		nbfc_logo: 'GlobInv',
+		aum: '120cr',
+		credit_ratings: '3cf2a7b1-3e45-98a2-12d5-56e87c9b01ef',
+		irr: '18%',
+		days_left_until_closure: 800,
+		due_diligence_status: 'Due Diligence completed',
+		pool_status: 'Pool completed',
+		transaction_status: 'Transaction pending',
+		handover_status: ' ',
 	},
 	{
-		bankName: 'Bank S',
-		amount: '17 cr',
-		creditRating: 'A',
-		averageIRR: '22%',
-		daysLeft: 17,
-		status: 'rejected',
+		pool_id: 'POOL-50',
+		name: 'Tech Finance Ltd.',
+		createdOn: '2024-02-05T12:30:45.543210',
+		nbfc_logo: 'TechFin',
+		aum: '90cr',
+		credit_ratings: '4d987bc1-12f3-45a8-89c2-67e34d21b6ca',
+		irr: '22%',
+		days_left_until_closure: 600,
+		due_diligence_status: 'Due Diligence completed',
+		pool_status: 'Pool pending',
+		transaction_status: '',
+		handover_status: '',
 	},
 	{
-		bankName: 'Bank T',
-		amount: '27 cr',
-		creditRating: 'B+',
-		averageIRR: '19%',
-		daysLeft: 13,
-		status: 'processing',
+		pool_id: 'POOL-51',
+		name: 'Investment Ventures',
+		createdOn: '2024-02-10T14:55:30.876543',
+		nbfc_logo: 'InvVent',
+		aum: '80cr',
+		credit_ratings: '5a4567b2-89c1-23d4-56e7-89a01234b5cd',
+		irr: '28%',
+		days_left_until_closure: 450,
+		due_diligence_status: 'Due Diligence completed',
+		pool_status: '',
+		transaction_status: '',
+		handover_status: '',
+	},
+	{
+		pool_id: 'POOL-52',
+		name: 'Finance Innovators',
+		createdOn: '2024-02-15T16:10:20.345678',
+		nbfc_logo: 'FinInnov',
+		aum: '65cr',
+		credit_ratings: '6b3456c3-45d8-12a7-67e9-01d23456c7b8',
+		irr: '24%',
+		days_left_until_closure: 550,
+		due_diligence_status: 'Due Diligence rejected',
+		pool_status: '',
+		transaction_status: '',
+		handover_status: '',
+	},
+	{
+		pool_id: 'POOL-53',
+		name: 'Capital Funders',
+		createdOn: '2024-02-20T18:25:40.987654',
+		nbfc_logo: 'CapFunds',
+		aum: '100cr',
+		credit_ratings: '7c6789d4-23a1-56b2-89c3-45d01234e5f6',
+		irr: '20%',
+		days_left_until_closure: 700,
+		due_diligence_status: '',
+		pool_status: '',
+		transaction_status: '',
+		handover_status: '',
 	},
 ];
 
 function BankDueDiligence() {
+	const ddQuery = useDD();
+	const datas = ddQuery.data ? ddQuery.data : [];
+
+	// console.log(
+	// 	'datas',
+	// 	datas.map((item) => item.name),
+	// );
+
 	const [poolName, setPoolName] = useState('');
 	const [selectPool, setSelectPool] = useState('');
 	const [filteredData, setFilteredData] = useState(data);
@@ -224,7 +381,7 @@ function BankDueDiligence() {
 			const searchTerm = event.target.value;
 			setPoolName(searchTerm);
 			const newData = data.filter((item) =>
-				item.bankName.toLowerCase().includes(searchTerm.toLowerCase()),
+				item.name.toLowerCase().includes(searchTerm.toLowerCase()),
 			);
 
 			setFilteredData(newData);
@@ -285,6 +442,14 @@ function BankDueDiligence() {
 		navigate('/bank/panel/customerdetails');
 	};
 
+	// if (ddQuery.isError) {
+	// 	//
+	// }
+
+	// if (ddQuery.isSuccess) {
+	// 	console.log(ddQuery.data);
+	// }\\
+
 	return (
 		<>
 			<HeaderComp title={'Due Diligence'} />
@@ -332,7 +497,7 @@ function BankDueDiligence() {
 				</Box>
 			</Box>
 
-			{currentItems.map((item, index) => (
+			{data.map((item, index) => (
 				<React.Fragment key={index}>
 					<Box className="bankDD-search">
 						<Box className="flex flexDirectionColunm">
@@ -340,7 +505,7 @@ function BankDueDiligence() {
 								variant="body1"
 								style={{ fontSize: '0.875rem' }}
 							>
-								{item.bankName}
+								{item.name}
 							</Typography>
 							<Typography
 								variant="body2"
@@ -364,7 +529,7 @@ function BankDueDiligence() {
 						</Box>
 						<Box display="flex" flexDirection="column">
 							<Typography style={{ fontSize: '0.875rem' }}>
-								{item.amount}
+								Aum
 							</Typography>
 							<Typography style={{ fontSize: '0.6875rem' }}>
 								AUM
@@ -374,7 +539,7 @@ function BankDueDiligence() {
 							<Typography
 								style={{ fontSize: '0.875rem', color: '#00B85E' }}
 							>
-								{item.creditRating}
+								A++++
 							</Typography>
 							<Typography style={{ fontSize: '0.6875rem' }}>
 								Credit Ratings
@@ -382,7 +547,7 @@ function BankDueDiligence() {
 						</Box>
 						<Box display="flex" flexDirection="column">
 							<Typography style={{ fontSize: '0.875rem' }}>
-								{item.averageIRR}
+								Irr
 							</Typography>
 							<Typography style={{ fontSize: '0.6875rem' }}>
 								Average IRR
@@ -394,13 +559,11 @@ function BankDueDiligence() {
 									fontSize: '0.75rem',
 									padding: '5px 20px',
 									borderRadius: '35px',
-									backgroundImage: getBackgroundImage(
-										item.daysLeft,
-									),
-									color: getFontColor(item.daysLeft),
+									backgroundImage: getBackgroundImage(10),
+									color: getFontColor(10),
 								}}
 							>
-								{item.daysLeft} days left
+								10 days left
 							</Typography>
 						</Box>
 						<Box onClick={handleCustomerDetailsClick}>
@@ -419,8 +582,14 @@ function BankDueDiligence() {
 							</Typography>
 						</Box>
 					</Box>
-					<Box sx={{ marginTop: '1rem' }}>
-						<BDDStepper status={item.status}></BDDStepper>
+					<Box sx={{ marginY: '1rem' }}>
+						<BDDStepper
+							dd={item.due_diligence_status}
+							pool={item.pool_status}
+							transaction={item.transaction_status}
+							handedOver={item.handover_status}
+							poolId={item.pool_id}
+						></BDDStepper>
 					</Box>
 				</React.Fragment>
 			))}

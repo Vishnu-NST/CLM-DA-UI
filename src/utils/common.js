@@ -95,3 +95,73 @@ export function decodeToken(token) {
 		return null;
 	}
 }
+
+export function formatDate(dateString) {
+	const dateObject = new Date(dateString);
+
+	const options = { day: 'numeric', month: 'long', year: 'numeric' };
+	const formattedDate = new Intl.DateTimeFormat('en-US', options).format(
+		dateObject,
+	);
+
+	return formattedDate;
+}
+
+export function convertIntegersToStrings(obj) {
+	const convertedObj = {};
+
+	for (const key in obj) {
+		if (typeof obj[key] === 'number') {
+			// Convert only if the value is a number
+			convertedObj[key] = obj[key].toString();
+		} else {
+			// Keep the original value for non-numeric properties
+			convertedObj[key] = obj[key];
+		}
+	}
+
+	return convertedObj;
+}
+
+export const getCreditRatingColor = (creditRating) => {
+	switch (creditRating) {
+		case 'A':
+		case 'A+':
+		case 'AA':
+		case 'AA+':
+		case 'AAA':
+		case 'AAA+':
+			return '#00B85E';
+
+		case 'B':
+		case 'B+':
+		case 'BB':
+		case 'BB+':
+		case 'BBB':
+		case 'BBB+':
+			return '#F78736';
+		case 'C':
+		case 'C+':
+		case 'CC':
+		case 'CC+':
+		case 'CCC':
+		case 'CCC+':
+			return '#C4161C';
+		default:
+			return '#00B85E';
+	}
+};
+
+export const changeDateFormatForDd = (inputDate) => {
+	const options = {
+		year: 'numeric',
+		month: 'short',
+		day: '2-digit',
+		hour: '2-digit',
+		minute: '2-digit',
+		hour12: true,
+	};
+	const dateFormatter = new Intl.DateTimeFormat('en-US', options);
+	const formattedDate = dateFormatter.format(inputDate);
+	return formattedDate;
+};
