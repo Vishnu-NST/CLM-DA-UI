@@ -197,7 +197,7 @@ export default function PortfolioMonitoring() {
 									}}
 									onClick={() => {
 										navigate(
-											`/loan-pool-monitoring/${item?.poolid}`,
+											'/bank/panel/loan-pool-monitoring/customer-list',
 										);
 									}}
 								>
