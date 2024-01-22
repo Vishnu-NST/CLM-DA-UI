@@ -32,17 +32,6 @@ class LOSClient {
 		this.endpoint = endpoint;
 	}
 
-	post(payload) {
-		return axiosInstance.post(this.endpoint, payload).then((res) => res.data);
-	}
-
-	get(payload) {
-		return axiosInstance.get(this.endpoint, payload).then((res) => res.data);
-	}
-	getCustomerVerificationDetails(payload) {
-		return axiosInstance.get(this.endpoint, payload).then((res) => res.data);
-	}
-
 	getViewLoanPoolList() {
 		return axiosInstance.get(this.endpoint).then((res) => res.data);
 	}
@@ -58,6 +47,18 @@ class LOSClient {
 	getLoanPoolProspectDetails() {
 		return axiosInstance.get(this.endpoint).then((res) => res.data);
 	}
+
+	post(payload) {
+		return axiosInstance.post(this.endpoint, payload).then((res) => res.data);
+	}
+
+	get(payload) {
+		return axiosInstance.get(this.endpoint, payload).then((res) => res.data);
+	}
+	getCustomerVerificationDetails(payload) {
+		return axiosInstance.get(this.endpoint, payload).then((res) => res.data);
+	}
+	
 	createPool(payload) {
 		return axiosInstance.post(this.endpoint, payload).then((res) => res.data);
 	}
