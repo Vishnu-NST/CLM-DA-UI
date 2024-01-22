@@ -1,4 +1,6 @@
 $white: #ffffff;
+$warm-white:#f8f9fb;
+
 .flex{
     display: flex;
 }
@@ -20,7 +22,7 @@ $white: #ffffff;
  
  
 .bankDD-search{
-    background-color: $white;
+    background-color: $warm-white;
     display: flex;
     justify-content:space-around ;
     padding: 1.25rem 0.625rem;
@@ -33,3 +35,40 @@ $white: #ffffff;
     font-weight: 400;
     font-size: 0.75rem;
 }
+.item-1 .item-2{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    float: right;
+    margin: 0 5px;
+    background: #C4161C;
+    overflow: hidden;
+    border-radius: 50px 0px 50px 50px;
+    cursor: pointer;
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease-out;
+  }
+  
+  .item-1 .item-2 .icon{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+    box-sizing: border-box;
+    line-height: 50px;
+    margin-left: 10px;
+  }
+  .item-1 .item-2 .icon .helpOutlineIcon{
+    font-size: 20px;
+    line-height: 10px;
+    
+  }
+  .item-1 .item-2 span{
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 55px;
+  }
+  
+  .item-1 .item-2:hover{
+    width:350px
+  }

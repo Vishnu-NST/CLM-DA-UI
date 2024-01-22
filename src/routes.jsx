@@ -42,6 +42,8 @@ import CustomerDetails from './target/Bank/pages/BankDueDiligence/CustomerDetail
 import { BankProspectDetails } from './target/Bank/pages/Pools/BankProspectDetails';
 import Statistics from './target/NBFC/pages/ViewLoanPool/Statistics';
 import { ProspectDetails } from './target/NBFC/pages/ViewLoanPool/ProspectDetails';
+import CustomerVerification from './target/Bank/pages/BankDueDiligence/CustomerVerification';
+import Query from './target/Bank/pages/BankDueDiligence/Query';
 import ProfileDetails from './target/NBFC/pages/Ums/components/ProfileDetails';
 import UserList from './target/NBFC/pages/Ums/components/UserList';
 
@@ -334,7 +336,8 @@ export const routes = [
 				errorElement: <ErrorPage />,
 			},
 			{
-				path: 'customerdetails',
+				path: 'CustomerDetails',
+
 				element: (
 					<Suspense fallback={'Loading ...'}>
 						<CustomerDetails />
@@ -347,6 +350,24 @@ export const routes = [
 				element: (
 					<Suspense fallback={'Loading ...'}>
 						<BankProspectDetails />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'CustomerVerification/:poolId',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<CustomerVerification />
+					</Suspense>
+				),
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'Query',
+				element: (
+					<Suspense fallback={'Loading ...'}>
+						<Query />
 					</Suspense>
 				),
 				errorElement: <ErrorPage />,

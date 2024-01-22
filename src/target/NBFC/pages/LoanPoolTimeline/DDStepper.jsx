@@ -92,7 +92,7 @@ function ColorlibStepIcon(props) {
 	);
 }
 
-function BDDStepper({ dd, pool, transaction, handedOver, poolId }) {
+function DDStepper({ dd, pool, transaction, handedOver, poolId }) {
 	const [activeStep, setActiveStep] = React.useState(0);
 
 	const navigate = useNavigate();
@@ -213,4 +213,4 @@ function BDDStepper({ dd, pool, transaction, handedOver, poolId }) {
 		</Stack>
 	);
 }
-export default BDDStepper;
+export default DDStepper;
