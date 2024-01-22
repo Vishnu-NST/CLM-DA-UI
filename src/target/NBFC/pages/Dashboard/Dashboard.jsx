@@ -1,6 +1,7 @@
 import CollectivePoolData from '@/components/CollectivePoolData';
 import FullPieChart from '@/components/FullPieChart';
 import GeographyData from '@/components/GeographyData';
+import HeaderComp from '@/components/HeaderComponent';
 import LineChartComponent from '@/components/LineChart';
 import LoanCyclePieChart from '@/components/LoanCyclePieChart';
 import { Card, Divider, Grid, Typography } from '@mui/material';
@@ -53,6 +54,8 @@ const Dashboard = () => {
 
 	return dashboardData ? (
 		<>
+			<HeaderComp title={'Dashboard'} />
+			<br />
 			<Grid container>
 				<Grid item sm={7}>
 					<Card>
