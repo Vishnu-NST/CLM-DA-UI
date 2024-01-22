@@ -1,14 +1,15 @@
-import { Card, Checkbox, Grid, Paper, Typography } from '@mui/material';
-import StatisticsIcon from '@/assets/svg/StatisticsIcon';
-import EditIcon from '@/assets/svg/EditIcon';
 import DeleteIcon from '@/assets/svg/DeleteIcon';
-import { useNavigate } from 'react-router-dom';
+import EditIcon from '@/assets/svg/EditIcon';
+import StatisticsIcon from '@/assets/svg/StatisticsIcon';
 import CustomButton from '@/components/CustomButton';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import useGetViewLoanPoolList from '@/store/useGetViewLoanPoolList';
 import useDeleteLoanPool from '@/store/useDeleteLoanPool';
 import useGetViewLoanPoolCustomerDetails from '@/store/useGetLoanPoolCustomerDetails';
+import useGetViewLoanPoolList from '@/store/useGetViewLoanPoolList';
+import { Card, Checkbox, Grid, Paper, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import ConformationDialogBox from '@/components/ConformationDialogBox';
+import { useState } from 'react';
+import SuccessIcon from '@/assets/svg/SuccessIcon';
 
 const LoanPoolCard = () => {
 	const navigate = useNavigate();
@@ -27,10 +28,20 @@ const LoanPoolCard = () => {
 		setLoanPoolId(payload);
 	};
 
+	const [openDialog, setOpenDialog] = useState(false);
+	const handleOpenDialog = (e) => {
+		e.preventDefault();
+		setOpenDialog(true);
+	};
+	const handleCloseDialog = () => {
+		setOpenDialog(false);
+		//if id==ur btn/ navigate to"route";
+	};
+
 	const customButtonStyle = {
-		width:"15rem",
-		mt:4,
-		mr:5,
+		width: '15rem',
+		mt: 4,
+		mr: 5,
 		borderRadius: '7px',
 		padding: '0.5rem 2.5rem',
 		color: '#FFFFFF',
@@ -115,6 +126,21 @@ const LoanPoolCard = () => {
 		},
 	};
 
+	function getOrdinalSuffix(number) {
+		const suffixes = ['th', 'st', 'nd', 'rd'];
+		const v = number % 100;
+		return number + (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
+	}
+
+	function formatDate(inputDate) {
+		const date = new Date(inputDate);
+		const day = getOrdinalSuffix(date.getDate());
+		const month = date.toLocaleString('default', { month: 'short' });
+		const year = date.getFullYear();
+
+		return `${day} ${month} ${year}`;
+	}
+
 	return (
 		<>
 			{data.data?.map((item, idx) => {
@@ -138,7 +164,7 @@ const LoanPoolCard = () => {
 									{item?.name}
 								</Typography>
 								<Typography sx={styles.titleStyles}>
-									{new Date(item?.createdOn).toLocaleDateString()}
+									Added on {formatDate(item?.createdon)}
 								</Typography>
 							</Grid>
 
@@ -150,7 +176,15 @@ const LoanPoolCard = () => {
 							</Grid>
 
 							<Grid sx={{ mt: 1.2 }} item xs={1} align="left">
-								<Typography sx={styles.ratings.greenRatings}>
+								<Typography
+									sx={
+										item?.credit_ratings[0] === 'A'
+											? styles.ratings.greenRatings
+											: item?.credit_ratings[0] === 'B'
+												? styles.ratings.yellowRatings
+												: styles.ratings.redRatings
+									}
+								>
 									{item?.credit_ratings}
 								</Typography>
 								<Typography sx={styles.titleStyles}>
@@ -226,14 +260,27 @@ const LoanPoolCard = () => {
 							<Grid item xs={0.5} sx={{ mt: 2 }} align="center">
 								<Typography
 									sx={{ cursor: 'pointer' }}
-									onClick={
-										() => handleDeleteLoanPool(item?.pool_id)
-										// console.log(item?.pool_id)
-									}
+									onClick={() => {
+										// handleDeleteLoanPool(item?.pool_id);
+										// console.log(item?.pool_id);
+										handleOpenDialog();
+									}}
 								>
 									<DeleteIcon />
 								</Typography>
 							</Grid>
+							<ConformationDialogBox
+								open={openDialog}
+								handleClose={handleCloseDialog}
+								title="Dialog Title"
+								contentTitle="Updated Successfully"
+								content="The user profile Details has been Successfully Updated."
+								imageComponent={<SuccessIcon />}
+								buttonText1="View User Details"
+								buttonText2="Add New User"
+								onButtonClick1={() => navigate('/user-list')}
+								onButtonClick2={() => navigate('/user-management')}
+							/>
 						</Grid>
 					</Card>
 				);

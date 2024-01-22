@@ -205,7 +205,7 @@ export default function PortfolioMonitoring() {
 								</Typography>
 							</Grid>
 							<Grid item xs={2} sx={{ mt: 2 }}>
-								<Typography
+								{/* <Typography
 									align="center"
 									sx={{
 										mt: 1.8,
@@ -223,7 +223,8 @@ export default function PortfolioMonitoring() {
 									}}
 								>
 									NBFC LOGO
-								</Typography>
+								</Typography> */}
+								<NBFCLogoSvasti />
 							</Grid>
 							<Grid item xs={1.5}>
 								<Typography
