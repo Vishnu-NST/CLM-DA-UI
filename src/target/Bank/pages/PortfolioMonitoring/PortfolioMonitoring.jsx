@@ -17,7 +17,7 @@ import SummaryAccordion from './components/SummaryAccordion';
 import CustomerList from './CustomerList';
 import { useNavigate } from 'react-router-dom';
 import useGetLoanPoolMonitoringList from '@/store/useGetLoanPoolMonitoringList';
-import NBFCLogoSvasti from '@/assets/svg/NBFCLogoSvasti';
+import SvastiLogo from '../../../../assets/svg/SvastiLogo.jpg'
 
 export default function PortfolioMonitoring() {
 	const navigate = useNavigate();
@@ -158,15 +158,15 @@ export default function PortfolioMonitoring() {
 						</Grid>
 					</Grid>
 				</Card>
-				{item.map((item, index) => (
+				{item?.map((item, index) => (
 					<Card
 						align="left"
 						elevation={0}
 						sx={{
 							backgroundColor: '#FFFFFF',
 							ml: 0,
-							mt: 3,
-							mb: 3,
+							mt: 2,
+							mb: 0,
 							borderRadius: '0.9375rem',
 							height: 'auto',
 							width: '97%',
@@ -224,7 +224,7 @@ export default function PortfolioMonitoring() {
 								>
 									NBFC LOGO
 								</Typography> */}
-								<NBFCLogoSvasti />
+								<img src={SvastiLogo} style={{width:'5rem'}} />
 							</Grid>
 							<Grid item xs={1.5}>
 								<Typography
