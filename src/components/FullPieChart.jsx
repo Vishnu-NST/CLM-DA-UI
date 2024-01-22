@@ -1,12 +1,19 @@
 import { Grid, Typography } from '@mui/material';
-import { PieChart, Pie, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, ResponsiveContainer, Legend } from 'recharts';
 
-const FullPieChart = () => {
-	const data = [
-		{ name: 'Group A', value: 5067, fill: '#8794C2' },
-		{ name: 'Group B', value: 3800, fill: '#c6c7c8' },
-		{ name: 'Group C', value: 5067, fill: '#00B85E' },
-	];
+const FullPieChart = (props) => {
+	const data = props?.data;
+	const fillValues = ['#8794C2', '#a2a7ab', '#00B85E'];
+	const formattedData = Object.entries(data).map(([name, value], index) => ({
+		name,
+		value,
+		fill: fillValues[index],
+	}));
+	const legendCls = {
+		fontColor: '#8794C2',
+		fontSize: '0.75rem',
+		bottom: -20,
+	};
 	const titleStyle = {
 		fontSize: '1.125rem',
 		fontWeight: '600',
@@ -19,13 +26,28 @@ const FullPieChart = () => {
 				<PieChart>
 					<Pie
 						dataKey="value"
-						data={data}
+						data={formattedData}
 						cx="50%"
 						cy="50%"
 						paddingAngle={8}
 						cornerRadius={15}
 						innerRadius={80}
 						outerRadius={120}
+					/>
+					<Legend
+						align="center"
+						verticalAlign="bottom"
+						layout="vertical"
+						wrapperStyle={legendCls}
+						formatter={(value, entry) => (
+							<span style={{ fontSize: '0.75rem' }}>
+								{entry.payload.name === 'soldLoanPool'
+									? `No. of Sold Loan Pools: ${entry.payload.payload.payload.value}`
+									: entry.payload.name === 'activePool'
+										? `No. of Active Pools: ${entry.payload.payload.payload.value}`
+										: `No. of Expired Pools: ${entry.payload.payload.payload.value}`}
+							</span>
+						)}
 					/>
 				</PieChart>
 			</ResponsiveContainer>

@@ -1,20 +1,58 @@
-import { Card, Checkbox, Grid, Paper, Typography } from '@mui/material';
-import StatisticsIcon from '@/assets/svg/StatisticsIcon';
-import EditIcon from '@/assets/svg/EditIcon';
 import DeleteIcon from '@/assets/svg/DeleteIcon';
-import { useNavigate } from 'react-router-dom';
+import EditIcon from '@/assets/svg/EditIcon';
+import StatisticsIcon from '@/assets/svg/StatisticsIcon';
 import CustomButton from '@/components/CustomButton';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import useDeleteLoanPool from '@/store/useDeleteLoanPool';
+import useGetViewLoanPoolCustomerDetails from '@/store/useGetLoanPoolCustomerDetails';
 import useGetViewLoanPoolList from '@/store/useGetViewLoanPoolList';
+import { Card, Checkbox, Grid, Paper, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import ConformationDialogBox from '@/components/ConformationDialogBox';
+import { useState } from 'react';
+import SuccessIcon from '@/assets/svg/SuccessIcon';
+import DeletedSuccessfullyIcon from '@/assets/svg/DeletedSuccessfullyIcon';
 
 const LoanPoolCard = () => {
 	const navigate = useNavigate();
 
 	const data = useGetViewLoanPoolList();
-	console.log(data.data);
 
-	const [poolId, setPoolId] = useState('');
+	const setLoanPoolId = useGetViewLoanPoolCustomerDetails();
+
+	const deleteLoanPool = useDeleteLoanPool();
+
+	const handleDeleteLoanPool = (payload) => {
+		deleteLoanPool.mutate(payload);
+	};
+
+	const handleSetLoanPoolId = (payload) => {
+		setLoanPoolId(payload);
+	};
+
+	const [openDialog, setOpenDialog] = useState(false);
+
+	const handleOpenDialog = () => {
+		setOpenDialog(true);
+	};
+	const handleCloseDialog = () => {
+		setOpenDialog(false);
+		//if id==ur btn/ navigate to"route";
+	};
+
+	const customButtonStyle = {
+		width: '15rem',
+		mt: 4,
+		mr: 5,
+		borderRadius: '7px',
+		padding: '0.5rem 2.5rem',
+		color: '#FFFFFF',
+		backgroundColor: '#C4161C',
+		'&:hover': {
+			color: '#FFFFFF',
+			backgroundColor: '#C4161C',
+		},
+		fontWeight: '500',
+	};
 
 	const styles = {
 		lightCardardStyle: {
@@ -89,6 +127,21 @@ const LoanPoolCard = () => {
 		},
 	};
 
+	function getOrdinalSuffix(number) {
+		const suffixes = ['th', 'st', 'nd', 'rd'];
+		const v = number % 100;
+		return number + (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
+	}
+
+	function formatDate(inputDate) {
+		const date = new Date(inputDate);
+		const day = getOrdinalSuffix(date.getDate());
+		const month = date.toLocaleString('default', { month: 'short' });
+		const year = date.getFullYear();
+
+		return `${day} ${month} ${year}`;
+	}
+
 	return (
 		<>
 			{data.data?.map((item, idx) => {
@@ -112,7 +165,7 @@ const LoanPoolCard = () => {
 									{item?.name}
 								</Typography>
 								<Typography sx={styles.titleStyles}>
-									{new Date(item?.createdOn).toLocaleDateString()}
+									Added on {formatDate(item?.createdon)}
 								</Typography>
 							</Grid>
 
@@ -124,7 +177,15 @@ const LoanPoolCard = () => {
 							</Grid>
 
 							<Grid sx={{ mt: 1.2 }} item xs={1} align="left">
-								<Typography sx={styles.ratings.greenRatings}>
+								<Typography
+									sx={
+										item?.credit_ratings[0] === 'A'
+											? styles.ratings.greenRatings
+											: item?.credit_ratings[0] === 'B'
+												? styles.ratings.yellowRatings
+												: styles.ratings.redRatings
+									}
+								>
 									{item?.credit_ratings}
 								</Typography>
 								<Typography sx={styles.titleStyles}>
@@ -153,11 +214,11 @@ const LoanPoolCard = () => {
 										pt: 1,
 										position: 'relative',
 										top: '-40px',
-										right: '-28px',
+										right: '-45px',
 										width: '121px',
 									}}
 								>
-									{item?.days_left_until_closure}
+									{item?.days_left_until_closure} days
 								</Typography>
 							</Grid>
 
@@ -166,9 +227,14 @@ const LoanPoolCard = () => {
 								item
 								xs={1.5}
 								align="left"
-								onClick={() =>
-									navigate('/nbfc/panel/customer-details')
-								}
+								onClick={() => {
+									{
+										navigate(
+											`/nbfc/panel/customer-details/${item?.pool_id}`,
+										);
+										// handleSetLoanPoolId(item?.pool_id);
+									}
+								}}
 							>
 								<Typography
 									sx={{
@@ -193,7 +259,15 @@ const LoanPoolCard = () => {
 							</Grid>
 
 							<Grid item xs={0.5} sx={{ mt: 2 }} align="center">
-								<DeleteIcon />
+								<Typography
+									sx={{ cursor: 'pointer' }}
+									onClick={() => {
+										handleDeleteLoanPool(item?.pool_id);
+										handleOpenDialog();
+									}}
+								>
+									<DeleteIcon />
+								</Typography>
 							</Grid>
 						</Grid>
 					</Card>
@@ -206,23 +280,36 @@ const LoanPoolCard = () => {
 					bottom: 0,
 					left: '50%',
 					transform: 'translateX(-50%)',
-					width: '74rem',
+					width: '72rem',
 					height: '4.5rem',
 					borderTopRightRadius: '0.9375rem',
 					borderTopLeftRadius: '0.9375rem',
 					backgroundColor: 'white',
 					borderTop: '1px solid #ddd', // Add a border if needed
+					ml: 9.5,
 				}}
 				align="right"
 			>
 				<CustomButton
-					sx={{ mt: 2, mr: 2 }}
-					variant="contained"
-					color="error"
+					buttonType={'submit'}
+					buttonDisabled={false}
+					customStyle={customButtonStyle}
 				>
 					Push to the Bank &gt;
 				</CustomButton>
 			</Card>
+			<ConformationDialogBox
+				open={openDialog}
+				handleClose={handleCloseDialog}
+				title="Dialog Title"
+				contentTitle="Pool Deleted Successfully"
+				content="The Loan Pool Details has been Successfully Deleted."
+				imageComponent={<DeletedSuccessfullyIcon />}
+				onButtonClick3={() =>
+					setTimeout(() => window.location.reload(), 500)
+				}
+				buttonText3="Okay"
+			/>
 			<br />
 			<br />
 		</>

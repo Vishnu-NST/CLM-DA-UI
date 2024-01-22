@@ -32,6 +32,22 @@ class LOSClient {
 		this.endpoint = endpoint;
 	}
 
+	getViewLoanPoolList() {
+		return axiosInstance.get(this.endpoint).then((res) => res.data);
+	}
+
+	deleteLoanPool(payload) {
+		return axiosInstance.delete(this.endpoint, payload).then((res) => res.data);
+	}
+
+	getLoanPoolCustomerDetails() {
+		return axiosInstance.get(this.endpoint).then((res) => res.data);
+	}
+
+	getLoanPoolProspectDetails() {
+		return axiosInstance.get(this.endpoint).then((res) => res.data);
+	}
+
 	post(payload) {
 		return axiosInstance.post(this.endpoint, payload).then((res) => res.data);
 	}
@@ -47,11 +63,7 @@ class LOSClient {
 	getCustomerVerificationDetails(payload) {
 		return axiosInstance.get(this.endpoint, payload).then((res) => res.data);
 	}
-
-	getViewLoanPoolList() {
-		return axiosInstance.get(this.endpoint).then((res) => res.data);
-	}
-
+	
 	createPool(payload) {
 		return axiosInstance.post(this.endpoint, payload).then((res) => res.data);
 	}

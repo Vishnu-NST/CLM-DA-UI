@@ -1,15 +1,8 @@
 import { LineChart, Line, XAxis, YAxis, Legend } from 'recharts';
 
 const LineChartComponent = (props) => {
-	const data = [
-		{ name: 'SEP', 'Recent AUM': 30, 'Past AUM': 20 },
-		{ name: 'OCT', 'Recent AUM': 35, 'Past AUM': 25 },
-		{ name: 'NOV', 'Recent AUM': 31, 'Past AUM': 21 },
-		{ name: 'DEC', 'Recent AUM': 36, 'Past AUM': 26 },
-		{ name: 'JAN', 'Recent AUM': 28, 'Past AUM': 18 },
-		{ name: 'FEB', 'Recent AUM': 35, 'Past AUM': 25 },
-	];
-
+	const data = props.data;
+	const dataKeys = data ? Object.keys(data[0]) : '';
 	const CustomXAxisTick = ({ x, y, payload }) => (
 		<g transform={`translate(${x},${y})`}>
 			<text
@@ -22,6 +15,7 @@ const LineChartComponent = (props) => {
 				fontFamily="Poppins"
 			>
 				{payload.value}
+				{props.yAxisUnit}
 			</text>
 		</g>
 	);
@@ -37,7 +31,9 @@ const LineChartComponent = (props) => {
 				fontSize={12}
 				fontFamily="Poppins"
 			>
-				{payload.value === 0 ? '' : `${payload.value} Cr`}
+				{payload.value === 0
+					? ''
+					: `${payload.value} ${props.yAxisUnitSuffix}`}
 			</text>
 		</g>
 	);
@@ -45,15 +41,15 @@ const LineChartComponent = (props) => {
 	return (
 		<>
 			<LineChart
-				width={400}
+				width={450}
 				height={300}
 				data={data}
-				margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
+				style={{ marginLeft: '7rem' }}
 			>
 				<XAxis
 					dot={false}
 					axisLine={false}
-					dataKey="name"
+					dataKey={dataKeys[0]}
 					tick={<CustomXAxisTick />}
 				/>
 				<YAxis
@@ -64,7 +60,7 @@ const LineChartComponent = (props) => {
 				/>
 				<Line
 					type="monotone"
-					dataKey="Recent AUM"
+					dataKey={dataKeys[1]}
 					stroke="#00B85E"
 					strokeWidth={3}
 					wrapperStyle={{ fontSize: '0.75rem' }}
@@ -72,28 +68,33 @@ const LineChartComponent = (props) => {
 				/>
 				<Line
 					type="monotone"
-					dataKey="Past AUM"
+					dataKey={dataKeys[2]}
 					stroke="#8794C2"
 					strokeWidth={3}
 					dot={false}
 				/>
 				{props.showLegend && (
 					<Legend
-						align="left"
-						verticalAlign="middle"
-						layout="vertical"
-						formatter={(value) => (
-							<span style={{ fontSize: '0.75rem' }}>{value}</span>
+						// align="left"
+						// verticalAlign="middle"  //Uncommet to move legend to the left center.
+						layout="horizontal"
+						formatter={(value, entry) => (
+							<span style={{ fontSize: '0.75rem' }}>
+								{value} {entry.unit}
+							</span>
 						)}
+						wrapperStyle={{
+							paddingLeft: '10px',
+						}}
 						payload={[
 							{
 								value: 'Recent AUM',
-								type: 'circle',
+								type: 'rect',
 								color: '#00B85E',
 							},
 							{
 								value: 'Past AUM',
-								type: 'circle',
+								type: 'rect',
 								rotation: '90deg',
 								color: '#8794C2',
 							},
