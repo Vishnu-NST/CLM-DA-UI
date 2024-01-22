@@ -29,16 +29,6 @@ export const useAppState = create()(
 					},
 				};
 			}),
-		setCreatedPoolId: (createdPool) =>
-			set((state) => {
-				return {
-					...state,
-					app: {
-						...state.app,
-						createdPoolId: createdPool,
-					},
-				};
-			}),
 	}),
 	// {
 	// 	name: 'userAppState', // name of the item in the storage (must be unique)

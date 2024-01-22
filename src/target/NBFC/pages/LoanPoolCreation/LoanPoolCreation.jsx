@@ -41,7 +41,6 @@ import useCreatePool from '@/store/useCreatePool';
 import DialogSuccessIcon from '../../../../assets/svg/DialogSuccessIcon';
 import ConformationDialogBox from '@/components/ConformationDialogBox';
 import useCreatePoolFileUpload from '@/store/useCreatePoolFileUpload';
-import { convertIntegersToStrings, formatDate } from '@/utils/common';
 import { useAppState } from '@/store/useAppState';
 
 function CustomTabPanel(props) {
@@ -91,17 +90,17 @@ const validationSchema = yup.object({
 	irr: yup.string().required('Average IRR is required'),
 	average_balance_tenor: yup.string(),
 	average_loan_amount: yup.string(),
-	par01Plus: yup.string().required('PAR 01+ is required'),
-	par30Plus: yup.string().required('PAR 30 is required'),
+	par01plus: yup.string().required('PAR 01+ is required'),
+	par30plus: yup.string().required('PAR 30 is required'),
 	par60: yup.string(),
 	par90: yup.string(),
-	par90Plus: yup.string(),
-	no_ofNbfc_branches_covered: yup.string(),
-	no_ofStates_coverd: yup.string(),
-	no_ofDistricts_coverd: yup.string(),
+	par90plus: yup.string(),
+	no_ofnbfc_branches_covered: yup.string(),
+	no_ofstates_covered: yup.string(),
+	no_ofdistricts_covered: yup.string(),
 	no_of_loans: yup.string(),
-	no_ofFirstCycle_loans: yup.string(),
-	no_ofSecondCycle_loans: yup.string(),
+	no_offirstcycle_loans: yup.string(),
+	no_ofsecondcycle_loans: yup.string(),
 });
 
 const LoanPoolCreation = () => {
@@ -111,6 +110,8 @@ const LoanPoolCreation = () => {
 	const poolFileUpload = useCreatePoolFileUpload();
 	const [searchVal, setSearchVal] = React.useState('');
 	const navigate = useNavigate();
+	const { app } = useAppState();
+
 	const [breadCrumbs, setBreadCrumbs] = React.useState([
 		{
 			data: 'Menu',
@@ -161,7 +162,6 @@ const LoanPoolCreation = () => {
 	const [sftpUploadedFile, setSftpUploadedFile] = React.useState();
 	const params = useParams();
 	const poolCreation = useCreatePool();
-	const { createdPoolId } = useAppState();
 	const [isSuccessDialog, setIsSuccessDialog] = React.useState(false);
 	const [dataIntegrationFormValues, setDataIntegrationFormValues] =
 		React.useState();
@@ -198,17 +198,17 @@ const LoanPoolCreation = () => {
 			irr: '',
 			average_balance_tenor: '',
 			average_loan_amount: '',
-			par01Plus: '',
-			par30Plus: '',
+			par01plus: '',
+			par30plus: '',
 			par60: '',
 			par90: '',
-			par90Plus: '',
-			no_ofNbfc_branches_covered: '',
-			no_ofStates_coverd: '',
-			no_ofDistricts_coverd: '',
+			par90plus: '',
+			no_ofnbfc_branches_covered: '',
+			no_ofstates_covered: '',
+			no_ofdistricts_covered: '',
 			no_of_loans: '',
-			no_ofFirstCycle_loans: '',
-			no_ofSecondCycle_loans: '',
+			no_offirstcycle_loans: '',
+			no_ofsecondcycle_loans: '',
 		},
 		validationSchema: validationSchema,
 		onSubmit: async (values) => {
@@ -288,23 +288,20 @@ const LoanPoolCreation = () => {
 		console.log({ formik });
 		console.log({ dataIntegrationFormValues });
 		console.log({ sftpUploadedFile });
-		const updatedFormikValues = convertIntegersToStrings(formik.values);
-		const updatedDataIntegrationValues = convertIntegersToStrings(
-			dataIntegrationFormValues,
-		);
+		const dateObject = new Date(formik.values.expected_closure_date);
+
+		const formattedDate = `${dateObject.getFullYear()}-${String(
+			dateObject.getMonth() + 1,
+		).padStart(2, '0')}-${String(dateObject.getDate()).padStart(2, '0')}`;
+
+		console.log({ formattedDate });
 		let obj = {
-			...updatedFormikValues,
-			...updatedDataIntegrationValues,
-			upload_csvFile_name: null,
-			name: 'string',
-			sftp_frequency: 'string',
-			sftp_no_oftime: 'string',
-			par30: 'string',
-			bank_id: null,
-			expected_closure_date: '2024-01-20',
+			...formik.values,
+			...dataIntegrationFormValues,
+			createdby: app?.user?.userId,
+			expected_closure_date: formattedDate,
 		};
-		delete obj.par30Plus;
-		delete obj.par01Plus;
+
 		poolCreation.mutate(obj);
 		// poolFileUpload.mutate({ pool_id: 123, file: sftpUploadedFile });
 		// setIsSuccessDialog(true);
@@ -354,16 +351,17 @@ const LoanPoolCreation = () => {
 		}
 	}, [poolCreation.data]);
 
-	if (poolFileUpload.isSuccess) {
-		setIsSuccessDialog(true);
-	}
+	useEffect(() => {
+		const successData = poolFileUpload.data;
+		if (successData?.pool_id) {
+			setIsSuccessDialog(true);
+		}
+	}, [poolFileUpload.data]);
 
 	const handleDialogClose = () => {
 		setIsSuccessDialog(false);
 		navigate('/nbfc/panel/lpc/view');
 	};
-
-	console.log({ sftpUploadedFile });
 
 	return (
 		<>

@@ -22,6 +22,8 @@ import InputComponent from '@/components/InputComponent';
 import SelectComponent from '@/components/SelectComponent';
 import useDemandUpload from '@/store/useDemandUpload';
 import useCollectionUpload from '@/store/useCollectionUpload';
+import useDemandUploadHistory from '@/store/useDemandUploadHistory';
+import { useAppState } from '@/store/useAppState';
 
 const customButtonStyle = {
 	borderRadius: '7px',
@@ -73,6 +75,8 @@ const SFTPIntegration = ({ tabValue }) => {
 	const demandUpload = useDemandUpload();
 	const collectionUpload = useCollectionUpload();
 	const arr = [1, 2, 3, 4, 5];
+	const uploadHistory = useDemandUploadHistory(tabValue?.toLowerCase());
+	const { app } = useAppState();
 	const formik = useFormik({
 		initialValues: {
 			userName: '',
@@ -184,8 +188,8 @@ const SFTPIntegration = ({ tabValue }) => {
 				</div>
 			</div>
 			<div className="uploaded-file-list">
-				{arr?.map((item, idx) => {
-					return <UploadedFileComp key={idx} />;
+				{uploadHistory?.data?.data?.map((item, idx) => {
+					return <UploadedFileComp key={idx} uploadData={item} />;
 				})}
 			</div>
 			<Grid container className="mt-3">

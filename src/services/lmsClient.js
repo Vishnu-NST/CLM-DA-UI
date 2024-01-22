@@ -14,7 +14,7 @@ axiosInstance.interceptors.request.use(
 		// 	config.headers['Authorization'] = `Bearer ${wsoToken}`;
 		// }
 
-		config.headers['Content-Type'] = 'application/json';
+		// config.headers['Content-Type'] = 'application/json';
 
 		return config;
 	},
@@ -33,6 +33,30 @@ class LMSClient {
 	}
 
 	getOverallLoanPoolSummary() {
+		return axiosInstance.get(this.endpoint).then((res) => res.data);
+	}
+
+	uploadDemandFile(payload) {
+		return axiosInstance
+			.post(this.endpoint, payload, {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+				},
+			})
+			.then((res) => res.data);
+	}
+
+	uploadCollectionFile(payload) {
+		return axiosInstance
+			.post(this.endpoint, payload, {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+				},
+			})
+			.then((res) => res.data);
+	}
+
+	getUploadHistoryForDemand() {
 		return axiosInstance.get(this.endpoint).then((res) => res.data);
 	}
 }

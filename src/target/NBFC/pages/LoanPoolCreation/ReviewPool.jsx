@@ -106,13 +106,13 @@ const ReviewPool = ({ formikValues, onCreateLoanPool }) => {
 					<Grid container className="mt-2" rowGap={3}>
 						<Grid item sm={2.4}>
 							<div className="review-data">
-								{formikValues?.par01Plus}
+								{formikValues?.par01plus}
 							</div>
 							<div className="review-sub-title">PAR 01+</div>
 						</Grid>
 						<Grid item sm={2.4}>
 							<div className="review-data">
-								{formikValues?.par30Plus}
+								{formikValues?.par30plus}
 							</div>
 							<div className="review-sub-title">PAR 30+</div>
 						</Grid>
@@ -126,13 +126,13 @@ const ReviewPool = ({ formikValues, onCreateLoanPool }) => {
 						</Grid>
 						<Grid item sm={2.4}>
 							<div className="review-data">
-								{formikValues?.par90Plus}
+								{formikValues?.par90plus}
 							</div>
 							<div className="review-sub-title">PAR 90+</div>
 						</Grid>
 						<Grid item sm={2.4}>
 							<div className="review-data">
-								{formikValues?.no_ofNbfc_branches_covered}
+								{formikValues?.no_ofnbfc_branches_covered}
 							</div>
 							<div className="review-sub-title">
 								No.of NBFC Covered
@@ -140,7 +140,7 @@ const ReviewPool = ({ formikValues, onCreateLoanPool }) => {
 						</Grid>
 						<Grid item sm={2.4}>
 							<div className="review-data">
-								{formikValues?.no_ofStates_coverd}
+								{formikValues?.no_ofstates_covered}
 							</div>
 							<div className="review-sub-title">
 								No.of States Covered
@@ -148,7 +148,7 @@ const ReviewPool = ({ formikValues, onCreateLoanPool }) => {
 						</Grid>
 						<Grid item sm={2.4}>
 							<div className="review-data">
-								{formikValues?.no_ofDistricts_coverd}
+								{formikValues?.no_ofdistricts_covered}
 							</div>
 							<div className="review-sub-title">
 								No.of Districts Covered
@@ -162,7 +162,7 @@ const ReviewPool = ({ formikValues, onCreateLoanPool }) => {
 						</Grid>
 						<Grid item sm={2.4}>
 							<div className="review-data">
-								{formikValues?.no_ofSecondCycle_loans}
+								{formikValues?.no_ofsecondcycle_loans}
 							</div>
 							<div className="review-sub-title">
 								No.of Second Cycle Loans
@@ -170,7 +170,7 @@ const ReviewPool = ({ formikValues, onCreateLoanPool }) => {
 						</Grid>
 						<Grid item sm={2.4}>
 							<div className="review-data">
-								{formikValues?.no_ofFirstCycle_loans}
+								{formikValues?.no_offirstcycle_loans}
 							</div>
 							<div className="review-sub-title">
 								No.of First Cycle Loans

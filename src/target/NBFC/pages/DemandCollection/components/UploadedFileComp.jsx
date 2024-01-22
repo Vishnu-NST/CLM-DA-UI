@@ -2,16 +2,64 @@ import { Checkbox, Grid } from '@mui/material';
 import ExcelIcon from '@/assets/svg/ExcelIcon.png';
 import CustomButton from '@/components/CustomButton';
 import DeleteImg from '@/assets/svg/DeleteImg';
+import { getOrdinal } from '@/utils/common';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const btnStyle = {
-	background:
-		'linear-gradient(to bottom,rgba(196, 22, 28, 0.1),rgba(196, 22, 28, 0))',
-	borderRadius: '30px',
-	color: '#C4161C',
+	borderRadius: '7px',
+	padding: '0.5rem 1rem',
+	color: '#FFFFFF',
+	backgroundColor: '#C4161C',
+	'&:hover': {
+		color: '#FFFFFF',
+		backgroundColor: '#C4161C',
+	},
+	fontWeight: '500',
+	fontSize: '0.7rem',
 };
 
-const UploadedFileComp = () => {
+const UploadedFileComp = ({ uploadData }) => {
 	const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+	const getReportingDate = (dateString) => {
+		const dateObject = new Date(dateString);
+		const options = {
+			year: 'numeric',
+			month: 'long',
+		};
+		const formattedDate = new Intl.DateTimeFormat('en-US', options).format(
+			dateObject,
+		);
+		const ordinalDay = getOrdinal(dateObject.getDate());
+		const result = `${ordinalDay} ${formattedDate}`;
+		return result;
+	};
+
+	const getUploadedTime = (dateTimeString) => {
+		const dateTimeObject = new Date(dateTimeString);
+
+		const options = {
+			hour: 'numeric',
+			minute: 'numeric',
+			hour12: true,
+		};
+
+		const formattedTime = new Intl.DateTimeFormat('en-US', options).format(
+			dateTimeObject,
+		);
+
+		return formattedTime;
+	};
+
+	const handleDownload = () => {
+		const link = document.createElement('a');
+		link.href = uploadData?.downloadURL;
+		link.download = `${uploadData?.fileName}.xlsx`;
+		link.target = '_blank';
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+	};
 
 	return (
 		<div className="file-detail">
@@ -27,43 +75,57 @@ const UploadedFileComp = () => {
 						}}
 					/>
 				</Grid>
-				<Grid item sm={2} className="flex">
+				<Grid item sm={3} className="flex">
 					<img src={ExcelIcon} alt="" />
 					&nbsp; &nbsp;
 					<div>
-						<div className="title">TitleExcelFile 1.xlsx</div>
-						<div className="sub-title">Reporting on 16th april 2023</div>
+						<div className="title">{uploadData?.fileName}.xlsx</div>
+						<div className="sub-title">
+							Reporting on{' '}
+							{getReportingDate(uploadData?.reportingDate)}
+						</div>
 					</div>
 				</Grid>
 				<Grid item sm={1}>
-					<div className="title">10cr</div>
+					<div className="title">{uploadData?.aum}cr</div>
 					<div className="sub-title">AUM</div>
 				</Grid>
 				<Grid item sm={1.5}>
-					<div className="title">Midhun S</div>
+					<div className="title">{uploadData?.uploadedBy}</div>
 					<div className="sub-title">Uploaded by</div>
 				</Grid>
 				<Grid item sm={1.5}>
-					<div className="title">16th april 2023</div>
+					<div className="title">
+						{getReportingDate(uploadData?.uploadedAt)}
+					</div>
 					<div className="sub-title">Uploaded Date</div>
 				</Grid>
 				<Grid item sm={1}>
-					<div className="title">11:00 Am</div>
+					<div className="title">
+						{getUploadedTime(uploadData?.uploadedAt)}
+					</div>
 					<div className="sub-title">Uploaded Time</div>
 				</Grid>
-				<Grid item sm={1.5}>
+				{/* <Grid item sm={1.5}>
 					<CustomButton customStyle={btnStyle}>Rejected</CustomButton>
-				</Grid>
+				</Grid> */}
 				<Grid item sm={2.5}>
 					<div className="flex-between">
 						&nbsp;
-						<div>
+						{/* <div>
 							<div className="status-title">Oops... Upload Failed</div>
 							<div className="status-sub-title">
 								Please Re-Upload file
 							</div>
-						</div>
-						{/* <CustomButton customStyle={btnStyle}>Rejected</CustomButton> */}
+						</div> */}
+						<CustomButton
+							buttonDisabled={false}
+							customStyle={btnStyle}
+							onClick={handleDownload}
+						>
+							Download &nbsp;
+							<ArrowForwardIosIcon fontSize="11" />
+						</CustomButton>{' '}
 						<div>
 							<DeleteImg />
 						</div>
