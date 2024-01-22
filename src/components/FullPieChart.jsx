@@ -1,5 +1,5 @@
 import { Grid, Typography } from '@mui/material';
-import { PieChart, Pie, ResponsiveContainer } from 'recharts';
+import { Legend, Pie, PieChart, ResponsiveContainer } from 'recharts';
 
 const FullPieChart = () => {
 	const data = [
@@ -11,6 +11,11 @@ const FullPieChart = () => {
 		fontSize: '1.125rem',
 		fontWeight: '600',
 		marginLeft: '0rem',
+	};
+	const legendCls = {
+		fontColor: '#8794C2',
+		fontSize: '0.75rem',
+		bottom: -20,
 	};
 	return (
 		<Grid item xs={6}>
@@ -26,6 +31,21 @@ const FullPieChart = () => {
 						cornerRadius={15}
 						innerRadius={80}
 						outerRadius={120}
+					/>
+					<Legend
+						align="center"
+						verticalAlign="bottom"
+						layout="vertical"
+						wrapperStyle={legendCls}
+						formatter={(value, entry) => (
+							<span style={{ fontSize: '0.75rem' }}>
+								{entry.payload.name === 'soldLoanPool'
+									? `No. of Sold Loan Pools: ${entry.payload.payload.payload.value}`
+									: entry.payload.name === 'activePool'
+										? `No. of Active Pools: ${entry.payload.payload.payload.value}`
+										: `No. of Expired Pools: ${entry.payload.payload.payload.value}`}
+							</span>
+						)}
 					/>
 				</PieChart>
 			</ResponsiveContainer>

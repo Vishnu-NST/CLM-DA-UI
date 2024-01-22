@@ -1,5 +1,5 @@
 import { Card, CardContent, Divider, Grid, Typography } from '@mui/material';
-import { PieChart, Pie, Legend, ResponsiveContainer } from 'recharts';
+import { Legend, Pie, PieChart, ResponsiveContainer } from 'recharts';
 const LoanCyclePieChart = () => {
 	const loanCycleData = [
 		{ name: 'First Cycle Loans Outstanding Amount', value: 70, fill: '#00B85E' },
@@ -48,6 +48,20 @@ const LoanCyclePieChart = () => {
 								layout="vertical"
 								align="center"
 								wrapperStyle={LegendCls}
+								// formatter={(value) => (
+								//  <span style={{ fontSize: '0.75rem' }}>
+								//      {value == 'firstCycleLOA'
+								//          ? 'First cycle loans Outstanding Amount'
+								//          : 'Second cycle loans Outstanding Amount'}
+								//  </span>
+								// )}
+								formatter={(value, entry) => (
+									<span style={{ fontSize: '0.75rem' }}>
+										{entry.payload.name === 'firstCycleLOA'
+											? `First cycle loans Outstanding Amount: ${entry.payload.payload.payload.value}`
+											: `Second cycle loans Outstanding Amount: ${entry.payload.payload.payload.value}`}
+									</span>
+								)}
 							/>
 						</PieChart>
 					</ResponsiveContainer>

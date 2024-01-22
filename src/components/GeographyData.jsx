@@ -34,14 +34,14 @@ const GeographyData = () => {
 						backgroundColor: '#C4161C',
 					},
 					'&::after': {
-						content: "'hello'",
+						content: "'8'",
 						position: 'absolute',
 						top: '-25px',
 						right: 'calc(30% + 1rem)',
 					},
 				}}
 			>
-				<Box sx={{ position: 'absolute', top: '-25px' }}>hi</Box>
+				<Box sx={{ position: 'absolute', top: '-25px' }}>State</Box>
 			</Box>
 			<Box
 				sx={{
@@ -63,14 +63,14 @@ const GeographyData = () => {
 						backgroundColor: '#8794C2',
 					},
 					'&::after': {
-						content: "'hello'",
+						content: "'34'",
 						position: 'absolute',
 						top: '-25px',
 						right: 'calc(30% + 1rem)',
 					},
 				}}
 			>
-				<Box sx={{ position: 'absolute', top: '-25px' }}>hi</Box>
+				<Box sx={{ position: 'absolute', top: '-25px' }}>City</Box>
 			</Box>
 			<Box
 				sx={{
@@ -93,14 +93,14 @@ const GeographyData = () => {
 						backgroundColor: '#D4D8E9',
 					},
 					'&::after': {
-						content: "'hello'",
+						content: "'699'",
 						position: 'absolute',
 						top: '-25px',
 						right: 'calc(30% + 1rem)',
 					},
 				}}
 			>
-				<Box sx={{ position: 'absolute', top: '-25px' }}>hi</Box>
+				<Box sx={{ position: 'absolute', top: '-25px' }}>Pincodes</Box>
 			</Box>
 		</Grid>
 	);
