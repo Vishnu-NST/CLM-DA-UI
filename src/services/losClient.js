@@ -55,6 +55,11 @@ class LOSClient {
 	get(payload) {
 		return axiosInstance.get(this.endpoint, payload).then((res) => res.data);
 	}
+
+	put(payload) {
+		return axiosInstance.put(this.endpoint, payload).then((res) => res.data);
+	}
+
 	getCustomerVerificationDetails(payload) {
 		return axiosInstance.get(this.endpoint, payload).then((res) => res.data);
 	}
@@ -81,7 +86,7 @@ class LOSClient {
 		return axiosInstance.get(this.endpoint).then((res) => res.data);
 	}
 	DDCustomerApproval(payload) {
-		return axiosInstance.post(this.endpoint, payload).then((res) => res.data);
+		return;
 	}
 }
 

@@ -124,7 +124,6 @@ const UserList = () => {
 						forwardArrowIcon={<ForwardArrow />}
 					/>
 				</Grid>
-
 				<ConformationDialogBox
 					open={openDialog.open}
 					handleClose={handleCloseDialog}
