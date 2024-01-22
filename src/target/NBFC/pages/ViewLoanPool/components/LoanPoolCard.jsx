@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import ConformationDialogBox from '@/components/ConformationDialogBox';
 import { useState } from 'react';
 import SuccessIcon from '@/assets/svg/SuccessIcon';
+import DeletedSuccessfullyIcon from '@/assets/svg/DeletedSuccessfullyIcon';
 
 const LoanPoolCard = () => {
 	const navigate = useNavigate();
@@ -29,8 +30,8 @@ const LoanPoolCard = () => {
 	};
 
 	const [openDialog, setOpenDialog] = useState(false);
-	const handleOpenDialog = (e) => {
-		e.preventDefault();
+
+	const handleOpenDialog = () => {
 		setOpenDialog(true);
 	};
 	const handleCloseDialog = () => {
@@ -261,26 +262,13 @@ const LoanPoolCard = () => {
 								<Typography
 									sx={{ cursor: 'pointer' }}
 									onClick={() => {
-										// handleDeleteLoanPool(item?.pool_id);
-										// console.log(item?.pool_id);
+										handleDeleteLoanPool(item?.pool_id);
 										handleOpenDialog();
 									}}
 								>
 									<DeleteIcon />
 								</Typography>
 							</Grid>
-							<ConformationDialogBox
-								open={openDialog}
-								handleClose={handleCloseDialog}
-								title="Dialog Title"
-								contentTitle="Updated Successfully"
-								content="The user profile Details has been Successfully Updated."
-								imageComponent={<SuccessIcon />}
-								buttonText1="View User Details"
-								buttonText2="Add New User"
-								onButtonClick1={() => navigate('/user-list')}
-								onButtonClick2={() => navigate('/user-management')}
-							/>
 						</Grid>
 					</Card>
 				);
@@ -310,6 +298,18 @@ const LoanPoolCard = () => {
 					Push to the Bank &gt;
 				</CustomButton>
 			</Card>
+			<ConformationDialogBox
+				open={openDialog}
+				handleClose={handleCloseDialog}
+				title="Dialog Title"
+				contentTitle="Pool Deleted Successfully"
+				content="The Loan Pool Details has been Successfully Deleted."
+				imageComponent={<DeletedSuccessfullyIcon />}
+				onButtonClick3={() =>
+					setTimeout(() => window.location.reload(), 500)
+				}
+				buttonText3="Okay"
+			/>
 			<br />
 			<br />
 		</>
