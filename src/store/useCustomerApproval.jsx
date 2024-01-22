@@ -5,14 +5,15 @@ const useLogin = () => {
 	const losClient = new LOSClient(`/pool/update-pool-due-diligence-approved/`);
 
 	return useMutation({
-		mutationFn: (data) =>
-			losClient.DDCustomerApproval({
+		mutationFn: (data) => {
+			return losClient.put({
 				pool_id: data.poolId,
 				kyc_verification: data.KYC,
 				loan_agreement_verification: data.loanDoc,
 				other_document_verification: data.otherDoc,
 				is_approved: data.approval,
-			}),
+			});
+		},
 		onSuccess: (data) => {
 			// console.log(data);
 			if (data.error) {
