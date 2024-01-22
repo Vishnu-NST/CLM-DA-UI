@@ -12,7 +12,8 @@ const PoolAssetHeaderStyle = {
 	fontWeight: 'bold',
 	// fontWeight: '700',
 };
-const CollectivePoolData = () => {
+const CollectivePoolData = (props) => {
+	const data = props.data;
 	return (
 		<>
 			<Grid container>
@@ -24,13 +25,14 @@ const CollectivePoolData = () => {
 									component="paragraph"
 									sx={PoolAssetHeaderStyle}
 								>
-									₹ 50Cr
+									₹ {data.aum.value} {data.aum.unit}
 								</Typography>
 								<Typography sx={PoolAssetDataStyle}>AUM</Typography>
 							</Grid>
 							<Grid item xs={6}>
 								<Typography sx={PoolAssetHeaderStyle}>
-									₹ 1Cr
+									₹ {data.totalOutstandingAmount.value}{' '}
+									{data.totalOutstandingAmount.unit}
 								</Typography>
 								<Typography sx={PoolAssetDataStyle}>
 									Total Outstanding Amount
@@ -38,46 +40,48 @@ const CollectivePoolData = () => {
 							</Grid>
 							<Grid item xs={6} mt="1rem">
 								<Typography sx={PoolAssetHeaderStyle}>
-									10,000
+									{data.totalCustomers}
 								</Typography>
 								<Typography sx={PoolAssetDataStyle}>
 									Total Customers
 								</Typography>
 							</Grid>
-
 							<Grid item xs={6} mt="1rem">
 								<Typography sx={PoolAssetHeaderStyle}>
-									7,000
+									{data.totalDisbursementAmount.value}{' '}
+									{data.totalDisbursementAmount.unit}
 								</Typography>
 								<Typography sx={PoolAssetDataStyle}>
 									Total Disbursement
 								</Typography>
 							</Grid>
-
 							<Grid item xs={6} mt="1rem">
-								<Typography sx={PoolAssetHeaderStyle}>28</Typography>
+								<Typography sx={PoolAssetHeaderStyle}>
+									{data.no_of_state}
+								</Typography>
 								<Typography sx={PoolAssetDataStyle}>
 									No. of States
 								</Typography>
 							</Grid>
-
 							<Grid item xs={6} mt="1rem">
-								<Typography sx={PoolAssetHeaderStyle}>08</Typography>
+								<Typography sx={PoolAssetHeaderStyle}>
+									{data.no_of_district}
+								</Typography>
 								<Typography sx={PoolAssetDataStyle}>
 									No. of Districts
 								</Typography>
 							</Grid>
-
 							<Grid item xs={6} mt="1rem">
-								<Typography sx={PoolAssetHeaderStyle}>25</Typography>
+								<Typography sx={PoolAssetHeaderStyle}>
+									{data.no_of_branch}
+								</Typography>
 								<Typography sx={PoolAssetDataStyle}>
 									No. of Branches
 								</Typography>
 							</Grid>
-
 							<Grid item xs={6} mt="1rem">
 								<Typography sx={PoolAssetHeaderStyle}>
-									16%
+									{data.averageIrr.value} {data.averageIrr.unit}
 								</Typography>
 								<Typography sx={PoolAssetDataStyle}>
 									Average IRR

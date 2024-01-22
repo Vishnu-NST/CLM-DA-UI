@@ -92,7 +92,12 @@ function ColorlibStepIcon(props) {
 	);
 }
 
-function DDStepper({ dd, pool, transaction, handedOver, poolId }) {
+function DDStepper({
+	push_to_bank,
+	due_diligence_status,
+	pool_status,
+	transaction_status,
+}) {
 	const [activeStep, setActiveStep] = React.useState(0);
 
 	const navigate = useNavigate();
@@ -101,28 +106,33 @@ function DDStepper({ dd, pool, transaction, handedOver, poolId }) {
 		navigate(`/bank/panel/CustomerVerification/${poolId}`);
 	};
 
-	const statusArray = [dd, pool, transaction, handedOver];
+	const statusArray = [
+		push_to_bank,
+		due_diligence_status,
+		pool_status,
+		transaction_status,
+	];
 
 	const step = {
 		completed: [
-			'Due Diligence completed',
+			'Pushed to Bank',
+			'Due Diligence Completed',
 			'Pool Approved',
-			'Loan ID',
-			'Pool Received',
+			'Transaction Done',
 		],
 		pending: [
-			'Complete Due Diligence',
-			'Complete Pool Approval',
-			'Complete Loan ID',
+			'Pushed to Bank',
+			'Due Diligence Pending',
 			'Pool Approval Pending',
+			'Transaction Pending',
 		],
 		rejected: [
-			'Due Diligence Rejected',
-			'Pool Rejected',
-			'Loan ID Rejected',
-			'Pool Rejected',
+			'Pushed to Bank',
+			'Due Diligence',
+			'Pool Approval',
+			'Transaction',
 		],
-		default: ['Complete Due Diligence', 'Pool', 'Loan ID', 'Pending'],
+		default: ['Pushed to Bank', 'Due Diligence', 'Pool', 'Transation'],
 	};
 
 	const resultantArray = statusArray.map((ele, index) => {
@@ -137,26 +147,29 @@ function DDStepper({ dd, pool, transaction, handedOver, poolId }) {
 	});
 	React.useEffect(() => {
 		if (
-			dd === 'Due Diligence completed' &&
-			pool === 'Pool completed' &&
-			transaction === 'Transaction completed' &&
-			handedOver === 'completed'
+			push_to_bank === 'Pushed to Bank' &&
+			due_diligence_status === 'Due Diligence Completed' &&
+			pool_status === 'Pool Approved' &&
+			transaction_status === 'Transaction Done'
 		) {
 			setActiveStep(4);
 		} else if (
-			dd === 'Due Diligence completed' &&
-			pool === 'Pool completed' &&
-			transaction === 'Transaction completed'
+			push_to_bank === 'Pushed to Bank' &&
+			due_diligence_status === 'Pool completed' &&
+			pool_status === 'Pool Approved'
 		) {
 			setActiveStep(3);
-		} else if (dd === 'Due Diligence completed' && pool === 'Pool completed') {
+		} else if (
+			push_to_bank === 'Pushed to Bank' &&
+			due_diligence_status === 'Pool Approved'
+		) {
 			setActiveStep(2);
-		} else if (dd === 'Due Diligence completed') {
+		} else if (push_to_bank === 'Pushed to Bank') {
 			setActiveStep(1);
 		} else {
 			setActiveStep(0);
 		}
-	}, [dd, pool, transaction, handedOver]);
+	}, [push_to_bank, due_diligence_status, pool_status, transaction_status]);
 	const StyledTypography = styled(Typography)`
 		font-size: 0.875rem;
 		cursor: pointer;
@@ -180,10 +193,10 @@ function DDStepper({ dd, pool, transaction, handedOver, poolId }) {
 								<ColorlibStepIcon
 									{...stepProps}
 									status={activeStep}
-									dd={dd}
-									pool={pool}
-									transaction={transaction}
-									handedOver={handedOver}
+									push_to_bank={push_to_bank}
+									due_diligence_status={due_diligence_status}
+									pool_status={pool_status}
+									transaction_status={transaction_status}
 								/>
 							)}
 						>

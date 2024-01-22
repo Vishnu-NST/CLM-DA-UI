@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-// import Grid from '@mui/material/Grid';
-// import { Button, Pagination } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,10 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import CustomerDetailsIcon from '../../../../assets/svg/CustomerDetailsIcon';
 import { Typography } from '@mui/material';
-// import InputAdornment from '@mui/material/InputAdornment';
-// import TextField from '@mui/material/TextField';
-// import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-// import StatisticsWhiteIcon from '@/assets/svg/StatisticsWhiteIcon';
+
 import { useNavigate } from 'react-router-dom';
 import SearchIcon from '../../../../assets/svg/SearchIcon';
 import InputComponent from '@/components/InputComponent';

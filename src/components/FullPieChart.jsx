@@ -1,21 +1,23 @@
 import { Grid, Typography } from '@mui/material';
-import { Legend, Pie, PieChart, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, ResponsiveContainer, Legend } from 'recharts';
 
-const FullPieChart = () => {
-	const data = [
-		{ name: 'Group A', value: 5067, fill: '#8794C2' },
-		{ name: 'Group B', value: 3800, fill: '#c6c7c8' },
-		{ name: 'Group C', value: 5067, fill: '#00B85E' },
-	];
-	const titleStyle = {
-		fontSize: '1.125rem',
-		fontWeight: '600',
-		marginLeft: '0rem',
-	};
+const FullPieChart = (props) => {
+	const data = props?.data;
+	const fillValues = ['#8794C2', '#a2a7ab', '#00B85E'];
+	const formattedData = Object.entries(data).map(([name, value], index) => ({
+		name,
+		value,
+		fill: fillValues[index],
+	}));
 	const legendCls = {
 		fontColor: '#8794C2',
 		fontSize: '0.75rem',
 		bottom: -20,
+	};
+	const titleStyle = {
+		fontSize: '1.125rem',
+		fontWeight: '600',
+		marginLeft: '0rem',
 	};
 	return (
 		<Grid item xs={6}>
@@ -24,7 +26,7 @@ const FullPieChart = () => {
 				<PieChart>
 					<Pie
 						dataKey="value"
-						data={data}
+						data={formattedData}
 						cx="50%"
 						cy="50%"
 						paddingAngle={8}

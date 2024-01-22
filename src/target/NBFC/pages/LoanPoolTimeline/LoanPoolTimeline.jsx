@@ -13,175 +13,18 @@ import Stepper from './DDStepper';
 import HeaderComp from '@/components/HeaderComponent';
 import { useNavigate } from 'react-router-dom';
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
-const data = [
-	{
-		bankName: 'Bank A',
-		amount: '10 cr',
-		creditRating: 'A+',
-		averageIRR: '10%',
-		daysLeft: 15,
-		status: 'completed',
-	},
-	{
-		bankName: 'Bank B',
-		amount: '20 cr',
-		creditRating: 'B',
-		averageIRR: '15%',
-		daysLeft: 25,
-		status: 'approved',
-	},
-	{
-		bankName: 'Bank C',
-		amount: '30 cr',
-		creditRating: 'C',
-		averageIRR: '12%',
-		daysLeft: 3,
-		status: 'rejected',
-	},
-	{
-		bankName: 'Bank D',
-		amount: '25 cr',
-		creditRating: 'A',
-		averageIRR: '18%',
-		daysLeft: 20,
-		status: 'processing',
-	},
-	{
-		bankName: 'Bank E',
-		amount: '15 cr',
-		creditRating: 'B+',
-		averageIRR: '22%',
-		daysLeft: 30,
-		status: 'completed',
-	},
-	{
-		bankName: 'Bank F',
-		amount: '12 cr',
-		creditRating: 'A-',
-		averageIRR: '14%',
-		daysLeft: 22,
-		status: 'approved',
-	},
-	{
-		bankName: 'Bank G',
-		amount: '18 cr',
-		creditRating: 'B-',
-		averageIRR: '16%',
-		daysLeft: 18,
-		status: 'rejected',
-	},
-	{
-		bankName: 'Bank H',
-		amount: '28 cr',
-		creditRating: 'A+',
-		averageIRR: '20%',
-		daysLeft: 12,
-		status: 'processing',
-	},
-	{
-		bankName: 'Bank I',
-		amount: '22 cr',
-		creditRating: 'C+',
-		averageIRR: '25%',
-		daysLeft: 28,
-		status: 'completed',
-	},
-	{
-		bankName: 'Bank J',
-		amount: '8 cr',
-		creditRating: 'A',
-		averageIRR: '14%',
-		daysLeft: 24,
-		status: 'approved',
-	},
-	{
-		bankName: 'Bank K',
-		amount: '16 cr',
-		creditRating: 'B',
-		averageIRR: '19%',
-		daysLeft: 14,
-		status: 'rejected',
-	},
-	{
-		bankName: 'Bank L',
-		amount: '24 cr',
-		creditRating: 'A+',
-		averageIRR: '21%',
-		daysLeft: 16,
-		status: 'processing',
-	},
-	{
-		bankName: 'Bank M',
-		amount: '14 cr',
-		creditRating: 'B+',
-		averageIRR: '17%',
-		daysLeft: 26,
-		status: 'completed',
-	},
-	{
-		bankName: 'Bank N',
-		amount: '11 cr',
-		creditRating: 'C-',
-		averageIRR: '13%',
-		daysLeft: 21,
-		status: 'approved',
-	},
-	{
-		bankName: 'Bank O',
-		amount: '19 cr',
-		creditRating: 'A-',
-		averageIRR: '23%',
-		daysLeft: 19,
-		status: 'rejected',
-	},
-	{
-		bankName: 'Bank P',
-		amount: '29 cr',
-		creditRating: 'B-',
-		averageIRR: '18%',
-		daysLeft: 11,
-		status: 'processing',
-	},
-	{
-		bankName: 'Bank Q',
-		amount: '23 cr',
-		creditRating: 'A+',
-		averageIRR: '24%',
-		daysLeft: 27,
-		status: 'completed',
-	},
-	{
-		bankName: 'Bank R',
-		amount: '9 cr',
-		creditRating: 'C+',
-		averageIRR: '16%',
-		daysLeft: 23,
-		status: 'approved',
-	},
-	{
-		bankName: 'Bank S',
-		amount: '17 cr',
-		creditRating: 'A',
-		averageIRR: '22%',
-		daysLeft: 17,
-		status: 'rejected',
-	},
-	{
-		bankName: 'Bank T',
-		amount: '27 cr',
-		creditRating: 'B+',
-		averageIRR: '19%',
-		daysLeft: 13,
-		status: 'processing',
-	},
-];
+
+import useLoanTimePool from './../../../../store/useLoanTimePool';
 
 function LoanPoolTimeline() {
+	const loanPoolData = useLoanTimePool();
+	const data = loanPoolData.data ? loanPoolData.data : [];
+
 	const [poolName, setPoolName] = useState('');
 	const [selectPool, setSelectPool] = useState('');
 	const [filteredData, setFilteredData] = useState(data);
 	const [currentPage, setCurrentPage] = useState(1);
-
+	const [date, setDate] = useState('');
 	//CSS
 
 	const arrowBtnStyle = {
@@ -271,7 +114,7 @@ function LoanPoolTimeline() {
 	const itemsPerPage = 10;
 	const indexOfLastItem = currentPage * itemsPerPage;
 	const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-	const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+	// const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
 	const handlePageChange = (direction) => {
 		if (direction === 'next' && indexOfLastItem < data.length) {
@@ -284,6 +127,11 @@ function LoanPoolTimeline() {
 
 	const handleCustomerDetailsClick = () => {
 		navigate('/bank/panel/customerdetails');
+	};
+	const formatDate = (dateString) => {
+		const date = new Date(dateString);
+		const options = { day: 'numeric', month: 'long' };
+		return date.toLocaleDateString('en-US', options);
 	};
 
 	return (
@@ -332,8 +180,20 @@ function LoanPoolTimeline() {
 					</div>
 				</Box>
 			</Box>
-
-			{currentItems.map((item, index) => (
+			{/* {
+        "pool_id": "POOL-173",
+        "name": "SVASTI-JLG-January 22",
+        "createdon": "2024-01-22T07:54:28.868557",
+        "aum": "50000000.00",
+        "credit_ratings": "A+",
+        "irr": "50.00",
+        "days_left_until_closure": 0,
+        "push_to_bank": null,
+        "due_diligence_status": null,
+        "pool_status": null,
+        "transaction_status": null
+    } */}
+			{data.map((item, index) => (
 				<React.Fragment key={index}>
 					<Box className="bankDD-search">
 						<Box className="flex flexDirectionColunm">
@@ -341,18 +201,18 @@ function LoanPoolTimeline() {
 								variant="body1"
 								style={{ fontSize: '0.875rem' }}
 							>
-								{item.bankName}
+								{item.name}
 							</Typography>
 							<Typography
 								variant="body2"
 								style={{ fontSize: '0.6875rem' }}
 							>
-								Added on 15th April
+								Added on {formatDate(item.createdon)}
 							</Typography>
 						</Box>
 						<Box display="flex" flexDirection="column">
 							<Typography style={{ fontSize: '0.875rem' }}>
-								{item.amount}
+								{item.aum}
 							</Typography>
 							<Typography style={{ fontSize: '0.6875rem' }}>
 								AUM
@@ -362,7 +222,7 @@ function LoanPoolTimeline() {
 							<Typography
 								style={{ fontSize: '0.875rem', color: '#00B85E' }}
 							>
-								{item.creditRating}
+								{item.credit_ratings}
 							</Typography>
 							<Typography style={{ fontSize: '0.6875rem' }}>
 								Credit Ratings
@@ -370,7 +230,7 @@ function LoanPoolTimeline() {
 						</Box>
 						<Box display="flex" flexDirection="column">
 							<Typography style={{ fontSize: '0.875rem' }}>
-								{item.averageIRR}
+								{item.irr}
 							</Typography>
 							<Typography style={{ fontSize: '0.6875rem' }}>
 								Average IRR
@@ -388,7 +248,7 @@ function LoanPoolTimeline() {
 									color: getFontColor(item.daysLeft),
 								}}
 							>
-								{item.daysLeft} days left
+								{item.days_left_until_closure} days left
 							</Typography>
 						</Box>
 						<Box onClick={handleCustomerDetailsClick}>
@@ -411,7 +271,12 @@ function LoanPoolTimeline() {
 						</Box>
 					</Box>
 					<Box sx={{ marginTop: '1rem' }}>
-						<Stepper status={item.status}></Stepper>
+						<Stepper
+							push_to_bank={item.push_to_bank}
+							due_diligence_status={item.due_diligence_status}
+							pool_status={item.pool_status}
+							transaction_status={item.transaction_status}
+						></Stepper>
 					</Box>
 				</React.Fragment>
 			))}
