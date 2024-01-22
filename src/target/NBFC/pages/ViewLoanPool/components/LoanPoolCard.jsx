@@ -251,7 +251,14 @@ const LoanPoolCard = () => {
 							<Grid item xs={0.5}></Grid>
 
 							<Grid item xs={0.5} sx={{ mt: 2 }} align="center">
-								<StatisticsIcon />
+								<Typography
+									sx={{ cursor: 'pointer' }}
+									onClick={() =>
+										navigate('/nbfc/panel/customer-statistics')
+									}
+								>
+									<StatisticsIcon />
+								</Typography>
 							</Grid>
 
 							<Grid item xs={0.5} sx={{ mt: 2 }} align="center">
