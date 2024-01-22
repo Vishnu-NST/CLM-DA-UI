@@ -283,8 +283,8 @@ export const averageLoanAmtAttributes = (formik) => {
 
 export const par01PlusAttributes = (formik) => {
 	return {
-		id: 'par01Plus',
-		name: 'par01Plus',
+		id: 'par01plus',
+		name: 'par01plus',
 		label: (
 			<div className="input-label">
 				PAR 01+<span style={{ color: 'red' }}>*</span>
@@ -292,7 +292,7 @@ export const par01PlusAttributes = (formik) => {
 		),
 		placeholder: 'Enter PAR 01+',
 		type: 'number',
-		value: formik.values.par01Plus,
+		value: formik.values.par01plus,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -304,16 +304,16 @@ export const par01PlusAttributes = (formik) => {
 				evt.key === 'ArrowDown') &&
 				evt.preventDefault();
 		},
-		error: formik.touched.par01Plus && Boolean(formik.errors.par01Plus),
-		helperText: formik.touched.par01Plus && formik.errors.par01Plus,
+		error: formik.touched.par01plus && Boolean(formik.errors.par01plus),
+		helperText: formik.touched.par01plus && formik.errors.par01plus,
 		disabled: false,
 	};
 };
 
 export const par30PlusAttributes = (formik) => {
 	return {
-		id: 'par30Plus',
-		name: 'par30Plus',
+		id: 'par30plus',
+		name: 'par30plus',
 		label: (
 			<div className="input-label">
 				PAR 30+<span style={{ color: 'red' }}>*</span>
@@ -321,7 +321,7 @@ export const par30PlusAttributes = (formik) => {
 		),
 		placeholder: 'Enter PAR 30+',
 		type: 'number',
-		value: formik.values.par30Plus,
+		value: formik.values.par30plus,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -333,8 +333,8 @@ export const par30PlusAttributes = (formik) => {
 				evt.key === 'ArrowDown') &&
 				evt.preventDefault();
 		},
-		error: formik.touched.par30Plus && Boolean(formik.errors.par30Plus),
-		helperText: formik.touched.par30Plus && formik.errors.par30Plus,
+		error: formik.touched.par30plus && Boolean(formik.errors.par30plus),
+		helperText: formik.touched.par30plus && formik.errors.par30plus,
 		disabled: false,
 	};
 };
@@ -391,12 +391,12 @@ export const par90Attributes = (formik) => {
 
 export const par90PlusAttributes = (formik) => {
 	return {
-		id: 'par90Plus',
-		name: 'par90Plus',
+		id: 'par90plus',
+		name: 'par90plus',
 		label: <div className="input-label">PAR 90+</div>,
 		placeholder: 'Enter PAR 90+',
 		type: 'number',
-		value: formik.values.par90Plus,
+		value: formik.values.par90plus,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -408,20 +408,20 @@ export const par90PlusAttributes = (formik) => {
 				evt.key === 'ArrowDown') &&
 				evt.preventDefault();
 		},
-		error: formik.touched.par90Plus && Boolean(formik.errors.par90Plus),
-		helperText: formik.touched.par90Plus && formik.errors.par90Plus,
+		error: formik.touched.par90plus && Boolean(formik.errors.par90plus),
+		helperText: formik.touched.par90plus && formik.errors.par90plus,
 		disabled: false,
 	};
 };
 
 export const nbfcCoveredAttributes = (formik) => {
 	return {
-		id: 'no_ofNbfc_branches_covered',
-		name: 'no_ofNbfc_branches_covered',
+		id: 'no_ofnbfc_branches_covered',
+		name: 'no_ofnbfc_branches_covered',
 		label: <div className="input-label">No. of NBFC Branches Covered</div>,
 		placeholder: 'Enter the No.of NBFC Branches Covered',
 		type: 'number',
-		value: formik.values.no_ofNbfc_branches_covered,
+		value: formik.values.no_ofnbfc_branches_covered,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -434,23 +434,23 @@ export const nbfcCoveredAttributes = (formik) => {
 				evt.preventDefault();
 		},
 		error:
-			formik.touched.no_ofNbfc_branches_covered &&
-			Boolean(formik.errors.no_ofNbfc_branches_covered),
+			formik.touched.no_ofnbfc_branches_covered &&
+			Boolean(formik.errors.no_ofnbfc_branches_covered),
 		helperText:
-			formik.touched.no_ofNbfc_branches_covered &&
-			formik.errors.no_ofNbfc_branches_covered,
+			formik.touched.no_ofnbfc_branches_covered &&
+			formik.errors.no_ofnbfc_branches_covered,
 		disabled: false,
 	};
 };
 
 export const statesCoveredAttributes = (formik) => {
 	return {
-		id: 'no_ofStates_coverd',
-		name: 'no_ofStates_coverd',
+		id: 'no_ofstates_covered',
+		name: 'no_ofstates_covered',
 		label: <div className="input-label">No. of States Covered</div>,
 		placeholder: 'Enter the No.of States Covered',
 		type: 'number',
-		value: formik.values.no_ofStates_coverd,
+		value: formik.values.no_ofstates_covered,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -463,22 +463,22 @@ export const statesCoveredAttributes = (formik) => {
 				evt.preventDefault();
 		},
 		error:
-			formik.touched.no_ofStates_coverd &&
-			Boolean(formik.errors.no_ofStates_coverd),
+			formik.touched.no_ofstates_covered &&
+			Boolean(formik.errors.no_ofstates_covered),
 		helperText:
-			formik.touched.no_ofStates_coverd && formik.errors.no_ofStates_coverd,
+			formik.touched.no_ofstates_covered && formik.errors.no_ofstates_covered,
 		disabled: false,
 	};
 };
 
 export const districtsCoveredAttributes = (formik) => {
 	return {
-		id: 'no_ofDistricts_coverd',
-		name: 'no_ofDistricts_coverd',
+		id: 'no_ofdistricts_covered',
+		name: 'no_ofdistricts_covered',
 		label: <div className="input-label">No. of Districts Covered</div>,
 		placeholder: 'Enter the No.of Districts Covered',
 		type: 'number',
-		value: formik.values.no_ofDistricts_coverd,
+		value: formik.values.no_ofdistricts_covered,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -491,11 +491,11 @@ export const districtsCoveredAttributes = (formik) => {
 				evt.preventDefault();
 		},
 		error:
-			formik.touched.no_ofDistricts_coverd &&
-			Boolean(formik.errors.no_ofDistricts_coverd),
+			formik.touched.no_ofdistricts_covered &&
+			Boolean(formik.errors.no_ofdistricts_covered),
 		helperText:
-			formik.touched.no_ofDistricts_coverd &&
-			formik.errors.no_ofDistricts_coverd,
+			formik.touched.no_ofdistricts_covered &&
+			formik.errors.no_ofdistricts_covered,
 		disabled: false,
 	};
 };
@@ -527,14 +527,14 @@ export const loansCoveredAttributes = (formik) => {
 
 export const firstCycleLoansAttributes = (formik) => {
 	return {
-		id: 'no_ofFirstCycle_loans',
-		name: 'no_ofFirstCycle_loans',
+		id: 'no_offirstcycle_loans',
+		name: 'no_offirstcycle_loans',
 		label: (
 			<div className="input-label">First cycle loans Outstanding Amount</div>
 		),
 		placeholder: 'Enter the First cycle loans Outstanding Amount',
 		type: 'number',
-		value: formik.values.no_ofFirstCycle_loans,
+		value: formik.values.no_offirstcycle_loans,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -547,25 +547,25 @@ export const firstCycleLoansAttributes = (formik) => {
 				evt.preventDefault();
 		},
 		error:
-			formik.touched.no_ofFirstCycle_loans &&
-			Boolean(formik.errors.no_ofFirstCycle_loans),
+			formik.touched.no_offirstcycle_loans &&
+			Boolean(formik.errors.no_offirstcycle_loans),
 		helperText:
-			formik.touched.no_ofFirstCycle_loans &&
-			formik.errors.no_ofFirstCycle_loans,
+			formik.touched.no_offirstcycle_loans &&
+			formik.errors.no_offirstcycle_loans,
 		disabled: false,
 	};
 };
 
 export const secondCycleLoansAttributes = (formik) => {
 	return {
-		id: 'no_ofSecondCycle_loans',
-		name: 'no_ofSecondCycle_loans',
+		id: 'no_ofsecondcycle_loans',
+		name: 'no_ofsecondcycle_loans',
 		label: (
 			<div className="input-label">Second cycle loans Outstanding Amount</div>
 		),
 		placeholder: 'Enter the Second cycle loans Outstanding Amount',
 		type: 'number',
-		value: formik.values.no_ofSecondCycle_loans,
+		value: formik.values.no_ofsecondcycle_loans,
 		onChange: formik.handleChange,
 		onBlur: formik.handleBlur,
 		onkeydown: (evt) => {
@@ -578,11 +578,11 @@ export const secondCycleLoansAttributes = (formik) => {
 				evt.preventDefault();
 		},
 		error:
-			formik.touched.no_ofSecondCycle_loans &&
-			Boolean(formik.errors.no_ofSecondCycle_loans),
+			formik.touched.no_ofsecondcycle_loans &&
+			Boolean(formik.errors.no_ofsecondcycle_loans),
 		helperText:
-			formik.touched.no_ofSecondCycle_loans &&
-			formik.errors.no_ofSecondCycle_loans,
+			formik.touched.no_ofsecondcycle_loans &&
+			formik.errors.no_ofsecondcycle_loans,
 		disabled: false,
 	};
 };

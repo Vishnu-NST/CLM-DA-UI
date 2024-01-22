@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useRef } from 'react';
 import TimerIcon from '../../../../assets/svg/TimerIcon';
 import CloseIcon from '../../../../assets/svg/CloseIcon';
@@ -19,6 +20,7 @@ import { capitalize } from 'lodash';
 import { changeDateFormatForDd } from '@/utils/common';
 import useGetQueryDetail from '@/store/useGetQueryDetail';
 import useDdQueryFileUpload from '@/store/useQueryUpload';
+import useCreateQuery from '@/store/useCreateQuery';
 
 const btnStyle = {
 	border: '1px solid rgba(135, 148, 194, 0.2)',
@@ -61,7 +63,32 @@ const DueDiligenceDrawer = ({ queryData, onClose }) => {
 	const [isReply, setIsReply] = React.useState(false);
 	const queryDetail = useGetQueryDetail(queryData?.query_id);
 	const uploadDdFile = useDdQueryFileUpload();
+	const createQuery = useCreateQuery();
 
+	const handleSendMessage = () => {
+		console.log({ queryData });
+		let obj = {
+			id: queryData?.data?.id,
+			query_id: queryData?.query_id,
+			sender_id: queryData?.data?.sender_id,
+			nbfc_id: queryData?.data?.nbfc_id,
+			nbfc_name: queryData?.data?.nbfc_name,
+			bank_id: queryData?.data?.bank_id,
+			bank_name: queryData?.data?.bank_name,
+			recipient_id: queryData?.data?.recipient_id,
+			product_id: queryData?.data?.product_id,
+			product_name: queryData?.data?.product_name,
+			pool_id: queryData?.data?.pool_id,
+			pool_name: queryData?.data?.pool_name,
+			action: queryData?.data?.action,
+			message: comments,
+			status: queryData?.data?.status,
+			upload: false,
+			fileurl: queryData?.data?.fileUrl,
+		};
+		createQuery.mutate(obj);
+		onClose();
+	};
 	const commentAttributes = {
 		id: 'description',
 		name: 'description',
@@ -344,6 +371,7 @@ const DueDiligenceDrawer = ({ queryData, onClose }) => {
 									<CustomButton
 										customStyle={uploadBtnStyle}
 										className="flex-end"
+										onClick={handleSendMessage}
 									>
 										Send message
 									</CustomButton>

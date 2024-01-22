@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // import { getStorage } from '@/utils/common';
 import axios from 'axios';
 
@@ -17,7 +18,6 @@ axiosInstance.interceptors.request.use(
 		// 	config.headers['Authorization'] = `Bearer ${wsoToken}`;
 		// }
 
-		config.headers['Content-Type'] = 'application/json';
 		// config.headers['Content-Type'] = 'application/json';
 
 		return config;
@@ -63,7 +63,7 @@ class LOSClient {
 	getCustomerVerificationDetails(payload) {
 		return axiosInstance.get(this.endpoint, payload).then((res) => res.data);
 	}
-	
+
 	createPool(payload) {
 		return axiosInstance.post(this.endpoint, payload).then((res) => res.data);
 	}
@@ -87,6 +87,9 @@ class LOSClient {
 	}
 	DDCustomerApproval(payload) {
 		return;
+	}
+	createQueryForDd(payload) {
+		return axiosInstance.post(this.endpoint, payload).then((res) => res.data);
 	}
 }
 
